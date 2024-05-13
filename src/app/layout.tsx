@@ -1,3 +1,4 @@
+import { LayoutWrapper } from "@/ui/layout-wrapper";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
@@ -31,8 +32,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${kanit.variable} ${inter.variable} font-inter`}>
-        {children}
+      <body
+        className={`${kanit.variable} ${inter.variable} font-inter text-slate-50 bg-gray-950`}
+      >
+        <LayoutWrapper>{children}</LayoutWrapper>
       </body>
     </html>
   );
