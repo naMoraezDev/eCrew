@@ -5,4 +5,5 @@ export interface Game {
   name: string;
   slug: string;
   icon_url: string;
+  logo_url: string;
 }

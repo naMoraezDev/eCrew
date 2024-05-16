@@ -11,6 +11,19 @@ const config: Config = {
         inter: ["var(--font-inter)"],
         kanit: ["var(--font-kanit)"],
       },
+      keyframes: {
+        slider: {
+          "0%": {
+            transform: "translateX(0%)",
+          },
+          "100%": {
+            transform: "translateX(-50%)",
+          },
+        },
+      },
+      animation: {
+        slider: "slider 40s infinite linear",
+      },
     },
   },
   plugins: [],

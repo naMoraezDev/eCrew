@@ -1,3 +1,4 @@
+import { LogoSlider } from "@/ui/logo-slider";
 import { MatchesCarousel } from "@/ui/matches-carousel";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
@@ -19,6 +20,7 @@ export default async function Home() {
   return (
     <>
       <MatchesCarousel games={games} matches={matches} />
+      <LogoSlider games={games} />
     </>
   );
 }
