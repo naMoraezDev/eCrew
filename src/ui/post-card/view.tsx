@@ -22,7 +22,7 @@ export function PostCardView({
         className={`
           ${size === "small" && "max-w-24 max-h-24"}
           ${orientation === "vertical" ? "w-full" : "w-1/2"}
-          rounded-md overflow-hidden
+          rounded-md overflow-hidden shrink-0
         `}
       >
         <Image
