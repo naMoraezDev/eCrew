@@ -18,17 +18,21 @@ export function PostCardView({
         flex gap-3 p-3 rounded-lg
       `}
     >
-      <Image
-        alt={post.title}
-        src={post.post_thumbnail.URL}
-        width={post.post_thumbnail.width}
-        height={post.post_thumbnail.height}
+      <figure
         className={`
           ${size === "small" && "max-w-24 max-h-24"}
           ${orientation === "vertical" ? "w-full" : "w-1/2"}
-          rounded-md object-cover object-verter
+          rounded-md overflow-hidden
         `}
-      />
+      >
+        <Image
+          alt={post.title}
+          src={post.post_thumbnail.URL}
+          width={post.post_thumbnail.width}
+          height={post.post_thumbnail.height}
+          className="size-full object-cover object-center hover:scale-110 duration-300"
+        />
+      </figure>
       <div className="w-full flex flex-col gap-3">
         <h3
           className={`

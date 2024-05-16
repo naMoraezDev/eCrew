@@ -1,7 +1,7 @@
-import { LayoutWrapper } from "@/ui/layout-wrapper";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
+import { LayoutWrapper } from "@/ui/layout-wrapper";
 
 const kanit = Kanit({
   preload: true,

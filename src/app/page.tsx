@@ -3,6 +3,7 @@ import { LatestPosts } from "@/ui/latest-posts";
 import { MatchesCarousel } from "@/ui/matches-carousel";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { MatchCard } from "@/ui/match-card";
 
 export const revalidate = 0;
 
@@ -20,17 +21,26 @@ export default async function Home() {
         "destaques"
       ),
     ]);
-  const matches = [...runningMatches, ...upcomingMatches];
+  const matches = [...runningMatches];
 
   return (
     <>
-      <MatchesCarousel games={games} matches={matches} />
+      {/*<MatchesCarousel games={games} matches={matches} />*/}
       <LogoSlider games={games} />
       <section className="w-full flex gap-4">
         <section className="w-full md:w-3/4">
           <LatestPosts postList={featuredPosts} />
         </section>
-        <section className="hidden w-1/4 md:block"></section>
+        <section className="hidden w-1/4 md:block">
+          <section className="flex flex-col gap-2">
+            <h4 className="font-kanit font-medium text-sm">
+              Jogos em andamento
+            </h4>
+            {matches.map((match, index) => (
+              <MatchCard key={index} games={games} match={match} />
+            ))}
+          </section>
+        </section>
       </section>
     </>
   );
