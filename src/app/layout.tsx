@@ -32,6 +32,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
+      <head>
+        <meta name="theme-color" content="rgb(3 7 18)" />
+      </head>
       <body
         className={`${kanit.variable} ${inter.variable} antialiased font-inter text-slate-50 bg-gray-950`}
       >
