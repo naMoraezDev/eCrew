@@ -5,14 +5,14 @@ import { FaTwitch } from "react-icons/fa";
 import { FaShieldCat } from "react-icons/fa6";
 
 export function MatchCardView({ match, games }: MatchCardProps) {
-  const { stream, gameIcon } = useMatchCard({ match, games });
+  const { stream, gameLogo } = useMatchCard({ match, games });
 
   return (
     <section
       title={match.name}
       className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-xl border border-slate-800 bg-gray-900 shrink-0 overflow-hidden"
     >
-      <div className="flex gap-4 items-center">
+      <div className="flex gap-4 items-center z-10">
         <div className="h-full flex justify-center items-center gap-2 z-10">
           {match.opponents[0]?.opponent.image_url ? (
             <Image
@@ -64,6 +64,17 @@ export function MatchCardView({ match, games }: MatchCardProps) {
             className="absolute top-0 left-0 size-full z-10"
           />
         </>
+      )}
+      {gameLogo && (
+        <div className="absolute top-0 left-0 size-full flex justify-end items-center">
+          <Image
+            width={100}
+            height={72}
+            alt="game icon"
+            src={gameLogo}
+            className="shrink-0 invert opacity-10"
+          />
+        </div>
       )}
     </section>
   );
