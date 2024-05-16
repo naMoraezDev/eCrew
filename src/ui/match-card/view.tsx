@@ -9,7 +9,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
 
   return (
     <section
-      title={match.name}
+      title={`${match.league.name} - ${match.name}`}
       className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-xl border border-slate-800 bg-gray-900 shrink-0 overflow-hidden"
     >
       <div className="flex gap-4 items-center z-10">
