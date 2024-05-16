@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${kanit.variable} ${inter.variable} font-inter text-slate-50 bg-gray-950`}
+        className={`${kanit.variable} ${inter.variable} antialiased font-inter text-slate-50 bg-gray-950`}
       >
         <LayoutWrapper>{children}</LayoutWrapper>
       </body>
