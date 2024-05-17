@@ -12,7 +12,7 @@ export function PostCardView({
       className={`
         ${
           variant === "filled" &&
-          "bg-gray-900 bg-opacity-50 border border-gray-800"
+          "bg-zinc-900 bg-opacity-50 border border-zinc-800"
         }
         ${orientation === "vertical" && "flex-col w-full"}
         flex gap-3 p-3 rounded-lg
@@ -45,12 +45,12 @@ export function PostCardView({
         <div
           className={`
             ${size === "medium" ? "line-clamp-3" : "line-clamp-2"}
-            text-xs text-gray-400 text-ellipsis
+            text-xs text-zinc-400 text-ellipsis
           `}
           dangerouslySetInnerHTML={{ __html: post.excerpt }}
         />
         <div className="flex justify-end mt-auto">
-          <span className="text-xs text-gray-400 font-medium">
+          <span className="text-xs text-zinc-400 font-medium">
             {new Date(post.modified).toLocaleDateString("pt-BR", {
               month: "long",
               day: "numeric",

@@ -17,7 +17,7 @@ export function HeaderView() {
           />
           <span className="font-kanit text-xl">ePosts</span>
         </div>
-        <div className="w-px h-6 bg-slate-50" />
+        <div className="w-px h-6 bg-gray-50" />
         <Image
           priority
           width={24}

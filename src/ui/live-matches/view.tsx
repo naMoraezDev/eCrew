@@ -7,7 +7,7 @@ export function LiveMatchesView({ games, matches }: LiveMatchesProps) {
   }
 
   return (
-    <section className="flex flex-col gap-2 p-2 rounded-lg bg-gradient-to-t from-gray-950 to-gray-900">
+    <section className="flex flex-col gap-2 p-2 rounded-lg bg-gradient-to-t from-zinc-950 to-zinc-900">
       <h4 className="font-kanit font-medium text-sm">Jogos em andamento</h4>
       {matches.map((match, index) => (
         <MatchCard key={index} games={games} match={match} />

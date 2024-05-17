@@ -4,7 +4,7 @@ import { LogoSliderProps } from "./types";
 export function LogoSliderView({ games }: LogoSliderProps) {
   return (
     <section className="relative flex w-full overflow-hidden select-none pb-4 -mt-4">
-      <div className="flex gap-6 shrink-0 animate-slider bg-gray-900">
+      <div className="flex gap-6 shrink-0 animate-slider bg-zinc-900">
         {games.map((game) => (
           <Image
             width={100}
@@ -46,8 +46,8 @@ export function LogoSliderView({ games }: LogoSliderProps) {
           />
         ))}
       </div>
-      <div className="size-full max-w-[20%] absolute top-0 left-0 bg-gradient-to-r from-gray-950 to-transparent" />
-      <div className="size-full max-w-[20%] absolute top-0 right-0 bg-gradient-to-l from-gray-950 to-transparent" />
+      <div className="size-full max-w-[20%] absolute top-0 left-0 bg-gradient-to-r from-zinc-950 to-transparent" />
+      <div className="size-full max-w-[20%] absolute top-0 right-0 bg-gradient-to-l from-zinc-950 to-transparent" />
     </section>
   );
 }

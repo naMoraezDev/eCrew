@@ -30,7 +30,7 @@ export function FeaturedPostsView({ postList }: FeaturedPostsProps) {
           post={postList.posts[0]}
         />
       </div>
-      <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-t from-gray-950 to-[rgba(0,0,0,0.2)]" />
+      <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-t from-zinc-950 to-[rgba(0,0,0,0.2)]" />
     </section>
   );
 }

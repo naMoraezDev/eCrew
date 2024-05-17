@@ -10,7 +10,7 @@ export function MatchesCarouselView({ games, matches }: MatchesCarouselProps) {
           <MatchCard key={index} match={match} games={games} />
         ))}
       </div>
-      <div className="size-full max-w-[10%] absolute top-0 right-0 bg-gradient-to-l from-gray-950 to-transparent z-20" />
+      <div className="size-full max-w-[10%] absolute top-0 right-0 bg-gradient-to-l from-zinc-950 to-transparent z-20" />
     </section>
   );
 }
