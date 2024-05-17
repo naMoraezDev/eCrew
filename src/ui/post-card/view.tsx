@@ -37,7 +37,7 @@ export function PostCardView({
         <h3
           className={`
             ${size === "medium" ? "line-clamp-2" : "line-clamp-1"}
-            font-kanit font-medium text-violet-500 text-ellipsis
+            font-kanit font-medium text-ellipsis
           `}
         >
           {post.title}
