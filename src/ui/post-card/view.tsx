@@ -1,6 +1,6 @@
+import Link from "next/link";
 import Image from "next/image";
 import { PostCardProps } from "./types";
-import Link from "next/link";
 
 export function PostCardView({
   post,
