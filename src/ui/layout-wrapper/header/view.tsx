@@ -5,28 +5,30 @@ import gamepadIcon from "@/assets/images/gamepad_icon.png";
 
 export function HeaderView() {
   return (
-    <header className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
-      <section className="flex items-center gap-4">
-        <div className="flex items-center gap-1">
+    <header className="sticky top-0 z-20 bg-zinc-950">
+      <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4 ">
+        <section className="flex items-center gap-4">
+          <div className="flex items-center gap-1">
+            <Image
+              priority
+              width={24}
+              height={24}
+              src={ePostsLogo}
+              alt="ePosts logo"
+            />
+            <span className="font-kanit text-xl">ePosts</span>
+          </div>
+          <div className="w-px h-6 bg-gray-50" />
           <Image
             priority
             width={24}
             height={24}
-            src={ePostsLogo}
-            alt="ePosts logo"
+            src={gamepadIcon}
+            alt="gamepad icon"
           />
-          <span className="font-kanit text-xl">ePosts</span>
-        </div>
-        <div className="w-px h-6 bg-gray-50" />
-        <Image
-          priority
-          width={24}
-          height={24}
-          src={gamepadIcon}
-          alt="gamepad icon"
-        />
-      </section>
-      <FaUserCircle size={32} />
+        </section>
+        <FaUserCircle size={32} />
+      </div>
     </header>
   );
 }
