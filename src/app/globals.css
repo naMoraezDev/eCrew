@@ -1,3 +1,22 @@
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background-clip: content-box;
+  border: 3px solid transparent;
+  background-color: rgb(24 24 27);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(39 39 42);
+}
