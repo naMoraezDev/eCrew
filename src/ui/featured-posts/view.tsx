@@ -2,7 +2,7 @@ import Image from "next/image";
 import { PostCard } from "../post-card";
 import { FeaturedPostsProps } from "./types";
 
-export function FeaturedPostsView({ postList }: FeaturedPostsProps) {
+export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
   const featuredPosts = [
     postList.posts[0],
     postList.posts[0],
@@ -12,12 +12,17 @@ export function FeaturedPostsView({ postList }: FeaturedPostsProps) {
 
   return (
     <section className="relative w-full overflow-hidden rounded-t-lg">
-      <div className="flex flex-col gap-3 justify-center p-4">
+      <div
+        className={`
+          ${isDesktop ? "p-10" : "p-4"}
+          flex flex-col gap-3 justify-center
+        `}
+      >
         <h2 className="text-md font-kanit font-bold">Em destaque</h2>
         <PostCard
           variant="outlined"
-          orientation="vertical"
           post={postList.posts[0]}
+          orientation={isDesktop ? "horizontal" : "vertical"}
         />
       </div>
       {featuredPosts.map((post, index) => (
