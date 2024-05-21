@@ -12,7 +12,7 @@ export function LogoSliderView({ games }: LogoSliderProps) {
             key={game.id}
             alt={game.name}
             src={game.logo_url}
-            className="shrink-0 invert"
+            className="shrink-0 invert opacity-50"
           />
         ))}
         {games.map((game) => (
@@ -22,7 +22,7 @@ export function LogoSliderView({ games }: LogoSliderProps) {
             key={game.id}
             alt={game.name}
             src={game.logo_url}
-            className="shrink-0 invert"
+            className="shrink-0 invert opacity-50"
           />
         ))}
         {games.map((game) => (
@@ -32,7 +32,7 @@ export function LogoSliderView({ games }: LogoSliderProps) {
             key={game.id}
             alt={game.name}
             src={game.logo_url}
-            className="shrink-0 invert"
+            className="shrink-0 invert opacity-50"
           />
         ))}
         {games.map((game) => (
@@ -42,7 +42,7 @@ export function LogoSliderView({ games }: LogoSliderProps) {
             key={game.id}
             alt={game.name}
             src={game.logo_url}
-            className="shrink-0 invert"
+            className="shrink-0 invert opacity-50"
           />
         ))}
       </div>
