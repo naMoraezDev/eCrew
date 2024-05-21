@@ -7,7 +7,7 @@ export function LatestPostsView({ postList }: LatestPostsProps) {
       <h2 className="text-md font-kanit font-bold">Últimas notícias</h2>
       <PostCard
         variant="filled"
-        orientation="horizontal"
+        orientation="vertical"
         post={postList.posts[0]}
       />
       <PostCard

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PostCardProps } from "./types";
+import Link from "next/link";
 
 export function PostCardView({
   post,
@@ -8,14 +9,15 @@ export function PostCardView({
   orientation = "vertical",
 }: PostCardProps) {
   return (
-    <section
+    <Link
+      href={`/notícias/${post.slug}`}
       className={`
         ${
           variant === "filled" &&
           "bg-zinc-900 bg-opacity-50 border border-zinc-800"
         }
         ${orientation === "vertical" && "flex-col w-full"}
-        flex gap-3 rounded-lg overflow-hidden
+        group flex gap-3 rounded-lg overflow-hidden
       `}
     >
       <figure
@@ -30,14 +32,14 @@ export function PostCardView({
           src={post.post_thumbnail.URL}
           width={post.post_thumbnail.width}
           height={post.post_thumbnail.height}
-          className="size-full object-cover object-center hover:scale-105 duration-300"
+          className="size-full object-cover object-center duration-300 group-hover:scale-105"
         />
       </figure>
       <div className="w-full flex flex-col gap-3 p-3">
         <h3
           className={`
             ${size === "medium" ? "line-clamp-2" : "line-clamp-1"}
-            font-kanit font-medium text-ellipsis
+            font-kanit font-medium text-ellipsis duration-300 group-hover:text-violet-600
           `}
         >
           {post.title}
@@ -59,6 +61,6 @@ export function PostCardView({
           </span>
         </div>
       </div>
-    </section>
+    </Link>
   );
 }
