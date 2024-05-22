@@ -7,26 +7,26 @@ export function LatestPostsView({ postList, isDesktop }: LatestPostsProps) {
       <h2 className="text-md font-kanit font-bold">Últimas notícias</h2>
       <PostCard
         variant="filled"
-        post={postList.posts[0]}
+        post={postList.posts[1]}
         orientation={isDesktop ? "horizontal" : "vertical"}
       />
       <PostCard
         size="small"
         variant="filled"
         orientation="horizontal"
-        post={postList.posts[0]}
+        post={postList.posts[1]}
       />
       <PostCard
         size="small"
         variant="filled"
         orientation="horizontal"
-        post={postList.posts[0]}
+        post={postList.posts[1]}
       />
       <PostCard
         size="small"
         variant="filled"
         orientation="horizontal"
-        post={postList.posts[0]}
+        post={postList.posts[1]}
       />
     </section>
   );
