@@ -63,6 +63,17 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
           `}
         />
       ))}
+      <div className="w-full absolute bottom-0 left-0 flex justify-center gap-2">
+        {featuredPosts.map((_, index) => (
+          <div
+            key={index}
+            className={`
+              ${currentIndex === index ? "bg-zinc-50 w-10" : "bg-zinc-800"}
+              size-2 rounded-full duration-500
+            `}
+          />
+        ))}
+      </div>
       <div className="w-full h-full absolute top-0 left-0 bg-gradient-to-t from-zinc-950 to-[rgba(0,0,0,0.2)] -z-10" />
       <div className="w-[20%] h-full absolute top-0 left-0 bg-gradient-to-r from-zinc-950 to-transparent pointer-events-none" />
       <div className="w-[20%] h-full absolute top-0 right-0 bg-gradient-to-l from-zinc-950 to-transparent pointer-events-none" />
