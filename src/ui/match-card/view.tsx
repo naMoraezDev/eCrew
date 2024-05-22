@@ -10,7 +10,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
   return (
     <section
       title={`${match.league.name} - ${match.name}`}
-      className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-xl border border-gray-800 bg-zinc-900 shrink-0 overflow-hidden"
+      className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-xl border border-gray-800 bg-zinc-900 overflow-hidden"
     >
       <div className="flex gap-4 items-center z-10">
         <div className="h-full flex justify-center items-center gap-2 z-10">
@@ -22,7 +22,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
               src={match.opponents[0].opponent.image_url || ""}
             />
           ) : (
-            <FaShieldCat size={16} className="text-red-600 shrink-0" />
+            <FaShieldCat size={16} className="text-zink-600 shrink-0" />
           )}
           <span className="text-xs font-bold">vs</span>
           {match.opponents[1]?.opponent.image_url ? (
@@ -33,7 +33,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
               src={match.opponents[1].opponent.image_url || ""}
             />
           ) : (
-            <FaShieldCat size={16} className="text-blue-600 shrink-0" />
+            <FaShieldCat size={16} className="text-zink-600 shrink-0" />
           )}
         </div>
         <span className="text-xs whitespace-nowrap text-ellipsis overflow-hidden max-w-[120px] font-kanit font-bold">

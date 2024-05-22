@@ -23,11 +23,11 @@ export default async function Home() {
     <>
       <LogoSlider games={games} />
       <section className="w-full flex gap-4">
-        <section className="w-3/4 flex flex-col gap-4">
+        <section className="w-3/4 flex flex-col gap-4 mt-4">
           <FeaturedPosts postList={posts} isDesktop />
           <LatestPosts postList={posts} isDesktop />
         </section>
-        <section className="w-1/4">
+        <section className="w-1/4 mt-4">
           <LiveMatches games={games} matches={matches} />
         </section>
       </section>

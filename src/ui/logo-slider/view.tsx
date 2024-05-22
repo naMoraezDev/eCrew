@@ -3,7 +3,7 @@ import { LogoSliderProps } from "./types";
 
 export function LogoSliderView({ games }: LogoSliderProps) {
   return (
-    <section className="relative flex w-full overflow-hidden select-none pb-4 -mt-4">
+    <section className="relative flex w-full overflow-hidden select-none -mt-4">
       <div className="flex gap-6 shrink-0 animate-slider bg-zinc-900">
         {games.map((game) => (
           <Image
