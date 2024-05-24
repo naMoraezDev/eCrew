@@ -22,5 +22,12 @@ export function useFeaturedPosts({ postList }: FeaturedPostsProps) {
     });
   }, [api]);
 
-  return { setApi, currentIndex, featuredPosts };
+  const scrollToSlide = (index: number) => {
+    if (!api) {
+      return;
+    }
+    api.scrollTo(index)
+  }
+
+  return { setApi, currentIndex, featuredPosts, scrollToSlide };
 }

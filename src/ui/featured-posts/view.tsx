@@ -14,7 +14,7 @@ import { useFeaturedPosts } from "./_io";
 import { FeaturedPostsProps } from "./types";
 
 export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
-  const { setApi, currentIndex, featuredPosts } = useFeaturedPosts({
+  const { setApi, currentIndex, featuredPosts, scrollToSlide } = useFeaturedPosts({
     postList,
   });
 
@@ -67,9 +67,10 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
         {featuredPosts.map((_, index) => (
           <div
             key={index}
+            onClick={() => scrollToSlide(index)}
             className={`
               ${currentIndex === index ? "bg-zinc-50 w-10" : "bg-zinc-800"}
-              size-2 rounded-full duration-500
+              size-2 rounded-full duration-500 cursor-pointer
             `}
           />
         ))}
