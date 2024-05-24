@@ -11,8 +11,7 @@ export function LiveMatchesCarouselView({
   matches,
 }: LiveMatchesCarouselProps) {
   return (
-    <section className="w-full p-4 relative flex flex-col gap-2">
-      <h4 className="font-kanit font-medium text-sm">Em andamento</h4>
+    <section className="w-full pt-4 relative">
       <Carousel opts={{ align: "start" }}>
         <CarouselContent className="gap-4">
           {matches.map((match, index) => (
@@ -22,7 +21,7 @@ export function LiveMatchesCarouselView({
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="h-full w-[10%] absolute top-0 right-4 bg-gradient-to-l from-zinc-950 to-transparent"></div>
+      <div className="h-full w-[10%] absolute top-0 right-4 bg-gradient-to-l from-zinc-950 to-transparent" />
     </section>
   );
 }
