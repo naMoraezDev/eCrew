@@ -44,7 +44,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
         <>
           <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-20 z-10" />
           <div className="absolute top-0 left-3 h-full z-10">
-            <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold animate-pulse">
+            <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold">
               {match.results[0]?.score || 0} - {match.results[1]?.score || 0}
             </span>
           </div>

@@ -21,7 +21,7 @@ export function LiveMatchesCarouselView({
           ))}
         </CarouselContent>
       </Carousel>
-      <div className="h-full w-[10%] absolute top-0 right-4 bg-gradient-to-l from-zinc-950 to-transparent" />
+      <div className="h-full w-[10%] absolute top-0 right-0 bg-gradient-to-l from-zinc-950 to-transparent" />
     </section>
   );
 }
