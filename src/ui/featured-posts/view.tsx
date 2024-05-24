@@ -1,6 +1,5 @@
 "use client";
 
-import "./styles.css";
 import Image from "next/image";
 import {
   Carousel,
@@ -14,9 +13,10 @@ import { useFeaturedPosts } from "./_io";
 import { FeaturedPostsProps } from "./types";
 
 export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
-  const { setApi, currentIndex, featuredPosts, scrollToSlide } = useFeaturedPosts({
-    postList,
-  });
+  const { setApi, currentIndex, featuredPosts, scrollToSlide } =
+    useFeaturedPosts({
+      postList,
+    });
 
   return (
     <section className="relative w-full overflow-hidden rounded-t-lg">
@@ -44,8 +44,8 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
           </CarouselContent>
           {isDesktop && (
             <>
-              <CarouselPrevious className="flex justify-center align-center absolute top-[55%] left-0 size-8 rounded-full z-10" />
-              <CarouselNext className="flex justify-center align-center absolute top-[55%] right-0 size-8 rounded-full z-10" />
+              <CarouselPrevious className="absolute top-[55%] left-0 size-8 z-10 bg-transparent" />
+              <CarouselNext className="absolute top-[55%] right-0 size-8 z-10 bg-transparent" />
             </>
           )}
         </Carousel>

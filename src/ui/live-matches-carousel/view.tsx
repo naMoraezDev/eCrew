@@ -13,9 +13,9 @@ export function LiveMatchesCarouselView({
   return (
     <section className="w-full pt-4 relative">
       <Carousel opts={{ align: "start" }}>
-        <CarouselContent className="gap-4">
+        <CarouselContent>
           {matches.map((match, index) => (
-            <CarouselItem key={index} className="basis-1/2">
+            <CarouselItem key={index} className="basis-[80%]">
               <MatchCard games={games} match={match} />
             </CarouselItem>
           ))}

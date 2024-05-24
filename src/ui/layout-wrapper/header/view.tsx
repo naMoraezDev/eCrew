@@ -1,7 +1,7 @@
 import Image from "next/image";
+import { GameSelect } from "@/ui/game-select";
 import { FaUserCircle } from "react-icons/fa";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
-import gamepadIcon from "@/assets/images/gamepad_icon.png";
 
 export function HeaderView() {
   return (
@@ -19,13 +19,7 @@ export function HeaderView() {
             <span className="font-kanit text-xl">ePosts</span>
           </div>
           <div className="w-px h-6 bg-gray-50" />
-          <Image
-            priority
-            width={24}
-            height={24}
-            src={gamepadIcon}
-            alt="gamepad icon"
-          />
+          <GameSelect />
         </section>
         <FaUserCircle size={32} />
       </div>
