@@ -9,7 +9,7 @@ import {
 import { GameSelectProps } from "./types";
 import gamepadIcon from "@/assets/images/gamepad_icon.png";
 
-export function GameSelectView({ games }: GameSelectProps) {
+export function GameSelectPopoverView({ games }: GameSelectProps) {
   return (
     <section>
       <Popover>

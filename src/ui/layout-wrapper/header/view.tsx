@@ -1,11 +1,13 @@
 import Image from "next/image";
-import { GameSelect } from "@/ui/game-select";
 import { FaUserCircle } from "react-icons/fa";
+import { DefaultProps } from "@/types/common";
+import { GameSelectHover } from "@/ui/game-select-hover";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
+import { GameSelectPopover } from "@/ui/game-select-popover";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
-export async function HeaderView() {
+export async function HeaderView({ isDesktop }: DefaultProps) {
   const games = await new EpostsApiService(httpClientFactory()).getGames();
 
   return (
@@ -23,7 +25,11 @@ export async function HeaderView() {
             <span className="font-kanit text-xl">ePosts</span>
           </div>
           <div className="w-px h-6 bg-gray-50" />
-          <GameSelect games={games} />
+          {isDesktop ? (
+            <GameSelectHover games={games} />
+          ) : (
+            <GameSelectPopover games={games} />
+          )}
         </section>
         <FaUserCircle size={32} />
       </div>

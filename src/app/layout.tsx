@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Kanit } from "next/font/google";
-import { LayoutWrapper } from "@/ui/layout-wrapper";
 
 const kanit = Kanit({
   preload: true,
@@ -38,7 +37,7 @@ export default function RootLayout({
       <body
         className={`${kanit.variable} ${inter.variable} antialiased font-inter text-gray-50 bg-zinc-950`}
       >
-        <LayoutWrapper>{children}</LayoutWrapper>
+        {children}
       </body>
     </html>
   );
