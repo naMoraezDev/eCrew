@@ -16,7 +16,7 @@ export function PostCardView({
           variant === "filled" &&
           "bg-zinc-900 bg-opacity-50 border border-zinc-800"
         }
-        ${orientation === "vertical" && "flex-col w-full"}
+        ${orientation === "vertical" && "flex-col w-full h-[330px]"}
         group flex gap-3 rounded-lg overflow-hidden
       `}
     >
@@ -35,7 +35,12 @@ export function PostCardView({
           className="size-full object-cover object-center duration-300 group-hover:scale-105"
         />
       </figure>
-      <div className="w-full flex flex-col gap-3 p-3">
+      <div
+        className={`
+          ${orientation === "vertical" && "h-full"}
+          w-full flex flex-col gap-3 p-3
+        `}
+      >
         <h3
           className={`
             ${size === "medium" ? "line-clamp-2" : "line-clamp-1"}
