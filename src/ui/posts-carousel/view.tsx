@@ -39,7 +39,10 @@ export function PostsCarouselView({
           height={1080}
           alt="background"
           src={games.find((game) => game.name === category)?.logo_url || ""}
-          className="w-1/2 object-cover object-center invert opacity-30 blur-sm"
+          className={`
+            ${isDesktop ? "w-1/2" : "w-full"}
+            object-cover object-center invert opacity-30 blur-sm
+          `}
         />
       </div>
     </section>
