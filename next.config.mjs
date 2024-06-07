@@ -1,5 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  redirects: async () => {
+    return [
+      {
+        source: "/",
+        permanent: false,
+        destination: "/noticias",
+      },
+    ];
+  },
   images: {
     domains: [
       "i.ibb.co",
