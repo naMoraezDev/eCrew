@@ -1,4 +1,5 @@
 import "./styles.css";
+import Image from "next/image";
 import {
   Carousel,
   CarouselItem,
@@ -9,28 +10,38 @@ import { PostsCarouselProps } from "./types";
 import { HiOutlineViewList } from "react-icons/hi";
 
 export function PostsCarouselView({
+  games,
   category,
   postList,
   isDesktop,
 }: PostsCarouselProps) {
   return (
-    <section className="flex flex-col gap-3 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 rounded-lg p-3">
-      <div className="w-full flex justify-between items-center">
+    <section className="relative flex flex-col gap-3 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 rounded-lg p-3">
+      <div className="w-full flex justify-between items-center z-10">
         <h2 className="text-md font-kanit font-bold">{category}</h2>
         <HiOutlineViewList className="size-6 cursor-pointer" title="Ver tudo" />
       </div>
-      <Carousel opts={{ align: "start" }} className="relative">
+      <Carousel opts={{ align: "start" }} className="relative z-10">
         <CarouselContent className="gap-4">
           {postList.posts.map((post, index) => (
             <CarouselItem
               key={index}
               className={isDesktop ? "basis-1/4" : "basis-[80%]"}
             >
-              <PostCard post={post} variant="outlined" />
+              <PostCard post={post} variant="filled" />
             </CarouselItem>
           ))}
         </CarouselContent>
       </Carousel>
+      <div className="size-full absolute top-0 left-0 flex justify-center items-center">
+        <Image
+          width={1920}
+          height={1080}
+          alt="background"
+          src={games.find((game) => game.name === category)?.logo_url || ""}
+          className="w-1/2 object-cover object-center invert opacity-30 blur-sm"
+        />
+      </div>
     </section>
   );
 }

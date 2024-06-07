@@ -37,31 +37,37 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <FeaturedPosts postList={posts} isDesktop={isDesktop} />
           <LatestPosts postList={posts} isDesktop={isDesktop} />
           <PostsCarousel
+            games={games}
             postList={postList}
             isDesktop={isDesktop}
-            category="Counter Strike"
+            category="Counter-Strike: Global Offensive"
           />
           <PostsCarousel
+            games={games}
             postList={postList}
             isDesktop={isDesktop}
             category="League of Legends"
           />
           <PostsCarousel
+            games={games}
             postList={postList}
             isDesktop={isDesktop}
-            category="Rainbow 6 Siege"
+            category="Rainbow Six Siege"
           />
           <PostsCarousel
+            games={games}
             category="Dota 2"
             postList={postList}
             isDesktop={isDesktop}
           />
           <PostsCarousel
-            category="Warzone"
+            games={games}
+            category="Call of Duty: Modern Warfare"
             postList={postList}
             isDesktop={isDesktop}
           />
           <PostsCarousel
+            games={games}
             category="Valorant"
             postList={postList}
             isDesktop={isDesktop}
