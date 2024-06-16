@@ -4,6 +4,7 @@ import { PostCardProps } from "./types";
 
 export function PostCardView({
   post,
+  gameIconUrl,
   size = "medium",
   variant = "filled",
   orientation = "vertical",
@@ -24,7 +25,7 @@ export function PostCardView({
         className={`
           ${size === "small" && "max-w-32"}
           ${orientation === "vertical" ? "w-full" : "w-1/2"}
-          overflow-hidden shrink-0
+          overflow-hidden shrink-0 relative
         `}
       >
         <Image
@@ -34,6 +35,12 @@ export function PostCardView({
           height={post.post_thumbnail.height}
           className="size-full object-cover object-center duration-300 group-hover:scale-105"
         />
+
+        {gameIconUrl && (
+          <div className="absolute top-3 right-3 flex justify-center items-center p-1 border border-zinc-700 rounded-lg backdrop-blur-sm bg-zinc-500 bg-opacity-10">
+            <Image width={20} height={20} alt="game icon" src={gameIconUrl} />
+          </div>
+        )}
       </figure>
       <div
         className={`

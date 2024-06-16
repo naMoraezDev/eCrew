@@ -6,6 +6,7 @@ import {
   CarouselContent,
 } from "@/components/ui/carousel";
 import { PostCard } from "../post-card";
+import { usePostsCarousel } from "./_io";
 import { PostsCarouselProps } from "./types";
 import { HiOutlineViewList } from "react-icons/hi";
 
@@ -15,6 +16,13 @@ export function PostsCarouselView({
   postList,
   isDesktop,
 }: PostsCarouselProps) {
+  const { gameIconUrl } = usePostsCarousel({
+    games,
+    category,
+    postList,
+    isDesktop,
+  });
+
   return (
     <section className="relative flex flex-col gap-3 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 rounded-lg p-3">
       <div className="w-full flex justify-between items-center z-10">
@@ -28,7 +36,11 @@ export function PostsCarouselView({
               key={index}
               className={isDesktop ? "basis-1/4" : "basis-[80%]"}
             >
-              <PostCard post={post} variant="filled" />
+              <PostCard
+                post={post}
+                variant="filled"
+                gameIconUrl={gameIconUrl}
+              />
             </CarouselItem>
           ))}
         </CarouselContent>
