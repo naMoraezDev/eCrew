@@ -24,7 +24,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
   const matches = [...runningMatches];
   const postList = {
     ...posts,
-    posts: [posts.posts[1], posts.posts[0], posts.posts[1], posts.posts[0]],
+    posts: [posts.posts[1], posts.posts[0], posts.posts[1]],
   };
   const mostReadPosts = {
     ...posts,
