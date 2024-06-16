@@ -12,7 +12,7 @@ export async function HeaderView({ isDesktop }: DefaultProps) {
 
   return (
     <header className="sticky top-0 z-20 bg-zinc-950">
-      <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4 ">
+      <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
         <section className="flex items-center gap-4">
           <div className="flex items-center gap-1">
             <Image

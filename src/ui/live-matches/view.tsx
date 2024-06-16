@@ -2,13 +2,25 @@ import { MatchCard } from "../match-card";
 import { LiveMatchesProps } from "./types";
 import { RiLiveFill } from "react-icons/ri";
 
-export function LiveMatchesView({ games, matches }: LiveMatchesProps) {
+export function LiveMatchesView({
+  games,
+  matches,
+  background = true,
+}: LiveMatchesProps) {
   if (!matches.length) {
     return null;
   }
 
   return (
-    <section className="flex flex-col gap-4 p-2 rounded-lg bg-gradient-to-t from-zinc-950 to-zinc-900">
+    <section
+      className={`
+        ${
+          background &&
+          "bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900"
+        }
+        flex flex-col gap-4 p-2 rounded-lg
+      `}
+    >
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
         <RiLiveFill />
         Jogos em andamento
