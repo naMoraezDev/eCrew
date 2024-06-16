@@ -7,6 +7,7 @@ import { FeaturedPosts } from "@/ui/featured-posts";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { LiveMatchesCarousel } from "@/ui/live-matches-carousel";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { MostReadPosts } from "@/ui/most-read-posts";
 
 export async function HomeView({ isDesktop }: DefaultProps) {
   const [games, posts, runningMatches] = await Promise.all([
@@ -22,6 +23,16 @@ export async function HomeView({ isDesktop }: DefaultProps) {
   const postList = {
     ...posts,
     posts: [posts.posts[1], posts.posts[0], posts.posts[1], posts.posts[0]],
+  };
+  const mostReadPosts = {
+    ...posts,
+    posts: [
+      posts.posts[1],
+      posts.posts[1],
+      posts.posts[1],
+      posts.posts[1],
+      posts.posts[1],
+    ],
   };
 
   return (
@@ -74,8 +85,9 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           />
         </section>
         {isDesktop && (
-          <section className="w-1/4 mt-4">
+          <section className="w-1/4 mt-4 flex flex-col gap-4">
             <LiveMatches games={games} matches={matches} />
+            <MostReadPosts postList={mostReadPosts} />
           </section>
         )}
       </section>

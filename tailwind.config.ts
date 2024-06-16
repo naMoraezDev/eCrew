@@ -75,11 +75,20 @@ const config = {
             transform: "translateX(0%)",
           },
         },
+        "text-slide": {
+          "0%": {
+            transform: "translateX(0%)",
+          },
+          "100%": {
+            transform: "translateX(-100%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         slider: "slider 40s infinite linear",
+        "text-slide": "text-slide 5s infinite linear",
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
