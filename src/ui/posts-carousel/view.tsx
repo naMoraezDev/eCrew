@@ -17,7 +17,7 @@ export function PostsCarouselView({
   postList,
   isDesktop,
 }: PostsCarouselProps) {
-  const { gameIconUrl, getGameCover } = usePostsCarousel({
+  const { gameIconUrl, getGameCover, getGameTypeIcon } = usePostsCarousel({
     games,
     category,
     postList,
@@ -27,7 +27,16 @@ export function PostsCarouselView({
   return (
     <section className="relative flex flex-col gap-3 rounded-lg p-3">
       <div className="w-full flex justify-between items-center z-10">
-        <h2 className="text-md font-kanit font-bold">{category}</h2>
+        <h2 className="text-md font-kanit font-bold flex items-center gap-2">
+          <Image
+            width={16}
+            height={16}
+            alt="game-type"
+            className="invert"
+            src={getGameTypeIcon()}
+          />
+          {category}
+        </h2>
       </div>
       <Carousel opts={{ align: "start" }} className="relative z-10">
         <CarouselContent>
