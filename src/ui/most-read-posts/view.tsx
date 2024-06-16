@@ -3,7 +3,7 @@ import { MostReadPostsProps } from "./types";
 
 export function MostReadPostsView({ postList }: MostReadPostsProps) {
   return (
-    <section className="flex flex-col gap-4 p-2 rounded-lg bg-gradient-to-t from-zinc-950 to-zinc-900 overflow-hidden relative">
+    <section className="flex flex-col gap-4 p-2 rounded-lg overflow-hidden relative">
       <h4 className="font-kanit font-medium text-md">Mais lidas</h4>
       <div className="flex flex-col gap-4">
         {postList.posts.map((post, index) => (

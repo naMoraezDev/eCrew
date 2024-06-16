@@ -24,7 +24,7 @@ export function PostsCarouselView({
   });
 
   return (
-    <section className="relative flex flex-col gap-3 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 rounded-lg p-3">
+    <section className="relative flex flex-col gap-3 rounded-lg p-3">
       <div className="w-full flex justify-between items-center z-10">
         <h2 className="text-md font-kanit font-bold">{category}</h2>
         <HiOutlineViewList className="size-6 cursor-pointer" title="Ver tudo" />
