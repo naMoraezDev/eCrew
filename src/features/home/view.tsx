@@ -2,15 +2,17 @@ import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
 import { LatestPosts } from "@/ui/latest-posts";
 import { LiveMatches } from "@/ui/live-matches";
+import { PopularTags } from "@/ui/popular-tags";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedPosts } from "@/ui/featured-posts";
+import { MostReadPosts } from "@/ui/most-read-posts";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { LiveMatchesCarousel } from "@/ui/live-matches-carousel";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-import { MostReadPosts } from "@/ui/most-read-posts";
 
 export async function HomeView({ isDesktop }: DefaultProps) {
-  const [games, posts, runningMatches] = await Promise.all([
+  const [tags, games, posts, runningMatches] = await Promise.all([
+    new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
       "destaques"
@@ -88,6 +90,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <section className="w-1/4 mt-4 flex flex-col gap-4">
             <LiveMatches games={games} matches={matches} />
             <MostReadPosts postList={mostReadPosts} />
+            <PopularTags tags={tags.tags} />
           </section>
         )}
       </section>
