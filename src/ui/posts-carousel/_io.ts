@@ -1,31 +1,31 @@
 import { PostsCarouselProps } from "./types";
-import csCover from "@/assets/images/cs-cover.jpg";
-import r6Cover from "@/assets/images/r6-cover.jpg";
+import r6 from "@/assets/images/r6-background.jpg";
 import fpsIcon from "@/assets/images/fps-icon.png";
-import lolCover from "@/assets/images/lol-cover.png";
-import codCover from "@/assets/images/cod-cover.jpg";
+import cs from "@/assets/images/cs-background.jpeg";
+import cod from "@/assets/images/cod-background.jpg";
+import lol from "@/assets/images/lol-background.jpg";
 import mobaIcon from "@/assets/images/moba-icon.png";
-import dotaCover from "@/assets/images/dota-cover.jpg";
-import valorantCover from "@/assets/images/valorant-cover.jpg";
+import dota from "@/assets/images/dota-background.jpg";
+import valorant from "@/assets/images/valorant-background.jpg";
 
 export function usePostsCarousel({ category, games }: PostsCarouselProps) {
   const gameIconUrl = games.find((game) => game.name === category)?.icon_url;
   function getGameCover() {
     switch (category) {
       case "Counter-Strike: Global Offensive":
-        return csCover;
+        return cs;
       case "Rainbow Six Siege":
-        return r6Cover;
+        return r6;
       case "League of Legends":
-        return lolCover;
+        return lol;
       case "Dota 2":
-        return dotaCover;
+        return dota;
       case "Call of Duty: Modern Warfare":
-        return codCover;
+        return cod;
       case "Valorant":
-        return valorantCover;
+        return valorant;
       default:
-        return csCover;
+        return cs;
     }
   }
 

@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/hover-card";
 import { GameSelectProps } from "./types";
 import gamepadIcon from "@/assets/images/gamepad_icon.png";
+import Link from "next/link";
 
 export function GameSelectHoverView({ games }: GameSelectProps) {
   return (
@@ -25,7 +26,11 @@ export function GameSelectHoverView({ games }: GameSelectProps) {
         <HoverCardContent className="bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-transparent shadow-md mt-4 text-zinc-50 p-4">
           <div className="flex flex-col gap-3">
             {games.map((game, index) => (
-              <div key={index} className="flex items-center gap-4">
+              <Link
+                key={index}
+                href={`/noticias/${game.slug}`}
+                className="flex items-center gap-4"
+              >
                 <Image
                   width={20}
                   height={20}
@@ -35,7 +40,7 @@ export function GameSelectHoverView({ games }: GameSelectProps) {
                 <span className="font-kanit font-medium text-xs">
                   {game.name}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </HoverCardContent>

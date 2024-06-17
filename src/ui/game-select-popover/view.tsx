@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import {
   Popover,
@@ -13,7 +14,7 @@ export function GameSelectPopoverView({ games }: GameSelectProps) {
   return (
     <section>
       <Popover>
-        <PopoverTrigger>
+        <PopoverTrigger className="relative top-1">
           <Image
             priority
             width={24}
@@ -25,7 +26,11 @@ export function GameSelectPopoverView({ games }: GameSelectProps) {
         <PopoverContent className="bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-transparent shadow-md mt-4 text-zinc-50 p-4">
           <div className="flex flex-col gap-3">
             {games.map((game, index) => (
-              <div key={index} className="flex items-center gap-4">
+              <Link
+                key={index}
+                href={`/noticias/${game.slug}`}
+                className="flex items-center gap-4"
+              >
                 <Image
                   width={20}
                   height={20}
@@ -35,7 +40,7 @@ export function GameSelectPopoverView({ games }: GameSelectProps) {
                 <span className="font-kanit font-medium text-xs">
                   {game.name}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </PopoverContent>
