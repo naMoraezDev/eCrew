@@ -33,6 +33,7 @@ export default function RootLayout({
     <html lang="pt-BR">
       <head>
         <meta name="theme-color" content="rgb(9 9 11)" />
+        <meta name="google-adsense-account" content="ca-pub-5836460971552859" />
       </head>
       <body
         className={`${kanit.variable} ${inter.variable} antialiased font-inter text-gray-50 bg-zinc-950`}
