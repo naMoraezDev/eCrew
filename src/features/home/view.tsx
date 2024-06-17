@@ -87,10 +87,12 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           />
         </section>
         {isDesktop && (
-          <section className="w-1/4 mt-4 flex flex-col gap-4">
-            <LiveMatches games={games} matches={matches} />
-            <MostReadPosts postList={mostReadPosts} />
-            <PopularTags tags={tags.tags} />
+          <section className="w-1/4 mt-4 relative">
+            <div className="flex flex-col gap-4 sticky top-16">
+              <LiveMatches games={games} matches={matches} />
+              <MostReadPosts postList={mostReadPosts} />
+              <PopularTags tags={tags.tags} />
+            </div>
           </section>
         )}
       </section>

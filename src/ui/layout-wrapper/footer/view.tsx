@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FooterProps } from "./types";
-import { LiveMatches } from "@/ui/live-matches";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
@@ -9,14 +8,10 @@ import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function FooterView({ isDesktop }: FooterProps) {
-  const [mostReadPosts, runningMatches, games] = await Promise.all([
+  const [mostReadPosts] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
       "destaques"
     ),
-    new EpostsApiService(new FetchHttpClientAdapter()).getRunningMatches(
-      "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant&page=1&per_page=3"
-    ),
-    new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
   ]);
 
   const mostRead = {
@@ -32,7 +27,11 @@ export async function FooterView({ isDesktop }: FooterProps) {
   return (
     <footer
       className={`
-        ${!isDesktop ? "flex-col gap-6 text-center items-center bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-t border-t-zinc-800" : "gap-16"}
+        ${
+          !isDesktop
+            ? "flex-col gap-6 text-center items-center bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-t border-t-zinc-800"
+            : "gap-16"
+        }
         w-full flex max-w-[1270px] mx-auto px-4 py-4
       `}
     >
@@ -53,11 +52,9 @@ export async function FooterView({ isDesktop }: FooterProps) {
           <span className="font-kanit text-4xl">ePosts</span>
         </div>
         {isDesktop && (
-          <LiveMatches
-            matches={runningMatches}
-            games={games}
-            background={false}
-          />
+          <section className="w-[200px]">
+            <MostReadPosts postList={mostRead} />
+          </section>
         )}
       </section>
       <section className="flex flex-col gap-4 font-kanit">
@@ -82,9 +79,6 @@ export async function FooterView({ isDesktop }: FooterProps) {
       </section>
       {isDesktop && (
         <>
-          <section className="w-[200px]">
-            <MostReadPosts postList={mostRead} />
-          </section>
           <ScrollToTopButton />
         </>
       )}
