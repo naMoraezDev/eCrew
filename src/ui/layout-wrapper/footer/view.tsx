@@ -4,9 +4,9 @@ import { FooterProps } from "./types";
 import { LiveMatches } from "@/ui/live-matches";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
+import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
 
 export async function FooterView({ isDesktop }: FooterProps) {
   const [mostReadPosts, runningMatches, games] = await Promise.all([
@@ -30,7 +30,17 @@ export async function FooterView({ isDesktop }: FooterProps) {
   };
 
   return (
-    <footer className="w-full flex gap-16 max-w-[1270px] mx-auto px-4 py-4">
+    <footer
+      className={`
+        ${!isDesktop ? "flex-col gap-6 text-center items-center bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-t border-t-zinc-800" : "gap-16"}
+        w-full flex max-w-[1270px] mx-auto px-4 py-4
+      `}
+    >
+      {!isDesktop && (
+        <div className="w-full flex justify-center">
+          <ScrollToTopButton />
+        </div>
+      )}
       <section className="flex flex-col gap-7">
         <div className="flex items-center gap-1">
           <Image
@@ -42,11 +52,13 @@ export async function FooterView({ isDesktop }: FooterProps) {
           />
           <span className="font-kanit text-4xl">ePosts</span>
         </div>
-        <LiveMatches
-          matches={runningMatches}
-          games={games}
-          background={false}
-        />
+        {isDesktop && (
+          <LiveMatches
+            matches={runningMatches}
+            games={games}
+            background={false}
+          />
+        )}
       </section>
       <section className="flex flex-col gap-4 font-kanit">
         <h4 className="font-bold">Cobertura</h4>
@@ -68,10 +80,14 @@ export async function FooterView({ isDesktop }: FooterProps) {
           <Link href="#">Trabalhe conosco</Link>
         </div>
       </section>
-      <section className="w-[200px]">
-        <MostReadPosts postList={mostRead} />
-      </section>
-      <ScrollToTopButton />
+      {isDesktop && (
+        <>
+          <section className="w-[200px]">
+            <MostReadPosts postList={mostRead} />
+          </section>
+          <ScrollToTopButton />
+        </>
+      )}
     </footer>
   );
 }
