@@ -43,7 +43,7 @@ export function PostsCarouselView({
           {postList.posts.map((post, index) => (
             <CarouselItem
               key={index}
-              className={isDesktop ? "basis-1/4" : "basis-[80%]"}
+              className={isDesktop ? "basis-1/4" : "basis-[60%]"}
             >
               <PostCard
                 post={post}
@@ -52,7 +52,7 @@ export function PostsCarouselView({
               />
             </CarouselItem>
           ))}
-          <CarouselItem className={isDesktop ? "basis-1/4" : "basis-[80%]"}>
+          <CarouselItem className={isDesktop ? "basis-1/4" : "basis-[60%]"}>
             <Link
               href={`/noticias/${category}`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
