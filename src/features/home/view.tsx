@@ -24,7 +24,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
   const matches = [...runningMatches];
   const postList = {
     ...posts,
-    posts: [posts.posts[1], posts.posts[0], posts.posts[1]],
+    posts: [posts.posts[1], posts.posts[0]],
   };
   const mostReadPosts = {
     ...posts,
@@ -44,7 +44,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
       <section className="w-full flex gap-4">
         <section
           className={`
-            ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-4 
+            ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-4 mb-10
           `}
         >
           <FeaturedPosts postList={posts} isDesktop={isDesktop} />

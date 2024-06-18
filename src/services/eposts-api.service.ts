@@ -1,4 +1,5 @@
 import { Tags } from "./types/tags.types";
+import { Post } from "./types/post.types";
 import { Games } from "./types/games.types";
 import { Posts } from "./types/posts.types";
 import { Matches } from "./types/matches.types";
@@ -7,6 +8,7 @@ import { HttpClient } from "@/infrastructure/adapters/factories/http-client.fact
 interface EpostsApiServiceProtocol {
   getTags: () => Promise<Tags>;
   getGames: () => Promise<Games>;
+  getPostBySlug: (slug: string) => Promise<Post>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
   getPostsByCategory: (category: string) => Promise<Posts>;
@@ -57,6 +59,16 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
       },
     });
     return posts;
+  }
+
+  public async getPostBySlug(slug: string) {
+    const post = await this.httpClient.request<Post>({
+      input: `${this.baseUrl}/posts/post/${slug}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return post;
   }
 
   public async getTags() {

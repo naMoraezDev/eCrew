@@ -12,6 +12,7 @@ const nextConfig = {
   images: {
     domains: [
       "i.ibb.co",
+      "1.gravatar.com",
       "cdn.pandascore.co",
       "eposts7.wordpress.com",
       "eposts7.files.wordpress.com",

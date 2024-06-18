@@ -11,7 +11,7 @@ export function LayoutWrapperView({
     <>
       <Header isDesktop={isDesktop} />
       <Navbar />
-      <main className="w-full max-w-[1270px] mx-auto p-4">{children}</main>
+      <main className="w-full max-w-[1000px] mx-auto p-4">{children}</main>
       <Footer isDesktop={isDesktop} />
     </>
   );

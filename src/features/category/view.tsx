@@ -5,11 +5,20 @@ import { CategoryProps } from "./types";
 import { PostCard } from "@/ui/post-card";
 import { PopularTags } from "@/ui/popular-tags";
 import { MostReadPosts } from "@/ui/most-read-posts";
+import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-import exitLagBanner from "@/assets/images/exitlag-banner.png";
+
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 
 export async function CategoryView({
   page = 1,
@@ -37,15 +46,33 @@ export async function CategoryView({
     ],
   };
 
-  const postList = Array.from({ length: 16 }, () => posts.posts[1]);
+  const postList = Array.from({ length: 12 }, () => posts.posts[1]);
 
   return (
     <section className="w-full flex gap-4">
       <section
         className={`
-          ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-10 mb-10
+          ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-6 mb-10
         `}
       >
+        <Breadcrumb className="text-zinc-50">
+          <BreadcrumbList className="text-zinc-50">
+            <BreadcrumbItem>
+              <BreadcrumbLink
+                href="/noticias"
+                className="hover:text-zinc-300 duration-300"
+              >
+                notícias
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="text-zinc-300">
+                {category}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
         {getBackgroundData()?.background && (
           <div className="group rounded-lg overflow-hidden relative">
             <Image
@@ -67,7 +94,7 @@ export async function CategoryView({
         )}
         <div
           className={`
-            ${isDesktop ? "grid-cols-4 gap-y-10" : "grid-cols-1 gap-y-3"}
+            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3"}
             grid gap-x-4
           `}
         >

@@ -11,7 +11,7 @@ export function PostCardView({
 }: PostCardProps) {
   return (
     <Link
-      href={`/notícias/${post.slug}`}
+      href={`/noticias/r6-siege/${post.slug}`}
       className={`
         ${
           variant === "filled" &&

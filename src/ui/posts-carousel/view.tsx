@@ -43,7 +43,7 @@ export function PostsCarouselView({
           {postList.posts.map((post, index) => (
             <CarouselItem
               key={index}
-              className={isDesktop ? "basis-1/4" : "basis-[60%]"}
+              className={isDesktop ? "basis-1/3" : "basis-[60%]"}
             >
               <PostCard
                 post={post}
@@ -52,7 +52,7 @@ export function PostsCarouselView({
               />
             </CarouselItem>
           ))}
-          <CarouselItem className={isDesktop ? "basis-1/4" : "basis-[60%]"}>
+          <CarouselItem className={isDesktop ? "basis-1/3" : "basis-[60%]"}>
             <Link
               href={`/noticias/${category}`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
@@ -76,11 +76,11 @@ export function PostsCarouselView({
           width={1920}
           height={1080}
           alt="background"
-          src={games.find((game) => game.name === category)?.logo_url || ""}
           className={`
             ${isDesktop ? "w-1/2" : "w-full"}
             object-cover object-center invert opacity-30 blur-sm
-          `}
+            `}
+          src={games.find((game) => game.name === category)?.logo_url || ""}
         />
       </div>
     </section>

@@ -1,0 +1,24 @@
+.content {
+  h2 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 2.5rem;
+    font-family: var(--font-kanit), sans-serif;
+    border: 1px solid rgb(139 92 246);
+    width: fit-content;
+    padding: 0 16px;
+    border-radius: 8px;
+    background-color: rgba(138, 92, 246, 0.1);
+  }
+
+  strong,
+  a {
+    font-weight: 700;
+    color: rgb(139 92 246);
+    font-family: var(--font-kanit), sans-serif;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}
