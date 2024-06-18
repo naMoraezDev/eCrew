@@ -9,6 +9,7 @@ import { EpostsApiService } from "@/services/eposts-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import exitLagBanner from "@/assets/images/exitlag-banner.png";
 
 export async function CategoryView({
   page = 1,
@@ -104,6 +105,19 @@ export async function CategoryView({
           <div className="flex flex-col gap-4 sticky top-16">
             <MostReadPosts postList={mostReadPosts} />
             <PopularTags tags={tags.tags} />
+            <section className="p-2 relative">
+              <Image
+                src={exitLagBanner}
+                alt="exit_lag_banner"
+                className="rounded-lg"
+              />
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href="https://www.exitlag.com/"
+                className="absolute top-0 left-0 w-full h-full"
+              />
+            </section>
           </div>
         </section>
       )}
