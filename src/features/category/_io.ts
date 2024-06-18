@@ -30,7 +30,7 @@ export function useCategory({ category }: CategoryProps) {
       case "r6-siege":
         return {
           background: r6,
-          styles: "object-top",
+          styles: "object-center",
           url: "https://www.ubisoft.com/pt-br/game/rainbow-six/siege",
         };
       case "valorant":
