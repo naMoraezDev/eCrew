@@ -83,12 +83,21 @@ const config = {
             transform: "translateX(-100%)",
           },
         },
+        "fade-out": {
+          "0%": {
+            opacity: "100%",
+          },
+          "100%": {
+            opacity: "0%",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         slider: "slider 40s infinite linear",
         "text-slide": "text-slide 5s infinite linear",
+        "fade-out": "fade-out 300ms both",
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
