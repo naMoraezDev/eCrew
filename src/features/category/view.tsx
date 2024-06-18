@@ -49,8 +49,8 @@ export async function CategoryView({
           <div className="group rounded-lg overflow-hidden relative">
             <Image
               priority
-              src={getBackgroundData()?.background || ""}
               alt="background"
+              src={getBackgroundData()?.background || ""}
               className={`
                 ${getBackgroundData()?.styles}
                 w-full h-[200px] object-cover group-hover:scale-105 duration-300
@@ -66,17 +66,17 @@ export async function CategoryView({
         )}
         <div
           className={`
-            ${isDesktop ? "grid-cols-4" : "grid-cols-1"}
-            grid gap-x-4 gap-y-10 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 p-3 rounded-lg
+            ${isDesktop ? "grid-cols-4 gap-y-10" : "grid-cols-1 gap-y-3"}
+            grid gap-x-4
           `}
         >
           {postList.map((post, index) => (
             <PostCard
               key={index}
               post={post}
-              variant="outlined"
               gameIconUrl={games[4].icon_url}
               size={isDesktop ? "medium" : "small"}
+              variant={isDesktop ? "outlined" : "filled"}
               orientation={isDesktop ? "vertical" : "horizontal"}
             />
           ))}
