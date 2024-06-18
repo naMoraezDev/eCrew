@@ -46,20 +46,28 @@ export async function CategoryView({
         `}
       >
         {getBackgroundData()?.background && (
-          <Image
-            priority
-            src={getBackgroundData()?.background || ""}
-            alt="background"
-            className={`
-              object-${getBackgroundData()?.position || "center"}
-              w-full h-[200px] object-cover rounded-lg
-            `}
-          />
+          <div className="group rounded-lg overflow-hidden relative">
+            <Image
+              priority
+              src={getBackgroundData()?.background || ""}
+              alt="background"
+              className={`
+                ${getBackgroundData()?.styles}
+                w-full h-[200px] object-cover group-hover:scale-105 duration-300
+              `}
+            />
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={getBackgroundData()?.url}
+              className="absolute w-full h-full top-0 left-0"
+            />
+          </div>
         )}
         <div
           className={`
             ${isDesktop ? "grid-cols-4" : "grid-cols-1"}
-            grid gap-x-4 gap-y-10
+            grid gap-x-4 gap-y-10 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 p-3 rounded-lg
           `}
         >
           {postList.map((post, index) => (

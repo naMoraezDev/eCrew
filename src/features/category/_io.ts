@@ -11,33 +11,39 @@ export function useCategory({ category }: CategoryProps) {
     switch (category) {
       case "cod-mw":
         return {
-          position: "top",
           background: cod,
+          styles: "object-top",
+          url: "https://www.callofduty.com/br/pt/warzone",
         };
       case "dota-2":
         return {
           background: dota,
-          position: "center",
+          styles: "object-center",
+          url: "https://www.dota2.com/home",
         };
       case "league-of-legends":
         return {
           background: lol,
-          position: "bottom",
+          styles: "object-bottom",
+          url: "https://www.leagueoflegends.com/",
         };
       case "r6-siege":
         return {
           background: r6,
-          position: "top",
+          styles: "object-top",
+          url: "https://www.ubisoft.com/pt-br/game/rainbow-six/siege",
         };
       case "valorant":
         return {
-          position: "bottom",
           background: valorant,
+          styles: "object-bottom",
+          url: "https://playvalorant.com/",
         };
       case "cs-go":
         return {
           background: cs,
-          position: "center",
+          styles: "object-center",
+          url: "https://www.counter-strike.net/cs2",
         };
       default:
         return null;
