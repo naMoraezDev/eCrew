@@ -5,5 +5,5 @@ export default async function PostPage({
 }: {
   params: { slug: string; category: string };
 }) {
-  return <Post slug={params.slug} category={params.category} isDesktop />;
+  return <Post slug={params.slug} category={params.category} />;
 }
