@@ -1,5 +1,5 @@
 import { PrivacyPolicyProps } from "./types";
-import { IoMdListBox } from "react-icons/io";
+import { MdPrivacyTip } from "react-icons/md";
 
 export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
   return (
@@ -11,11 +11,16 @@ export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
         `}
       >
         <h1 className="font-kanit font-medium text-3xl bg-violet-500 bg-opacity-10 border border-violet-500 rounded-lg px-4 py-2 w-fit flex items-center gap-2">
-          <IoMdListBox className="shrink-0" size={!isDesktop ? 64 : 30} />
+          <MdPrivacyTip className="shrink-0" size={!isDesktop ? 64 : 30} />
           Política de Privacidade
         </h1>
       </div>
-      <section className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">
+      <section
+        className={`
+          ${isDesktop ? "px-10 py-6" : "p-6"}
+          flex flex-col gap-4 bg-zinc-900 rounded-lg
+        `}
+      >
         <h2 className="font-kanit font-medium text-2xl">Coleta de Dados</h2>
         <p>Nosso site coleta as seguintes informações:</p>
         <ul className="list-disc list-inside">
@@ -30,7 +35,12 @@ export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
           </li>
         </ul>
       </section>
-      <section className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">
+      <section
+        className={`
+          ${isDesktop ? "px-10 py-6" : "p-6"}
+          flex flex-col gap-4 bg-zinc-900 rounded-lg
+        `}
+      >
         <h2 className="font-kanit font-medium text-2xl">Uso dos Dados</h2>
         <p>Utilizamos os dados coletados para os seguintes fins:</p>
         <ul className="list-disc list-inside">
@@ -44,7 +54,12 @@ export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
           </li>
         </ul>
       </section>
-      <section className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">
+      <section
+        className={`
+          ${isDesktop ? "px-10 py-6" : "p-6"}
+          flex flex-col gap-4 bg-zinc-900 rounded-lg
+        `}
+      >
         <h2 className="font-kanit font-medium text-2xl">
           Compartilhamento de Dados
         </h2>
@@ -53,7 +68,12 @@ export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
           consentimento do usuário, exceto quando exigido por lei.
         </p>
       </section>
-      <section className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">
+      <section
+        className={`
+          ${isDesktop ? "px-10 py-6" : "p-6"}
+          flex flex-col gap-4 bg-zinc-900 rounded-lg
+        `}
+      >
         <h2 className="font-kanit font-medium text-2xl">Cookies</h2>
         <p>
           Nosso site utiliza cookies para personalizar conteúdo e anúncios, além
@@ -61,14 +81,24 @@ export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
           desativados nas configurações do navegador.
         </p>
       </section>
-      <section className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">
+      <section
+        className={`
+          ${isDesktop ? "px-10 py-6" : "p-6"}
+          flex flex-col gap-4 bg-zinc-900 rounded-lg
+        `}
+      >
         <h2 className="font-kanit font-medium text-2xl">Segurança</h2>
         <p>
           Tomamos medidas para proteger os dados dos usuários, incluindo
           criptografia e acesso restrito.
         </p>
       </section>
-      <section className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">
+      <section
+        className={`
+          ${isDesktop ? "px-10 py-6" : "p-6"}
+          flex flex-col gap-4 bg-zinc-900 rounded-lg
+        `}
+      >
         <h2 className="font-kanit font-medium text-2xl">Contato</h2>
         <p>
           Se tiver alguma dúvida sobre nossa política de privacidade, entre em
