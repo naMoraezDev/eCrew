@@ -8,12 +8,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { PostProps } from "./types";
+import { Newsletter } from "@/ui/newsletter";
 import { PopularTags } from "@/ui/popular-tags";
 import { PostContent } from "@/ui/post-content";
 import { MostReadPosts } from "@/ui/most-read-posts";
+import { MorePostsAbout } from "@/ui/more-posts-about";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-import { Newsletter } from "@/ui/newsletter";
 
 export async function PostView({ slug, category, isDesktop }: PostProps) {
   const [tags, posts, post] = await Promise.all([
@@ -33,6 +34,12 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
       posts.posts[1],
     ],
   };
+  const morePostsAbout = [
+    posts.posts[1],
+    posts.posts[1],
+    posts.posts[1],
+    posts.posts[1],
+  ];
 
   return (
     <section className="w-full flex gap-4">
@@ -67,6 +74,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
         <section className="w-full bg-zinc-900 rounded-lg overflow-hidden">
           <figure className="w-full h-[250px]">
             <Image
+              priority
               alt={post.title}
               src={post.post_thumbnail.URL}
               className="h-full object-cover"
@@ -131,10 +139,12 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
           </div>
         </section>
         <Newsletter />
+        {!isDesktop && <MorePostsAbout posts={morePostsAbout} />}
       </article>
       {isDesktop && (
         <section className="w-1/4 mt-4 relative">
           <div className="flex flex-col gap-4 sticky top-16">
+            <MorePostsAbout posts={morePostsAbout} />
             <MostReadPosts postList={mostReadPosts} />
             <PopularTags tags={tags.tags} />
           </div>

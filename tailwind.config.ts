@@ -83,6 +83,14 @@ const config = {
             transform: "translateX(-100%)",
           },
         },
+        "fast-text-slide": {
+          "0%": {
+            transform: "translateX(0%)",
+          },
+          "100%": {
+            transform: "translateX(-300%)",
+          },
+        },
         "fade-out": {
           "0%": {
             opacity: "100%",
@@ -97,7 +105,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         slider: "slider 40s infinite linear",
         "text-slide": "text-slide 5s infinite linear",
-        "fast-text-slide": "text-slide 2s both linear",
+        "fast-text-slide": "fast-text-slide 8s both linear",
         "fade-out": "fade-out 300ms both",
       },
       fontFamily: {
