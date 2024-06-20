@@ -13,6 +13,7 @@ import { PostContent } from "@/ui/post-content";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { Newsletter } from "@/ui/newsletter";
 
 export async function PostView({ slug, category, isDesktop }: PostProps) {
   const [tags, posts, post] = await Promise.all([
@@ -129,6 +130,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             <p className="text-slate-300 text-base font-normal">autor</p>
           </div>
         </section>
+        <Newsletter />
       </article>
       {isDesktop && (
         <section className="w-1/4 mt-4 relative">

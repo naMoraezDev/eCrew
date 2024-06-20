@@ -1,3 +1,4 @@
+import { Newsletter } from "@/ui/newsletter";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
 import { LatestPosts } from "@/ui/latest-posts";
@@ -85,6 +86,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             postList={postList}
             isDesktop={isDesktop}
           />
+          <Newsletter isDesktop={isDesktop} />
         </section>
         {isDesktop && (
           <section className="w-1/4 mt-4 relative">

@@ -19,6 +19,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Newsletter } from "@/ui/newsletter";
 
 export async function CategoryView({
   page = 1,
@@ -126,6 +127,7 @@ export async function CategoryView({
             <MdOutlineKeyboardDoubleArrowRight size={16} />
           </Link>
         </section>
+        <Newsletter isDesktop={isDesktop} />
       </section>
       {isDesktop && (
         <section className="w-1/4 mt-4 relative">
