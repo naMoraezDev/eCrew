@@ -1,18 +1,22 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useHeader } from "./_io";
+import { HeaderProps } from "./types";
 import { FaUserCircle } from "react-icons/fa";
-import { DefaultProps } from "@/types/common";
 import { GameSelectHover } from "@/ui/game-select-hover";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { GameSelectPopover } from "@/ui/game-select-popover";
-import { EpostsApiService } from "@/services/eposts-api.service";
-import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
-export async function HeaderView({ isDesktop }: DefaultProps) {
-  const games = await new EpostsApiService(httpClientFactory()).getGames();
+export function HeaderView({ games, isDesktop }: HeaderProps) {
+  const { visible } = useHeader();
 
   return (
-    <header className="sticky top-0 z-20 bg-zinc-950 bg-opacity-20 backdrop-blur-sm">
+    <header
+      className={`${visible ? "translate-y-0" : "translate-y-[-100%]"} 
+      sticky top-0 z-20 bg-zinc-950 bg-opacity-20 backdrop-blur-sm duration-500`}
+    >
       <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
         <section className="flex items-center gap-4">
           <div className="flex items-center gap-1 relative">

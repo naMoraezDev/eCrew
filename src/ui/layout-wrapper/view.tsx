@@ -4,14 +4,18 @@ import { Header } from "./header";
 import { Navbar } from "./navbar";
 import { DefaultProps } from "@/types/common";
 import verticalAd from "@/assets/images/vertical-ad.jpg";
+import { EpostsApiService } from "@/services/eposts-api.service";
+import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
-export function LayoutWrapperView({
+export async function LayoutWrapperView({
   children,
   isDesktop,
 }: Readonly<{ children: React.ReactNode } & DefaultProps>) {
+  const games = await new EpostsApiService(httpClientFactory()).getGames();
+
   return (
     <>
-      <Header isDesktop={isDesktop} />
+      <Header isDesktop={isDesktop} games={games} />
       <Navbar />
       <div
         className={`
