@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import {
   HoverCard,
@@ -8,7 +9,6 @@ import {
 } from "@/components/ui/hover-card";
 import { GameSelectProps } from "./types";
 import gamepadIcon from "@/assets/images/gamepad_icon.png";
-import Link from "next/link";
 
 export function GameSelectHoverView({ games }: GameSelectProps) {
   return (
@@ -23,24 +23,30 @@ export function GameSelectHoverView({ games }: GameSelectProps) {
             alt="gamepad icon"
           />
         </HoverCardTrigger>
-        <HoverCardContent className="bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-transparent shadow-md mt-4 text-zinc-50 p-4">
-          <div className="flex flex-col gap-3">
+        <HoverCardContent className="bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-transparent shadow-md mt-4 text-zinc-50 p-4 flex justify-center">
+          <div className="grid grid-cols-3 gap-10 justify-center w-fit">
             {games.map((game, index) => (
-              <Link
+              <div
                 key={index}
-                href={`/noticias/${game.slug}`}
-                className="flex items-center gap-4"
+                className="flex flex-col gap-2 overflow-hidden w-10 group relative"
               >
-                <Image
-                  width={20}
-                  height={20}
-                  alt={game.name}
-                  src={game.icon_url}
-                />
-                <span className="font-kanit font-medium text-xs">
+                <div className="shrink-0 flex items-center justify-center w-10 h-10 rounded-full overflow-hidden">
+                  <Image
+                    width={40}
+                    height={40}
+                    alt={game.name}
+                    src={game.icon_url}
+                    className="group-hover:scale-110 duration-300"
+                  />
+                </div>
+                <span className="w-full font-kanit font-medium text-xs whitespace-nowrap group-hover:animate-fast-text-slide">
                   {game.name}
                 </span>
-              </Link>
+                <Link
+                  href={`/noticias/${game.slug}`}
+                  className="absolute top-0 right-0 w-full h-full"
+                />
+              </div>
             ))}
           </div>
         </HoverCardContent>

@@ -97,6 +97,7 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
         slider: "slider 40s infinite linear",
         "text-slide": "text-slide 5s infinite linear",
+        "fast-text-slide": "text-slide 2s both linear",
         "fade-out": "fade-out 300ms both",
       },
       fontFamily: {
