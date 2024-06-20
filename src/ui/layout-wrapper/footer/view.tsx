@@ -71,9 +71,9 @@ export async function FooterView({ isDesktop }: FooterProps) {
       <section className="flex flex-col gap-4 font-kanit">
         <h4 className="font-bold">Institucional</h4>
         <div className="flex flex-col gap-2 text-sm">
-          <Link href="#">Sobre nós</Link>
-          <Link href="#">Termos de uso</Link>
-          <Link href="#">Política de privacidade</Link>
+          <Link href="/sobre-nos">Sobre nós</Link>
+          <Link href="/termos-de-uso">Termos de uso</Link>
+          <Link href="/politica-de-privacidade">Política de privacidade</Link>
           <Link href="#">Trabalhe conosco</Link>
         </div>
       </section>

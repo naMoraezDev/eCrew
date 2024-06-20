@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import { FaUserCircle } from "react-icons/fa";
 import { DefaultProps } from "@/types/common";
@@ -14,7 +15,7 @@ export async function HeaderView({ isDesktop }: DefaultProps) {
     <header className="sticky top-0 z-20 bg-zinc-950 bg-opacity-20 backdrop-blur-sm">
       <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
         <section className="flex items-center gap-4">
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 relative">
             <Image
               priority
               width={24}
@@ -23,6 +24,10 @@ export async function HeaderView({ isDesktop }: DefaultProps) {
               alt="ePosts logo"
             />
             <span className="font-kanit text-xl">ePosts</span>
+            <Link
+              href="/noticias"
+              className="w-full h-full absolute top-0 left-0"
+            />
           </div>
           <div className="w-px h-6 bg-gray-50" />
           {isDesktop ? (
