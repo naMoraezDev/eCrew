@@ -18,6 +18,7 @@ export function ArticleReaderView({
     content,
     excerpt,
   });
+
   return (
     <section className="w-full h-full px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-3 justify-center">
       <span className="font-kanit text-xs">Reproduzir matéria em áudio</span>
