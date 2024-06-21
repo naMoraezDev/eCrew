@@ -19,7 +19,8 @@ export function ArticleReaderView({
     excerpt,
   });
   return (
-    <section className="w-full h-full px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-2 justify-center">
+    <section className="w-full h-full px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-3 justify-center">
+      <span className="font-kanit text-xs">Reproduzir matéria em áudio</span>
       <div className="flex gap-6">
         <div className="flex items-center gap-1">
           {!isPlaying && !isPaused && (
@@ -50,7 +51,6 @@ export function ArticleReaderView({
           height={isPlaying && !isPaused ? "32px" : "1px"}
         />
       </div>
-      <span className="font-kanit text-xs">Reproduzir áudio da matéria</span>
     </section>
   );
 }
