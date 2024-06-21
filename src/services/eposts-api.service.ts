@@ -6,13 +6,18 @@ import { Matches } from "./types/matches.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 
 interface EpostsApiServiceProtocol {
+  getPostsByCategory: (params: {
+    page: string;
+    number: string;
+    category: string;
+  }) => Promise<Posts>;
   getTags: () => Promise<Tags>;
   getGames: () => Promise<Games>;
   getPostBySlug: (slug: string) => Promise<Post>;
+  getPostsByTag: (tag: string) => Promise<Posts>;
   getPostsBySearch: (search: string) => Promise<Posts>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
-  getPostsByCategory: (category: string) => Promise<Posts>;
 }
 
 export class EpostsApiService implements EpostsApiServiceProtocol {
@@ -52,9 +57,23 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
     return games;
   }
 
-  public async getPostsByCategory(category: string) {
+  public async getPostsByCategory(params: {
+    page: string;
+    number: string;
+    category: string;
+  }) {
     const posts = await this.httpClient.request<Posts>({
-      input: `${this.baseUrl}/posts/${category}`,
+      input: `${this.baseUrl}/posts/${params.category}?page=${params.page}&number=${params.number}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return posts;
+  }
+
+  public async getPostsByTag(tag: string) {
+    const posts = await this.httpClient.request<Posts>({
+      input: `${this.baseUrl}/posts/tag/${tag}`,
       init: {
         method: "GET",
       },

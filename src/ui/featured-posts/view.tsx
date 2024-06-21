@@ -13,10 +13,9 @@ import { useFeaturedPosts } from "./_io";
 import { FeaturedPostsProps } from "./types";
 
 export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
-  const { setApi, currentIndex, featuredPosts, scrollToSlide } =
-    useFeaturedPosts({
-      postList,
-    });
+  const { setApi, currentIndex, scrollToSlide } = useFeaturedPosts({
+    postList,
+  });
 
   return (
     <section className="relative w-full overflow-hidden rounded-t-lg">
@@ -29,7 +28,7 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
         <h2 className="text-md font-kanit font-bold z-10">Em destaque</h2>
         <Carousel setApi={setApi} opts={{ align: "start" }}>
           <CarouselContent className="gap-4">
-            {featuredPosts.map((post, index) => (
+            {postList.posts.map((post, index) => (
               <CarouselItem
                 key={index}
                 className={isDesktop ? "basis-full" : "basis-[80%]"}
@@ -50,7 +49,7 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
           )}
         </Carousel>
       </div>
-      {featuredPosts.map((post, index) => (
+      {postList.posts.map((post, index) => (
         <Image
           key={index}
           alt={post.title}
@@ -64,7 +63,7 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
         />
       ))}
       <div className="w-full absolute bottom-0 left-0 flex justify-center gap-2">
-        {featuredPosts.map((_, index) => (
+        {postList.posts.map((_, index) => (
           <div
             key={index}
             onClick={() => scrollToSlide(index)}

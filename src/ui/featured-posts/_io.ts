@@ -6,13 +6,6 @@ export function useFeaturedPosts({ postList }: FeaturedPostsProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const featuredPosts = [
-    postList.posts[1],
-    postList.posts[0],
-    postList.posts[1],
-    postList.posts[0],
-  ];
-
   useEffect(() => {
     if (!api) {
       return;
@@ -26,8 +19,8 @@ export function useFeaturedPosts({ postList }: FeaturedPostsProps) {
     if (!api) {
       return;
     }
-    api.scrollTo(index)
-  }
+    api.scrollTo(index);
+  };
 
-  return { setApi, currentIndex, featuredPosts, scrollToSlide };
+  return { setApi, currentIndex, scrollToSlide };
 }

@@ -9,9 +9,11 @@ import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation
 
 export async function FooterView({ isDesktop }: FooterProps) {
   const [mostReadPosts] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
-      "destaques"
-    ),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "5",
+      category: "r6-siege",
+    }),
   ]);
 
   const mostRead = {
@@ -53,7 +55,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
         </div>
         {isDesktop && (
           <section className="w-[200px]">
-            <MostReadPosts postList={mostRead} />
+            <MostReadPosts />
           </section>
         )}
       </section>

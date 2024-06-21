@@ -1,8 +1,13 @@
 import Link from "next/link";
-import { MostReadPostsProps } from "./types";
 import { FaBookOpenReader } from "react-icons/fa6";
+import { EpostsApiService } from "@/services/eposts-api.service";
+import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
-export function MostReadPostsView({ postList }: MostReadPostsProps) {
+export async function MostReadPostsView() {
+  const postList = await new EpostsApiService(
+    new FetchHttpClientAdapter()
+  ).getPostsByTag("mais-lidas");
+
   return (
     <section className="flex flex-col gap-4 p-2 rounded-lg overflow-hidden relative">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">

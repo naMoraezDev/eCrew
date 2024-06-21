@@ -12,31 +12,64 @@ import { LiveMatchesCarousel } from "@/ui/live-matches-carousel";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function HomeView({ isDesktop }: DefaultProps) {
-  const [tags, games, posts, runningMatches] = await Promise.all([
+  const [
+    tags,
+    games,
+    runningMatches,
+    lolPosts,
+    r6Posts,
+    codPosts,
+    csPosts,
+    valorantPosts,
+    dotaPosts,
+    featuredPosts,
+    latestPosts,
+  ] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
-      "destaques"
-    ),
     new EpostsApiService(new FetchHttpClientAdapter()).getRunningMatches(
       "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
     ),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "2",
+      category: "league-of-legends",
+    }),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "2",
+      category: "r6-siege",
+    }),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "2",
+      category: "cod-mw",
+    }),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "2",
+      category: "cs-go",
+    }),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "2",
+      category: "valorant",
+    }),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "2",
+      category: "dota-2",
+    }),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByTag(
+      "destaques"
+    ),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: "1",
+      number: "4",
+      category: "all",
+    }),
   ]);
   const matches = [...runningMatches];
-  const postList = {
-    ...posts,
-    posts: [posts.posts[1], posts.posts[0]],
-  };
-  const mostReadPosts = {
-    ...posts,
-    posts: [
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-    ],
-  };
 
   return (
     <>
@@ -48,42 +81,42 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-4 mb-10
           `}
         >
-          <FeaturedPosts postList={posts} isDesktop={isDesktop} />
-          <LatestPosts postList={posts} isDesktop={isDesktop} />
+          <FeaturedPosts postList={featuredPosts} isDesktop={isDesktop} />
+          <LatestPosts postList={latestPosts} isDesktop={isDesktop} />
           <PostsCarousel
             games={games}
-            postList={postList}
+            postList={csPosts}
             isDesktop={isDesktop}
             category="Counter-Strike: Global Offensive"
           />
           <PostsCarousel
             games={games}
-            postList={postList}
+            postList={lolPosts}
             isDesktop={isDesktop}
             category="League of Legends"
           />
           <PostsCarousel
             games={games}
-            postList={postList}
+            postList={r6Posts}
             isDesktop={isDesktop}
             category="Rainbow Six Siege"
           />
           <PostsCarousel
             games={games}
             category="Dota 2"
-            postList={postList}
+            postList={dotaPosts}
             isDesktop={isDesktop}
           />
           <PostsCarousel
             games={games}
             category="Call of Duty: Modern Warfare"
-            postList={postList}
+            postList={codPosts}
             isDesktop={isDesktop}
           />
           <PostsCarousel
             games={games}
             category="Valorant"
-            postList={postList}
+            postList={valorantPosts}
             isDesktop={isDesktop}
           />
           <Newsletter isDesktop={isDesktop} />
@@ -92,7 +125,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <section className="w-1/4 mt-4 relative">
             <div className="flex flex-col gap-4 sticky top-16">
               <LiveMatches games={games} matches={matches} />
-              <MostReadPosts postList={mostReadPosts} />
+              <MostReadPosts />
               <PopularTags tags={tags.tags} />
             </div>
           </section>
