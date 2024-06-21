@@ -11,6 +11,7 @@ import { PostProps } from "./types";
 import { Newsletter } from "@/ui/newsletter";
 import { PopularTags } from "@/ui/popular-tags";
 import { PostContent } from "@/ui/post-content";
+import { ShareButtons } from "@/ui/share-buttons";
 import { ArticleReader } from "@/ui/article-reader";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { MorePostsAbout } from "@/ui/more-posts-about";
@@ -99,7 +100,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             <div
               className={`
                 ${isDesktop ? "py-4 px-10" : "py-4 px-6"}
-                w-full text-xs font-bold text-slate-300 bg-zinc-800 rounded-b-lg
+                w-full text-xs font-bold text-slate-300 bg-zinc-800 rounded-b-lg flex items-center justify-between
               `}
             >
               <time>
@@ -109,6 +110,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
                   year: "numeric",
                 })}
               </time>
+              <ShareButtons />
             </div>
           </div>
         </section>
