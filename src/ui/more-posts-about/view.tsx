@@ -17,7 +17,7 @@ export function MorePostsAboutView({ posts }: MorePostsAboutProps) {
         />
         <span>
           Mais sobre{" "}
-          <span className="font-bold text-violet-400">Rainbow Six</span>
+          <span className="font-bold text-violet-500">Rainbow Six</span>
         </span>
       </h4>
       {posts.map((post, index) => (
