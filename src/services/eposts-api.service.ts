@@ -9,6 +9,7 @@ interface EpostsApiServiceProtocol {
   getTags: () => Promise<Tags>;
   getGames: () => Promise<Games>;
   getPostBySlug: (slug: string) => Promise<Post>;
+  getPostsBySearch: (search: string) => Promise<Posts>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
   getPostsByCategory: (category: string) => Promise<Posts>;
@@ -54,6 +55,16 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
   public async getPostsByCategory(category: string) {
     const posts = await this.httpClient.request<Posts>({
       input: `${this.baseUrl}/posts/${category}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return posts;
+  }
+
+  public async getPostsBySearch(search: string) {
+    const posts = await this.httpClient.request<Posts>({
+      input: `${this.baseUrl}/posts/search/${search}`,
       init: {
         method: "GET",
       },

@@ -1,16 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useCategory } from "./_io";
-import { CategoryProps } from "./types";
-import { PostCard } from "@/ui/post-card";
-import { PopularTags } from "@/ui/popular-tags";
-import { MostReadPosts } from "@/ui/most-read-posts";
-import exitLagBanner from "@/assets/images/exitlag-banner.png";
-import { EpostsApiService } from "@/services/eposts-api.service";
-import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
-import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -19,35 +8,44 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { useCategory } from "./_io";
+import { CategoryProps } from "./types";
+import { PostCard } from "@/ui/post-card";
 import { Newsletter } from "@/ui/newsletter";
+import { PopularTags } from "@/ui/popular-tags";
+import { MostReadPosts } from "@/ui/most-read-posts";
+import exitLagBanner from "@/assets/images/exitlag-banner.png";
+import { EpostsApiService } from "@/services/eposts-api.service";
+import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function CategoryView({
+  term,
   page = 1,
   category,
   isDesktop,
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
 
-  const [tags, games, posts] = await Promise.all([
+  const [tags, games, posts, mostReadPosts] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
+    term
+      ? new EpostsApiService(new FetchHttpClientAdapter()).getPostsBySearch(
+          term
+        )
+      : new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
+          "destaques"
+        ),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
       "destaques"
     ),
   ]);
 
-  const mostReadPosts = {
-    ...posts,
-    posts: [
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-    ],
-  };
-
-  const postList = Array.from({ length: 12 }, () => posts.posts[1]);
+  const postList = Boolean(posts.posts.length)
+    ? Array.from({ length: 12 }, () => posts.posts[term ? 0 : 1])
+    : [];
 
   return (
     <section className="w-full flex gap-4">
@@ -69,11 +67,26 @@ export async function CategoryView({
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-zinc-300">
-                {category}
+                {category || "busca"}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
+        {term && (
+          <section>
+            {Boolean(postList.length) ? (
+              <span className="text-2xl font-kanit font-bold text-zinc-50">
+                Resultados para{" "}
+                <span className="text-violet-500">"{term}"</span>:
+              </span>
+            ) : (
+              <span className="text-2xl font-kanit font-bold text-zinc-50">
+                Nenhum resultado para{" "}
+                <span className="text-violet-500">"{term}"</span>
+              </span>
+            )}
+          </section>
+        )}
         {getBackgroundData()?.background && (
           <div className="group rounded-lg overflow-hidden relative">
             <Image
@@ -110,23 +123,25 @@ export async function CategoryView({
             />
           ))}
         </div>
-        <section className="w-full flex items-center justify-center text-sm gap-2">
-          <Link
-            href={`/noticias/${category}?page=${page - 1}`}
-            className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
-          >
-            <MdOutlineKeyboardDoubleArrowLeft size={16} />
-          </Link>
-          <div className="p-1 bg-zinc-900 border border-zinc-600 rounded-lg min-w-7 h-7 flex items-center justify-center">
-            {page}
-          </div>
-          <Link
-            href={`/noticias/${category}?page=${page + 1}`}
-            className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
-          >
-            <MdOutlineKeyboardDoubleArrowRight size={16} />
-          </Link>
-        </section>
+        {!term && (
+          <section className="w-full flex items-center justify-center text-sm gap-2">
+            <Link
+              href={`/noticias/${category}?page=${page - 1}`}
+              className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
+            >
+              <MdOutlineKeyboardDoubleArrowLeft size={16} />
+            </Link>
+            <div className="p-1 bg-zinc-900 border border-zinc-600 rounded-lg min-w-7 h-7 flex items-center justify-center">
+              {page}
+            </div>
+            <Link
+              href={`/noticias/${category}?page=${page + 1}`}
+              className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
+            >
+              <MdOutlineKeyboardDoubleArrowRight size={16} />
+            </Link>
+          </section>
+        )}
         <Newsletter isDesktop={isDesktop} />
       </section>
       {isDesktop && (

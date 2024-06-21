@@ -12,7 +12,7 @@ export function useSearchInput() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!value) return;
-    router.push(`/busca?termo=${value}`);
+    router.push(`/noticias/busca?term=${value}`);
   }
 
   return { value, handleChange, handleSubmit };
