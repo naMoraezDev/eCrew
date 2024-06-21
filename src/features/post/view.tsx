@@ -11,6 +11,7 @@ import { PostProps } from "./types";
 import { Newsletter } from "@/ui/newsletter";
 import { PopularTags } from "@/ui/popular-tags";
 import { PostContent } from "@/ui/post-content";
+import { ArticleReader } from "@/ui/article-reader";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { MorePostsAbout } from "@/ui/more-posts-about";
 import { EpostsApiService } from "@/services/eposts-api.service";
@@ -111,18 +112,33 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             </div>
           </div>
         </section>
-        <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 rounded-lg">
-          <Image
-            width={64}
-            height={64}
-            alt={post.author.name}
-            className="rounded-full"
-            src={post.author.avatar_URL}
+        <section
+          className={`
+            ${isDesktop ? "grid grid-cols-2" : "flex flex-col"}
+            w-full gap-4
+          `}
+        >
+          <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 rounded-lg">
+            <Image
+              width={64}
+              height={64}
+              alt={post.author.name}
+              className="rounded-full"
+              src={post.author.avatar_URL}
+            />
+            <div className="text-2xl font-kanit font-bold">
+              <span>{post.author.name}</span>
+              <p className="text-slate-300 text-base font-normal line-clamp-1">
+                autor
+              </p>
+            </div>
+          </section>
+          <ArticleReader
+            title={post.title}
+            isDesktop={isDesktop}
+            content={post.content}
+            excerpt={post.excerpt}
           />
-          <div className="text-2xl font-kanit font-bold">
-            <span>{post.author.name}</span>
-            <p className="text-slate-300 text-base font-normal">autor</p>
-          </div>
         </section>
         <PostContent content={post.content} isDesktop={isDesktop} />
         <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 rounded-lg">
