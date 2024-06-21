@@ -19,35 +19,38 @@ export function ArticleReaderView({
     excerpt,
   });
   return (
-    <section className="w-full h-full px-10 py-6 bg-zinc-900 rounded-lg flex gap-6">
-      <div className="flex items-center gap-1">
-        {!isPlaying && !isPaused && (
-          <button title="reproduzir" type="button" onClick={play}>
-            <IoMdPlayCircle size={32} />
-          </button>
-        )}
-        {isPlaying && isPaused && (
-          <button title="reproduzir" type="button" onClick={resume}>
-            <IoMdPlayCircle size={32} />
-          </button>
-        )}
-        {!isPaused && isPlaying && (
-          <button title="pausar" type="button" onClick={pause}>
-            <IoMdPause size={32} />
-          </button>
-        )}
-        {isPlaying && (
-          <button title="parar" type="button" onClick={stop}>
-            <IoStop size={32} />
-          </button>
-        )}
+    <section className="w-full h-full px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-2 justify-center">
+      <div className="flex gap-6">
+        <div className="flex items-center gap-1">
+          {!isPlaying && !isPaused && (
+            <button title="reproduzir" type="button" onClick={play}>
+              <IoMdPlayCircle size={32} />
+            </button>
+          )}
+          {isPlaying && isPaused && (
+            <button title="reproduzir" type="button" onClick={resume}>
+              <IoMdPlayCircle size={32} />
+            </button>
+          )}
+          {!isPaused && isPlaying && (
+            <button title="pausar" type="button" onClick={pause}>
+              <IoMdPause size={32} />
+            </button>
+          )}
+          {isPlaying && (
+            <button title="parar" type="button" onClick={stop}>
+              <IoStop size={32} />
+            </button>
+          )}
+        </div>
+        <SoundVisualizer
+          color="#fff"
+          barWidth="3px"
+          barCount={isDesktop ? 25 : 15}
+          height={isPlaying && !isPaused ? "32px" : "1px"}
+        />
       </div>
-      <SoundVisualizer
-        color="#fff"
-        barWidth="3px"
-        barCount={isDesktop ? 25 : 15}
-        height={isPlaying && !isPaused ? "32px" : "1px"}
-      />
+      <span className="font-kanit text-xs">Reproduzir áudio da matéria</span>
     </section>
   );
 }
