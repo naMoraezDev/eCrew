@@ -19,29 +19,15 @@ import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function PostView({ slug, category, isDesktop }: PostProps) {
-  const [tags, posts, post] = await Promise.all([
+  const [tags, morePostsAbout, post] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
-      "destaques"
-    ),
+    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      category,
+      page: "1",
+      number: "3",
+    }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostBySlug(slug),
   ]);
-  const mostReadPosts = {
-    ...posts,
-    posts: [
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-      posts.posts[1],
-    ],
-  };
-  const morePostsAbout = [
-    posts.posts[1],
-    posts.posts[1],
-    posts.posts[1],
-    posts.posts[1],
-  ];
 
   return (
     <section className="w-full flex gap-4">
@@ -67,7 +53,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
                 href={`/noticias/${category}`}
                 className="hover:text-zinc-300 duration-300"
               >
-                {category}
+                {post?.categories[0]?.name.toLocaleLowerCase()}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
@@ -78,7 +64,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             <Image
               priority
               alt={post.title}
-              src={post.post_thumbnail.URL}
+              src={post.post_thumbnail?.URL}
               className="h-full object-cover"
               width={post.post_thumbnail.width}
               height={post.post_thumbnail.height}
@@ -157,13 +143,21 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
           </div>
         </section>
         <Newsletter />
-        {!isDesktop && <MorePostsAbout posts={morePostsAbout} />}
+        {!isDesktop && (
+          <MorePostsAbout
+            posts={morePostsAbout.posts}
+            category={post.categories[0].name}
+          />
+        )}
       </article>
       {isDesktop && (
         <section className="w-1/4 mt-4 relative">
           <div className="flex flex-col gap-4 sticky top-16">
-            <MorePostsAbout posts={morePostsAbout} />
-            <MostReadPosts postList={mostReadPosts} />
+            <MorePostsAbout
+              posts={morePostsAbout.posts}
+              category={post.categories[0].name}
+            />
+            <MostReadPosts />
             <PopularTags tags={tags.tags} />
           </div>
         </section>

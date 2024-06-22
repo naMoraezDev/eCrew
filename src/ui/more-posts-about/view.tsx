@@ -4,7 +4,7 @@ import { MorePostsAboutProps } from "./types";
 import fpsIcon from "@/assets/images/fps-icon.png";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 
-export function MorePostsAboutView({ posts }: MorePostsAboutProps) {
+export function MorePostsAboutView({ posts, category }: MorePostsAboutProps) {
   return (
     <section className="flex flex-col gap-3 bg-zinc-900 p-3 rounded-lg">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
@@ -17,7 +17,7 @@ export function MorePostsAboutView({ posts }: MorePostsAboutProps) {
         />
         <span>
           Mais sobre{" "}
-          <span className="font-bold text-violet-500">Rainbow Six</span>
+          <span className="font-bold text-violet-500">{category}</span>
         </span>
       </h4>
       {posts.map((post, index) => (
@@ -31,7 +31,7 @@ export function MorePostsAboutView({ posts }: MorePostsAboutProps) {
               width={100}
               height={100}
               alt={post.title}
-              src={post.post_thumbnail.URL}
+              src={post.post_thumbnail?.URL}
               className="size-full shrink-0 object-cover group-hover:scale-105 duration-300"
             />
           </figure>
@@ -50,7 +50,7 @@ export function MorePostsAboutView({ posts }: MorePostsAboutProps) {
           </div>
           <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-zinc-900 to-transparent pointer-events-none" />
           <Link
-            href={`/noticias/r6-siege/${post.slug}`}
+            href={`/noticias/${post.categories[0].slug}/${post.slug}`}
             className="absolute top-0 left-0 w-full h-full"
           />
         </section>

@@ -28,24 +28,19 @@ export async function CategoryView({
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
 
-  const [tags, games, posts, mostReadPosts] = await Promise.all([
+  const [tags, games, postList] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
     term
       ? new EpostsApiService(new FetchHttpClientAdapter()).getPostsBySearch(
           term
         )
-      : new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
-          "destaques"
-        ),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory(
-      "destaques"
-    ),
+      : new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+          number: "12",
+          page: page.toString(),
+          category: category || "all",
+        }),
   ]);
-
-  const postList = Boolean(posts.posts.length)
-    ? Array.from({ length: 12 }, () => posts.posts[term ? 0 : 1])
-    : [];
 
   return (
     <section className="w-full flex gap-4">
@@ -67,22 +62,23 @@ export async function CategoryView({
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-zinc-300">
-                {category || "busca"}
+                {postList.posts[0]?.categories[0]?.name.toLocaleLowerCase() ||
+                  "busca"}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         {term && (
           <section>
-            {Boolean(postList.length) ? (
+            {Boolean(postList.posts.length) ? (
               <span className="text-2xl font-kanit font-bold text-zinc-50">
                 Resultados para{" "}
-                <span className="text-violet-500">"{term}"</span>:
+                <span className="text-violet-500">{`"${term}"`}</span>:
               </span>
             ) : (
               <span className="text-2xl font-kanit font-bold text-zinc-50">
                 Nenhum resultado para{" "}
-                <span className="text-violet-500">"{term}"</span>
+                <span className="text-violet-500">{term}</span>
               </span>
             )}
           </section>
@@ -112,7 +108,7 @@ export async function CategoryView({
             grid gap-x-4
           `}
         >
-          {postList.map((post, index) => (
+          {postList.posts.map((post, index) => (
             <PostCard
               key={index}
               post={post}
@@ -123,7 +119,7 @@ export async function CategoryView({
             />
           ))}
         </div>
-        {!term && (
+        {!term && postList.posts.length > 12 && (
           <section className="w-full flex items-center justify-center text-sm gap-2">
             <Link
               href={`/noticias/${category}?page=${page - 1}`}
@@ -147,7 +143,7 @@ export async function CategoryView({
       {isDesktop && (
         <section className="w-1/4 mt-4 relative">
           <div className="flex flex-col gap-4 sticky top-16">
-            <MostReadPosts postList={mostReadPosts} />
+            <MostReadPosts />
             <PopularTags tags={tags.tags} />
             <section className="p-2 relative">
               <Image

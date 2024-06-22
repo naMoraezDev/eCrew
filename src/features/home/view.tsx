@@ -81,8 +81,16 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-4 mb-10
           `}
         >
-          <FeaturedPosts postList={featuredPosts} isDesktop={isDesktop} />
-          <LatestPosts postList={latestPosts} isDesktop={isDesktop} />
+          <FeaturedPosts
+            games={games}
+            isDesktop={isDesktop}
+            postList={featuredPosts}
+          />
+          <LatestPosts
+            games={games}
+            isDesktop={isDesktop}
+            postList={latestPosts}
+          />
           <PostsCarousel
             games={games}
             postList={csPosts}

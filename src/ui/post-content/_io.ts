@@ -9,7 +9,7 @@ export function usePostContent({ content }: PostContentProps) {
     s.setAttribute("src", "https://platform.twitter.com/widgets.js");
     s.setAttribute("async", "true");
     document.head.appendChild(s);
-  }, []);
+  }, [hasTwitter]);
 
   useEffect(() => {
     if (!hasTwitter) return;
@@ -18,7 +18,7 @@ export function usePostContent({ content }: PostContentProps) {
       window.twttr.widgets.load();
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [hasTwitter]);
 
   return {};
 }

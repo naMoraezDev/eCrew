@@ -12,8 +12,13 @@ import { PostCard } from "../post-card";
 import { useFeaturedPosts } from "./_io";
 import { FeaturedPostsProps } from "./types";
 
-export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
+export function FeaturedPostsView({
+  games,
+  postList,
+  isDesktop,
+}: FeaturedPostsProps) {
   const { setApi, currentIndex, scrollToSlide } = useFeaturedPosts({
+    games,
     postList,
   });
 
@@ -36,6 +41,10 @@ export function FeaturedPostsView({ postList, isDesktop }: FeaturedPostsProps) {
                 <PostCard
                   post={post}
                   variant="outlined"
+                  gameIconUrl={
+                    games.find((game) => game.slug === post.categories[0].slug)
+                      ?.icon_url
+                  }
                   orientation={isDesktop ? "horizontal" : "vertical"}
                 />
               </CarouselItem>

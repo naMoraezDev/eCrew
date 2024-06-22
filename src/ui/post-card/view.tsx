@@ -11,7 +11,7 @@ export function PostCardView({
 }: PostCardProps) {
   return (
     <Link
-      href={`/noticias/r6-siege/${post.slug}`}
+      href={`/noticias/${post.categories[0].slug}/${post.slug}`}
       className={`
         ${
           variant === "filled" &&
@@ -35,10 +35,9 @@ export function PostCardView({
           height={post.post_thumbnail.height}
           className="size-full object-cover object-center duration-300 group-hover:scale-105"
         />
-
         {gameIconUrl && (
           <div className="absolute top-3 right-3 flex justify-center items-center p-1 border border-zinc-700 rounded-lg backdrop-blur-sm bg-zinc-500 bg-opacity-10">
-            <Image width={20} height={20} alt="game icon" src={gameIconUrl} />
+            <Image width={24} height={24} alt="game icon" src={gameIconUrl} />
           </div>
         )}
       </figure>
