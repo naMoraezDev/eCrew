@@ -1,5 +1,5 @@
 export function useShareButtons() {
-  const link = window.location.href;
+  const link = (typeof window !== "undefined" && window.location.href) || "";
   const defaultMessage =
     "Mantem-se informado sobre seu esporte eletrônico favorito:";
   const fbShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${link}`;
