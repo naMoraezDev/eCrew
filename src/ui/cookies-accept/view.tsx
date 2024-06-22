@@ -38,7 +38,7 @@ export function CookiesAcceptView() {
         </p>
         <button
           onClick={accept}
-          className="font-kanit font-medium text-lg bg-violet-500 bg-opacity-10 border border-violet-500 rounded-lg px-4 py-1 w-fit flex items-center gap-2"
+          className="font-kanit font-medium text-lg bg-violet-500 bg-opacity-10 border border-violet-500 rounded-lg px-4 py-1 w-fit flex items-center gap-2 self-end"
         >
           aceito hmm <FaCookieBite />
         </button>
