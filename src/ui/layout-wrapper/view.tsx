@@ -2,7 +2,9 @@ import Image from "next/image";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Navbar } from "./navbar";
+import { cookies } from "next/headers";
 import { DefaultProps } from "@/types/common";
+import { CookiesAccept } from "../cookies-accept";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import verticalBanner from "@/assets/images/exitlag-vertical-banner.png";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
@@ -11,7 +13,9 @@ export async function LayoutWrapperView({
   children,
   isDesktop,
 }: Readonly<{ children: React.ReactNode } & DefaultProps>) {
+  const cookieStore = cookies();
   const games = await new EpostsApiService(httpClientFactory()).getGames();
+  const cookiesAccepted = cookieStore.get("cookies-accepted")?.value === "true";
 
   return (
     <>
@@ -47,6 +51,7 @@ export async function LayoutWrapperView({
           </a>
         )}
       </div>
+      {!cookiesAccepted && <CookiesAccept />}
       <Footer isDesktop={isDesktop} />
     </>
   );
