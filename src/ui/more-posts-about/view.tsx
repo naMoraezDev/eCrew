@@ -1,20 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { FaPlus } from "react-icons/fa";
 import { MorePostsAboutProps } from "./types";
-import fpsIcon from "@/assets/images/fps-icon.png";
 import { IoMdArrowDroprightCircle } from "react-icons/io";
 
 export function MorePostsAboutView({ posts, category }: MorePostsAboutProps) {
   return (
     <section className="flex flex-col gap-3 bg-zinc-900 p-3 rounded-lg">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
-        <Image
-          width={16}
-          height={16}
-          src={fpsIcon}
-          className="invert"
-          alt="icone de mira"
-        />
+        <FaPlus />
         <span>
           Mais sobre{" "}
           <span className="font-bold text-violet-500">{category}</span>

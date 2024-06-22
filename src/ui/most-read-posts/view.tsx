@@ -18,7 +18,7 @@ export async function MostReadPostsView() {
         {postList.posts.map((post, index) => (
           <Link
             key={index}
-            href={`/notícias/${post.slug}`}
+            href={`/noticias/${post.categories[0].slug}/${post.slug}`}
             className="text-sm font-kanit hover:animate-text-slide whitespace-nowrap"
           >
             {post.title}

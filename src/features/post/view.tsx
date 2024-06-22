@@ -12,6 +12,7 @@ import { Newsletter } from "@/ui/newsletter";
 import { PopularTags } from "@/ui/popular-tags";
 import { PostContent } from "@/ui/post-content";
 import { ShareButtons } from "@/ui/share-buttons";
+import { HorizontalAd } from "@/ui/horizontal-ad";
 import { ArticleReader } from "@/ui/article-reader";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { MorePostsAbout } from "@/ui/more-posts-about";
@@ -128,6 +129,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             excerpt={post.excerpt}
           />
         </section>
+        <HorizontalAd />
         <PostContent content={post.content} isDesktop={isDesktop} />
         <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 rounded-lg">
           <Image
@@ -142,13 +144,15 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             <p className="text-slate-300 text-base font-normal">autor</p>
           </div>
         </section>
-        <Newsletter />
+
         {!isDesktop && (
           <MorePostsAbout
             posts={morePostsAbout.posts}
             category={post.categories[0].name}
           />
         )}
+        <HorizontalAd />
+        <Newsletter isDesktop={isDesktop} />
       </article>
       {isDesktop && (
         <section className="w-1/4 mt-4 relative">

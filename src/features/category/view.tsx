@@ -13,6 +13,7 @@ import { CategoryProps } from "./types";
 import { PostCard } from "@/ui/post-card";
 import { Newsletter } from "@/ui/newsletter";
 import { PopularTags } from "@/ui/popular-tags";
+import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EpostsApiService } from "@/services/eposts-api.service";
@@ -138,6 +139,7 @@ export async function CategoryView({
             </Link>
           </section>
         )}
+        <HorizontalAd />
         <Newsletter isDesktop={isDesktop} />
       </section>
       {isDesktop && (
@@ -147,6 +149,7 @@ export async function CategoryView({
             <PopularTags tags={tags.tags} />
             <section className="p-2 relative">
               <Image
+                quality={100}
                 src={exitLagBanner}
                 alt="exit_lag_banner"
                 className="rounded-lg"

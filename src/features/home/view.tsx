@@ -4,6 +4,7 @@ import { LogoSlider } from "@/ui/logo-slider";
 import { LatestPosts } from "@/ui/latest-posts";
 import { LiveMatches } from "@/ui/live-matches";
 import { PopularTags } from "@/ui/popular-tags";
+import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedPosts } from "@/ui/featured-posts";
 import { MostReadPosts } from "@/ui/most-read-posts";
@@ -93,6 +94,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             isDesktop={isDesktop}
             postList={latestPosts}
           />
+          <HorizontalAd />
           <PostsCarousel
             games={games}
             postList={csPosts}
@@ -129,6 +131,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             postList={valorantPosts}
             isDesktop={isDesktop}
           />
+          <HorizontalAd />
           <Newsletter isDesktop={isDesktop} />
         </section>
         {isDesktop && (

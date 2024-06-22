@@ -18,7 +18,12 @@ export function NewsletterView({ isDesktop }: NewsletterProps) {
           Fique por dentro das últimas notícias, análises e atualizações do
           mundo dos jogos eletrônicos.
         </p>
-        <div className="flex w-full max-w-sm items-center space-x-2">
+        <div
+          className={`
+            ${!isDesktop ? "flex flex-col gap-y-3" : "flex space-x-2"}
+            w-full max-w-sm items-center 
+          `}
+        >
           <Input
             type="email"
             placeholder="Seu melhor e-mail"
@@ -26,7 +31,10 @@ export function NewsletterView({ isDesktop }: NewsletterProps) {
           />
           <Button
             type="submit"
-            className="bg-violet-600 bg-opacity-10 border border-violet-600 hover:bg-opacity-30 duration-300"
+            className={`
+              ${!isDesktop && "w-full"}
+              bg-violet-600 bg-opacity-10 border border-violet-600 hover:bg-opacity-30 duration-300
+            `}
           >
             Inscrever-se
           </Button>
