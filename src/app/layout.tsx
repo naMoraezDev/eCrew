@@ -39,11 +39,7 @@ export default function RootLayout({
       <body
         className={`${kanit.variable} ${inter.variable} antialiased font-inter text-gray-50 bg-zinc-950`}
       >
-        <NextTopLoader
-          height={2}
-          showSpinner={false}
-          color="rgb(124 58 237)"
-        />
+        <NextTopLoader height={2} showSpinner={false} color="rgb(124 58 237)" />
         {children}
       </body>
     </html>
