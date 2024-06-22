@@ -74,13 +74,15 @@ export async function HomeView({ isDesktop }: DefaultProps) {
   return (
     <>
       <LogoSlider games={games} />
-      {!isDesktop && <LiveMatchesCarousel games={games} matches={matches} />}
       <section className="w-full flex gap-4">
         <section
           className={`
             ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-4 mb-10
           `}
         >
+          {!isDesktop && (
+            <LiveMatchesCarousel games={games} matches={matches} />
+          )}
           <FeaturedPosts
             games={games}
             isDesktop={isDesktop}

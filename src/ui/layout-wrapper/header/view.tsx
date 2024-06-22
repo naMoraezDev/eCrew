@@ -42,7 +42,7 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
               <GameSelectPopover games={games} />
             )}
           </section>
-          <SearchInput />
+          {isDesktop && <SearchInput />}
         </div>
         <FaUserCircle size={32} />
       </div>

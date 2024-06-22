@@ -26,7 +26,7 @@ export function FeaturedPostsView({
     <section className="relative w-full overflow-hidden rounded-t-lg">
       <div
         className={`
-          ${isDesktop ? "p-10" : "p-4"}
+          ${isDesktop ? "px-10 py-6" : "p-4"}
           flex flex-col gap-3 justify-center
         `}
       >

@@ -24,21 +24,25 @@ export async function LayoutWrapperView({
         `}
       >
         {isDesktop && (
-          <Image
-            priority
-            src={verticalAd}
-            alt="Vertical ad"
-            className="shrink-0 object-cover h-fit sticky top-16 mt-4 rounded-lg"
-          />
+          <a href="https://br.betano.com/" target="_blank" rel="noreferrer">
+            <Image
+              priority
+              src={verticalAd}
+              alt="Vertical ad"
+              className="shrink-0 object-cover h-fit sticky top-16 mt-4 rounded-lg"
+            />
+          </a>
         )}
         <main className="w-full max-w-[1000px] p-4">{children}</main>
         {isDesktop && (
-          <Image
-            priority
-            src={verticalAd}
-            alt="Vertical ad"
-            className="shrink-0 object-cover h-fit sticky top-16 mt-4 rounded-lg"
-          />
+          <a href="https://br.betano.com/" target="_blank" rel="noreferrer">
+            <Image
+              priority
+              src={verticalAd}
+              alt="Vertical ad"
+              className="shrink-0 object-cover h-fit sticky top-16 mt-4 rounded-lg"
+            />
+          </a>
         )}
       </div>
       <Footer isDesktop={isDesktop} />

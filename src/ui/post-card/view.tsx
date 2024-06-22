@@ -17,7 +17,7 @@ export function PostCardView({
           variant === "filled" &&
           "bg-zinc-900 bg-opacity-50 border border-zinc-800"
         }
-        ${orientation === "vertical" && "flex-col w-full h-[330px]"}
+        ${orientation === "vertical" && "flex-col w-full"}
         group flex gap-3 rounded-lg overflow-hidden
       `}
     >
@@ -25,7 +25,7 @@ export function PostCardView({
         className={`
           ${size === "small" && "max-w-32"}
           ${orientation === "vertical" ? "w-full" : "w-1/2"}
-          overflow-hidden shrink-0 relative
+          overflow-hidden shrink-0 relative 
         `}
       >
         <Image
@@ -33,7 +33,7 @@ export function PostCardView({
           src={post.post_thumbnail.URL}
           width={post.post_thumbnail.width}
           height={post.post_thumbnail.height}
-          className="size-full object-cover object-center duration-300 group-hover:scale-105"
+          className="size-full object-cover object-center duration-300 aspect-video group-hover:scale-105"
         />
         {gameIconUrl && (
           <div className="absolute top-3 right-3 flex justify-center items-center p-1 border border-zinc-700 rounded-lg backdrop-blur-sm bg-zinc-500 bg-opacity-10">
