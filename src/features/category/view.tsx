@@ -113,10 +113,13 @@ export async function CategoryView({
             <PostCard
               key={index}
               post={post}
-              gameIconUrl={games[4].icon_url}
               size={isDesktop ? "medium" : "small"}
               variant={isDesktop ? "outlined" : "filled"}
               orientation={isDesktop ? "vertical" : "horizontal"}
+              gameIconUrl={
+                games.find((game) => game.slug === post.categories[0].slug)
+                  ?.icon_url
+              }
             />
           ))}
         </div>
