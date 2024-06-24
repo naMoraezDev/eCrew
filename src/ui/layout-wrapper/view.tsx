@@ -24,7 +24,7 @@ export async function LayoutWrapperView({
       <div
         className={`
           ${isDesktop ? "w-fit" : "w-full"}
-          flex mx-auto
+          flex mx-auto gap-3
         `}
       >
         {isDesktop && (
