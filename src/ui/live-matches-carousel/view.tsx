@@ -15,7 +15,7 @@ export function LiveMatchesCarouselView({
       <Carousel opts={{ align: "start" }}>
         <CarouselContent>
           {matches.map((match, index) => (
-            <CarouselItem key={index} className="basis-[80%]">
+            <CarouselItem key={index} className="basis-[70%]">
               <MatchCard games={games} match={match} />
             </CarouselItem>
           ))}

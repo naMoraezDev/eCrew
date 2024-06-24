@@ -15,9 +15,9 @@ export function PostCardView({
       className={`
         ${
           variant === "filled" &&
-          "bg-zinc-900 bg-opacity-50 border border-zinc-800"
+          "bg-zinc-900 bg-opacity-50"
         }
-        ${orientation === "vertical" && "flex-col w-full"}
+        ${orientation === "vertical" && "flex-col w-full h-full max-h-[360px]"}
         group flex gap-3 rounded-lg overflow-hidden
       `}
     >

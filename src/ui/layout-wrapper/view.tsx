@@ -28,7 +28,12 @@ export async function LayoutWrapperView({
         `}
       >
         {isDesktop && (
-          <a href="https://www.exitlag.com/" target="_blank" rel="noreferrer">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            className="h-fit"
+            href="https://www.exitlag.com/"
+          >
             <Image
               priority
               quality={100}
@@ -40,7 +45,12 @@ export async function LayoutWrapperView({
         )}
         <main className="w-full max-w-[1000px] p-4">{children}</main>
         {isDesktop && (
-          <a href="https://www.exitlag.com/" target="_blank" rel="noreferrer">
+          <a
+            target="_blank"
+            rel="noreferrer"
+            className="h-fit"
+            href="https://www.exitlag.com/"
+          >
             <Image
               priority
               quality={100}

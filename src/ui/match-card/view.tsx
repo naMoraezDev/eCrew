@@ -10,7 +10,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
   return (
     <section
       title={`${match.league.name} - ${match.name}`}
-      className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-xl border border-gray-800 bg-zinc-900 overflow-hidden group"
+      className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-lg bg-zinc-900 overflow-hidden group"
     >
       <div className="flex gap-4 items-center z-10 group-hover:animate-text-slide">
         <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
@@ -52,7 +52,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
       )}
       {stream?.raw_url && (
         <>
-          <div className="absolute top-0 right-0 h-full flex items-center z-10">
+          <div className="absolute top-0 right-0 h-full flex items-center z-20 pointer-events-none">
             <div className="flex items-center justify-center h-full p-2 font-bold text-xs text-center text-violet-500 bg-purple-600 bg-opacity-20">
               <FaTwitch size={16} />
             </div>
@@ -70,12 +70,13 @@ export function MatchCardView({ match, games }: MatchCardProps) {
           <Image
             width={100}
             height={72}
-            alt="game icon"
             src={gameLogo}
+            alt="game icon"
             className="shrink-0 invert opacity-10"
           />
         </div>
       )}
+      <div className="absolute top-0 right-0 size-full bg-gradient-to-l from-zinc-900 via-transparent to-transparent z-10 pointer-events-none" />
     </section>
   );
 }

@@ -10,7 +10,7 @@ export function PopularTagsView({ tags }: PopularTagsProps) {
       </h4>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag) => (
-          <span key={tag.ID} className="bg-zinc-800 px-2 py-1 rounded-lg">
+          <span key={tag.ID} className="px-2 py-1 rounded-lg bg-zinc-500 bg-opacity-10">
             {tag.name}
           </span>
         ))}

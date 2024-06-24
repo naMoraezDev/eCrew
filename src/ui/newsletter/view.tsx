@@ -7,7 +7,7 @@ export function NewsletterView({ isDesktop }: NewsletterProps) {
     <section
       className={`
         ${isDesktop ? "px-10 py-4 " : "p-4"}
-        w-full flex mx-auto border border-zinc-800 rounded-lg bg-zinc-900 bg-opacity-50
+        w-full flex mx-auto rounded-lg bg-zinc-900 bg-opacity-50
       `}
     >
       <div className="flex flex-col gap-3 mx-auto">
@@ -33,7 +33,7 @@ export function NewsletterView({ isDesktop }: NewsletterProps) {
             type="submit"
             className={`
               ${!isDesktop && "w-full"}
-              bg-violet-600 bg-opacity-10 border border-violet-600 hover:bg-opacity-30 duration-300
+              bg-violet-500 bg-opacity-10 text-violet-500 hover:bg-opacity-30 duration-300
             `}
           >
             Inscrever-se

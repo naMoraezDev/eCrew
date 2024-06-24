@@ -79,11 +79,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
           <Link href="#">Trabalhe conosco</Link>
         </div>
       </section>
-      {isDesktop && (
-        <>
-          <ScrollToTopButton />
-        </>
-      )}
+      {isDesktop && <ScrollToTopButton />}
     </footer>
   );
 }
