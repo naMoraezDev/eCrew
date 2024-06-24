@@ -8,15 +8,15 @@ import { SignInForm } from "@/ui/sign-in-form";
 import { SignUpForm } from "@/ui/sign-up-form";
 import { SocialLogin } from "@/ui/social-login";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
-import background1 from "@/assets/images/lol-background.jpg";
 import background2 from "@/assets/images/r6-background.jpg";
+import background1 from "@/assets/images/lol-background.jpg";
 
 export function LoginView({}: LoginProps) {
   const { method, setMethod } = useLogin();
 
   return (
-    <section className="w-full h-screen flex justify-center items-center bg-gradient-to-bl from-zinc-950 to-violet-950">
-      <section className="flex bg-zinc-900 rounded-lg w-full max-w-[1000px]">
+    <section className="w-full h-screen flex justify-center items-center bg-gradient-to-bl from-zinc-950 to-zinc-900">
+      <section className="flex bg-zinc-900 rounded-lg w-full max-w-[1000px] overflow-hidden">
         <div className="gap-6 p-6 w-1/2 flex flex-col">
           <div className="flex items-center gap-1 relative w-full justify-center">
             <Image
