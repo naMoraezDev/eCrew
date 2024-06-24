@@ -1,11 +1,10 @@
-"use client";
-
+import { SignInFormProps } from "./types";
 import { CustomInput } from "../custom-input";
 import { Button } from "@/components/ui/button";
 
-export function SignInFormView() {
+export function SignInFormView({ setMethod }: SignInFormProps) {
   return (
-    <form className="flex flex-col gap-6">
+    <form className="flex flex-col gap-6 animate-fade-in">
       <span className="text-sm font-kanit w-full flex justify-center">
         Entre com sua conta ePosts
       </span>
@@ -37,9 +36,13 @@ export function SignInFormView() {
       </Button>
       <span className="text-sm font-kanit">
         Ainda não possui uma conta?{" "}
-        <span className="font-medium text-violet-500 underline underline-offset-2">
+        <button
+          type="button"
+          onClick={() => setMethod("sign-up")}
+          className="font-medium text-violet-500 underline underline-offset-2"
+        >
           Cadastre-se no nosso site!
-        </span>
+        </button>
       </span>
     </form>
   );

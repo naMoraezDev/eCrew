@@ -91,6 +91,16 @@ const config = {
             transform: "translateX(-300%)",
           },
         },
+        "fade-in": {
+          "0%": {
+            opacity: "0%",
+            transform: "translateY(-50%)",
+          },
+          "100%": {
+            opacity: "100%",
+            transform: "translateY(0%)",
+          },
+        },
         "fade-out": {
           "0%": {
             opacity: "100%",
@@ -106,6 +116,7 @@ const config = {
         slider: "slider 40s infinite linear",
         "text-slide": "text-slide 5s infinite linear",
         "fast-text-slide": "fast-text-slide 8s both linear",
+        "fade-in": "fade-in 300ms both",
         "fade-out": "fade-out 300ms both",
       },
       fontFamily: {
