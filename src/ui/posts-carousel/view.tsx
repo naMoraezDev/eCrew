@@ -58,6 +58,7 @@ export function PostsCarouselView({
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
             >
               <Image
+                quality={100}
                 alt="game-cover"
                 src={getGameCover()}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"

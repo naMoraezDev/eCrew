@@ -36,7 +36,7 @@ export function useCategory({ category }: CategoryProps) {
       case "valorant":
         return {
           background: valorant,
-          styles: "object-bottom",
+          styles: "object-center",
           url: "https://playvalorant.com/",
         };
       case "cs-go":
