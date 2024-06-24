@@ -55,7 +55,7 @@ export function LoginView({}: LoginProps) {
           </Button>
           <span className="text-sm font-kanit">
             Ainda não possui uma conta?{" "}
-            <span className="font-medium text-violet-500">
+            <span className="font-medium text-violet-500 underline underline-offset-2">
               Cadastre-se no nosso site!
             </span>
           </span>
