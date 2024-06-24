@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
-import { FaUserCircle } from "react-icons/fa";
+import { FaUser } from "react-icons/fa6";
 import { SearchInput } from "@/ui/search-input";
 import { GameSelectHover } from "@/ui/game-select-hover";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
@@ -44,7 +44,9 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
           </section>
           {isDesktop && <SearchInput />}
         </div>
-        <FaUserCircle size={32} />
+        <Link href="/login">
+          <FaUser size={20} />
+        </Link>
       </div>
     </header>
   );
