@@ -10,7 +10,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
   return (
     <section
       title={`${match.league.name} - ${match.name}`}
-      className="flex items-center gap-6 relative w-full h-10 pl-12 pr-10 rounded-lg bg-zinc-900 overflow-hidden group"
+      className="flex items-center gap-6 relative w-full h-12 pl-10 pr-10 rounded-lg bg-zinc-900 overflow-hidden group"
     >
       <div className="flex gap-4 items-center z-10 group-hover:animate-text-slide">
         <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
@@ -43,9 +43,9 @@ export function MatchCardView({ match, games }: MatchCardProps) {
       {match.status === "running" && (
         <>
           <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-10 z-10" />
-          <div className="absolute top-0 left-3 h-full z-10">
-            <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold group-hover:animate-fade-out">
-              {match.results[0]?.score || 0} - {match.results[1]?.score || 0}
+          <div className="absolute top-0 left-0 h-full z-10 rotate-180">
+            <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
+              LIVE
             </span>
           </div>
         </>
