@@ -27,6 +27,9 @@ export function LoginView({}: LoginProps) {
               className="w-full h-full absolute top-0 left-0"
             />
           </div>
+          <span className="text-sm font-kanit w-full flex justify-center">
+            Entre com sua conta ePosts
+          </span>
           <div className="w-full flex flex-col gap-3">
             <CustomInput
               name="email"
