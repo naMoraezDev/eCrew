@@ -17,14 +17,14 @@ export function CustomInputView({
   return (
     <div className="relative flex flex-col gap-2">
       <input
-        {...(register && register(name))}
+        {...register(name)}
         placeholder={placeholder}
         autoComplete={autocomplete}
         type={showPassword ? "text" : type}
         className={`
           ${
             error
-              ? "border-red-500 placeholder-red-500 text-red-500 focus:border-red-500"
+              ? "placeholder-red-500 text-red-500 focus:!border-red-500"
               : "border-gray-300"
           }
           w-full h-10 px-2 border-[1px] !border-zinc-800 !transition-all !duration-300 bg-transparent rounded-lg text-sm
@@ -58,11 +58,6 @@ export function CustomInputView({
             />
           )}
         </button>
-      )}
-      {error && (
-        <span className="font-bold text-[12px] text-red-500 animate-revealFade">
-          {error?.message}
-        </span>
       )}
     </div>
   );

@@ -6,5 +6,5 @@ export interface CustomInput {
   placeholder: string;
   autocomplete?: string;
   error: FieldError | undefined;
-  register?: UseFormRegister<any>;
+  register: UseFormRegister<any>;
 }

@@ -1,38 +1,61 @@
 import Link from "next/link";
+import { useSignUp } from "./_io";
+import { useForm } from "react-hook-form";
 import { SignUpFormProps } from "./types";
 import { CustomInput } from "../custom-input";
 import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignUpSchema } from "@/schemas/sign-up.schema";
 
 export function SignUpFormView({ setMethod }: SignUpFormProps) {
+  const { onSubmit, submitError } = useSignUp();
+  const { register, handleSubmit, formState } = useForm<
+    typeof SignUpSchema._type
+  >({
+    resolver: zodResolver(SignUpSchema),
+  });
+
   return (
-    <form className="flex flex-col gap-6 animate-fade-in">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-6 animate-fade-in"
+    >
       <span className="text-sm font-kanit w-full flex justify-center">
         Crie sua conta ePosts
       </span>
       <div className="w-full flex flex-col gap-3">
+        {submitError && (
+          <span className="text-red-500 text-sm text-center font-kanit font-medium">
+            {submitError}
+          </span>
+        )}
         <CustomInput
           name="name"
           type="text"
-          error={undefined}
+          register={register}
           placeholder="nome completo"
+          error={formState.errors.name}
         />
         <CustomInput
           name="email"
           type="email"
-          error={undefined}
           placeholder="email"
+          register={register}
+          error={formState.errors.email}
         />
         <CustomInput
           name="password"
           type="password"
-          error={undefined}
           placeholder="senha"
+          register={register}
+          error={formState.errors.password}
         />
         <CustomInput
-          name="password"
           type="password"
-          error={undefined}
+          register={register}
+          name="confirmPassword"
           placeholder="confirme sua senha"
+          error={formState.errors.confirmPassword}
         />
       </div>
       <span className="text-sm font-kanit">

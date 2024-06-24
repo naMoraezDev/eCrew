@@ -1,25 +1,46 @@
+import { useSignIn } from "./_io";
 import { SignInFormProps } from "./types";
+import { useForm } from "react-hook-form";
 import { CustomInput } from "../custom-input";
 import { Button } from "@/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { SignInSchema } from "@/schemas/sign-in.schema";
 
 export function SignInFormView({ setMethod }: SignInFormProps) {
+  const { onSubmit, submitError } = useSignIn();
+  const { register, handleSubmit, formState } = useForm<
+    typeof SignInSchema._type
+  >({
+    resolver: zodResolver(SignInSchema),
+  });
+
   return (
-    <form className="flex flex-col gap-6 animate-fade-in">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-6 animate-fade-in"
+    >
       <span className="text-sm font-kanit w-full flex justify-center">
         Entre com sua conta ePosts
       </span>
       <div className="w-full flex flex-col gap-3">
+        {submitError && (
+          <span className="text-red-500 text-sm text-center font-kanit font-medium">
+            {submitError}
+          </span>
+        )}
         <CustomInput
           name="email"
           type="email"
-          error={undefined}
           placeholder="email"
+          register={register}
+          error={formState.errors.email}
         />
         <CustomInput
           name="password"
           type="password"
-          error={undefined}
           placeholder="senha"
+          register={register}
+          error={formState.errors.password}
         />
         <span className="text-xs font-kanit underline-offset-2 underline">
           Esqueci minha senha
