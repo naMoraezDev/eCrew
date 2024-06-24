@@ -1,8 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { LoginProps } from "./types";
-import { Button } from "@/components/ui/button";
-import { CustomInput } from "@/ui/custom-input";
+import { SignInForm } from "@/ui/sign-in-form";
 import { SocialLogin } from "@/ui/social-login";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 
@@ -24,43 +23,7 @@ export function LoginView({}: LoginProps) {
             className="w-full h-full absolute top-0 left-0"
           />
         </div>
-        <span className="text-sm font-kanit w-full flex justify-center">
-          Entre com sua conta ePosts
-        </span>
-        <form className="flex flex-col gap-6">
-          <div className="w-full flex flex-col gap-3">
-            <CustomInput
-              name="email"
-              type="email"
-              error={undefined}
-              placeholder="email"
-            />
-            <CustomInput
-              name="password"
-              type="password"
-              error={undefined}
-              placeholder="senha"
-            />
-            <span className="text-xs font-kanit underline-offset-2 underline">
-              Esqueci minha senha
-            </span>
-          </div>
-          <Button
-            type="submit"
-            className={`
-              !bg-zinc-50 bg-opacity-10 text-zinc-900 duration-300 !font-bold text-xs h-10
-              hover:!bg-zinc-300
-            `}
-          >
-            Entrar
-          </Button>
-          <span className="text-sm font-kanit">
-            Ainda não possui uma conta?{" "}
-            <span className="font-medium text-violet-500 underline underline-offset-2">
-              Cadastre-se no nosso site!
-            </span>
-          </span>
-        </form>
+        <SignInForm />
         <SocialLogin />
       </div>
     </section>
