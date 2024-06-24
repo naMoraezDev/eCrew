@@ -4,28 +4,8 @@ import { FooterProps } from "./types";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
-import { EpostsApiService } from "@/services/eposts-api.service";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function FooterView({ isDesktop }: FooterProps) {
-  const [mostReadPosts] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-      page: "1",
-      number: "5",
-      category: "r6-siege",
-    }),
-  ]);
-
-  const mostRead = {
-    ...mostReadPosts,
-    posts: [
-      mostReadPosts.posts[1],
-      mostReadPosts.posts[1],
-      mostReadPosts.posts[1],
-      mostReadPosts.posts[1],
-    ],
-  };
-
   return (
     <footer
       className={`
@@ -79,7 +59,12 @@ export async function FooterView({ isDesktop }: FooterProps) {
           <Link href="#">Trabalhe conosco</Link>
         </div>
       </section>
-      {isDesktop && <ScrollToTopButton />}
+      <section className="flex flex-col gap-4 font-kanit">
+        {isDesktop && <ScrollToTopButton />}
+        <span className="w-full flex max-w-[1270px] mx-auto px-4 mb-4 text-sm font-kanit">
+          © 2024 ePosts. Todos os direitos reservados.
+        </span>
+      </section>
     </footer>
   );
 }
