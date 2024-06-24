@@ -78,7 +78,8 @@ export async function HomeView({ isDesktop }: DefaultProps) {
       <section className="w-full flex gap-4">
         <section
           className={`
-            ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-4 mb-10
+            ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
+            flex flex-col gap-10 mb-10
           `}
         >
           {!isDesktop && (

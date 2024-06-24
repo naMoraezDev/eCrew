@@ -1,18 +1,18 @@
 import { PostCard } from "../post-card";
 import { LatestPostsProps } from "./types";
+import { PiNewspaperClippingFill } from "react-icons/pi";
 
-export function LatestPostsView({
-  games,
-  postList,
-  isDesktop,
-}: LatestPostsProps) {
+export function LatestPostsView({ games, postList }: LatestPostsProps) {
   return (
-    <section className="flex flex-col gap-3 p-4 bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 rounded-xl">
-      <h2 className="text-md font-kanit font-bold">Últimas notícias</h2>
+    <section className="flex flex-col gap-3">
+      <h2 className="text-md font-kanit font-bold flex items-center gap-2">
+        <PiNewspaperClippingFill /> Últimas notícias
+      </h2>
       <PostCard
+        size="small"
         variant="filled"
         post={postList.posts[0]}
-        orientation={isDesktop ? "horizontal" : "vertical"}
+        orientation="horizontal"
         gameIconUrl={
           games.find(
             (game) => game.slug === postList.posts[0].categories[0].slug

@@ -11,6 +11,7 @@ import {
 import { PostCard } from "../post-card";
 import { useFeaturedPosts } from "./_io";
 import { FeaturedPostsProps } from "./types";
+import { MdFeaturedVideo } from "react-icons/md";
 
 export function FeaturedPostsView({
   games,
@@ -30,7 +31,9 @@ export function FeaturedPostsView({
           flex flex-col gap-3 justify-center
         `}
       >
-        <h2 className="text-md font-kanit font-bold z-10">Em destaque</h2>
+        <h2 className="text-md font-kanit font-bold z-10 flex items-center gap-2">
+          <MdFeaturedVideo /> Em destaque
+        </h2>
         <Carousel setApi={setApi} opts={{ align: "start" }}>
           <CarouselContent className="gap-4">
             {postList.posts.map((post, index) => (

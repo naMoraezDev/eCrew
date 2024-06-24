@@ -13,12 +13,9 @@ export function PostCardView({
     <Link
       href={`/noticias/${post.categories[0].slug}/${post.slug}`}
       className={`
-        ${
-          variant === "filled" &&
-          "bg-zinc-900 bg-opacity-50"
-        }
-        ${orientation === "vertical" && "flex-col w-full h-full max-h-[360px]"}
-        group flex gap-3 rounded-lg overflow-hidden
+        ${variant === "filled" && "bg-zinc-800 bg-opacity-50"}
+        ${orientation === "vertical" && "flex-col w-full"}
+        group flex gap-3 rounded-lg overflow-hidden h-full
       `}
     >
       <figure
@@ -50,7 +47,7 @@ export function PostCardView({
         <h3
           className={`
             ${size === "medium" ? "line-clamp-2" : "line-clamp-1"}
-            font-kanit font-medium text-ellipsis
+            font-kanit font-medium text-ellipsis text-lg
           `}
         >
           {post.title}
@@ -58,7 +55,7 @@ export function PostCardView({
         <div
           className={`
             ${size === "medium" ? "line-clamp-3" : "line-clamp-2"}
-            text-xs text-zinc-400 text-ellipsis
+            text-sm text-zinc-400 text-ellipsis
           `}
           dangerouslySetInnerHTML={{ __html: post.excerpt }}
         />

@@ -25,7 +25,7 @@ export function PostsCarouselView({
   });
 
   return (
-    <section className="relative flex flex-col gap-3 rounded-lg p-3">
+    <section className="relative flex flex-col gap-3 rounded-lg">
       <div className="w-full flex justify-between items-center z-10">
         <h2 className="text-md font-kanit font-bold flex items-center gap-2">
           <Image
