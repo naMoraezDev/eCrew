@@ -31,7 +31,7 @@ export async function LayoutWrapperView({
           <a
             target="_blank"
             rel="noreferrer"
-            className="h-fit"
+            className="h-fit sticky top-16"
             href="https://www.exitlag.com/"
           >
             <Image
@@ -39,7 +39,7 @@ export async function LayoutWrapperView({
               quality={100}
               src={verticalBanner}
               alt="vertical banner"
-              className="shrink-0 object-cover h-fit sticky top-16 mt-4 rounded-lg"
+              className="shrink-0 object-cover h-fit mt-4 rounded-lg"
             />
           </a>
         )}
@@ -48,7 +48,7 @@ export async function LayoutWrapperView({
           <a
             target="_blank"
             rel="noreferrer"
-            className="h-fit"
+            className="h-fit sticky top-16"
             href="https://www.exitlag.com/"
           >
             <Image
@@ -56,7 +56,7 @@ export async function LayoutWrapperView({
               quality={100}
               src={verticalBanner}
               alt="vertical banner"
-              className="shrink-0 object-cover h-fit sticky top-16 mt-4 rounded-lg"
+              className="shrink-0 object-cover h-fit mt-4 rounded-lg"
             />
           </a>
         )}
