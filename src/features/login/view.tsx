@@ -34,6 +34,7 @@ export function LoginView({}: LoginProps) {
           </div>
           {method === "sign-in" && <SignInForm setMethod={setMethod} />}
           {method === "sign-up" && <SignUpForm setMethod={setMethod} />}
+          <span className="text-sm font-kanit text-center">ou</span>
           <SocialLogin />
         </div>
         <div className="w-1/2 overflow-hidden">
