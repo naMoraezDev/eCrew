@@ -33,8 +33,14 @@ export function PostCardView({
           className="size-full object-cover object-center duration-300 aspect-video group-hover:scale-105"
         />
         {gameIconUrl && (
-          <div className="absolute top-3 right-3 flex justify-center items-center p-1 border border-zinc-700 rounded-lg backdrop-blur-sm bg-zinc-500 bg-opacity-10">
-            <Image width={24} height={24} alt="game icon" src={gameIconUrl} />
+          <div className="absolute top-3 right-3 flex justify-center items-center p-1 rounded-lg backdrop-blur-sm bg-zinc-800 bg-opacity-50 size-8">
+            <Image
+              width={24}
+              height={24}
+              alt="game icon"
+              src={gameIconUrl}
+              className="rounded-md"
+            />
           </div>
         )}
       </figure>
