@@ -7,7 +7,7 @@ export function SearchInputView() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center rounded-xl bg-zinc-50 bg-opacity-20 px-10 py-2"
+      className="flex items-center rounded-xl bg-zinc-800 bg-opacity-50 px-10 py-2"
     >
       <input
         type="text"
