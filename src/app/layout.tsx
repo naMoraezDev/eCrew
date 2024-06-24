@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import NextTopLoader from "nextjs-toploader";
+import { AuthProvider } from "@/contexts/auth";
 import { Inter, Kanit } from "next/font/google";
 
 const kanit = Kanit({
@@ -40,7 +41,7 @@ export default function RootLayout({
         className={`${kanit.variable} ${inter.variable} antialiased font-inter text-gray-50 bg-zinc-950`}
       >
         <NextTopLoader height={2} showSpinner={false} color="rgb(124 58 237)" />
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );
