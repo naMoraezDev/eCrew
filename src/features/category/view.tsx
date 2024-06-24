@@ -28,7 +28,6 @@ export async function CategoryView({
   isDesktop,
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
-
   const [tags, games, postList] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
@@ -42,6 +41,8 @@ export async function CategoryView({
           category: category || "all",
         }),
   ]);
+  const firstGroup = term ? postList.posts : postList.posts.slice(0, 6);
+  const secondGroup = term ? [] : postList.posts.slice(6, 12);
 
   return (
     <section className="w-full flex gap-4">
@@ -63,8 +64,11 @@ export async function CategoryView({
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-zinc-300">
-                {postList.posts[0]?.categories[0]?.name.toLocaleLowerCase() ||
-                  "busca"}
+                {category === "all"
+                  ? "mais notícias"
+                  : term
+                  ? "busca"
+                  : postList.posts[0]?.categories[0]?.name.toLocaleLowerCase()}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -110,7 +114,7 @@ export async function CategoryView({
             grid gap-x-4
           `}
         >
-          {postList.posts.map((post, index) => (
+          {firstGroup.map((post, index) => (
             <PostCard
               key={index}
               post={post}
@@ -124,26 +128,60 @@ export async function CategoryView({
             />
           ))}
         </div>
-        {!term && postList.posts.length > 12 && (
+        <HorizontalAd />
+        <div
+          className={`
+            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3"}
+            grid gap-x-4
+          `}
+        >
+          {secondGroup.map((post, index) => (
+            <PostCard
+              key={index}
+              post={post}
+              size={isDesktop ? "medium" : "small"}
+              variant={isDesktop ? "outlined" : "filled"}
+              orientation={isDesktop ? "vertical" : "horizontal"}
+              gameIconUrl={
+                games.find((game) => game.slug === post.categories[0].slug)
+                  ?.icon_url
+              }
+            />
+          ))}
+        </div>
+        {!term && postList.found > 12 && (
           <section className="w-full flex items-center justify-center text-sm gap-2">
-            <Link
-              href={`/noticias/${category}?page=${page - 1}`}
-              className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
-            >
-              <MdOutlineKeyboardDoubleArrowLeft size={16} />
-            </Link>
+            {page > 1 && (
+              <Link
+                href={
+                  category === "all"
+                    ? `/noticias/mais-noticias${
+                        page > 1 ? `?page=${page - 1}` : ""
+                      }`
+                    : `/noticias/${category}?page=${page - 1}`
+                }
+                className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
+              >
+                <MdOutlineKeyboardDoubleArrowLeft size={16} />
+              </Link>
+            )}
             <div className="p-1 bg-zinc-900 border border-zinc-600 rounded-lg min-w-7 h-7 flex items-center justify-center">
               {page}
             </div>
-            <Link
-              href={`/noticias/${category}?page=${page + 1}`}
-              className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
-            >
-              <MdOutlineKeyboardDoubleArrowRight size={16} />
-            </Link>
+            {postList.posts.length >= 12 && (
+              <Link
+                href={
+                  category === "all"
+                    ? `/noticias/mais-noticias?page=${page + 1}`
+                    : `/noticias/${category}?page=${page + 1}`
+                }
+                className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
+              >
+                <MdOutlineKeyboardDoubleArrowRight size={16} />
+              </Link>
+            )}
           </section>
         )}
-        <HorizontalAd />
         <Newsletter isDesktop={isDesktop} />
       </section>
       {isDesktop && (
