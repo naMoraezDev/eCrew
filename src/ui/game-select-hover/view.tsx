@@ -23,7 +23,7 @@ export function GameSelectHoverView({ games }: GameSelectProps) {
             alt="gamepad icon"
           />
         </HoverCardTrigger>
-        <HoverCardContent className="bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900 border-transparent shadow-md mt-4 text-zinc-50 p-4 flex justify-center">
+        <HoverCardContent className="bg-zinc-900 border-transparent shadow-md mt-4 text-zinc-50 p-4 flex justify-center">
           <div className="grid grid-cols-3 gap-10 justify-center w-fit">
             {games.map((game, index) => (
               <div
