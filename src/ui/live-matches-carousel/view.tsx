@@ -10,6 +10,9 @@ export function LiveMatchesCarouselView({
   games,
   matches,
 }: LiveMatchesCarouselProps) {
+  if (!matches.length) {
+    return null;
+  }
   return (
     <section className="w-full pt-4 relative">
       <Carousel opts={{ align: "start" }}>

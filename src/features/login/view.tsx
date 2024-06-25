@@ -11,13 +11,28 @@ import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import background2 from "@/assets/images/r6-background.jpg";
 import background1 from "@/assets/images/lol-background.jpg";
 
-export function LoginView({}: LoginProps) {
+export function LoginView({ isDesktop }: LoginProps) {
   const { method, setMethod } = useLogin();
 
   return (
-    <section className="w-full h-screen flex justify-center items-center bg-gradient-to-bl from-zinc-950 to-zinc-900">
-      <section className="flex bg-zinc-900 rounded-lg w-full max-w-[1000px] overflow-hidden">
-        <div className="gap-6 p-6 w-1/2 flex flex-col">
+    <section
+      className={`
+        ${isDesktop ? "h-screen" : "h-full"}
+        w-full flex justify-center items-center bg-gradient-to-bl from-zinc-950 to-zinc-900
+      `}
+    >
+      <section
+        className={`
+          ${!isDesktop && "h-screen items-center justify-center"}
+          flex bg-zinc-900 rounded-lg w-full max-w-[1000px] overflow-hidden
+        `}
+      >
+        <div
+          className={`
+            ${isDesktop ? "w-1/2" : "w-full"}
+            gap-6 p-6 flex flex-col
+          `}
+        >
           <div className="flex items-center gap-1 relative w-fit self-center">
             <Image
               priority
@@ -37,23 +52,25 @@ export function LoginView({}: LoginProps) {
           <span className="text-sm font-kanit text-center">ou</span>
           <SocialLogin />
         </div>
-        <div className="w-1/2 overflow-hidden">
-          {method === "sign-in" && (
-            <Image
-              priority
-              src={background1}
-              alt="lol background"
-              className="w-full h-full object-cover"
-            />
-          )}
-          {method === "sign-up" && (
-            <Image
-              src={background2}
-              alt="lol background"
-              className="w-full h-full object-cover"
-            />
-          )}
-        </div>
+        {isDesktop && (
+          <div className="w-1/2 overflow-hidden">
+            {method === "sign-in" && (
+              <Image
+                priority
+                src={background1}
+                alt="lol background"
+                className="w-full h-full object-cover"
+              />
+            )}
+            {method === "sign-up" && (
+              <Image
+                src={background2}
+                alt="lol background"
+                className="w-full h-full object-cover"
+              />
+            )}
+          </div>
+        )}
       </section>
     </section>
   );
