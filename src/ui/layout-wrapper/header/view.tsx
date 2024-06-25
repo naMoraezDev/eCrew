@@ -44,7 +44,7 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
           </section>
           {isDesktop && <SearchInput />}
         </div>
-        <UserMenu />
+        <UserMenu isDesktop={isDesktop} />
       </div>
     </header>
   );
