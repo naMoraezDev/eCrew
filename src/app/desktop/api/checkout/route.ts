@@ -1,8 +1,10 @@
-import { firebaseAdmin } from "@/services/firebase/firebase-admin";
-import { stripe } from "@/services/stripe/stripe";
 import { cookies } from "next/headers";
+import { main } from "@/services/db/conn";
+import { stripe } from "@/services/stripe/stripe";
+import { firebaseAdmin } from "@/services/firebase/firebase-admin";
 
-export async function POST(request: Request) {
+export async function GET(request: Request) {
+  main();
   const cookieStore = cookies();
   const idToken = cookieStore.get("id-token")?.value;
   const decodedToken = await firebaseAdmin

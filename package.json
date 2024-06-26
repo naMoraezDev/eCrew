@@ -19,6 +19,7 @@
     "firebase": "^10.12.2",
     "firebase-admin": "^12.2.0",
     "lucide-react": "^0.378.0",
+    "mongoose": "^8.4.4",
     "next": "14.2.3",
     "nextjs-toploader": "^1.6.12",
     "nookies": "^2.5.2",
