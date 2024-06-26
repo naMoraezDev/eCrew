@@ -3,16 +3,19 @@ import { main } from "@/services/db/conn";
 import { stripe } from "@/services/stripe/stripe";
 import { firebaseAdmin } from "@/services/firebase/firebase-admin";
 
-export async function GET(request: Request) {
+export async function POST() {
   main();
   const cookieStore = cookies();
   const idToken = cookieStore.get("id-token")?.value;
-  const decodedToken = await firebaseAdmin
+  const decodedIdToken = await firebaseAdmin
     .auth()
     .verifyIdToken(idToken || "")
     .catch(() => null);
-  const { searchParams } = new URL(request.url);
+  const customer = await stripe.customers.create({
+    email: decodedIdToken?.email,
+  });
   const checkoutSession = await stripe.checkout.sessions.create({
+    customer: customer.id,
     payment_method_types: ["card"],
     billing_address_collection: "auto",
     line_items: [
@@ -27,5 +30,5 @@ export async function GET(request: Request) {
     success_url: `http://localhost:3000/noticias`,
   });
 
-  return Response.json({});
+  return Response.json({ sessionId: checkoutSession.id }, { status: 200 });
 }
