@@ -6,9 +6,11 @@ import { useProSubscription } from "./_io";
 import { BasicHeader } from "@/ui/basic-header";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { SubscriptionCard } from "@/ui/subscription-card";
+import { useSubscriptionCard } from "@/ui/subscription-card/_io";
 
 export function ProSubscriptionView() {
   const { scrollToBottom } = useProSubscription();
+  const { handleSubscribe } = useSubscriptionCard();
 
   return (
     <div className="overflow-x-clip">
@@ -54,7 +56,10 @@ export function ProSubscriptionView() {
             <SubscriptionCard pro />
           </div>
         </div>
-        <button className="bg-violet-500 bg-opacity-10 px-10 self-center py-2 rounded-3xl text-violet-500 font-bold">
+        <button
+          onClick={handleSubscribe}
+          className="bg-violet-500 bg-opacity-10 px-10 self-center py-2 rounded-3xl text-violet-500 font-bold"
+        >
           Faça mais com o PRO, assine agora
         </button>
         <div className="w-px h-full bg-transparent mt-6" />

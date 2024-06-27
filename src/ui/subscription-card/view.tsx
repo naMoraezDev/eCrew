@@ -1,8 +1,11 @@
+import { useSubscriptionCard } from "./_io";
 import { FaCheckCircle } from "react-icons/fa";
 import { SubscriptionCardProps } from "./types";
 import { IoMdCloseCircle } from "react-icons/io";
 
 export function SubscriptionCardView({ pro }: SubscriptionCardProps) {
+  const { handleSubscribe } = useSubscriptionCard();
+
   return (
     <section className="flex flex-col gap-6 bg-zinc-900 rounded-lg overflow-hidden p-6 h-full">
       {pro ? (
@@ -31,7 +34,10 @@ export function SubscriptionCardView({ pro }: SubscriptionCardProps) {
           <span className="text-6xl font-kanit text-violet-500">
             13,90 <span className="text-2xl text-zinc-50">BRL /mês</span>
           </span>
-          <button className="bg-violet-500 bg-opacity-10 w-full px-24 self-center py-2 rounded-3xl text-violet-500 font-bold">
+          <button
+            onClick={handleSubscribe}
+            className="bg-violet-500 bg-opacity-10 w-full px-24 self-center py-2 rounded-3xl text-violet-500 font-bold"
+          >
             Assinar
           </button>
         </>

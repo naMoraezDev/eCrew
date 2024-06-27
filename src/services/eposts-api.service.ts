@@ -3,6 +3,7 @@ import { Post } from "./types/post.types";
 import { Games } from "./types/games.types";
 import { Posts } from "./types/posts.types";
 import { Matches } from "./types/matches.types";
+import { Checkout } from "./types/checkout.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 
 interface EpostsApiServiceProtocol {
@@ -16,6 +17,7 @@ interface EpostsApiServiceProtocol {
   getPostBySlug: (slug: string) => Promise<Post>;
   getPostsByTag: (tag: string) => Promise<Posts>;
   getPostsBySearch: (search: string) => Promise<Posts>;
+  checkout: (authorization: string) => Promise<Checkout>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
 }
@@ -109,5 +111,18 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
       },
     });
     return tags;
+  }
+
+  public async checkout(authorization: string) {
+    const session = await this.httpClient.request<Checkout>({
+      input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/subscription/checkout`,
+      init: {
+        method: "POST",
+        headers: {
+          authorization,
+        },
+      },
+    });
+    return session;
   }
 }
