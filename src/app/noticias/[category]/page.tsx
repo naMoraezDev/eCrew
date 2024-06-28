@@ -1,4 +1,6 @@
+import { Metadata } from "next";
 import { Category } from "@/features/category";
+import { CategorySEO, categoryMetadata } from "@/seo/category";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
@@ -12,6 +14,14 @@ export async function generateStaticParams() {
     category: game.slug,
   }));
 }
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string };
+}): Promise<Metadata> {
+  return categoryMetadata({ categorySlug: params.category });
+}
 export default async function CategoryPage({
   params,
   searchParams,
@@ -21,5 +31,10 @@ export default async function CategoryPage({
 }) {
   const page = Number(searchParams.page || "1") ?? 1;
 
-  return <Category category={params.category} page={page} />;
+  return (
+    <>
+      <CategorySEO categorySlug={params.category} />
+      <Category category={params.category} page={page} />
+    </>
+  );
 }
