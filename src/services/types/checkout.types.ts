@@ -1,3 +1,3 @@
 export interface Checkout {
-  sessionId: string;
+  sessionUrl: string;
 }
