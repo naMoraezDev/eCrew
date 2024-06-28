@@ -25,6 +25,10 @@ export function BasicHeaderView() {
             alt="ePosts logo"
           />
           <span className="font-kanit text-xl">ePosts</span>
+          <Link
+            href="/noticias"
+            className="w-full h-full absolute top-0 left-0"
+          />
         </div>
         <Link
           href="/noticias"

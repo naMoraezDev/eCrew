@@ -109,6 +109,22 @@ const config = {
             opacity: "0%",
           },
         },
+        fade: {
+          "0%": {
+            opacity: "0%",
+          },
+          "100%": {
+            opacity: "100%",
+          },
+        },
+        "top-to-center": {
+          "0%": {
+            transform: "translateY(-100%)",
+          },
+          "100%": {
+            transform: "translateY(0%)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -118,6 +134,8 @@ const config = {
         "fast-text-slide": "fast-text-slide 8s both linear",
         "fade-in": "fade-in 300ms both",
         "fade-out": "fade-out 300ms both",
+        fade: "fade 300ms both",
+        "top-to-center": "top-to-center 300ms both",
       },
       fontFamily: {
         inter: ["var(--font-inter)"],
