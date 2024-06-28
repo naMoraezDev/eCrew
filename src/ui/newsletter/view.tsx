@@ -1,8 +1,13 @@
+"use client";
+
+import { useNewsletter } from "./_io";
 import { NewsletterProps } from "./types";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export function NewsletterView({ isDesktop }: NewsletterProps) {
+  const { email, handleEmailChange, handleSubscribe } = useNewsletter();
+
   return (
     <section
       className={`
@@ -26,11 +31,14 @@ export function NewsletterView({ isDesktop }: NewsletterProps) {
         >
           <Input
             type="email"
+            value={email}
+            onChange={handleEmailChange}
             placeholder="Seu melhor e-mail"
             className="focus:!ring-inset !ring-transparent text-zinc-900"
           />
           <Button
-            type="submit"
+            type="button"
+            onClick={handleSubscribe}
             className={`
               ${!isDesktop && "w-full"}
               bg-violet-500 bg-opacity-10 text-violet-500 hover:bg-opacity-30 duration-300

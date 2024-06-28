@@ -20,6 +20,7 @@ interface EpostsApiServiceProtocol {
   checkout: (authorization: string) => Promise<Checkout>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
+  subscribeOnNewsletter: (email: string) => Promise<{ email: string }>;
 }
 
 export class EpostsApiService implements EpostsApiServiceProtocol {
@@ -124,5 +125,15 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
       },
     });
     return session;
+  }
+
+  public async subscribeOnNewsletter(email: string) {
+    const subscribedEmail = await this.httpClient.request<{ email: string }>({
+      input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/subscription/newsletter`,
+      init: {
+        method: "POST",
+      },
+    });
+    return subscribedEmail;
   }
 }
