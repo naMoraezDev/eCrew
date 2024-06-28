@@ -3,11 +3,12 @@
 import Image from "next/image";
 import styles from "./styles.module.scss";
 import { useSProSubscription } from "./_io";
+import { ProSubscriptionProps } from "./types";
 import { BasicHeader } from "@/ui/basic-header";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { SubscriptionCard } from "@/ui/subscription-card";
 
-export function ProSubscriptionView() {
+export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
   const { scrollToBottom, handleSubscribe } = useSProSubscription();
 
   return (
@@ -43,10 +44,12 @@ export function ProSubscriptionView() {
         <div className="w-px h-full bg-zinc-800 mt-10" />
       </section>
       <section
-        className={`${styles.container} w-full h-screen flex flex-col gap-6 justify-center items-center`}
+        className={`${!isDesktop && "mb-40"} ${
+          styles.container
+        } w-full h-screen flex flex-col gap-6 justify-center items-center`}
       >
         <div className="w-px h-full bg-zinc-800 mb-6" />
-        <div className="flex gap-4">
+        <div className={`${!isDesktop && "flex-col"} flex gap-4`}>
           <div className={styles["roll-in-blurred-left"]}>
             <SubscriptionCard handleSubscribe={handleSubscribe} />
           </div>

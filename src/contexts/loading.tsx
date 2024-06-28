@@ -11,7 +11,7 @@ export const LoadingContext = createContext<{
 
 export function LoadingProvider({ children }: any) {
   const [isLoading, setIsLoading] = useState(false);
-  console.log(isLoading);
+
   return (
     <LoadingContext.Provider value={{ setIsLoading }}>
       {isLoading && <LoadSpinner />}
