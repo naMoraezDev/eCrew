@@ -7,6 +7,7 @@ import { ProSubscriptionProps } from "./types";
 import { BasicHeader } from "@/ui/basic-header";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { SubscriptionCard } from "@/ui/subscription-card";
+import background from "@/assets/images/e-sports-background.jpg";
 
 export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
   const { scrollToBottom, handleSubscribe } = useSProSubscription();
@@ -15,7 +16,7 @@ export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
     <div className="overflow-x-clip">
       <BasicHeader />
       <section
-        className={`${styles["text-focus-in"]} w-full h-screen flex flex-col justify-center items-center`}
+        className={`${styles["text-focus-in"]} w-full h-screen flex flex-col justify-center items-center relative`}
       >
         <div className="w-px h-full bg-transparent mb-10" />
         <div className="flex flex-col gap-4 text-center max-w-sm">
@@ -42,11 +43,22 @@ export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
           </button>
         </div>
         <div className="w-px h-full bg-zinc-800 mt-10" />
+        <div className="w-full h-screen absolute top-0 left-0 -z-10">
+          <div className="relative h-full">
+            <Image
+              src={background}
+              alt="e-sports background"
+              className="size-full object-cover"
+            />
+            <div className="absolute top-0 left-0 w-full h-full bg-zinc-800 bg-opacity-50 backdrop-blur-md" />
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-zinc-950 via-transparent to-transparent" />
+          </div>
+        </div>
       </section>
       <section
         className={`${!isDesktop && "mb-40"} ${
           styles.container
-        } w-full h-screen flex flex-col gap-6 justify-center items-center`}
+        } w-full h-screen flex flex-col gap-6 justify-center items-center relative`}
       >
         <div className="w-px h-full bg-zinc-800 mb-6" />
         <div className="flex flex-col gap-4">
