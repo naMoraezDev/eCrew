@@ -16,7 +16,6 @@ export async function HomeView({ isDesktop }: DefaultProps) {
   const [
     tags,
     games,
-    runningMatches,
     lolPosts,
     r6Posts,
     codPosts,
@@ -28,9 +27,6 @@ export async function HomeView({ isDesktop }: DefaultProps) {
   ] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
-    new EpostsApiService(new FetchHttpClientAdapter()).getRunningMatches(
-      "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-    ),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
@@ -70,7 +66,6 @@ export async function HomeView({ isDesktop }: DefaultProps) {
       category: "all",
     }),
   ]);
-  const matches = [...runningMatches];
 
   return (
     <>
@@ -82,9 +77,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             flex flex-col gap-10 mb-10
           `}
         >
-          {!isDesktop && (
-            <LiveMatchesCarousel games={games} matches={matches} />
-          )}
+          {!isDesktop && <LiveMatchesCarousel games={games} />}
           <FeaturedPosts
             games={games}
             isDesktop={isDesktop}
@@ -138,7 +131,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
         {isDesktop && (
           <section className="w-1/4 mt-4 relative">
             <div className="flex flex-col gap-4 sticky top-16">
-              <LiveMatches games={games} matches={matches} />
+              <LiveMatches games={games} />
               <MostReadPosts />
               <PopularTags tags={tags.tags} />
             </div>

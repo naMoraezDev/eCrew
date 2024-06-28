@@ -29,9 +29,9 @@ export function AuthProvider({ children }: any) {
         const token = await user.getIdToken();
         setUser(user);
         setPreferences(
-          await new EpostsApiService(
-            new FetchHttpClientAdapter()
-          ).getUserPreferences(token)
+          await new EpostsApiService(new FetchHttpClientAdapter())
+            .getUserPreferences(token)
+            .catch(() => null)
         );
         nookies.set(undefined, "id-token", token, { path: "/" });
       }

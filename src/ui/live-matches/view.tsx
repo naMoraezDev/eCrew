@@ -1,13 +1,18 @@
+"use client";
+
+import { useLiveMatches } from "./_io";
 import { MatchCard } from "../match-card";
 import { LiveMatchesProps } from "./types";
 import { RiLiveFill } from "react-icons/ri";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function LiveMatchesView({
   games,
-  matches,
   background = true,
 }: LiveMatchesProps) {
-  if (!matches.length) {
+  const { data, isLoading, viewMore, toggleViewMore } = useLiveMatches();
+
+  if (!data?.length && !isLoading) {
     return null;
   }
 
@@ -26,10 +31,27 @@ export function LiveMatchesView({
         Jogos em andamento
       </h4>
       <div className="flex flex-col gap-2">
-        {matches.map((match, index) => (
-          <MatchCard key={index} games={games} match={match} />
-        ))}
+        {isLoading &&
+          Array.from({ length: 5 }).map((_, index) => (
+            <Skeleton
+              key={index}
+              className="h-12 w-full rounded-xl !bg-zinc-800 !bg-opacity-50 !animate-fade"
+            />
+          ))}
+        {!isLoading &&
+          (viewMore ? data : data?.slice(0, 5))?.map((match, index) => (
+            <MatchCard key={index} games={games} match={match} />
+          ))}
       </div>
+      {!isLoading && data && data.length > 5 && (
+        <button
+          type="button"
+          onClick={toggleViewMore}
+          className="text-sm font-kanit"
+        >
+          {viewMore ? "Ver menos" : "ver mais"}
+        </button>
+      )}
     </section>
   );
 }

@@ -46,7 +46,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
 
   public async getRunningMatches(query: string = "") {
     const matches = await this.httpClient.request<Matches>({
-      input: `${this.baseUrl}/matches/running${query}`,
+      input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/matches/running${query}`,
       init: {
         method: "GET",
       },
