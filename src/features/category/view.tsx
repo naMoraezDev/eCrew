@@ -150,7 +150,7 @@ export async function CategoryView({
           ))}
         </div>
         {!term && postList.found > 12 && (
-          <section className="w-full flex items-center justify-center text-sm gap-2">
+          <section className="w-full flex items-center justify-center text-base gap-2">
             {page > 1 && (
               <Link
                 href={
@@ -160,12 +160,12 @@ export async function CategoryView({
                       }`
                     : `/noticias/${category}?page=${page - 1}`
                 }
-                className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
+                className="bg-zinc-800 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
               >
-                <MdOutlineKeyboardDoubleArrowLeft size={16} />
+                <MdOutlineKeyboardDoubleArrowLeft size={18} />
               </Link>
             )}
-            <div className="p-1 bg-zinc-900 border border-zinc-600 rounded-lg min-w-7 h-7 flex items-center justify-center">
+            <div className="p-1 bg-zinc-800 bg-opacity-50 rounded-lg min-w-8 h-8 flex items-center justify-center">
               {page}
             </div>
             {postList.posts.length >= 12 && (
@@ -175,9 +175,9 @@ export async function CategoryView({
                     ? `/noticias/mais-noticias?page=${page + 1}`
                     : `/noticias/${category}?page=${page + 1}`
                 }
-                className="bg-zinc-900 border border-zinc-600 rounded-lg size-7 flex items-center justify-center"
+                className="bg-zinc-800 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
               >
-                <MdOutlineKeyboardDoubleArrowRight size={16} />
+                <MdOutlineKeyboardDoubleArrowRight size={18} />
               </Link>
             )}
           </section>
