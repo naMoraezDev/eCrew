@@ -49,7 +49,7 @@ export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
         } w-full h-screen flex flex-col gap-6 justify-center items-center`}
       >
         <div className="w-px h-full bg-zinc-800 mb-6" />
-        <div className={`${!isDesktop && "flex-col"} flex gap-4`}>
+        <div className="flex flex-col gap-4">
           <div className={styles["roll-in-blurred-left"]}>
             <SubscriptionCard handleSubscribe={handleSubscribe} />
           </div>
