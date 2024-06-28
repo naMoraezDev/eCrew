@@ -132,6 +132,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
       input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/subscription/newsletter`,
       init: {
         method: "POST",
+        body: JSON.stringify({ email }),
       },
     });
     return subscribedEmail;
