@@ -4,6 +4,7 @@ import { Games } from "./types/games.types";
 import { Posts } from "./types/posts.types";
 import { Matches } from "./types/matches.types";
 import { Checkout } from "./types/checkout.types";
+import { UserPreferences } from "./types/user-preferences.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 
 interface EpostsApiServiceProtocol {
@@ -14,6 +15,9 @@ interface EpostsApiServiceProtocol {
   }) => Promise<Posts>;
   getTags: () => Promise<Tags>;
   getGames: () => Promise<Games>;
+  getUserPreferences: (
+    authorization: string
+  ) => Promise<UserPreferences | null>;
   getPostBySlug: (slug: string) => Promise<Post>;
   getPostsByTag: (tag: string) => Promise<Posts>;
   getPostsBySearch: (search: string) => Promise<Posts>;
@@ -139,5 +143,19 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
       },
     });
     return subscribedEmail;
+  }
+
+  public async getUserPreferences(authorization: string) {
+    const userPreferences =
+      await this.httpClient.request<UserPreferences | null>({
+        input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/user/preferences`,
+        init: {
+          method: "GET",
+          headers: {
+            authorization,
+          },
+        },
+      });
+    return userPreferences;
   }
 }
