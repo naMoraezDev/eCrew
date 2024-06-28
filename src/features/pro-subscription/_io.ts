@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { useAuth } from "@/contexts/auth";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/contexts/loading";
@@ -13,6 +14,7 @@ export function useSProSubscription() {
     setIsLoading(true);
     if (!user) {
       setIsLoading(false);
+      toast.error("Você precisa estar logado para assinar.");
       router.push("/login");
       return;
     }
@@ -27,6 +29,7 @@ export function useSProSubscription() {
     } catch (error) {
       setIsLoading(false);
       console.log(`Error on handleSubscribe: ${error}`);
+      toast.error("Algo deu errado. Por favor, tente novamente mais tarde.");
     }
   }
 
