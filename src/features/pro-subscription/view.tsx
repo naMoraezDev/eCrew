@@ -46,6 +46,7 @@ export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
         <div className="w-full h-screen absolute top-0 left-0 -z-10">
           <div className="relative h-full">
             <Image
+              priority
               src={background}
               alt="e-sports background"
               className="size-full object-cover"
