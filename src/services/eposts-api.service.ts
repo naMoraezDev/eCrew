@@ -133,6 +133,9 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
       init: {
         method: "POST",
         body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
       },
     });
     return subscribedEmail;
