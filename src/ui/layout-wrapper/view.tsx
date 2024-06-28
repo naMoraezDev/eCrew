@@ -8,6 +8,7 @@ import { CookiesAccept } from "../cookies-accept";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import verticalBanner from "@/assets/images/exitlag-vertical-banner.png";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
+import { ProTopBanner } from "./pro-top-banner";
 
 export async function LayoutWrapperView({
   children,
@@ -19,6 +20,7 @@ export async function LayoutWrapperView({
 
   return (
     <>
+      <ProTopBanner />
       <Header isDesktop={isDesktop} games={games} />
       <Navbar />
       <div
