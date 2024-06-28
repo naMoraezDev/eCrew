@@ -23,6 +23,7 @@ export function AuthProvider({ children }: any) {
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
       if (!user) {
         setUser(null);
+        setPreferences(null);
         nookies.set(undefined, "id-token", "", { path: "/" });
       } else {
         const token = await user.getIdToken();
