@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas/sign-up.schema";
 
-export function SignUpFormView({ setMethod, setIsLoading }: SignUpFormProps) {
-  const { onSubmit, submitError } = useSignUp({ setMethod, setIsLoading });
+export function SignUpFormView({ setMethod }: SignUpFormProps) {
+  const { onSubmit, submitError } = useSignUp();
   const { register, handleSubmit, formState } = useForm<
     typeof SignUpSchema._type
   >({

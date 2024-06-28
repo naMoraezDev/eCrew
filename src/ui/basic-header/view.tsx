@@ -32,10 +32,9 @@ export function BasicHeaderView() {
         </div>
         <Link
           href="/noticias"
-          className="flex items-center gap-2 text-violet-500 font-bold"
+          className="bg-violet-500 bg-opacity-10 px-10 self-center py-2 rounded-3xl text-violet-500 font-bold"
         >
           Notícias
-          <FaLongArrowAltRight />
         </Link>
       </div>
     </header>

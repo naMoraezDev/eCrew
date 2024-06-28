@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { SignInFormProps } from "./types";
 import { useRouter } from "next/navigation";
+import { useLoading } from "@/contexts/loading";
 import { SignInSchema } from "@/schemas/sign-in.schema";
 import { getFirebaseErrorMessage } from "@/shared/utils/firebase";
 import { firebaseClient } from "@/services/firebase/firebase-client";
 
-export function useSignIn({ setIsLoading }: SignInFormProps) {
+export function useSignIn() {
   const router = useRouter();
+  const { setIsLoading } = useLoading();
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function onSubmit(data: typeof SignInSchema._type) {

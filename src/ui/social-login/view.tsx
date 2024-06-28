@@ -1,9 +1,8 @@
 import { useSocialLogin } from "./_io";
 import { FcGoogle } from "react-icons/fc";
-import { SocialLoginProps } from "./types";
 
-export function SocialLoginView({ setIsLoading }: SocialLoginProps) {
-  const { loginWithGoogle, submitError } = useSocialLogin({ setIsLoading });
+export function SocialLoginView() {
+  const { loginWithGoogle, submitError } = useSocialLogin();
 
   return (
     <div className="w-full flex flex-col gap-3">

@@ -4,6 +4,7 @@ import NextTopLoader from "nextjs-toploader";
 import { AuthProvider } from "@/contexts/auth";
 import { Inter, Kanit } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { LoadingProvider } from "@/contexts/loading";
 
 const kanit = Kanit({
   preload: true,
@@ -43,8 +44,10 @@ export default function RootLayout({
       >
         <NextTopLoader height={2} showSpinner={false} color="rgb(124 58 237)" />
         <AuthProvider>
-          <Toaster />
-          {children}
+          <LoadingProvider>
+            <Toaster />
+            {children}
+          </LoadingProvider>
         </AuthProvider>
       </body>
     </html>

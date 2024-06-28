@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { useAuth } from "@/contexts/auth";
 import { useRouter } from "next/navigation";
+import { useLoading } from "@/contexts/loading";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export function useSProSubscription() {
   const { user } = useAuth();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  const { setIsLoading } = useLoading();
 
   async function handleSubscribe() {
     setIsLoading(true);
@@ -34,5 +34,5 @@ export function useSProSubscription() {
     window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
   }
 
-  return { handleSubscribe, isLoading, scrollToBottom };
+  return { handleSubscribe, scrollToBottom };
 }
