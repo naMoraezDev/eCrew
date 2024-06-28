@@ -1,8 +1,9 @@
-import Image from "next/image";
-import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import Link from "next/link";
+import Image from "next/image";
+import { ProTopBannerProps } from "./types";
+import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 
-export function ProTopBannerView() {
+export function ProTopBannerView({ isDesktop }: ProTopBannerProps) {
   return (
     <section className="w-full h-10 bg-zinc-800 bg-opacity-50 relative">
       <div className="w-full max-w-[1000px] mx-auto px-4 flex justify-between items-center h-full">
@@ -19,7 +20,7 @@ export function ProTopBannerView() {
           </span>
         </div>
         <p className="font-kanit">
-          Domine as partidas. Assine o{" "}
+          {isDesktop && <span>Domine as partidas.</span>} Assine o{" "}
           <span className="font-kanit font-bold text-violet-500">PRO</span>.
         </p>
         <span className="bg-violet-500 bg-opacity-10 px-4 py-1 rounded-lg text-sm text-violet-500 font-bold">

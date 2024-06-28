@@ -4,11 +4,11 @@ import { Header } from "./header";
 import { Navbar } from "./navbar";
 import { cookies } from "next/headers";
 import { DefaultProps } from "@/types/common";
+import { ProTopBanner } from "./pro-top-banner";
 import { CookiesAccept } from "../cookies-accept";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import verticalBanner from "@/assets/images/exitlag-vertical-banner.png";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
-import { ProTopBanner } from "./pro-top-banner";
 
 export async function LayoutWrapperView({
   children,
@@ -20,7 +20,7 @@ export async function LayoutWrapperView({
 
   return (
     <>
-      <ProTopBanner />
+      <ProTopBanner isDesktop={isDesktop} />
       <Header isDesktop={isDesktop} games={games} />
       <Navbar />
       <div
