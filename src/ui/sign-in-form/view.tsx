@@ -19,8 +19,8 @@ export function SignInFormView({ setMethod }: SignInFormProps) {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-6 animate-fade-in"
     >
-      <span className="text-sm font-kanit w-full flex justify-center">
-        Entre com sua conta ePosts
+      <span className="text-base font-kanit w-full flex justify-center">
+        Faça login na sua conta
       </span>
       <div className="w-full flex flex-col gap-3">
         {submitError && (

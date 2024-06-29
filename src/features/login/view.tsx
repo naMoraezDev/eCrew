@@ -17,36 +17,40 @@ export function LoginView({ isDesktop }: LoginProps) {
   return (
     <section
       className={`
-          ${isDesktop ? "h-screen" : "h-full"}
-          w-full flex justify-center items-center bg-gradient-to-bl from-zinc-950 to-zinc-900
-        `}
+        ${isDesktop ? "h-screen" : "h-full"}
+        w-full flex justify-center items-center bg-gradient-to-bl from-zinc-950 to-zinc-900
+      `}
     >
-      <section
-        className={`
-            ${!isDesktop && "h-screen items-center justify-center"}
-            flex bg-zinc-900 rounded-lg w-full max-w-[1000px] overflow-hidden
-          `}
-      >
-        <div
-          className={`
-              ${isDesktop ? "w-1/2" : "w-full"}
-              gap-6 p-6 flex flex-col
-            `}
-        >
+      <section className="fixed top-0 left-0 w-full">
+        <div className="w-full h-24 flex items-center justify-between max-w-[1270px] mx-auto px-4">
           <div className="flex items-center gap-1 relative w-fit self-center">
             <Image
               priority
-              width={24}
-              height={24}
+              width={32}
+              height={32}
               src={ePostsLogo}
               alt="ePosts logo"
             />
-            <span className="font-kanit text-xl">ePosts</span>
+            <span className="font-kanit text-2xl">ePosts</span>
             <Link
               href="/noticias"
               className="w-full h-full absolute top-0 left-0"
             />
           </div>
+        </div>
+      </section>
+      <section
+        className={`
+          ${!isDesktop && "h-screen items-center justify-center"}
+          flex bg-zinc-900 rounded-lg w-full max-w-[1000px] overflow-hidden
+        `}
+      >
+        <div
+          className={`
+            ${isDesktop ? "w-1/2" : "w-full"}
+            gap-6 p-6 flex flex-col
+          `}
+        >
           {method === "sign-in" && <SignInForm setMethod={setMethod} />}
           {method === "sign-up" && <SignUpForm setMethod={setMethod} />}
           <span className="text-sm font-kanit text-center">ou</span>

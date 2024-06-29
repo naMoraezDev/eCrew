@@ -18,10 +18,10 @@ export function SignUpFormView({ setMethod }: SignUpFormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-6 animate-fade-in"
+      className="flex flex-col gap-4 animate-fade-in relative"
     >
-      <span className="text-sm font-kanit w-full flex justify-center">
-        Crie sua conta ePosts
+      <span className="text-base font-kanit w-full flex justify-center">
+        Crie sua conta
       </span>
       <div className="w-full flex flex-col gap-3">
         {submitError && (
