@@ -32,7 +32,8 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
     this.httpClient = httpClient;
   }
 
-  private readonly baseUrl: string = process.env.NEXT_PUBLIC_EPOSTS_API_URL ?? "";
+  private readonly baseUrl: string =
+    process.env.NEXT_PUBLIC_EPOSTS_API_URL ?? "";
 
   public async getUpcommingMatches(query: string = "") {
     const matches = await this.httpClient.request<Matches>({
@@ -154,6 +155,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
           headers: {
             authorization,
           },
+          cache: "no-store",
         },
       });
     return userPreferences;
