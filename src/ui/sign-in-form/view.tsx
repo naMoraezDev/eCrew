@@ -5,6 +5,7 @@ import { CustomInput } from "../custom-input";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema } from "@/schemas/sign-in.schema";
+import Link from "next/link";
 
 export function SignInFormView({ setMethod }: SignInFormProps) {
   const { onSubmit, submitError } = useSignIn();
@@ -42,9 +43,12 @@ export function SignInFormView({ setMethod }: SignInFormProps) {
           register={register}
           error={formState.errors.password}
         />
-        <span className="text-xs font-kanit underline-offset-2 underline">
+        <Link
+          href="/login/esqueci-minha-senha"
+          className="text-xs font-kanit underline-offset-2 underline"
+        >
           Esqueci minha senha
-        </span>
+        </Link>
       </div>
       <Button
         type="submit"
