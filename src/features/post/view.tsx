@@ -16,20 +16,13 @@ import { HorizontalAd } from "@/ui/horizontal-ad";
 import { ArticleReader } from "@/ui/article-reader";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { MorePostsAbout } from "@/ui/more-posts-about";
-import { EpostsApiService } from "@/services/eposts-api.service";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
-export async function PostView({ slug, category, isDesktop }: PostProps) {
-  const [tags, morePostsAbout, post] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-      category,
-      page: "1",
-      number: "3",
-    }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostBySlug(slug),
-  ]);
-
+export async function PostView({
+  post,
+  tags,
+  isDesktop,
+  morePostsAbout,
+}: PostProps) {
   return (
     <section className="w-full flex gap-4">
       <article
@@ -51,7 +44,7 @@ export async function PostView({ slug, category, isDesktop }: PostProps) {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink
-                href={`/noticias/${category}`}
+                href={`/noticias/${post.categories[0].slug}`}
                 className="hover:text-zinc-300 duration-300"
               >
                 {post?.categories[0]?.name.toLocaleLowerCase()}
