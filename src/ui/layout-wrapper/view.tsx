@@ -16,18 +16,13 @@ export async function LayoutWrapperView({
 }: Readonly<{ children: React.ReactNode } & DefaultProps>) {
   const cookieStore = cookies();
   const cookiesAccepted = cookieStore.get("cookies-accepted")?.value === "true";
-  const idToken = cookieStore.get("id-token")?.value;
-  const [games, preferences] = await Promise.all([
+  const [games] = await Promise.all([
     new EpostsApiService(httpClientFactory()).getGames(),
-    new EpostsApiService(httpClientFactory())
-      .getUserPreferences(idToken || "")
-      .catch(() => null),
   ]);
-  const hasProSubscription = preferences?.subscription ?? false;
 
   return (
     <>
-      {!hasProSubscription && <ProTopBanner isDesktop={isDesktop} />}
+      <ProTopBanner isDesktop={isDesktop} />
       <Header isDesktop={isDesktop} games={games} />
       <Navbar />
       <div

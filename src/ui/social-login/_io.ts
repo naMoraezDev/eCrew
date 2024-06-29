@@ -13,7 +13,6 @@ export function useSocialLogin() {
     try {
       const provider = new firebaseClient.auth.GoogleAuthProvider();
       await firebaseClient.auth().signInWithPopup(provider);
-      router.refresh();
       setIsLoading(false);
       router.push("/noticias");
     } catch (error: any) {
