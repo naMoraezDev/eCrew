@@ -1,6 +1,7 @@
 "use client";
 
 import nookies from "nookies";
+import { useRouter } from "next/navigation";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { firebaseClient } from "@/services/firebase/firebase-client";
 import { createContext, useContext, useEffect, useState } from "react";
@@ -16,6 +17,7 @@ export const AuthContext = createContext<{
 });
 
 export function AuthProvider({ children }: any) {
+  const router = useRouter();
   const [user, setUser] = useState<firebaseClient.User | null>(null);
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 
@@ -34,6 +36,7 @@ export function AuthProvider({ children }: any) {
             .catch(() => null)
         );
         nookies.set(undefined, "id-token", token, { path: "/" });
+        router.refresh();
       }
     });
   }, []);
