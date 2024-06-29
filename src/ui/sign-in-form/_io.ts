@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/contexts/loading";
 import { SignInSchema } from "@/schemas/sign-in.schema";
@@ -8,7 +8,6 @@ import { firebaseClient } from "@/services/firebase/firebase-client";
 export function useSignIn() {
   const router = useRouter();
   const { setIsLoading } = useLoading();
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
   async function onSubmit(data: typeof SignInSchema._type) {
     setIsLoading(true);
@@ -19,10 +18,10 @@ export function useSignIn() {
       setIsLoading(false);
       router.push("/noticias");
     } catch (error: any) {
-      setSubmitError(getFirebaseErrorMessage(error.code));
+      toast.error(getFirebaseErrorMessage(error.code));
       setIsLoading(false);
     }
   }
 
-  return { onSubmit, submitError };
+  return { onSubmit };
 }

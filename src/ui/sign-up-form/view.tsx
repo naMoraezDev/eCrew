@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SignUpSchema } from "@/schemas/sign-up.schema";
 
 export function SignUpFormView({ setMethod }: SignUpFormProps) {
-  const { onSubmit, submitError } = useSignUp();
+  const { onSubmit } = useSignUp();
   const { register, handleSubmit, formState } = useForm<
     typeof SignUpSchema._type
   >({
@@ -24,11 +24,6 @@ export function SignUpFormView({ setMethod }: SignUpFormProps) {
         Crie sua conta
       </span>
       <div className="w-full flex flex-col gap-3">
-        {submitError && (
-          <span className="text-red-500 text-sm text-center font-kanit font-medium">
-            {submitError}
-          </span>
-        )}
         <CustomInput
           name="name"
           type="text"

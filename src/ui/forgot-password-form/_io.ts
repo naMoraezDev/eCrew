@@ -1,25 +1,22 @@
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { useLoading } from "@/contexts/loading";
 import { getFirebaseErrorMessage } from "@/shared/utils/firebase";
 import { firebaseClient } from "@/services/firebase/firebase-client";
+import { ForgotPasswordSchema } from "@/schemas/forgot-password.shema";
 
-export function useSocialLogin() {
-  const router = useRouter();
+export function useForgotPasswordForm() {
   const { setIsLoading } = useLoading();
 
-  async function loginWithGoogle() {
+  async function onSubmit(data: typeof ForgotPasswordSchema._type) {
     setIsLoading(true);
     try {
-      const provider = new firebaseClient.auth.GoogleAuthProvider();
-      await firebaseClient.auth().signInWithPopup(provider);
+      await firebaseClient.auth().sendPasswordResetEmail(data.email);
       setIsLoading(false);
-      router.push("/noticias");
     } catch (error: any) {
       toast.error(getFirebaseErrorMessage(error.code));
       setIsLoading(false);
     }
   }
 
-  return { loginWithGoogle };
+  return { onSubmit };
 }

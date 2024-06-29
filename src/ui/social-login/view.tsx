@@ -2,15 +2,10 @@ import { useSocialLogin } from "./_io";
 import { FcGoogle } from "react-icons/fc";
 
 export function SocialLoginView() {
-  const { loginWithGoogle, submitError } = useSocialLogin();
+  const { loginWithGoogle } = useSocialLogin();
 
   return (
     <div className="w-full flex flex-col gap-3">
-      {submitError && (
-        <span className="text-red-500 text-sm text-center font-kanit font-medium">
-          {submitError}
-        </span>
-      )}
       <button
         type="button"
         onClick={loginWithGoogle}

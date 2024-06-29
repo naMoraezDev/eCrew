@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useSignIn } from "./_io";
 import { SignInFormProps } from "./types";
 import { useForm } from "react-hook-form";
@@ -5,10 +6,9 @@ import { CustomInput } from "../custom-input";
 import { Button } from "@/components/ui/button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SignInSchema } from "@/schemas/sign-in.schema";
-import Link from "next/link";
 
 export function SignInFormView({ setMethod }: SignInFormProps) {
-  const { onSubmit, submitError } = useSignIn();
+  const { onSubmit } = useSignIn();
   const { register, handleSubmit, formState } = useForm<
     typeof SignInSchema._type
   >({
@@ -24,11 +24,6 @@ export function SignInFormView({ setMethod }: SignInFormProps) {
         Faça login na sua conta
       </span>
       <div className="w-full flex flex-col gap-3">
-        {submitError && (
-          <span className="text-red-500 text-sm text-center font-kanit font-medium">
-            {submitError}
-          </span>
-        )}
         <CustomInput
           name="email"
           type="email"
