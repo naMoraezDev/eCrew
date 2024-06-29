@@ -32,7 +32,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
     this.httpClient = httpClient;
   }
 
-  private readonly baseUrl: string = process.env.PRIVATE_EPOSTS_API_URL ?? "";
+  private readonly baseUrl: string = process.env.NEXT_PUBLIC_EPOSTS_API_URL ?? "";
 
   public async getUpcommingMatches(query: string = "") {
     const matches = await this.httpClient.request<Matches>({
@@ -46,7 +46,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
 
   public async getRunningMatches(query: string = "") {
     const matches = await this.httpClient.request<Matches>({
-      input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/matches/running${query}`,
+      input: `${this.baseUrl}/matches/running${query}`,
       init: {
         method: "GET",
       },
@@ -120,7 +120,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
 
   public async checkout(authorization: string) {
     const session = await this.httpClient.request<Checkout>({
-      input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/subscription/checkout`,
+      input: `${this.baseUrl}/subscription/checkout`,
       init: {
         method: "POST",
         headers: {
@@ -133,7 +133,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
 
   public async subscribeOnNewsletter(email: string) {
     const subscribedEmail = await this.httpClient.request<{ email: string }>({
-      input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/subscription/newsletter`,
+      input: `${this.baseUrl}/subscription/newsletter`,
       init: {
         method: "POST",
         body: JSON.stringify({ email }),
@@ -148,7 +148,7 @@ export class EpostsApiService implements EpostsApiServiceProtocol {
   public async getUserPreferences(authorization: string) {
     const userPreferences =
       await this.httpClient.request<UserPreferences | null>({
-        input: `${process.env.NEXT_PUBLIC_EPOSTS_API_URL}/user/preferences`,
+        input: `${this.baseUrl}/user/preferences`,
         init: {
           method: "GET",
           headers: {
