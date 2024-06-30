@@ -1,6 +1,6 @@
 import { Category } from "@/features/category";
 
-export const revalidate = 0;
+export const runtime = "edge";
 export default async function SearchPage({
   searchParams,
 }: {
