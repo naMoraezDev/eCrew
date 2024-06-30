@@ -35,8 +35,8 @@ export async function LayoutWrapperView({
           <a
             target="_blank"
             rel="noreferrer"
-            className="h-fit sticky top-16"
             href="https://www.exitlag.com/"
+            className="h-fit sticky top-16 mb-4"
           >
             <Image
               priority
@@ -52,8 +52,8 @@ export async function LayoutWrapperView({
           <a
             target="_blank"
             rel="noreferrer"
-            className="h-fit sticky top-16"
             href="https://www.exitlag.com/"
+            className="h-fit sticky top-16 mb-4"
           >
             <Image
               priority
