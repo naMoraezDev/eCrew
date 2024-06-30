@@ -1,8 +1,21 @@
 import { Metadata } from "next";
 import { Category } from "@/features/category";
 import { CategorySEO, categoryMetadata } from "@/seo/category";
+import { EpostsApiService } from "@/services/eposts-api.service";
+import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export const runtime = "edge";
+
+export const revalidate = 60 * 5; // 5 minutes
+
+export async function generateStaticParams() {
+  const games = await new EpostsApiService(
+    new FetchHttpClientAdapter()
+  ).getGames();
+  return games.map((game) => ({
+    category: game.slug,
+  }));
+}
 
 export async function generateMetadata({
   params,
