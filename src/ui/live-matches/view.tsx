@@ -21,7 +21,7 @@ export function LiveMatchesView({
       className={`
         ${
           background &&
-          "bg-gradient-to-tr from-zinc-950 via-zinc-950 to-zinc-900"
+          "bg-zinc-800 bg-opacity-50"
         }
         flex flex-col gap-4 p-2 rounded-lg
       `}

@@ -18,7 +18,7 @@ export function LiveMatchesCarouselView({ games }: LiveMatchesCarouselProps) {
   }
 
   return (
-    <section className="w-full pt-4 relative">
+    <section className="w-full relative bg-zinc-900 px-4 py-3 -mb-10 rounded-lg">
       <Carousel opts={{ align: "start" }}>
         <CarouselContent>
           {isLoading &&
@@ -35,7 +35,7 @@ export function LiveMatchesCarouselView({ games }: LiveMatchesCarouselProps) {
             ))}
         </CarouselContent>
       </Carousel>
-      <div className="h-full w-[10%] absolute top-0 right-0 bg-gradient-to-l from-zinc-950 to-transparent" />
+      <div className="h-full w-[10%] absolute top-0 right-0 bg-gradient-to-l from-zinc-900 to-transparent" />
     </section>
   );
 }
