@@ -2,8 +2,6 @@ import { Metadata } from "next";
 import { Category } from "@/features/category";
 import { moreNewsMetadata } from "@/seo/more-posts";
 
-export const runtime = "edge";
-
 export const revalidate = 60 * 5; // 5 minutes
 
 export async function generateMetadata({

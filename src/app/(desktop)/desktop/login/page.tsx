@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { Login } from "@/features/login";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Login | ePosts",
   description:

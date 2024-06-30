@@ -1,7 +1,5 @@
 import { Category } from "@/features/category";
 
-export const runtime = "edge";
-
 export default async function SearchPage({
   searchParams,
 }: {

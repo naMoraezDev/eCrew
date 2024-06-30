@@ -1,7 +1,5 @@
-import { ForgotPassword } from "@/features/forgot-password";
 import { Metadata } from "next";
-
-export const runtime = "edge";
+import { ForgotPassword } from "@/features/forgot-password";
 
 export const metadata: Metadata = {
   title: "Esqueci minha senha | ePosts",

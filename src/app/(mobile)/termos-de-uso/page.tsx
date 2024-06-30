@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { TermsOfUse } from "@/features/terms-of-use";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Termos de Uso | ePosts",
   description:

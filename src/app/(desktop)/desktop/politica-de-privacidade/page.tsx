@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { PrivacyPolicy } from "@/features/privacy-policy";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Politica de Privacidade | ePosts",
   description:

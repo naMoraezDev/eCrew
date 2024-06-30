@@ -1,8 +1,6 @@
 import { Metadata } from "next";
 import { AboutUs } from "@/features/about-us";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
   title: "Sobre Nós | ePosts",
   description:
