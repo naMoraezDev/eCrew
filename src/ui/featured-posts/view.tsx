@@ -24,7 +24,7 @@ export function FeaturedPostsView({
   });
 
   return (
-    <section className="relative w-full overflow-hidden rounded-t-lg">
+    <section className="relative w-full overflow-hidden rounded-t-lg bg-zinc-900 bg-opacity-50 pb-4">
       <div
         className={`
           ${isDesktop ? "px-10 py-6" : "p-4"}
@@ -74,7 +74,7 @@ export function FeaturedPostsView({
           `}
         />
       ))}
-      <div className="w-full absolute bottom-0 left-0 flex justify-center gap-2">
+      <div className="w-full absolute bottom-4 left-0 flex justify-center gap-2">
         {postList.posts.map((_, index) => (
           <div
             key={index}
