@@ -77,7 +77,7 @@ export function MatchCardView({ match, games }: MatchCardProps) {
       </section>
       {revealStream && stream?.raw_url && (
         <iframe
-          className="w-full h-[127px] rounded-lg animate-fade"
+          className="w-full rounded-lg animate-fade"
           src={
             stream?.embed_url + `&parent=${process.env.NEXT_PUBLIC_SITE_HOST}`
           }

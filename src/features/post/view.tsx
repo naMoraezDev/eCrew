@@ -6,6 +6,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbSeparator,
+  BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 import { PostProps } from "./types";
 import { Newsletter } from "@/ui/newsletter";
@@ -24,7 +25,7 @@ export async function PostView({
   morePostsAbout,
 }: PostProps) {
   return (
-    <section className="w-full flex gap-4">
+    <section className="w-full max-w-[1000px] flex gap-4">
       <article
         className={`
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
@@ -51,6 +52,11 @@ export async function PostView({
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage className="text-zinc-50">
+                {post.title}
+              </BreadcrumbPage>
+            </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         <section className="w-full bg-zinc-900 rounded-lg overflow-hidden">

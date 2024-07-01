@@ -6,13 +6,15 @@ import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
 
 export async function FooterView({ isDesktop }: FooterProps) {
   return (
-    <footer
-      className={`w-full bg-gradient-to-bl from-zinc-950 to-zinc-900 px-4 py-10`}
-    >
+    <footer className="w-full flex flex-col gap-20 bg-gradient-to-bl from-zinc-950 to-zinc-900 px-4 pt-10 pb-4">
       <div
         className={`
-          ${!isDesktop ? "flex-col gap-6 text-center items-center" : "gap-16"}
-          max-w-[1270px] mx-auto flex justify-center
+          ${
+            !isDesktop
+              ? "flex-col gap-6 text-center items-center"
+              : "gap-16 justify-between"
+          }
+          w-full max-w-[1000px] mx-auto flex justify-center
         `}
       >
         {!isDesktop && (
@@ -54,11 +56,11 @@ export async function FooterView({ isDesktop }: FooterProps) {
         </section>
         <section className="flex flex-col gap-4 font-kanit">
           {isDesktop && <ScrollToTopButton />}
-          <span className="w-full flex max-w-[1270px] mx-auto px-4 mb-4 text-sm font-kanit">
-            © 2024 ePosts. Todos os direitos reservados.
-          </span>
         </section>
       </div>
+      <span className="w-full flex max-w-[1000px] mx-auto px-4 text-sm font-kanit">
+        © 2024 ePosts. Todos os direitos reservados. Desenvolvido no Brasil.
+      </span>
     </footer>
   );
 }

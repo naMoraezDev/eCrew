@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Navbar } from "./navbar";
@@ -7,7 +7,7 @@ import { DefaultProps } from "@/types/common";
 import { ProTopBanner } from "./pro-top-banner";
 import { CookiesAccept } from "../cookies-accept";
 import { EpostsApiService } from "@/services/eposts-api.service";
-import verticalBanner from "@/assets/images/exitlag-vertical-banner.png";
+// import verticalBanner from "@/assets/images/exitlag-vertical-banner.png";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function LayoutWrapperView({
@@ -31,7 +31,7 @@ export async function LayoutWrapperView({
           flex mx-auto gap-3
         `}
       >
-        {isDesktop && (
+        {/* {isDesktop && (
           <a
             target="_blank"
             rel="noreferrer"
@@ -46,9 +46,9 @@ export async function LayoutWrapperView({
               className="shrink-0 object-cover h-fit mt-4 rounded-lg"
             />
           </a>
-        )}
-        <main className="w-full max-w-[1000px] p-4">{children}</main>
-        {isDesktop && (
+        )} */}
+        <main className="w-full max-w-[1280px] p-4">{children}</main>
+        {/* {isDesktop && (
           <a
             target="_blank"
             rel="noreferrer"
@@ -63,7 +63,7 @@ export async function LayoutWrapperView({
               className="shrink-0 object-cover h-fit mt-4 rounded-lg"
             />
           </a>
-        )}
+        )} */}
       </div>
       {!cookiesAccepted && <CookiesAccept />}
       <Footer isDesktop={isDesktop} />
