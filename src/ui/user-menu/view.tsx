@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { sha256 } from "js-sha256";
 import { useUserMenu } from "./_io";
 import { UserMenuProps } from "./types";
 import { FaUser } from "react-icons/fa6";
@@ -32,17 +33,18 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
         )}
         {user && (
           <>
-            {user.photoURL ? (
-              <img
-                width={28}
-                height={28}
-                alt="user photo"
-                src={user.photoURL}
-                className="rounded-full"
-              />
-            ) : (
-              <FaUser className="shrink-0" size={20} />
-            )}
+            <img
+              width={28}
+              height={28}
+              alt="user photo"
+              className="rounded-full"
+              src={
+                user.photoURL ??
+                `https://www.gravatar.com/avatar/${sha256(
+                  user.email ?? ""
+                )}?d=https://avatars.githubusercontent.com/u/1753933?v=4`
+              }
+            />
             {isDesktop && (
               <div className="flex flex-col text-xs font-kanit">
                 <span>Bem vindo, {user.displayName?.split(" ")[0]}</span>
