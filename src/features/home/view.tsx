@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Newsletter } from "@/ui/newsletter";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
@@ -8,6 +9,7 @@ import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedPosts } from "@/ui/featured-posts";
 import { MostReadPosts } from "@/ui/most-read-posts";
+import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { LiveMatchesCarousel } from "@/ui/live-matches-carousel";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
@@ -29,32 +31,32 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "league-of-legends",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "r6-siege",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "cod-mw",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "cs-go",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "valorant",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "dota-2",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByTag(
@@ -134,6 +136,20 @@ export async function HomeView({ isDesktop }: DefaultProps) {
               <LiveMatches games={games} />
               <MostReadPosts />
               <PopularTags tags={tags.tags} />
+              <section className="p-2 relative">
+                <Image
+                  quality={100}
+                  src={exitLagBanner}
+                  alt="exit_lag_banner"
+                  className="rounded-lg"
+                />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.exitlag.com/"
+                  className="absolute top-0 left-0 w-full h-full"
+                />
+              </section>
             </div>
           </section>
         )}
