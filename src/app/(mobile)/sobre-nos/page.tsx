@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { AboutUs } from "@/features/about-us";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Sobre Nós | ePosts",
   description:

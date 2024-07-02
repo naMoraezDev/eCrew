@@ -10,12 +10,32 @@ const nextConfig = {
     ];
   },
   images: {
-    domains: [
-      "i.ibb.co",
-      "1.gravatar.com",
-      "cdn.pandascore.co",
-      "eposts7.wordpress.com",
-      "eposts7.files.wordpress.com",
+    remotePatterns: [
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "i.ibb.co",
+      },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "1.gravatar.com",
+      },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "cdn.pandascore.co",
+      },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "eposts7.wordpress.com",
+      },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "eposts7.files.wordpress.com",
+      },
     ],
   },
 };

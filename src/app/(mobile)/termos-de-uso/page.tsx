@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import { TermsOfUse } from "@/features/terms-of-use";
 
+export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Termos de Uso | ePosts",
   description:
