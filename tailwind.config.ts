@@ -125,6 +125,14 @@ const config = {
             transform: "translateY(0%)",
           },
         },
+        zoom: {
+          "0%": {
+            transform: "scale(1)",
+          },
+          "100%": {
+            transform: "scale(1.05)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -135,7 +143,9 @@ const config = {
         "fade-in": "fade-in 300ms both",
         "fade-out": "fade-out 300ms both",
         fade: "fade 300ms both",
+        "long-fade": "fade 700ms both",
         "top-to-center": "top-to-center 300ms both",
+        zoom: "zoom 5000ms both",
       },
       fontFamily: {
         inter: ["var(--font-inter)"],

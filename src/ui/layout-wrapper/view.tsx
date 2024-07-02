@@ -31,39 +31,9 @@ export async function LayoutWrapperView({
           flex mx-auto gap-3
         `}
       >
-        {isDesktop && (
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.exitlag.com/"
-            className="h-fit sticky top-16 mb-4"
-          >
-            <Image
-              priority
-              quality={100}
-              src={verticalBanner}
-              alt="vertical banner"
-              className="shrink-0 object-cover h-fit mt-4 rounded-lg"
-            />
-          </a>
-        )}
-        <main className="w-full max-w-[1024px] p-4">{children}</main>
-        {isDesktop && (
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.exitlag.com/"
-            className="h-fit sticky top-16 mb-4"
-          >
-            <Image
-              priority
-              quality={100}
-              src={verticalBanner}
-              alt="vertical banner"
-              className="shrink-0 object-cover h-fit mt-4 rounded-lg"
-            />
-          </a>
-        )}
+       
+        <main className="w-full max-w-[1280px] p-4">{children}</main>
+        
       </div>
       {!cookiesAccepted && <CookiesAccept />}
       <Footer isDesktop={isDesktop} />

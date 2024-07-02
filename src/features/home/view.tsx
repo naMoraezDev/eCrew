@@ -7,8 +7,8 @@ import { LiveMatches } from "@/ui/live-matches";
 import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
-import { FeaturedPosts } from "@/ui/featured-posts";
 import { MostReadPosts } from "@/ui/most-read-posts";
+import { FeaturedCarousel } from "@/ui/featured-carousel";
 import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { LiveMatchesCarousel } from "@/ui/live-matches-carousel";
@@ -80,11 +80,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           `}
         >
           {!isDesktop && <LiveMatchesCarousel games={games} />}
-          <FeaturedPosts
-            games={games}
-            isDesktop={isDesktop}
-            postList={featuredPosts}
-          />
+          <FeaturedCarousel posts={featuredPosts} games={games} />
           <LatestPosts
             games={games}
             isDesktop={isDesktop}
