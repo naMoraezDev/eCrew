@@ -14,7 +14,6 @@ export function HomeSideSectionView({ games }: HomeSideSectionProps) {
         <PopularTags />
         <section className="p-2 relative">
           <Image
-            quality={100}
             src={exitLagBanner}
             alt="exit_lag_banner"
             className="rounded-lg"

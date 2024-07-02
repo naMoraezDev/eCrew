@@ -15,7 +15,7 @@ const DynamicLiveMatchesCarousel = dynamic(() =>
   )
 );
 const DynamicHomeSideSection = dynamic(() =>
-  import("@/ui/side-section").then((module) => module.HomeSideSection)
+  import("@/ui/home-side-section").then((module) => module.HomeSideSection)
 );
 
 export async function HomeView({ isDesktop }: DefaultProps) {
