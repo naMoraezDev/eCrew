@@ -4,6 +4,7 @@ import { postMetadata } from "@/seo/post";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
+export const dynamic = "force-static";
 export const revalidate = 60 * 5; // 5 minutes
 
 export async function generateStaticParams() {
