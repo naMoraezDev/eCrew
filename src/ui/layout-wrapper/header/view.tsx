@@ -5,10 +5,18 @@ import Image from "next/image";
 import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
 import { UserMenu } from "@/ui/user-menu";
-import { SearchInput } from "@/ui/search-input";
-import { GameSelectHover } from "@/ui/game-select-hover";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
-import { GameSelectPopover } from "@/ui/game-select-popover";
+
+import dynamic from "next/dynamic";
+const DynamicGameSelectHover = dynamic(() =>
+  import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
+);
+const DynamicGameSelectPopover = dynamic(() =>
+  import("@/ui/game-select-popover").then((module) => module.GameSelectPopover)
+);
+const DynamicSearchInput = dynamic(() =>
+  import("@/ui/search-input").then((module) => module.SearchInput)
+);
 
 export function HeaderView({ games, isDesktop }: HeaderProps) {
   const { visible } = useHeader();
@@ -36,13 +44,10 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
               />
             </div>
             <div className="w-px h-6 bg-gray-50" />
-            {isDesktop ? (
-              <GameSelectHover games={games} />
-            ) : (
-              <GameSelectPopover games={games} />
-            )}
+            {isDesktop && <DynamicGameSelectHover games={games} />}
+            {!isDesktop && <DynamicGameSelectPopover games={games} />}
           </section>
-          {isDesktop && <SearchInput />}
+          {isDesktop && <DynamicSearchInput />}
         </div>
         <UserMenu isDesktop={isDesktop} />
       </div>

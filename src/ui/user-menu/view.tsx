@@ -1,12 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { sha256 } from "js-sha256";
 import { useUserMenu } from "./_io";
 import { UserMenuProps } from "./types";
-import { FaUser } from "react-icons/fa6";
 import { useAuth } from "@/contexts/auth";
-import { FaSignOutAlt } from "react-icons/fa";
+
+import dynamic from "next/dynamic";
+const DynamicLoggedOutUser = dynamic(() =>
+  import("./logged-out-user").then((module) => module.LoggedOutUser)
+);
+const DynamicLoggedInUser = dynamic(() =>
+  import("./logged-in-user").then((module) => module.LoggedInUser)
+);
+const DynamicSignOutButton = dynamic(() =>
+  import("./sign-out-button").then((module) => module.SignOutButton)
+);
 
 export function UserMenuView({ isDesktop }: UserMenuProps) {
   const { user } = useAuth();
@@ -21,48 +29,17 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
           flex items-center gap-3 bg-zinc-800 bg-opacity-50 rounded-lg
         `}
       >
-        {!user && (
-          <>
-            <FaUser className="shrink-0" size={20} />
-            {isDesktop && (
-              <div className="flex flex-col text-xs font-kanit">
-                <span>Entre ou Cadastre-se</span>
-              </div>
-            )}
-          </>
-        )}
+        {!user && <DynamicLoggedOutUser isDesktop={isDesktop} />}
         {user && (
-          <>
-            <img
-              width={28}
-              height={28}
-              alt="user photo"
-              className="rounded-full"
-              src={
-                user.photoURL ??
-                `https://www.gravatar.com/avatar/${sha256(
-                  user.email ?? ""
-                )}?d=https://avatars.githubusercontent.com/u/1753933?v=4`
-              }
-            />
-            {isDesktop && (
-              <div className="flex flex-col text-xs font-kanit">
-                <span>Bem vindo, {user.displayName?.split(" ")[0]}</span>
-                <span>minha conta</span>
-              </div>
-            )}
-          </>
+          <DynamicLoggedInUser
+            isDesktop={isDesktop}
+            email={user.email || ""}
+            photoURL={user.photoURL || ""}
+            displayName={user.displayName || ""}
+          />
         )}
       </Link>
-      {user && (
-        <button
-          type="button"
-          onClick={signOut}
-          className="flex justify-center items-center bg-zinc-800 bg-opacity-50 rounded-lg p-3"
-        >
-          <FaSignOutAlt size={16} />
-        </button>
-      )}
+      {user && <DynamicSignOutButton signOut={signOut} />}
     </div>
   );
 }

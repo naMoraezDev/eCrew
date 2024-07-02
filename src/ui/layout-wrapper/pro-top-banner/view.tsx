@@ -8,13 +8,7 @@ export function ProTopBannerView({ isDesktop }: ProTopBannerProps) {
     <section className="w-full h-10 bg-zinc-800 bg-opacity-50 relative">
       <div className="w-full max-w-[1000px] mx-auto px-4 flex justify-between items-center h-full">
         <div className="flex items-center gap-2">
-          <Image
-            priority
-            width={24}
-            height={24}
-            src={ePostsLogo}
-            alt="ePosts logo"
-          />
+          <Image width={24} height={24} src={ePostsLogo} alt="ePosts logo" />
           <span className="text-2xl text-violet-500 font-kanit font-bold">
             PRO
           </span>

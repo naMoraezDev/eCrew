@@ -3,7 +3,11 @@ import Image from "next/image";
 import { FooterProps } from "./types";
 import brazilFlag from "@/assets/images/brazil-flag.png";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
-import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
+
+import dynamic from "next/dynamic";
+const DynamicScrollToTopButton = dynamic(() =>
+  import("@/ui/scroll-to-top-button").then((module) => module.ScrollToTopButton)
+);
 
 export async function FooterView({ isDesktop }: FooterProps) {
   return (
@@ -25,7 +29,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
       >
         {!isDesktop && (
           <div className="w-full flex justify-center">
-            <ScrollToTopButton />
+            <DynamicScrollToTopButton />
           </div>
         )}
         <section className="flex flex-col gap-7">
@@ -61,7 +65,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
           </div>
         </section>
         <section className="flex flex-col gap-4 font-kanit">
-          {isDesktop && <ScrollToTopButton />}
+          {isDesktop && <DynamicScrollToTopButton />}
         </section>
       </div>
       <section
