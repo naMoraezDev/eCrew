@@ -80,7 +80,11 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           `}
         >
           {!isDesktop && <LiveMatchesCarousel games={games} />}
-          <FeaturedCarousel posts={featuredPosts} games={games} />
+          <FeaturedCarousel
+            games={games}
+            posts={featuredPosts}
+            isDesktop={isDesktop}
+          />
           <LatestPosts
             games={games}
             isDesktop={isDesktop}

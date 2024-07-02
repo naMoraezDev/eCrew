@@ -6,11 +6,19 @@ import { FaStar } from "react-icons/fa";
 import { useFeaturedCarousel } from "./_io";
 import { FeaturedCarouselProps } from "./types";
 
-export function FeaturedCarouselView({ posts, games }: FeaturedCarouselProps) {
+export function FeaturedCarouselView({
+  posts,
+  games,
+  isDesktop,
+}: FeaturedCarouselProps) {
   const { currentIndex, scrollToSlide } = useFeaturedCarousel({ games, posts });
 
   return (
-    <section className="w-full h-[400px] overflow-hidden flex rounded-lg relative">
+    <section
+      className={`${
+        isDesktop && "rounded-lg"
+      } w-full h-[400px] overflow-hidden flex relative`}
+    >
       {posts.posts.map((post, index) => {
         if (index !== currentIndex) return null;
         return (
@@ -31,8 +39,12 @@ export function FeaturedCarouselView({ posts, games }: FeaturedCarouselProps) {
         if (index !== currentIndex) return null;
         return (
           <div key={index} className="animate-long-fade z-10">
-            <div className="size-full absolute top-0 left-0 p-10 flex flex-col gap-6 justify-center">
-              <span className="text-sm font-kanit font-bold  bg-zinc-800 bg-opacity-30 px-4 py-1 rounded-2xl w-fit backdrop-blur-sm flex items-center gap-2">
+            <div
+              className={`${
+                isDesktop ? "p-10" : "p-6"
+              } size-full absolute top-0 left-0 flex flex-col gap-6 justify-center`}
+            >
+              <span className="text-sm font-kanit font-bold bg-zinc-800 bg-opacity-30 px-4 py-1 rounded-2xl w-fit backdrop-blur-sm flex items-center gap-2">
                 <Image
                   src={
                     games.find((game) => game.slug === post.categories[0].slug)
@@ -46,11 +58,17 @@ export function FeaturedCarouselView({ posts, games }: FeaturedCarouselProps) {
                 />
                 {post.categories[0].name}
               </span>
-              <h2 className="w-1/2 text-3xl font-kanit font-bold line-clamp-2">
+              <h2
+                className={`${
+                  isDesktop ? "w-1/2" : "w-full"
+                } text-3xl font-kanit font-bold line-clamp-2`}
+              >
                 {post.title}
               </h2>
               <div
-                className="w-1/2 text-base line-clamp-2 text-zinc-400"
+                className={`${
+                  isDesktop ? "w-1/2" : "w-full"
+                } w-1/2 text-base line-clamp-2 text-zinc-400`}
                 dangerouslySetInnerHTML={{
                   __html: post.excerpt,
                 }}
