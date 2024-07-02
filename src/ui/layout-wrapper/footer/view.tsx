@@ -1,12 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FooterProps } from "./types";
+import brazilFlag from "@/assets/images/brazil-flag.png";
 import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 import { ScrollToTopButton } from "@/ui/scroll-to-top-button";
 
 export async function FooterView({ isDesktop }: FooterProps) {
   return (
-    <footer className="w-full flex flex-col gap-20 bg-gradient-to-bl from-zinc-950 to-zinc-900 px-4 pt-10 pb-4">
+    <footer
+      className={`
+        ${!isDesktop ? "gap-4" : "gap-20"}
+        w-full flex flex-col bg-gradient-to-bl from-zinc-950 to-zinc-900 px-4 pt-10 pb-4
+      `}
+    >
       <div
         className={`
           ${
@@ -58,9 +64,26 @@ export async function FooterView({ isDesktop }: FooterProps) {
           {isDesktop && <ScrollToTopButton />}
         </section>
       </div>
-      <span className="w-full flex max-w-[1000px] mx-auto px-4 text-sm font-kanit">
-        © 2024 ePosts. Todos os direitos reservados. Desenvolvido no Brasil.
-      </span>
+      <section
+        className={`
+          ${!isDesktop && "flex-col items-center gap-4"}
+          w-full flex gap-10 max-w-[1000px] mx-auto px-4 text-sm font-kanit
+        `}
+      >
+        <span className="text-sm font-kanit">
+          © 2024 ePosts. Todos os direitos reservados.
+        </span>
+        <span className="flex items-center gap-2 text-center">
+          <Image
+            width={24}
+            height={24}
+            src={brazilFlag}
+            alt="brazil flag"
+            className="rounded-md"
+          />
+          Desenvolvido no Brasil
+        </span>
+      </section>
     </footer>
   );
 }
