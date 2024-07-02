@@ -18,12 +18,7 @@ import { ArticleReader } from "@/ui/article-reader";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { MorePostsAbout } from "@/ui/more-posts-about";
 
-export async function PostView({
-  post,
-  tags,
-  isDesktop,
-  morePostsAbout,
-}: PostProps) {
+export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
   return (
     <section className="w-full max-w-[1000px] flex gap-4">
       <article
@@ -161,7 +156,7 @@ export async function PostView({
               category={post.categories[0].name}
             />
             <MostReadPosts />
-            <PopularTags tags={tags.tags} />
+            <PopularTags />
           </div>
         </section>
       )}

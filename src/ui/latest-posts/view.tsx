@@ -4,7 +4,11 @@ import { LatestPostsProps } from "./types";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { PiNewspaperClippingFill } from "react-icons/pi";
 
-export function LatestPostsView({ games, postList }: LatestPostsProps) {
+export function LatestPostsView({
+  games,
+  postList,
+  isDesktop,
+}: LatestPostsProps) {
   return (
     <section className="flex flex-col gap-3">
       <div className="w-full flex justify-between items-center">
@@ -19,10 +23,10 @@ export function LatestPostsView({ games, postList }: LatestPostsProps) {
           <FaLongArrowAltRight />
         </Link>
       </div>
-
       <PostCard
         size="small"
         variant="filled"
+        isDesktop={isDesktop}
         post={postList.posts[0]}
         orientation="horizontal"
         gameIconUrl={
@@ -34,6 +38,7 @@ export function LatestPostsView({ games, postList }: LatestPostsProps) {
       <PostCard
         size="small"
         variant="filled"
+        isDesktop={isDesktop}
         orientation="horizontal"
         post={postList.posts[1]}
         gameIconUrl={
@@ -45,6 +50,7 @@ export function LatestPostsView({ games, postList }: LatestPostsProps) {
       <PostCard
         size="small"
         variant="filled"
+        isDesktop={isDesktop}
         orientation="horizontal"
         post={postList.posts[2]}
         gameIconUrl={
@@ -56,6 +62,7 @@ export function LatestPostsView({ games, postList }: LatestPostsProps) {
       <PostCard
         size="small"
         variant="filled"
+        isDesktop={isDesktop}
         orientation="horizontal"
         post={postList.posts[3]}
         gameIconUrl={

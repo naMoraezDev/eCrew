@@ -48,6 +48,7 @@ export function PostsCarouselView({
               <PostCard
                 post={post}
                 variant="filled"
+                isDesktop={isDesktop}
                 gameIconUrl={gameIconUrl}
               />
             </CarouselItem>
@@ -58,9 +59,9 @@ export function PostsCarouselView({
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
             >
               <Image
-                quality={100}
                 alt="game-cover"
                 src={getGameCover()}
+                quality={isDesktop ? 75 : 10}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
               <div className="absolute w-full bottom-0 left-0 flex justify-center items-center bg-zinc-900 bg-opacity-30 py-4 backdrop-blur-sm">
@@ -77,6 +78,7 @@ export function PostsCarouselView({
           width={1920}
           height={1080}
           alt="background"
+          quality={isDesktop ? 75 : 10}
           className={`
             ${isDesktop ? "w-1/2" : "w-full"}
             object-cover object-center invert opacity-30 blur-sm

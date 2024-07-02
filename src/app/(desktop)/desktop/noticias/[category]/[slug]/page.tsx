@@ -72,8 +72,7 @@ export default async function PostPage({
 }: {
   params: { slug: string; category: string };
 }) {
-  const [tags, morePostsAbout, post] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
+  const [morePostsAbout, post] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "3",
@@ -84,7 +83,5 @@ export default async function PostPage({
     ),
   ]);
 
-  return (
-    <Post post={post} tags={tags} morePostsAbout={morePostsAbout} isDesktop />
-  );
+  return <Post post={post} morePostsAbout={morePostsAbout} isDesktop />;
 }

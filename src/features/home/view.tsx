@@ -1,22 +1,25 @@
-import Image from "next/image";
 import { Newsletter } from "@/ui/newsletter";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
 import { LatestPosts } from "@/ui/latest-posts";
-import { LiveMatches } from "@/ui/live-matches";
-import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
-import { MostReadPosts } from "@/ui/most-read-posts";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
-import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EpostsApiService } from "@/services/eposts-api.service";
-import { LiveMatchesCarousel } from "@/ui/live-matches-carousel";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+
+import dynamic from "next/dynamic";
+const DynamicLiveMatchesCarousel = dynamic(() =>
+  import("@/ui/live-matches-carousel").then(
+    (module) => module.LiveMatchesCarousel
+  )
+);
+const DynamicHomeSideSection = dynamic(() =>
+  import("@/ui/side-section").then((module) => module.HomeSideSection)
+);
 
 export async function HomeView({ isDesktop }: DefaultProps) {
   const [
-    tags,
     games,
     lolPosts,
     r6Posts,
@@ -27,7 +30,6 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     featuredPosts,
     latestPosts,
   ] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
@@ -79,7 +81,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             flex flex-col gap-10 mb-10
           `}
         >
-          {!isDesktop && <LiveMatchesCarousel games={games} />}
+          {!isDesktop && <DynamicLiveMatchesCarousel games={games} />}
           <FeaturedCarousel
             games={games}
             posts={featuredPosts}
@@ -130,29 +132,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <HorizontalAd />
           <Newsletter isDesktop={isDesktop} />
         </section>
-        {isDesktop && (
-          <section className="w-1/4 mt-4 relative">
-            <div className="flex flex-col gap-4 sticky top-16">
-              <LiveMatches games={games} />
-              <MostReadPosts />
-              <PopularTags tags={tags.tags} />
-              <section className="p-2 relative">
-                <Image
-                  quality={100}
-                  src={exitLagBanner}
-                  alt="exit_lag_banner"
-                  className="rounded-lg"
-                />
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.exitlag.com/"
-                  className="absolute top-0 left-0 w-full h-full"
-                />
-              </section>
-            </div>
-          </section>
-        )}
+        {isDesktop && <DynamicHomeSideSection games={games} />}
       </section>
     </>
   );

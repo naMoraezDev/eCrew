@@ -24,10 +24,10 @@ export function FeaturedCarouselView({
         return (
           <div key={index} className="animate-long-fade">
             <Image
-              quality={100}
+              priority
               alt={post.title}
-              priority={index === 0}
               src={post.post_thumbnail.URL}
+              quality={isDesktop ? 75 : 10}
               width={post.post_thumbnail.width}
               height={post.post_thumbnail.height}
               className="object-cover size-full absolute top-0 left-0 animate-zoom"
@@ -46,15 +46,15 @@ export function FeaturedCarouselView({
             >
               <span className="text-sm font-kanit font-bold bg-zinc-800 bg-opacity-30 px-4 py-1 rounded-2xl w-fit backdrop-blur-sm flex items-center gap-2">
                 <Image
+                  width={20}
+                  height={20}
+                  className="rounded-md"
+                  alt={post.categories[0].name}
+                  onError={() => console.log("error")}
                   src={
                     games.find((game) => game.slug === post.categories[0].slug)
                       ?.icon_url || ""
                   }
-                  alt={post.categories[0].name}
-                  width={20}
-                  height={20}
-                  className="rounded-md"
-                  onError={() => console.log("error")}
                 />
                 {post.categories[0].name}
               </span>

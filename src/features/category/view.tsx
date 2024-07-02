@@ -28,8 +28,7 @@ export async function CategoryView({
   isDesktop,
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
-  const [tags, games, postList] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getTags(),
+  const [games, postList] = await Promise.all([
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
     term
       ? new EpostsApiService(new FetchHttpClientAdapter()).getPostsBySearch(
@@ -188,7 +187,7 @@ export async function CategoryView({
         <section className="w-1/4 mt-4 relative">
           <div className="flex flex-col gap-4 sticky top-16">
             <MostReadPosts />
-            <PopularTags tags={tags.tags} />
+            <PopularTags />
             <section className="p-2 relative">
               <Image
                 quality={100}
