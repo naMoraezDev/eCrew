@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { useFeaturedCarousel } from "./_io";
@@ -58,6 +59,10 @@ export function FeaturedCarouselView({ posts, games }: FeaturedCarouselProps) {
           </div>
         );
       })}
+      <Link
+        className="size-full absolute top-0 left-0 z-10"
+        href={`noticias/${posts.posts[currentIndex].categories[0].slug}/${posts.posts[currentIndex].slug}`}
+      />
       <div className="size-full absolute top-0 left-0 bg-gradient-to-tr from-zinc-950 to-transparent" />
       <section className="absolute bottom-4 right-4 flex gap-2 px-4 py-2 bg-zinc-800 bg-opacity-50 backdrop-blur-sm rounded-2xl z-10">
         {posts.posts.map((_post, index) => (
