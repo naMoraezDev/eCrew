@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { Category } from "@/features/category";
+import { REVALIDATE_TIME } from "@/shared/constants";
 import { CategorySEO, categoryMetadata } from "@/seo/category";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export const dynamic = "force-static";
-export const revalidate = 60 * 5; // 5 minutes
+export const revalidate = REVALIDATE_TIME;
 export const dynamicParams = false;
 
 export async function generateStaticParams() {

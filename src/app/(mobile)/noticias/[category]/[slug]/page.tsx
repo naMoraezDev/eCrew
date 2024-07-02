@@ -1,11 +1,12 @@
 import { Metadata } from "next";
 import { Post } from "@/features/post";
 import { postMetadata } from "@/seo/post";
+import { REVALIDATE_TIME } from "@/shared/constants";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export const dynamic = "force-static";
-export const revalidate = 60 * 5; // 5 minutes
+export const revalidate = REVALIDATE_TIME;
 
 export async function generateStaticParams() {
   const [lolPosts, r6Posts, codPosts, csPosts, valorantPosts, dotaPosts] =

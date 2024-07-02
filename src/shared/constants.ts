@@ -1,3 +1,5 @@
+export const REVALIDATE_TIME = 60; // 1 minute
+
 export const FIREBASE_ERROR_MESSAGES = {
   "auth/app-deleted": "O banco de dados não foi localizado.",
   "auth/expired-action-code": "O código da ação o ou link expirou.",
