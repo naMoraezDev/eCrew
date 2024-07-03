@@ -1,13 +1,18 @@
 "use client";
 
-import { useLiveMatches } from "./_io";
 import { MatchCard } from "../match-card";
-import { LiveMatchesProps } from "./types";
-import { RiLiveFill } from "react-icons/ri";
+import { useUpcommingMatches } from "./_io";
+import { MdSchedule } from "react-icons/md";
+import { UpcommingMatchesProps } from "./types";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export function LiveMatchesView({ background = true }: LiveMatchesProps) {
-  const { data, isLoading, viewMore, toggleViewMore } = useLiveMatches();
+export function UpcommingMatchesView({
+  background = true,
+}: UpcommingMatchesProps) {
+  const { data, isLoading, viewMore, toggleViewMore } = useUpcommingMatches();
+  const matches = data?.filter(
+    (match) => new Date(match.begin_at) > new Date()
+  );
 
   if (!data?.length && !isLoading) {
     return null;
@@ -21,8 +26,8 @@ export function LiveMatchesView({ background = true }: LiveMatchesProps) {
       `}
     >
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
-        <RiLiveFill />
-        Partidas em andamento
+        <MdSchedule />
+        Próximas partidas
       </h4>
       <div className="flex flex-col gap-2">
         {isLoading &&
@@ -33,9 +38,9 @@ export function LiveMatchesView({ background = true }: LiveMatchesProps) {
             />
           ))}
         {!isLoading &&
-          (viewMore ? data : data?.slice(0, 5))?.map((match, index) => (
-            <MatchCard key={index} match={match} />
-          ))}
+          (viewMore ? matches : matches?.slice(0, 5))?.map((match, index) => {
+            return <MatchCard key={index} match={match} />;
+          })}
       </div>
       {!isLoading && data && data.length > 5 && (
         <button

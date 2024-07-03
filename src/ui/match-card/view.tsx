@@ -4,10 +4,9 @@ import { MatchCardProps } from "./types";
 import { FaTwitch } from "react-icons/fa";
 import { FaShieldCat } from "react-icons/fa6";
 
-export function MatchCardView({ match, games }: MatchCardProps) {
-  const { stream, gameLogo, revealStream, handleRevealStream } = useMatchCard({
+export function MatchCardView({ match }: MatchCardProps) {
+  const { stream, revealStream, handleRevealStream } = useMatchCard({
     match,
-    games,
   });
 
   return (
@@ -15,9 +14,17 @@ export function MatchCardView({ match, games }: MatchCardProps) {
       <section
         onClick={handleRevealStream}
         title={`${match.league.name} - ${match.name}`}
-        className="flex items-center gap-6 relative w-full h-12 pl-10 pr-10 rounded-lg bg-zinc-900 overflow-hidden group animate-fade cursor-pointer"
+        className={`
+          ${match.status === "running" ? "pl-10 cursor-pointer" : "pl-4"}
+          flex items-center gap-6 relative w-full h-12 pr-10 rounded-lg bg-zinc-900 overflow-hidden group animate-fade
+        `}
       >
-        <div className="flex gap-4 items-center z-10 group-hover:animate-text-slide">
+        <div
+          className={`
+            ${match.status === "running" && "group-hover:animate-text-slide"}
+            flex gap-4 items-center z-10 group-hover:animate-text-slide
+          `}
+        >
           <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
             {match.opponents[0]?.opponent.image_url ? (
               <Image
@@ -29,7 +36,17 @@ export function MatchCardView({ match, games }: MatchCardProps) {
             ) : (
               <FaShieldCat size={16} className="text-zink-600 shrink-0" />
             )}
+            {match.status === "running" && (
+              <span className="text-xs font-kanit font-bold">
+                {match.results[0].score}
+              </span>
+            )}
             <span className="text-xs font-bold">vs</span>
+            {match.status === "running" && (
+              <span className="text-xs font-kanit font-bold">
+                {match.results[1].score}
+              </span>
+            )}
             {match.opponents[1]?.opponent.image_url ? (
               <Image
                 width={16}
@@ -44,6 +61,14 @@ export function MatchCardView({ match, games }: MatchCardProps) {
           <span className="text-xs whitespace-nowrap font-kanit font-bold">
             {match.name}
           </span>
+          <span className="text-xs whitespace-nowrap font-kanit font-bold">
+            {new Date(match.begin_at).toLocaleDateString("pt-BR", {
+              hour: "numeric",
+              minute: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
         </div>
         {match.status === "running" && (
           <>
@@ -55,27 +80,16 @@ export function MatchCardView({ match, games }: MatchCardProps) {
             </div>
           </>
         )}
-        {stream?.raw_url && (
+        {match.status === "running" && stream?.raw_url && (
           <div className="absolute top-0 right-0 h-full flex items-center z-20 pointer-events-none">
             <div className="flex items-center justify-center h-full p-2 font-bold text-xs text-center text-violet-500 bg-purple-600 bg-opacity-20">
               <FaTwitch size={16} />
             </div>
           </div>
         )}
-        {gameLogo && (
-          <div className="absolute top-0 left-0 size-full flex justify-end items-center">
-            <Image
-              width={100}
-              height={72}
-              src={gameLogo}
-              alt="game icon"
-              className="shrink-0 invert opacity-10"
-            />
-          </div>
-        )}
         <div className="absolute top-0 right-0 size-full bg-gradient-to-l from-zinc-900 via-transparent to-transparent z-10 pointer-events-none" />
       </section>
-      {revealStream && stream?.raw_url && (
+      {match.status === "running" && revealStream && stream?.raw_url && (
         <iframe
           className="w-full rounded-lg animate-fade"
           src={

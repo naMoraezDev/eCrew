@@ -30,7 +30,7 @@ export function LiveMatchesCarouselView({ games }: LiveMatchesCarouselProps) {
           {!isLoading &&
             data?.map((match, index) => (
               <CarouselItem key={index} className="basis-[70%]">
-                <MatchCard games={games} match={match} />
+                <MatchCard match={match} />
               </CarouselItem>
             ))}
         </CarouselContent>

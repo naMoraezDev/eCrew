@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Newsletter } from "@/ui/newsletter";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
@@ -5,6 +6,7 @@ import { LatestPosts } from "@/ui/latest-posts";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
+import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EpostsApiService } from "@/services/eposts-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
@@ -14,8 +16,14 @@ const DynamicLiveMatchesCarousel = dynamic(() =>
     (module) => module.LiveMatchesCarousel
   )
 );
-const DynamicHomeSideSection = dynamic(() =>
-  import("@/ui/home-side-section").then((module) => module.HomeSideSection)
+const DynamicMatchesSection = dynamic(() =>
+  import("@/ui/matches-section").then((module) => module.MatchesSection)
+);
+const DynamicMostReadPosts = dynamic(() =>
+  import("@/ui/most-read-posts").then((module) => module.MostReadPosts)
+);
+const DynamicPopularTags = dynamic(() =>
+  import("@/ui/popular-tags").then((module) => module.PopularTags)
 );
 
 export async function HomeView({ isDesktop }: DefaultProps) {
@@ -132,7 +140,28 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <HorizontalAd />
           <Newsletter isDesktop={isDesktop} />
         </section>
-        {isDesktop && <DynamicHomeSideSection games={games} />}
+        {isDesktop && (
+          <section className="w-1/4 flex flex-col gap-4 mt-4">
+            <DynamicMatchesSection />
+            <div className="flex flex-col gap-4 sticky top-16">
+              <DynamicMostReadPosts />
+              <DynamicPopularTags />
+              <section className="p-2 relative">
+                <Image
+                  src={exitLagBanner}
+                  alt="exit_lag_banner"
+                  className="rounded-lg"
+                />
+                <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.exitlag.com/"
+                  className="absolute top-0 left-0 w-full h-full"
+                />
+              </section>
+            </div>
+          </section>
+        )}
       </section>
     </>
   );
