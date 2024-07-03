@@ -91,7 +91,6 @@ export async function CategoryView({
           <div className="group rounded-lg overflow-hidden relative">
             <Image
               priority
-              quality={100}
               alt="background"
               src={getBackgroundData()?.background || ""}
               className={`
@@ -190,7 +189,6 @@ export async function CategoryView({
             <PopularTags />
             <section className="p-2 relative">
               <Image
-                quality={100}
                 src={exitLagBanner}
                 alt="exit_lag_banner"
                 className="rounded-lg"

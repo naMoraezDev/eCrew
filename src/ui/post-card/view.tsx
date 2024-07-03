@@ -29,7 +29,6 @@ export function PostCardView({
         <Image
           alt={post.title}
           src={post.post_thumbnail.URL}
-          quality={isDesktop ? 75 : 10}
           width={post.post_thumbnail.width}
           height={post.post_thumbnail.height}
           className="size-full object-cover object-center duration-300 aspect-video group-hover:scale-105"
