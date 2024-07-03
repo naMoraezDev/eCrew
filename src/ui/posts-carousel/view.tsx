@@ -25,7 +25,7 @@ export function PostsCarouselView({
   });
 
   return (
-    <section className="flex flex-col gap-3 rounded-lg">
+    <section className="flex flex-col gap-3 rounded-lg bg-zinc-800 bg-opacity-50 p-4">
       <div className="w-full flex justify-between items-center z-10">
         <h2 className="text-md font-kanit font-bold flex items-center gap-2">
           <Image
@@ -43,7 +43,7 @@ export function PostsCarouselView({
           {postList.posts.map((post, index) => (
             <CarouselItem
               key={index}
-              className={isDesktop ? "basis-1/4" : "basis-[60%]"}
+              className={isDesktop ? "basis-1/3" : "basis-[60%]"}
             >
               <PostCard
                 post={post}
@@ -53,7 +53,7 @@ export function PostsCarouselView({
               />
             </CarouselItem>
           ))}
-          <CarouselItem className={isDesktop ? "basis-1/4" : "basis-[60%]"}>
+          <CarouselItem className={isDesktop ? "basis-1/3" : "basis-[60%]"}>
             <Link
               href={`/noticias/${postList.posts[0].categories[0].slug}`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"

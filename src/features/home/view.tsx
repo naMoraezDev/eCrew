@@ -41,32 +41,32 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "league-of-legends",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "r6-siege",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "cod-mw",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "cs-go",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "valorant",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
-      number: "3",
+      number: "2",
       category: "dota-2",
     }),
     new EpostsApiService(new FetchHttpClientAdapter()).getPostsByTag(
