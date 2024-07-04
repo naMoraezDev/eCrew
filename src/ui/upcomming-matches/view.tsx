@@ -3,18 +3,18 @@
 import { MatchCard } from "../match-card";
 import { useUpcommingMatches } from "./_io";
 import { MdSchedule } from "react-icons/md";
-import { UpcommingMatchesProps } from "./types";
-import { Skeleton } from "@/components/ui/skeleton";
+import { UpcomingMatchesProps } from "./types";
 
-export function UpcommingMatchesView({
+export function UpcomingMatchesView({
   background = true,
-}: UpcommingMatchesProps) {
-  const { data, isLoading, viewMore, toggleViewMore } = useUpcommingMatches();
-  const matches = data?.filter(
+  upcomingMatches,
+}: UpcomingMatchesProps) {
+  const { viewMore, toggleViewMore } = useUpcommingMatches();
+  const matches = upcomingMatches?.filter(
     (match) => new Date(match.begin_at) > new Date()
   );
 
-  if (!data?.length && !isLoading) {
+  if (!upcomingMatches?.length) {
     return null;
   }
 
@@ -30,19 +30,11 @@ export function UpcommingMatchesView({
         Próximas partidas
       </h4>
       <div className="flex flex-col gap-2">
-        {isLoading &&
-          Array.from({ length: 5 }).map((_, index) => (
-            <Skeleton
-              key={index}
-              className="h-12 w-full rounded-xl !bg-zinc-800 !bg-opacity-50 !animate-fade"
-            />
-          ))}
-        {!isLoading &&
-          (viewMore ? matches : matches?.slice(0, 5))?.map((match, index) => {
-            return <MatchCard key={index} match={match} />;
-          })}
+        {(viewMore ? matches : matches?.slice(0, 5))?.map((match, index) => {
+          return <MatchCard key={index} match={match} />;
+        })}
       </div>
-      {!isLoading && data && data.length > 5 && (
+      {upcomingMatches && upcomingMatches.length > 5 && (
         <button
           type="button"
           onClick={toggleViewMore}

@@ -1,1 +1,1 @@
-export { UpcommingMatchesView as UpcommingMatches } from "./view";
+export { UpcomingMatchesView as UpcomingMatches } from "./view";
