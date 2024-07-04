@@ -4,17 +4,9 @@ import Link from "next/link";
 import { useUserMenu } from "./_io";
 import { UserMenuProps } from "./types";
 import { useAuth } from "@/contexts/auth";
-
-import dynamic from "next/dynamic";
-const DynamicLoggedOutUser = dynamic(() =>
-  import("./logged-out-user").then((module) => module.LoggedOutUser)
-);
-const DynamicLoggedInUser = dynamic(() =>
-  import("./logged-in-user").then((module) => module.LoggedInUser)
-);
-const DynamicSignOutButton = dynamic(() =>
-  import("./sign-out-button").then((module) => module.SignOutButton)
-);
+import { LoggedInUser } from "./logged-in-user";
+import { LoggedOutUser } from "./logged-out-user";
+import { SignOutButton } from "./sign-out-button";
 
 export function UserMenuView({ isDesktop }: UserMenuProps) {
   const { user } = useAuth();
@@ -29,9 +21,9 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
           flex items-center gap-3 bg-zinc-800 bg-opacity-50 rounded-lg
         `}
       >
-        {!user && <DynamicLoggedOutUser isDesktop={isDesktop} />}
+        {!user && <LoggedOutUser isDesktop={isDesktop} />}
         {user && (
-          <DynamicLoggedInUser
+          <LoggedInUser
             isDesktop={isDesktop}
             email={user.email || ""}
             photoURL={user.photoURL || ""}
@@ -39,7 +31,7 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
           />
         )}
       </Link>
-      {user && <DynamicSignOutButton signOut={signOut} />}
+      {user && <SignOutButton signOut={signOut} />}
     </div>
   );
 }

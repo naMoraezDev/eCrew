@@ -20,9 +20,9 @@ export function LoggedInUserView({
         alt="user photo"
         className="rounded-full"
         src={
-          photoURL ??
+          photoURL ||
           `https://www.gravatar.com/avatar/${sha256(
-            email ?? ""
+            email || ""
           )}?d=https://avatars.githubusercontent.com/u/1753933?v=4`
         }
       />
