@@ -5,6 +5,7 @@ import brazilFlag from "@/assets/images/brazil-flag.png";
 import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 
 import dynamic from "next/dynamic";
+import { SiteLogo } from "@/ui/site-logo";
 const DynamicScrollToTopButton = dynamic(() =>
   import("@/ui/scroll-to-top-button").then((module) => module.ScrollToTopButton)
 );
@@ -33,16 +34,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
           </div>
         )}
         <section className="flex flex-col gap-7">
-          <div className="flex items-center gap-1">
-            <Image
-              priority
-              width={40}
-              height={40}
-              src={eCrewLogo}
-              alt="eCrew logo"
-            />
-            <span className="font-kanit text-4xl">eCrew</span>
-          </div>
+          <SiteLogo />
         </section>
         <section className="flex flex-col gap-4 font-kanit">
           <h4 className="font-bold">Cobertura</h4>

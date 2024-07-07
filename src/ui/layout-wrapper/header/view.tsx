@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
 import { UserMenu } from "@/ui/user-menu";
-import eCrewLogo from "@/assets/images/e_posts_logo.svg";
+import { SiteLogo } from "@/ui/site-logo";
 
 import dynamic from "next/dynamic";
 const DynamicGameSelectHover = dynamic(() =>
@@ -29,20 +27,7 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
       <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
         <div className="flex items-center gap-10">
           <section className="flex items-center gap-4">
-            <div className="flex items-center gap-1 relative">
-              <Image
-                priority
-                width={24}
-                height={24}
-                src={eCrewLogo}
-                alt="eCrew logo"
-              />
-              <span className="font-kanit text-2xl font-bold">eCrew</span>
-              <Link
-                href="/noticias"
-                className="w-full h-full absolute top-0 left-0"
-              />
-            </div>
+            <SiteLogo />
             <div className="w-px h-6 bg-gray-50" />
             {isDesktop && <DynamicGameSelectHover games={games} />}
             {!isDesktop && <DynamicGameSelectPopover games={games} />}
