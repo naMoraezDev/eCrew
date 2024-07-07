@@ -54,6 +54,11 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
         <h4 className="font-kanit font-bold text-3xl flex items-center gap-2 px-6 py-3">
           <IoIosPodium />
           Torneios
+          <div>
+            <span className="text-violet-500 text-xs px-3 bg-violet-500 bg-opacity-20 rounded-full ml-2">
+              em aberto
+            </span>
+          </div>
         </h4>
         <TournamentList games={games} tournaments={tournaments} />
       </section>
