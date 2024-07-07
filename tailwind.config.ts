@@ -143,7 +143,7 @@ const config = {
         "fade-in": "fade-in 300ms both",
         "fade-out": "fade-out 300ms both",
         fade: "fade 300ms both",
-        "long-fade": "fade 700ms both",
+        "long-fade": "fade 1500ms linear both",
         "top-to-center": "top-to-center 300ms both",
         zoom: "zoom 5000ms both",
       },
