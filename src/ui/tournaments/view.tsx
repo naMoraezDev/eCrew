@@ -24,7 +24,7 @@ export async function TournamentsView() {
     <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
         <IoIosPodium />
-        Campeonatos
+        Torneios
       </h4>
       {tournaments.map((tournament, index) => (
         <li key={index} className="text-sm flex gap-3 px-6 py-3">
@@ -51,7 +51,7 @@ export async function TournamentsView() {
           </div>
         </li>
       ))}
-      <Link className="self-center text-sm font-kanit p-3" href="/campeonatos">
+      <Link className="self-center text-sm font-kanit p-3" href="/torneios">
         ver todos
       </Link>
     </ul>
