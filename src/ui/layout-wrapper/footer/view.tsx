@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { FooterProps } from "./types";
 import brazilFlag from "@/assets/images/brazil-flag.png";
-import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 
 import dynamic from "next/dynamic";
 import { SiteLogo } from "@/ui/site-logo";
@@ -34,7 +33,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
           </div>
         )}
         <section className="flex flex-col gap-7">
-          <SiteLogo />
+          <SiteLogo size="medium" />
         </section>
         <section className="flex flex-col gap-4 font-kanit">
           <h4 className="font-bold">Cobertura</h4>
