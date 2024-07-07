@@ -11,7 +11,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useLiveMatches } from "../live-matches/_io";
 
 export function LiveMatchesCarouselView({ games }: LiveMatchesCarouselProps) {
-  const { data, isLoading } = useLiveMatches({ initialViewMore: true });
+  const { data, isLoading } = useLiveMatches();
 
   if (!data?.length && !isLoading) {
     return null;

@@ -23,7 +23,7 @@ export async function UpcomingMatchesView() {
         Próximas partidas
       </h4>
       <ul className="flex flex-col">
-        {upcomingMatches?.slice(0, 5)?.map((match, index) => {
+        {upcomingMatches?.map((match, index) => {
           return (
             <li key={index} className="px-6 py-3 flex gap-4">
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
