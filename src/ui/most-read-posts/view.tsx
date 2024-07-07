@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { FaBookOpenReader } from "react-icons/fa6";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function MostReadPostsView() {
-  const postList = await new EpostsApiService(
+  const postList = await new EcrewApiService(
     new FetchHttpClientAdapter()
   ).getPostsByTag("mais-lidas");
 

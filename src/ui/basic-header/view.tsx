@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { FaLongArrowAltRight } from "react-icons/fa";
+import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 import { useHeader } from "../layout-wrapper/header/_io";
-import ePostsLogo from "@/assets/images/e_posts_logo.svg";
 
 export function BasicHeaderView() {
   const { visible } = useHeader();
@@ -21,10 +20,10 @@ export function BasicHeaderView() {
             priority
             width={24}
             height={24}
-            src={ePostsLogo}
-            alt="ePosts logo"
+            src={eCrewLogo}
+            alt="eCrew logo"
           />
-          <span className="font-kanit text-xl">ePosts</span>
+          <span className="font-kanit text-xl">eCrew</span>
           <Link
             href="/noticias"
             className="w-full h-full absolute top-0 left-0"

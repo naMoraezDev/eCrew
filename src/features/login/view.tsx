@@ -7,7 +7,7 @@ import { LoginProps } from "./types";
 import { SignInForm } from "@/ui/sign-in-form";
 import { SignUpForm } from "@/ui/sign-up-form";
 import { SocialLogin } from "@/ui/social-login";
-import ePostsLogo from "@/assets/images/e_posts_logo.svg";
+import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 import background2 from "@/assets/images/r6-background.jpg";
 import background1 from "@/assets/images/lol-background.jpg";
 
@@ -28,10 +28,10 @@ export function LoginView({ isDesktop }: LoginProps) {
               priority
               width={32}
               height={32}
-              src={ePostsLogo}
-              alt="ePosts logo"
+              src={eCrewLogo}
+              alt="eCrew logo"
             />
-            <span className="font-kanit text-2xl">ePosts</span>
+            <span className="font-kanit text-2xl">eCrew</span>
             <Link
               href="/noticias"
               className="w-full h-full absolute top-0 left-0"

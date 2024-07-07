@@ -7,7 +7,7 @@ import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
 import exitLagBanner from "@/assets/images/exitlag-banner.png";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 import dynamic from "next/dynamic";
@@ -38,41 +38,41 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     featuredPosts,
     latestPosts,
   ] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getGames(),
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "league-of-legends",
     }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "r6-siege",
     }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "cod-mw",
     }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "cs-go",
     }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "valorant",
     }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "dota-2",
     }),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByTag(
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByTag(
       "destaques"
     ),
-    new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
       page: "1",
       number: "4",
       category: "all",

@@ -10,7 +10,7 @@ export function SubscriptionCardView({
     <section className="flex flex-col gap-6 bg-zinc-900 rounded-lg overflow-hidden p-6 h-full">
       {pro ? (
         <h2 className="font-kanit font-medium text-2xl">
-          ePosts <span className="text-3xl text-violet-500">PRO</span>
+          eCrew <span className="text-3xl text-violet-500">PRO</span>
         </h2>
       ) : (
         <h2 className="font-kanit font-medium text-2xl">Padrão</h2>

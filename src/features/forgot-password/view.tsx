@@ -20,9 +20,9 @@ export function ForgotPasswordView({ isDesktop }: ForgotPasswordProps) {
               width={32}
               height={32}
               src={ePostsLogo}
-              alt="ePosts logo"
+              alt="eCrew logo"
             />
-            <span className="font-kanit text-2xl">ePosts</span>
+            <span className="font-kanit text-2xl">eCrew</span>
             <Link
               href="/noticias"
               className="w-full h-full absolute top-0 left-0"

@@ -14,8 +14,8 @@ export function TermsOfUse({ isDesktop }: TermsOfUseProps) {
           <IoMdListBox /> Termos de Uso
         </h1>
         <p>
-          Bem-vindo ao ePosts! Ao acessar e utilizar nosso site, você concorda
-          com os seguintes termos e condições:
+          Bem-vindo à eCrew! Ao acessar e utilizar nosso site, você concorda com
+          os seguintes termos e condições:
         </p>
       </div>
       <ol className="list-decimal px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-4">

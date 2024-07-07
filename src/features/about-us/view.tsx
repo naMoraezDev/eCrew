@@ -15,7 +15,7 @@ export function AboutUsView({ isDesktop }: AboutUsProps) {
           Sobre Nós
         </h1>
         <p>
-          Bem-vindo ao ePosts! Somos apaixonados por jogos eletrônicos e estamos
+          Bem-vindo à eCrew! Somos apaixonados por jogos eletrônicos e estamos
           comprometidos em trazer as últimas novidades, análises e coberturas
           dos principais eventos do mundo dos e-sports.
         </p>

@@ -1,9 +1,9 @@
 import { FaStar } from "react-icons/fa";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function PopularTagsView() {
-  const tagsList = await new EpostsApiService(
+  const tagsList = await new EcrewApiService(
     new FetchHttpClientAdapter()
   ).getTags();
 

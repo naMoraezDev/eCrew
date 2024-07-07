@@ -1,7 +1,7 @@
 "use client";
 
 import nookies from "nookies";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { firebaseClient } from "@/services/firebase/firebase-client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserPreferences } from "@/services/types/user-preferences.types";
@@ -29,7 +29,7 @@ export function AuthProvider({ children }: any) {
         const token = await user.getIdToken();
         setUser(user);
         setPreferences(
-          await new EpostsApiService(new FetchHttpClientAdapter())
+          await new EcrewApiService(new FetchHttpClientAdapter())
             .getUserPreferences(token)
             .catch(() => null)
         );

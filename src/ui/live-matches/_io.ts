@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export function useLiveMatches({
@@ -15,7 +15,7 @@ export function useLiveMatches({
   const { data, isLoading } = useQuery({
     queryKey: ["live-matches"],
     queryFn: () =>
-      new EpostsApiService(new FetchHttpClientAdapter()).getRunningMatches(
+      new EcrewApiService(new FetchHttpClientAdapter()).getRunningMatches(
         "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
       ),
     refetchInterval: 60000, // 1 min

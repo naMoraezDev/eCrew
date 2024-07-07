@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { FooterProps } from "./types";
 import brazilFlag from "@/assets/images/brazil-flag.png";
-import ePostsLogo from "@/assets/images/e_posts_logo.svg";
+import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 
 import dynamic from "next/dynamic";
 const DynamicScrollToTopButton = dynamic(() =>
@@ -38,10 +38,10 @@ export async function FooterView({ isDesktop }: FooterProps) {
               priority
               width={40}
               height={40}
-              src={ePostsLogo}
-              alt="ePosts logo"
+              src={eCrewLogo}
+              alt="eCrew logo"
             />
-            <span className="font-kanit text-4xl">ePosts</span>
+            <span className="font-kanit text-4xl">eCrew</span>
           </div>
         </section>
         <section className="flex flex-col gap-4 font-kanit">
@@ -75,7 +75,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
         `}
       >
         <span className="text-sm font-kanit">
-          © 2024 ePosts. Todos os direitos reservados.
+          © 2024 eCrew. Todos os direitos reservados.
         </span>
         <span className="flex items-center gap-2 text-center">
           <Image

@@ -14,7 +14,7 @@ export function postMetadata({ post }: PostSeoProps): Metadata {
     title: post.title,
     description: post.excerpt,
     twitter: {
-      creator: "@eposts",
+      creator: "@ecrew",
       card: "summary_large_image",
       images: [
         {
@@ -55,7 +55,7 @@ export function PostSEO({ post }: PostSeoProps) {
         type="WebPage"
         description={post.excerpt}
         lastReviewed={post.modified}
-        reviewedBy={{ name: "ePosts", type: "Organization" }}
+        reviewedBy={{ name: "eCrew", type: "Organization" }}
         id={`${process.env.PRIVATE_SITE_URL}/${post.categories[0].slug}/#${post.slug}`}
         dataArray={[
           {
@@ -63,7 +63,7 @@ export function PostSEO({ post }: PostSeoProps) {
             inLanguage: "pt-BR",
             isPartOf: {
               type: "WebSite",
-              name: "Notícias - ePosts",
+              name: "Notícias - eCrew",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -79,7 +79,7 @@ export function PostSEO({ post }: PostSeoProps) {
         isAccessibleForFree={true}
         dateModified={post.modified}
         images={[post.post_thumbnail.URL]}
-        authorName={{ type: "Organization", name: "ePosts" }}
+        authorName={{ type: "Organization", name: "eCrew" }}
         url={`${process.env.PRIVATE_SITE_URL}/${post.categories[0].slug}/${post.slug}`}
       />
       <BreadcrumbJsonLd
@@ -87,7 +87,7 @@ export function PostSEO({ post }: PostSeoProps) {
         itemListElements={[
           {
             position: 1,
-            name: "Notícias - ePosts",
+            name: "Notícias - eCrew",
             item: `${process.env.PRIVATE_SITE_URL}/noticias`,
           },
           {

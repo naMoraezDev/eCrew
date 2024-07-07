@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import { useState } from "react";
 import { useLoading } from "@/contexts/loading";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export function useNewsletter() {
@@ -20,7 +20,7 @@ export function useNewsletter() {
         toast.error("Por favor, insira um e-mail válido.");
         return;
       }
-      await new EpostsApiService(
+      await new EcrewApiService(
         new FetchHttpClientAdapter()
       ).subscribeOnNewsletter(email);
       setIsLoading(false);

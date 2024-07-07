@@ -26,17 +26,17 @@ export function MoreNewsSEO({ page }: MoreNewsSeoProps) {
       <WebPageJsonLd
         useAppDir
         type="WebPage"
-        reviewedBy={{ name: "ePosts", type: "Organization" }}
+        reviewedBy={{ name: "eCrew", type: "Organization" }}
         id={`${process.env.PRIVATE_SITE_URL}/noticias/#mais-noticias${
           page ? `?page=${page}` : ""
         }`}
         dataArray={[
           {
             inLanguage: "pt-BR",
-            name: "ePosts - Mais notícias",
+            name: "eCrew - Mais notícias",
             isPartOf: {
               type: "WebSite",
-              name: "Notícias - ePosts",
+              name: "Notícias - eCrew",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -52,12 +52,12 @@ export function MoreNewsSEO({ page }: MoreNewsSeoProps) {
         itemListElements={[
           {
             position: 1,
-            name: "Notícias - ePosts",
+            name: "Notícias - eCrew",
             item: `${process.env.PRIVATE_SITE_URL}/noticias`,
           },
           {
             position: 3,
-            name: "ePosts - Mais notícias",
+            name: "eCrew - Mais notícias",
             item: `${process.env.PRIVATE_SITE_URL}/noticias/mais-noticias${
               page ? `?page=${page}` : ""
             }`,

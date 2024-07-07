@@ -16,7 +16,7 @@ import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import exitLagBanner from "@/assets/images/exitlag-banner.png";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
@@ -29,12 +29,10 @@ export async function CategoryView({
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
   const [games, postList] = await Promise.all([
-    new EpostsApiService(new FetchHttpClientAdapter()).getGames(),
+    new EcrewApiService(new FetchHttpClientAdapter()).getGames(),
     term
-      ? new EpostsApiService(new FetchHttpClientAdapter()).getPostsBySearch(
-          term
-        )
-      : new EpostsApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      ? new EcrewApiService(new FetchHttpClientAdapter()).getPostsBySearch(term)
+      : new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
           number: "12",
           page: page.toString(),
           category: category || "all",

@@ -5,7 +5,7 @@ import styles from "./styles.module.scss";
 import { useSProSubscription } from "./_io";
 import { ProSubscriptionProps } from "./types";
 import { BasicHeader } from "@/ui/basic-header";
-import ePostsLogo from "@/assets/images/e_posts_logo.svg";
+import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 import { SubscriptionCard } from "@/ui/subscription-card";
 import background from "@/assets/images/e-sports-background.jpg";
 
@@ -24,12 +24,12 @@ export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
             priority
             width={150}
             height={150}
-            src={ePostsLogo}
-            alt="ePosts logo"
+            src={eCrewLogo}
+            alt="eCrew logo"
             className="self-center"
           />
           <h1 className="text-5xl font-kanit">
-            ePosts <span className="font-bold text-violet-500">PRO</span>
+            eCrew <span className="font-bold text-violet-500">PRO</span>
           </h1>
           <p>
             Notícias exclusivas, sem anúncios e suporte prioritário. Assine

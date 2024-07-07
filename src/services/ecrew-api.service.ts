@@ -7,7 +7,7 @@ import { Checkout } from "./types/checkout.types";
 import { UserPreferences } from "./types/user-preferences.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 
-interface EpostsApiServiceProtocol {
+interface EcrewApiServiceProtocol {
   getPostsByCategory: (params: {
     page: string;
     number: string;
@@ -27,7 +27,7 @@ interface EpostsApiServiceProtocol {
   subscribeOnNewsletter: (email: string) => Promise<{ email: string }>;
 }
 
-export class EpostsApiService implements EpostsApiServiceProtocol {
+export class EcrewApiService implements EcrewApiServiceProtocol {
   constructor(readonly httpClient: HttpClient) {
     this.httpClient = httpClient;
   }

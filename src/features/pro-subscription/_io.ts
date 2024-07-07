@@ -2,7 +2,7 @@ import { toast } from "sonner";
 import { useAuth } from "@/contexts/auth";
 import { useRouter } from "next/navigation";
 import { useLoading } from "@/contexts/loading";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export function useSProSubscription() {
@@ -20,7 +20,7 @@ export function useSProSubscription() {
     }
     try {
       const idToken = await user.getIdToken();
-      const response = await new EpostsApiService(
+      const response = await new EcrewApiService(
         new FetchHttpClientAdapter()
       ).checkout(idToken);
       const { sessionUrl } = response;

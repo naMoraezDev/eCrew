@@ -4,7 +4,7 @@ import { Navbar } from "./navbar";
 import { DefaultProps } from "@/types/common";
 import { ProTopBanner } from "./pro-top-banner";
 // import { CookiesAccept } from "../cookies-accept";
-import { EpostsApiService } from "@/services/eposts-api.service";
+import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function LayoutWrapperView({
@@ -12,7 +12,7 @@ export async function LayoutWrapperView({
   isDesktop,
 }: Readonly<{ children: React.ReactNode } & DefaultProps>) {
   const [games] = await Promise.all([
-    new EpostsApiService(httpClientFactory()).getGames(),
+    new EcrewApiService(httpClientFactory()).getGames(),
   ]);
 
   return (
