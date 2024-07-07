@@ -22,10 +22,10 @@ export function UpcomingMatchesView({
     <section
       className={`
         ${background && "bg-zinc-800 bg-opacity-50"}
-        flex flex-col gap-4 p-2 rounded-lg
+        flex flex-col gap-4 p-3 rounded-lg
       `}
     >
-      <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
+      <h4 className="font-kanit font-medium text-sm flex items-center gap-2 mb-3">
         <MdSchedule />
         Próximas partidas
       </h4>

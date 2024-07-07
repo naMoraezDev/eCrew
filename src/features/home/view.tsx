@@ -2,13 +2,14 @@ import Image from "next/image";
 import { Newsletter } from "@/ui/newsletter";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
+import { Tournaments } from "@/ui/tournaments";
 import { LatestPosts } from "@/ui/latest-posts";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
 import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EcrewApiService } from "@/services/ecrew-api.service";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
 const DynamicLiveMatchesCarousel = dynamic(() =>
@@ -38,41 +39,39 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     featuredPosts,
     latestPosts,
   ] = await Promise.all([
-    new EcrewApiService(new FetchHttpClientAdapter()).getGames(),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getGames(),
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "league-of-legends",
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "r6-siege",
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "cod-mw",
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "cs-go",
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "valorant",
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "2",
       category: "dota-2",
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByTag(
-      "destaques"
-    ),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+    new EcrewApiService(httpClientFactory()).getPostsByTag("destaques"),
+    new EcrewApiService(httpClientFactory()).getPostsByCategory({
       page: "1",
       number: "4",
       category: "all",
@@ -143,6 +142,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
         {isDesktop && (
           <section className="w-1/4 flex flex-col gap-4 mt-4">
             <DynamicMatchesSection />
+            <Tournaments />
             <div className="flex flex-col gap-4 sticky top-16">
               <DynamicMostReadPosts />
               <DynamicPopularTags />

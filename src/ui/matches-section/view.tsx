@@ -1,5 +1,5 @@
 import { LiveMatches } from "../live-matches";
-import { UpcomingMatches } from "../upcomming-matches";
+import { UpcomingMatches } from "../upcoming-matches";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 

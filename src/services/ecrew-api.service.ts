@@ -6,6 +6,7 @@ import { Matches } from "./types/matches.types";
 import { Checkout } from "./types/checkout.types";
 import { UserPreferences } from "./types/user-preferences.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
+import { Tournaments } from "./types/tournaments.types";
 
 interface EcrewApiServiceProtocol {
   getPostsByCategory: (params: {
@@ -24,6 +25,7 @@ interface EcrewApiServiceProtocol {
   checkout: (authorization: string) => Promise<Checkout>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
+  getRunningTournaments: (gameSlug: string) => Promise<Tournaments>;
   subscribeOnNewsletter: (email: string) => Promise<{ email: string }>;
 }
 
@@ -159,5 +161,15 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
         },
       });
     return userPreferences;
+  }
+
+  public async getRunningTournaments(gameSlug: string) {
+    const tournaments = await this.httpClient.request<Tournaments>({
+      input: `${this.baseUrl}/${gameSlug}/tournaments/running`,
+      init: {
+        method: "GET",
+      },
+    });
+    return tournaments;
   }
 }

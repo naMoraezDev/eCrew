@@ -15,7 +15,7 @@ export function MatchCardView({ match }: MatchCardProps) {
         onClick={handleRevealStream}
         title={`${match.league.name} - ${match.name}`}
         className={`
-          ${match.status === "running" ? "pl-10 cursor-pointer" : "pl-4"}
+          ${match.status === "running" ? "pl-10 cursor-pointer" : "pl-3"}
           flex items-center gap-6 relative w-full h-12 pr-10 rounded-lg bg-zinc-900 overflow-hidden group animate-fade
         `}
       >
