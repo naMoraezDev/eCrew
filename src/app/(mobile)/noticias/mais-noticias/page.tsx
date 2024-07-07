@@ -1,10 +1,6 @@
 import { Metadata } from "next";
 import { Category } from "@/features/category";
 import { moreNewsMetadata } from "@/seo/more-posts";
-import { REVALIDATE_TIME } from "@/shared/constants";
-
-export const dynamic = "force-static";
-export const revalidate = REVALIDATE_TIME;
 
 export async function generateMetadata({
   searchParams,
