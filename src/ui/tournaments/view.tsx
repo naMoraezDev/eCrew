@@ -1,4 +1,3 @@
-import "./styles.css";
 import Link from "next/link";
 import Image from "next/image";
 import { IoIosPodium } from "react-icons/io";
@@ -44,7 +43,7 @@ export async function TournamentsView() {
           />
           <div className="flex flex-col gap-1 font-kanit ">
             <span className="font-bold">{tournament.league.name}</span>
-            <span className="text-sm">
+            <span className="text-xs">
               {tournament.serie.name}
               {tournament.serie.name && " - "}
               {tournament.name}

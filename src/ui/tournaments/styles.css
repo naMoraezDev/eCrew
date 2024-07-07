@@ -1,7 +1,0 @@
-li {
-  background: rgb(39 39 42 / 30%);
-}
-
-li:nth-child(odd) {
-  background: transparent;
-}

@@ -1,8 +1,9 @@
 "use client";
 
-import { MatchCard } from "../match-card";
+import Image from "next/image";
 import { useUpcommingMatches } from "./_io";
 import { MdSchedule } from "react-icons/md";
+import { FaShieldCat } from "react-icons/fa6";
 import { UpcomingMatchesProps } from "./types";
 
 export function UpcomingMatchesView({
@@ -29,11 +30,60 @@ export function UpcomingMatchesView({
         <MdSchedule />
         Próximas partidas
       </h4>
-      <div className="flex flex-col gap-2">
+      <ul className="flex flex-col gap-2">
         {(viewMore ? matches : matches?.slice(0, 5))?.map((match, index) => {
-          return <MatchCard key={index} match={match} />;
+          return (
+            <li key={index} className="p-3 flex gap-4">
+              <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
+                {match.opponents[0]?.opponent.image_url ? (
+                  <Image
+                    width={16}
+                    height={16}
+                    alt="opponent 1"
+                    src={match.opponents[0].opponent.image_url || ""}
+                  />
+                ) : (
+                  <FaShieldCat size={16} className="text-zink-600 shrink-0" />
+                )}
+                {match.status === "running" && (
+                  <span className="text-xs font-kanit font-bold">
+                    {match.results[0].score}
+                  </span>
+                )}
+                <span className="text-xs font-bold">vs</span>
+                {match.status === "running" && (
+                  <span className="text-xs font-kanit font-bold">
+                    {match.results[1].score}
+                  </span>
+                )}
+                {match.opponents[1]?.opponent.image_url ? (
+                  <Image
+                    width={16}
+                    height={16}
+                    alt="opponent 1"
+                    src={match.opponents[1].opponent.image_url || ""}
+                  />
+                ) : (
+                  <FaShieldCat size={16} className="text-zink-600 shrink-0" />
+                )}
+              </div>
+              <div className="flex flex-col gap-2 overflow-hidden">
+                <span className="font-kanit text-sm font-bold text-nowrap hover:animate-text-slide">
+                  {match.name}
+                </span>
+                <span className="text-xs font-kanit">
+                  {new Date(match.begin_at).toLocaleDateString("pt-BR", {
+                    hour: "numeric",
+                    minute: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+            </li>
+          );
         })}
-      </div>
+      </ul>
       {upcomingMatches && upcomingMatches.length > 5 && (
         <button
           type="button"
