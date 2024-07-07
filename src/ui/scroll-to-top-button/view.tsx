@@ -10,7 +10,7 @@ export function ScrollToTopButtonView() {
     <button
       type="button"
       onClick={scrollToTop}
-      className="h-fit px-4 py-2 bg-zinc-800 rounded-lg flex items-center gap-2 whitespace-nowrap text-sm font-kanit bg-opacity-50 w-fit duration-300 hover:bg-opacity-20"
+      className="h-fit px-4 py-2 bg-zinc-900 rounded-lg flex items-center gap-2 whitespace-nowrap text-sm font-kanit bg-opacity-50 w-fit duration-300 hover:bg-opacity-20"
     >
       Voltar ao topo <MdKeyboardDoubleArrowUp />
     </button>

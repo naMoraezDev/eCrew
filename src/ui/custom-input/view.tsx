@@ -39,7 +39,7 @@ export function CustomInputView({
           onClick={toggleShowPassword}
           className="
             absolute size-8 right-3 top-1 flex items-center rounded-full duration-300 p-[2px] bg-zinc-900
-            hover:bg-zinc-800
+            hover:bg-zinc-900
           "
         >
           {showPassword ? (

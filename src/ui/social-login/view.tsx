@@ -9,7 +9,7 @@ export function SocialLoginView() {
       <button
         type="button"
         onClick={loginWithGoogle}
-        className="flex items-center justify-center gap-2 text-sm rounded-lg bg-zinc-800 p-2"
+        className="flex items-center justify-center gap-2 text-sm rounded-lg bg-zinc-900 p-2"
       >
         <FcGoogle />
         Entre com o Google

@@ -20,7 +20,7 @@ export function ArticleReaderView({
   });
 
   return (
-    <section className="w-full h-full px-10 py-6 bg-zinc-900 rounded-lg flex flex-col gap-3 justify-center">
+    <section className="w-full h-full px-10 py-6 bg-zinc-900 bg-opacity-50 rounded-lg flex flex-col gap-3 justify-center">
       <span className="font-kanit text-xs">Reproduzir matéria em áudio</span>
       <div className="flex gap-6">
         <div className="flex items-center gap-1">

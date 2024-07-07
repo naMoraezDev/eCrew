@@ -80,7 +80,7 @@ export function FeaturedPostsView({
             key={index}
             onClick={() => scrollToSlide(index)}
             className={`
-              ${currentIndex === index ? "bg-zinc-50 w-10" : "bg-zinc-800"}
+              ${currentIndex === index ? "bg-zinc-50 w-10" : "bg-zinc-900"}
               size-2 rounded-full duration-500 cursor-pointer
             `}
           />

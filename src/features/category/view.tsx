@@ -156,12 +156,12 @@ export async function CategoryView({
                       }`
                     : `/noticias/${category}?page=${page - 1}`
                 }
-                className="bg-zinc-800 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
+                className="bg-zinc-900 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
               >
                 <MdOutlineKeyboardDoubleArrowLeft size={18} />
               </Link>
             )}
-            <div className="p-1 bg-zinc-800 bg-opacity-50 rounded-lg min-w-8 h-8 flex items-center justify-center">
+            <div className="p-1 bg-zinc-900 bg-opacity-50 rounded-lg min-w-8 h-8 flex items-center justify-center">
               {page}
             </div>
             {postList.posts.length >= 12 && (
@@ -171,7 +171,7 @@ export async function CategoryView({
                     ? `/noticias/mais-noticias?page=${page + 1}`
                     : `/noticias/${category}?page=${page + 1}`
                 }
-                className="bg-zinc-800 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
+                className="bg-zinc-900 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
               >
                 <MdOutlineKeyboardDoubleArrowRight size={18} />
               </Link>

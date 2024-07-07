@@ -5,7 +5,7 @@ import eCrewLogo from "@/assets/images/e_posts_logo.svg";
 
 export function ProTopBannerView({ isDesktop }: ProTopBannerProps) {
   return (
-    <section className="w-full h-10 bg-zinc-800 bg-opacity-50 relative">
+    <section className="w-full h-10 bg-zinc-900 bg-opacity-50 relative">
       <div className="w-full max-w-[1000px] mx-auto px-4 flex justify-between items-center h-full">
         <div className="flex items-center gap-2">
           <Image width={24} height={24} src={eCrewLogo} alt="eCrew logo" />

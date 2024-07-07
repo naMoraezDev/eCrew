@@ -54,7 +54,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <section className="w-full bg-zinc-900 rounded-lg overflow-hidden">
+        <section className="w-full bg-zinc-900 bg-opacity-50 rounded-lg overflow-hidden">
           <figure className="w-full h-[250px]">
             <Image
               priority
@@ -81,7 +81,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             <div
               className={`
                 ${isDesktop ? "py-4 px-10" : "py-4 px-6"}
-                w-full text-xs font-bold text-slate-300 bg-zinc-800 rounded-b-lg flex items-center justify-between
+                w-full text-xs font-bold text-slate-300 bg-zinc-900 rounded-b-lg flex items-center justify-between
               `}
             >
               <time>
@@ -101,7 +101,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             w-full gap-4
           `}
         >
-          <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 rounded-lg">
+          <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 bg-opacity-50 rounded-lg">
             <Image
               width={64}
               height={64}
@@ -125,7 +125,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
         </section>
         <HorizontalAd />
         <PostContent content={post.content} isDesktop={isDesktop} />
-        <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 rounded-lg">
+        <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 bg-opacity-50 rounded-lg">
           <Image
             width={64}
             height={64}
@@ -138,7 +138,6 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             <p className="text-slate-300 text-base font-normal">autor</p>
           </div>
         </section>
-
         {!isDesktop && (
           <MorePostsAbout
             posts={morePostsAbout.posts}

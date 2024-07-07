@@ -14,7 +14,7 @@ export function PostCardView({
     <Link
       href={`/noticias/${post.categories[0].slug}/${post.slug}`}
       className={`
-        ${variant === "filled" && "bg-zinc-800 bg-opacity-50"}
+        ${variant === "filled" && "bg-zinc-900 bg-opacity-50"}
         ${orientation === "vertical" && "flex-col w-full"}
         group flex gap-3 rounded-lg overflow-hidden h-full
       `}
@@ -34,7 +34,7 @@ export function PostCardView({
           className="size-full object-cover object-center duration-300 aspect-video group-hover:scale-105"
         />
         {gameIconUrl && (
-          <div className="absolute top-3 right-3 flex justify-center items-center p-1 rounded-lg backdrop-blur-sm bg-zinc-800 bg-opacity-50 size-8">
+          <div className="absolute top-3 right-3 flex justify-center items-center p-1 rounded-lg backdrop-blur-sm bg-zinc-900 bg-opacity-50 size-8">
             <Image
               width={24}
               height={24}

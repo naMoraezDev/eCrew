@@ -43,7 +43,7 @@ export function FeaturedCarouselView({
                 isDesktop ? "p-10" : "p-6"
               } size-full absolute top-0 left-0 flex flex-col gap-6 justify-center`}
             >
-              <span className="text-sm font-kanit font-bold bg-zinc-800 bg-opacity-30 px-4 py-1 rounded-2xl w-fit backdrop-blur-sm flex items-center gap-2">
+              <span className="text-sm font-kanit font-bold bg-zinc-900 bg-opacity-30 px-4 py-1 rounded-2xl w-fit backdrop-blur-sm flex items-center gap-2">
                 <Image
                   width={20}
                   height={20}
@@ -81,7 +81,7 @@ export function FeaturedCarouselView({
         href={`noticias/${posts.posts[currentIndex].categories[0].slug}/${posts.posts[currentIndex].slug}`}
       />
       <div className="size-full absolute top-0 left-0 bg-gradient-to-tr from-zinc-950 to-transparent" />
-      <section className="absolute bottom-4 right-4 flex gap-2 px-4 py-2 bg-zinc-800 bg-opacity-50 backdrop-blur-sm rounded-2xl z-10">
+      <section className="absolute bottom-4 right-4 flex gap-2 px-4 py-2 bg-zinc-900 bg-opacity-50 backdrop-blur-sm rounded-2xl z-10">
         {posts.posts.map((_post, index) => (
           <button
             type="button"
@@ -90,7 +90,7 @@ export function FeaturedCarouselView({
             className={`${
               index === currentIndex
                 ? "bg-zinc-200 w-10"
-                : "bg-zinc-800 bg-opacity-80 w-2"
+                : "bg-zinc-900 bg-opacity-80 w-2"
             } h-2 rounded-full duration-500`}
           />
         ))}

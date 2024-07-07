@@ -9,7 +9,7 @@ export function PostContentView({ content, isDesktop }: PostContentProps) {
   usePostContent({ content });
 
   return (
-    <div className="w-full bg-zinc-900 rounded-lg">
+    <div className="w-full bg-zinc-900 bg-opacity-50 rounded-lg">
       <div
         dangerouslySetInnerHTML={{ __html: content }}
         className={`
@@ -21,7 +21,7 @@ export function PostContentView({ content, isDesktop }: PostContentProps) {
       <div
         className={`
           ${isDesktop ? "py-4 px-10" : "py-4 px-6"}
-          w-full text-xs font-bold text-slate-300 bg-zinc-800 rounded-b-lg flex items-center justify-center
+          w-full text-xs font-bold text-slate-300 bg-zinc-900 rounded-b-lg flex items-center justify-center
         `}
       >
         <ShareButtons />

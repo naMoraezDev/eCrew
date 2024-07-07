@@ -12,7 +12,7 @@ export function CookiesAcceptView() {
     <section
       className={`
         ${open ? "translate-y-0" : "translate-y-[100%]"}
-        fixed bottom-0 left-0 w-full flex justify-center z-20 bg-zinc-800 bg-opacity-20 backdrop-blur-md p-6 rounded-t-xl duration-500
+        fixed bottom-0 left-0 w-full flex justify-center z-20 bg-zinc-900 bg-opacity-20 backdrop-blur-md p-6 rounded-t-xl duration-500
       `}
     >
       <div className="w-full max-w-[1000px] mx-auto px-4 flex flex-col gap-3">

@@ -6,7 +6,7 @@ export function SignOutButtonView({ signOut }: SignOutButtonProps) {
     <button
       type="button"
       onClick={signOut}
-      className="flex justify-center items-center bg-zinc-800 bg-opacity-50 rounded-lg p-3"
+      className="flex justify-center items-center bg-zinc-900 bg-opacity-50 rounded-lg p-3"
     >
       <FaSignOutAlt size={16} />
     </button>

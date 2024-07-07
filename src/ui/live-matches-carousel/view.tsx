@@ -24,7 +24,7 @@ export function LiveMatchesCarouselView({ games }: LiveMatchesCarouselProps) {
           {isLoading &&
             Array.from({ length: 5 }).map((_, index) => (
               <CarouselItem key={index} className="basis-[70%]">
-                <Skeleton className="h-12 w-full rounded-xl !bg-zinc-800 !bg-opacity-50 !animate-fade" />
+                <Skeleton className="h-12 w-full rounded-xl !bg-zinc-900 !bg-opacity-50 !animate-fade" />
               </CarouselItem>
             ))}
           {!isLoading &&

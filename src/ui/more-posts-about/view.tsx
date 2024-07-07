@@ -6,7 +6,7 @@ import { IoMdArrowDroprightCircle } from "react-icons/io";
 
 export function MorePostsAboutView({ posts, category }: MorePostsAboutProps) {
   return (
-    <section className="flex flex-col gap-3 bg-zinc-900 p-3 rounded-lg">
+    <section className="flex flex-col gap-3 bg-zinc-900 bg-opacity-50 p-3 rounded-lg">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
         <FaPlus />
         <span>
@@ -18,7 +18,7 @@ export function MorePostsAboutView({ posts, category }: MorePostsAboutProps) {
         <section
           key={index}
           title={post.title}
-          className="rounded-lg w-full overflow-hidden flex bg-zinc-800 relative group"
+          className="rounded-lg w-full overflow-hidden flex bg-zinc-900 relative group"
         >
           <figure className="w-16 shrink-0 overflow-hidden">
             <Image

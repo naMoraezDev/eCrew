@@ -18,7 +18,7 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
         href={user ? "#" : "/login"}
         className={`
           ${!user ? "p-3" : "p-2"}
-          flex items-center gap-3 bg-zinc-800 bg-opacity-50 rounded-lg
+          flex items-center gap-3 bg-zinc-900 bg-opacity-50 rounded-lg
         `}
       >
         {!user && <LoggedOutUser isDesktop={isDesktop} />}
