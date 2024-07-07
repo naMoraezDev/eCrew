@@ -20,14 +20,7 @@ export async function LayoutWrapperView({
       <ProTopBanner isDesktop={isDesktop} />
       <Header isDesktop={isDesktop} games={games} />
       <Navbar />
-      <div
-        className={`
-          ${isDesktop ? "w-fit" : "w-full"}
-          flex mx-auto gap-3
-        `}
-      >
-        <main className="w-full max-w-[1280px] p-4">{children}</main>
-      </div>
+      <main className="w-full max-w-[1280px] p-4 mx-auto">{children}</main>
       {/* <CookiesAccept /> */}
       <Footer isDesktop={isDesktop} />
     </>

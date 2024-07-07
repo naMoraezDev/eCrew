@@ -5,8 +5,8 @@ import {
   BreadcrumbList,
   BreadcrumbItem,
   BreadcrumbLink,
-  BreadcrumbSeparator,
   BreadcrumbPage,
+  BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { PostProps } from "./types";
 import { Newsletter } from "@/ui/newsletter";
@@ -20,7 +20,7 @@ import { MorePostsAbout } from "@/ui/more-posts-about";
 
 export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
   return (
-    <section className="w-full max-w-[1000px] flex gap-4">
+    <section className="w-full max-w-[1000px] mx-auto flex gap-4">
       <article
         className={`
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
