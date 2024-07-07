@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { MdUpcoming } from "react-icons/md";
 import { useUpcommingMatches } from "./_io";
-import { MdSchedule } from "react-icons/md";
 import { FaShieldCat } from "react-icons/fa6";
 import { UpcomingMatchesProps } from "./types";
 
@@ -23,17 +23,17 @@ export function UpcomingMatchesView({
     <section
       className={`
         ${background && "bg-zinc-800 bg-opacity-50"}
-        flex flex-col gap-4 p-3 rounded-lg
+        flex flex-col rounded-lg
       `}
     >
-      <h4 className="font-kanit font-medium text-sm flex items-center gap-2 mb-3">
-        <MdSchedule />
+      <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
+        <MdUpcoming />
         Próximas partidas
       </h4>
-      <ul className="flex flex-col gap-2">
+      <ul className="flex flex-col">
         {(viewMore ? matches : matches?.slice(0, 5))?.map((match, index) => {
           return (
-            <li key={index} className="p-3 flex gap-4">
+            <li key={index} className="px-6 py-3 flex gap-4">
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
                 {match.opponents[0]?.opponent.image_url ? (
                   <Image
@@ -88,7 +88,7 @@ export function UpcomingMatchesView({
         <button
           type="button"
           onClick={toggleViewMore}
-          className="text-sm font-kanit"
+          className="text-sm font-kanit p-3"
         >
           {viewMore ? "Ver menos" : "ver mais"}
         </button>

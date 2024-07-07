@@ -21,13 +21,13 @@ export async function TournamentsView() {
   ];
 
   return (
-    <ul className="flex flex-col bg-zinc-800 bg-opacity-50 rounded-lg p-3">
-      <h4 className="font-kanit font-medium text-sm flex items-center gap-2 mb-3">
+    <ul className="flex flex-col bg-zinc-800 bg-opacity-50 rounded-lg">
+      <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
         <IoIosPodium />
         Campeonatos
       </h4>
       {tournaments.map((tournament, index) => (
-        <li key={index} className="text-sm flex gap-3 p-3">
+        <li key={index} className="text-sm flex gap-3 px-6 py-3">
           <Image
             width={40}
             height={40}
@@ -51,7 +51,7 @@ export async function TournamentsView() {
           </div>
         </li>
       ))}
-      <Link className="self-center text-sm font-kanit mt-3" href="/campeonatos">
+      <Link className="self-center text-sm font-kanit p-3" href="/campeonatos">
         ver todos
       </Link>
     </ul>
