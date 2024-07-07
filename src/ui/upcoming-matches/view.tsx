@@ -59,7 +59,7 @@ export async function UpcomingMatchesView() {
                   <FaShieldCat size={16} className="text-zink-600 shrink-0" />
                 )}
               </div>
-              <div className="flex flex-col gap-2 overflow-hidden">
+              <div className="flex flex-col gap-1 overflow-hidden">
                 <span className="font-kanit text-sm font-bold text-nowrap hover:animate-text-slide">
                   {match.name}
                 </span>
