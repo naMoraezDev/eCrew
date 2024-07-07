@@ -1,18 +1,15 @@
-"use client";
-
+import Link from "next/link";
 import Image from "next/image";
 import { MdUpcoming } from "react-icons/md";
-import { useUpcommingMatches } from "./_io";
 import { FaShieldCat } from "react-icons/fa6";
-import { UpcomingMatchesProps } from "./types";
+import { EcrewApiService } from "@/services/ecrew-api.service";
+import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
-export function UpcomingMatchesView({
-  background = true,
-  upcomingMatches,
-}: UpcomingMatchesProps) {
-  const { viewMore, toggleViewMore } = useUpcommingMatches();
-  const matches = upcomingMatches?.filter(
-    (match) => new Date(match.begin_at) > new Date()
+export async function UpcomingMatchesView() {
+  const upcomingMatches = await new EcrewApiService(
+    httpClientFactory()
+  ).getUpcommingMatches(
+    "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant&page=1&per_page=5"
   );
 
   if (!upcomingMatches?.length) {
@@ -20,18 +17,13 @@ export function UpcomingMatchesView({
   }
 
   return (
-    <section
-      className={`
-        ${background && "bg-zinc-800 bg-opacity-50"}
-        flex flex-col rounded-lg
-      `}
-    >
+    <section className="flex flex-col rounded-lg bg-zinc-900 bg-opacity-50">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
         <MdUpcoming />
         Próximas partidas
       </h4>
       <ul className="flex flex-col">
-        {(viewMore ? matches : matches?.slice(0, 5))?.map((match, index) => {
+        {upcomingMatches?.slice(0, 5)?.map((match, index) => {
           return (
             <li key={index} className="px-6 py-3 flex gap-4">
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
@@ -84,15 +76,9 @@ export function UpcomingMatchesView({
           );
         })}
       </ul>
-      {upcomingMatches && upcomingMatches.length > 5 && (
-        <button
-          type="button"
-          onClick={toggleViewMore}
-          className="text-sm font-kanit p-3"
-        >
-          {viewMore ? "Ver menos" : "ver mais"}
-        </button>
-      )}
+      <Link href="/partidas" className="text-sm font-kanit p-3 self-center">
+        ver todas
+      </Link>
     </section>
   );
 }

@@ -21,7 +21,7 @@ export async function TournamentsView() {
   ];
 
   return (
-    <ul className="flex flex-col bg-zinc-800 bg-opacity-50 rounded-lg">
+    <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
         <IoIosPodium />
         Campeonatos
