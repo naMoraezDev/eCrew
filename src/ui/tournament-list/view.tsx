@@ -8,8 +8,10 @@ import {
   SelectTrigger,
   SelectContent,
 } from "@/components/ui/select";
+import { Fragment } from "react";
 import { useTournamentList } from "./_io";
 import { TournamentListProps } from "./types";
+import { HorizontalAd } from "../horizontal-ad";
 import { RiErrorWarningFill } from "react-icons/ri";
 
 export function TournamentListView({
@@ -59,32 +61,35 @@ export function TournamentListView({
             </span>
           </li>
         )}
-        {filteredTournaments.map((tournament) => (
-          <li
-            key={tournament.id}
-            className="px-6 py-3 flex justify-between items-center font-kanit text-xs gap-10"
-          >
-            <div className="flex gap-4 w-1/4">
-              <Image
-                width={40}
-                height={40}
-                src={
-                  games.find((game) => game.slug === tournament.videogame.slug)
-                    ?.icon_url || ""
-                }
-                alt={
-                  games.find((game) => game.slug === tournament.videogame.slug)
-                    ?.name || ""
-                }
-                className="rounded-sm object-cover size-4 shrink-0 relative top-1"
-              />
-              <span className="text-sm">{tournament.name}</span>
-            </div>
-            <span className="w-1/4">{tournament.league.name}</span>
-            <span className="w-1/4">{tournament.serie.name || "-"}</span>
-            <span className="w-1/4">{tournament.prizepool || "-"}</span>
-          </li>
+        {filteredTournaments.map((tournament, index) => (
+          <Fragment key={tournament.id}>
+            {index === 8 && <HorizontalAd rounded={false} />}
+            <li className="px-6 py-3 flex justify-between items-center font-kanit text-xs gap-10">
+              <div className="flex gap-4 w-1/4">
+                <Image
+                  width={40}
+                  height={40}
+                  src={
+                    games.find(
+                      (game) => game.slug === tournament.videogame.slug
+                    )?.icon_url || ""
+                  }
+                  alt={
+                    games.find(
+                      (game) => game.slug === tournament.videogame.slug
+                    )?.name || ""
+                  }
+                  className="rounded-sm object-cover size-4 shrink-0 relative top-1"
+                />
+                <span className="text-sm">{tournament.name}</span>
+              </div>
+              <span className="w-1/4">{tournament.league.name}</span>
+              <span className="w-1/4">{tournament.serie.name || "-"}</span>
+              <span className="w-1/4">{tournament.prizepool || "-"}</span>
+            </li>
+          </Fragment>
         ))}
+        <HorizontalAd rounded={false} />
       </ul>
     </section>
   );

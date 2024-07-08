@@ -10,10 +10,10 @@ import {
 import { MatchProps } from "./types";
 import { Tournaments } from "@/ui/tournaments";
 import { StreamsList } from "@/ui/streams-list";
+import { RiErrorWarningFill } from "react-icons/ri";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
-import { RiErrorWarningFill } from "react-icons/ri";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
   const [games, match] = await Promise.all([
