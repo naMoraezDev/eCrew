@@ -1,10 +1,3 @@
-import {
-  Breadcrumb,
-  BreadcrumbList,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { TournamentProps } from "./types";
 import { IoIosPodium } from "react-icons/io";
 import { TournamentList } from "@/ui/tournament-list";
@@ -58,19 +51,6 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
           flex flex-col gap-10 mb-10
         `}
       >
-        <Breadcrumb className="text-zinc-50">
-          <BreadcrumbList className="text-zinc-50">
-            <BreadcrumbItem>
-              <BreadcrumbLink
-                href="/partidas"
-                className="hover:text-zinc-300 duration-300"
-              >
-                torneios
-              </BreadcrumbLink>
-            </BreadcrumbItem>
-            <BreadcrumbSeparator />
-          </BreadcrumbList>
-        </Breadcrumb>
         <h4 className="font-kanit font-bold text-3xl flex items-center gap-2 px-6 py-3">
           <IoIosPodium />
           Torneios
