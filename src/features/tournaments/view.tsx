@@ -55,7 +55,7 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
           <IoIosPodium />
           Torneios
           <div>
-            <span className="text-violet-500 text-xs px-3 bg-violet-500 bg-opacity-20 rounded-full ml-2">
+            <span className="font-medium text-violet-500 text-sm px-3 bg-violet-500 bg-opacity-20 rounded-full ml-2">
               em aberto
             </span>
           </div>

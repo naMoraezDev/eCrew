@@ -10,6 +10,7 @@ import {
 import { MatchProps } from "./types";
 import { Tournaments } from "@/ui/tournaments";
 import { StreamsList } from "@/ui/streams-list";
+import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -76,6 +77,15 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             }
           />
           {match.videogame.name}
+          <div>
+            <span className="font-medium text-violet-500 text-sm px-3 bg-violet-500 bg-opacity-20 rounded-full ml-2">
+              {match.status === "ended"
+                ? "Finalizada"
+                : match.status === "not_started"
+                ? "Não iniciada"
+                : "Em andamento"}
+            </span>
+          </div>
         </section>
         <section
           className={`
@@ -89,7 +99,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 width={32}
                 height={32}
                 alt={match.opponents[0].opponent.name}
-                src={match.opponents[0].opponent.image_url}
+                src={match.opponents[0].opponent.image_url || ecrewLogo}
               />
             </div>
             <div className="flex gap-2">
@@ -100,7 +110,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 width={32}
                 height={32}
                 alt={match.opponents[1].opponent.name}
-                src={match.opponents[1].opponent.image_url}
+                src={match.opponents[1].opponent.image_url || ecrewLogo}
               />
             </div>
           </div>
@@ -143,7 +153,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     height={32}
                     className="size-4"
                     alt={match.opponents[0].opponent.name}
-                    src={match.opponents[0].opponent.image_url}
+                    src={match.opponents[0].opponent.image_url || ecrewLogo}
                   />
                   {match.opponents[0].opponent.name}
                 </span>
@@ -156,7 +166,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     height={32}
                     className="size-4"
                     alt={match.opponents[1].opponent.name}
-                    src={match.opponents[1].opponent.image_url}
+                    src={match.opponents[1].opponent.image_url || ecrewLogo}
                   />
                   {match.opponents[1].opponent.name}
                 </span>
@@ -187,9 +197,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             ))}
           </ul>
         </section>
-        {Boolean(match.streams_list.length) && isLive && (
-          <StreamsList match={match} streams={streams} />
-        )}
+        <StreamsList match={match} streams={streams} />
       </section>
       {isDesktop && (
         <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
