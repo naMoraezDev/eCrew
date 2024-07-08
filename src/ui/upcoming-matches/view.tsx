@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MdUpcoming } from "react-icons/md";
-import { FaShieldCat } from "react-icons/fa6";
+import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -27,16 +27,12 @@ export async function UpcomingMatchesView() {
           return (
             <li key={index} className="px-6 py-3 flex gap-4 relative">
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
-                {match.opponents[0]?.opponent.image_url ? (
-                  <Image
-                    width={16}
-                    height={16}
-                    alt="opponent 1"
-                    src={match.opponents[0].opponent.image_url || ""}
-                  />
-                ) : (
-                  <FaShieldCat size={16} className="text-zink-600 shrink-0" />
-                )}
+                <Image
+                  width={16}
+                  height={16}
+                  alt="opponent 1"
+                  src={match.opponents[0].opponent.image_url || ecrewLogo}
+                />
                 {match.status === "running" && (
                   <span className="text-xs font-kanit font-bold">
                     {match.results[0].score}
@@ -48,16 +44,12 @@ export async function UpcomingMatchesView() {
                     {match.results[1].score}
                   </span>
                 )}
-                {match.opponents[1]?.opponent.image_url ? (
-                  <Image
-                    width={16}
-                    height={16}
-                    alt="opponent 1"
-                    src={match.opponents[1].opponent.image_url || ""}
-                  />
-                ) : (
-                  <FaShieldCat size={16} className="text-zink-600 shrink-0" />
-                )}
+                <Image
+                  width={16}
+                  height={16}
+                  alt="opponent 1"
+                  src={match.opponents[1].opponent.image_url || ecrewLogo}
+                />
               </div>
               <div className="flex flex-col gap-1 overflow-hidden">
                 <span className="font-kanit text-sm font-bold text-nowrap hover:animate-text-slide">
@@ -72,7 +64,10 @@ export async function UpcomingMatchesView() {
                   })}
                 </span>
               </div>
-              <Link href={`/partidas/${match.id}`} className="size-full absolute top-0 left-0" />
+              <Link
+                href={`/partidas/${match.id}`}
+                className="size-full absolute top-0 left-0"
+              />
             </li>
           );
         })}
