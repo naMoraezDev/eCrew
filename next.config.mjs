@@ -34,6 +34,11 @@ const nextConfig = {
       {
         pathname: "/**",
         protocol: "https",
+        hostname: "static-cdn.jtvnw.net",
+      },
+      {
+        pathname: "/**",
+        protocol: "https",
         hostname: "eposts7.files.wordpress.com",
       },
     ],

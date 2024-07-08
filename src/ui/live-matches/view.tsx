@@ -71,6 +71,10 @@ export function LiveMatchesView() {
                   LIVE
                 </span>
               </div>
+              <Link
+                href={`/partidas/${match.id}`}
+                className="size-full absolute top-0 left-0 z-10"
+              />
             </li>
           );
         })}

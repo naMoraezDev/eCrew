@@ -7,6 +7,9 @@ import { Checkout } from "./types/checkout.types";
 import { UserPreferences } from "./types/user-preferences.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 import { Tournaments } from "./types/tournaments.types";
+import { Match } from "./types/match.types";
+import { TwitchUserResponse } from "./types/twitch.types";
+import { Team } from "./types/team.types";
 
 interface EcrewApiServiceProtocol {
   getPostsByCategory: (params: {
@@ -19,12 +22,15 @@ interface EcrewApiServiceProtocol {
   getUserPreferences: (
     authorization: string
   ) => Promise<UserPreferences | null>;
+  getMatchById: (id: string) => Promise<Match>;
+  getTeamBySlug: (slug: string) => Promise<Team>;
   getPostBySlug: (slug: string) => Promise<Post>;
   getPostsByTag: (tag: string) => Promise<Posts>;
   getPostsBySearch: (search: string) => Promise<Posts>;
   checkout: (authorization: string) => Promise<Checkout>;
   getRunningMatches: (query: string) => Promise<Matches>;
   getUpcommingMatches: (query: string) => Promise<Matches>;
+  getTwitchUser: (login: string) => Promise<TwitchUserResponse>;
   getRunningTournaments: (gameSlug: string) => Promise<Tournaments>;
   subscribeOnNewsletter: (email: string) => Promise<{ email: string }>;
 }
@@ -36,6 +42,16 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
 
   private readonly baseUrl: string =
     process.env.NEXT_PUBLIC_EPOSTS_API_URL ?? "";
+
+  public async getMatchById(id: string) {
+    const match = await this.httpClient.request<Match>({
+      input: `${this.baseUrl}/matches/match/${id}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return match;
+  }
 
   public async getUpcommingMatches(query: string = "") {
     const matches = await this.httpClient.request<Matches>({
@@ -171,5 +187,25 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
       },
     });
     return tournaments;
+  }
+
+  public async getTwitchUser(login: string) {
+    const user = await this.httpClient.request<TwitchUserResponse>({
+      input: `${this.baseUrl}/twitch/users/${login}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return user;
+  }
+
+  public async getTeamBySlug(slug: string) {
+    const team = await this.httpClient.request<Team>({
+      input: `${this.baseUrl}/teams/${slug}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return team;
   }
 }

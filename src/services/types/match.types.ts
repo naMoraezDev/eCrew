@@ -1,17 +1,34 @@
-export type Matches = Match[];
-
 export interface Match {
   id: number;
   slug: string;
+  name: string;
+  begin_at: string;
+  end_at: any;
+  status: string;
+  number_of_games: number;
+  draw: any;
+  forfeit: any;
+  serie: Serie;
   videogame: Videogame;
   league: League;
   tournament: Tournament;
-  status: string;
-  name: string;
-  begin_at: string;
   streams_list: StreamsList[];
   results: Result[];
   opponents: Opponent[];
+}
+
+export interface Serie {
+  begin_at: string;
+  end_at: string;
+  full_name: string;
+  id: number;
+  league_id: number;
+  modified_at: string;
+  name: string;
+  slug: string;
+  winner_id: any;
+  winner_type: string;
+  year: number;
 }
 
 export interface Videogame {
@@ -24,20 +41,20 @@ export interface League {
   id: number;
   name: string;
   slug: string;
-  image_url?: string;
+  image_url: string;
 }
 
 export interface Tournament {
   begin_at: string;
-  detailed_stats?: boolean;
+  detailed_stats: boolean;
   end_at: string;
-  has_bracket?: boolean;
+  has_bracket: boolean;
   id: number;
   league_id: number;
   live_supported: any;
   modified_at: string;
   name: string;
-  prizepool?: string;
+  prizepool: string;
   serie_id: number;
   slug: string;
   tier: string;
@@ -50,7 +67,7 @@ export interface StreamsList {
   raw_url: string;
   language: string;
   official: boolean;
-  embed_url?: string;
+  embed_url: string;
 }
 
 export interface Result {
