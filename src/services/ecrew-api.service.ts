@@ -26,6 +26,7 @@ interface EcrewApiServiceProtocol {
   getTeamBySlug: (slug: string) => Promise<Team>;
   getPostBySlug: (slug: string) => Promise<Post>;
   getPostsByTag: (tag: string) => Promise<Posts>;
+  getMatches: (query: string) => Promise<Matches>;
   getPostsBySearch: (search: string) => Promise<Posts>;
   checkout: (authorization: string) => Promise<Checkout>;
   getRunningMatches: (query: string) => Promise<Matches>;
@@ -51,6 +52,16 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
       },
     });
     return match;
+  }
+
+  public async getMatches(query: string = "") {
+    const matches = await this.httpClient.request<Matches>({
+      input: `${this.baseUrl}/matches${query}`,
+      init: {
+        method: "GET",
+      },
+    });
+    return matches;
   }
 
   public async getUpcommingMatches(query: string = "") {
