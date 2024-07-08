@@ -31,7 +31,7 @@ export async function UpcomingMatchesView() {
                   width={16}
                   height={16}
                   alt="opponent 1"
-                  src={match.opponents[0].opponent.image_url || ecrewLogo}
+                  src={match.opponents[0]?.opponent?.image_url || ecrewLogo}
                 />
                 {match.status === "running" && (
                   <span className="text-xs font-kanit font-bold">
@@ -48,7 +48,7 @@ export async function UpcomingMatchesView() {
                   width={16}
                   height={16}
                   alt="opponent 1"
-                  src={match.opponents[1].opponent.image_url || ecrewLogo}
+                  src={match.opponents[1]?.opponent?.image_url || ecrewLogo}
                 />
               </div>
               <div className="flex flex-col gap-1 overflow-hidden">

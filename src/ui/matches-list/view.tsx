@@ -9,19 +9,20 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
   return (
     <section className="w-full flex flex-col gap-3">
       <ul className="flex flex-col w-full bg-zinc-900 bg-opacity-50 rounded-lg text-zinc-300">
-        <li className="px-6 py-3 flex justify-between items-center font-kanit font-bold text-sm gap-4">
+        <li className="py-3 flex justify-between items-center font-kanit font-bold text-sm">
           <span className="w-1/5"></span>
           <span className="w-1/5">Partida</span>
           <span className="w-1/5">Liga</span>
+          <span className="w-1/5 text-center">Jogo</span>
           <span className="w-1/5">Data</span>
         </li>
         {matches.map((match) => (
           <li
             key={match.id}
             title={match.name}
-            className="py-3 flex items-center gap-4 h-14 relative text-sm"
+            className="py-3 flex items-center h-14 relative text-sm"
           >
-            <div className="w-1/4 pl-12 h-full flex items-center gap-3 z-10 shrink-0">
+            <div className="w-1/5 pl-12 h-full flex items-center gap-3 z-10 shrink-0">
               <Image
                 width={16}
                 height={16}
@@ -48,17 +49,29 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
                 src={match.opponents[1]?.opponent.image_url || ecrewLogo}
               />
             </div>
-            <div className="w-1/4 overflow-hidden">
+            <div className="w-1/5 overflow-hidden">
               <span className="font-kanit font-bold text-nowrap hover:animate-text-slide">
                 {match.name}
               </span>
             </div>
-            <div className="w-1/4 overflow-hidden">
+            <div className="w-1/5 overflow-hidden">
               <span className="font-kanit font-bold text-nowrap hover:animate-text-slide">
                 {match.league.name}
               </span>
             </div>
-            <div className="w-1/4 overflow-hidden">
+            <div className="w-1/5 overflow-hidden flex justify-center">
+              <Image
+                width={40}
+                height={40}
+                alt={match.videogame.name}
+                src={
+                  games.find((g) => g.slug === match.videogame.slug)
+                    ?.icon_url || ""
+                }
+                className="size-4 shrink-0 object-cover rounded-sm"
+              />
+            </div>
+            <div className="w-1/5 overflow-hidden">
               <span className="font-medium font-kanit text-violet-500 text-xs px-3 bg-violet-500 bg-opacity-10 rounded-full">
                 {new Date(match.begin_at).toLocaleDateString("pt-BR", {
                   hour: "numeric",
@@ -68,6 +81,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
                 })}
               </span>
             </div>
+
             {match.status === "running" && (
               <>
                 <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-10 z-10" />
