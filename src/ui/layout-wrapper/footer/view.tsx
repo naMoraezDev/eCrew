@@ -36,14 +36,22 @@ export async function FooterView({ isDesktop }: FooterProps) {
           <SiteLogo size="medium" />
         </section>
         <section className="flex flex-col gap-4 font-kanit">
+          <h4 className="font-bold">Serviços</h4>
+          <div className="flex flex-col gap-2 text-sm">
+            <Link href="/noticias">Notícias</Link>
+            <Link href="/torneios">Torneios</Link>
+            <Link href="/partidas">Partidas</Link>
+          </div>
+        </section>
+        <section className="flex flex-col gap-4 font-kanit">
           <h4 className="font-bold">Cobertura</h4>
           <div className="flex flex-col gap-2 text-sm">
-            <Link href="#">Counter Strike Global Offensive</Link>
-            <Link href="#">League of Legends</Link>
-            <Link href="#">Rainbow Six Siege</Link>
-            <Link href="#">Dota 2</Link>
-            <Link href="#">Warzone</Link>
-            <Link href="#">Valorant</Link>
+            <Link href="/noticias/cs-go">Counter Strike Global Offensive</Link>
+            <Link href="/noticias/league-of-legends">League of Legends</Link>
+            <Link href="/noticias/r6-siege">Rainbow Six Siege</Link>
+            <Link href="/noticias/dota-2">Dota 2</Link>
+            <Link href="/noticias/cod-mw">Warzone</Link>
+            <Link href="/noticias/valorant">Valorant</Link>
           </div>
         </section>
         <section className="flex flex-col gap-4 font-kanit">
