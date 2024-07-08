@@ -1,4 +1,5 @@
 import { MatchesProps } from "./types";
+import { SquareAd } from "@/ui/square-ad";
 import { Tournaments } from "@/ui/tournaments";
 import { MatchesList } from "@/ui/matches-list";
 import { BsFillLightningChargeFill } from "react-icons/bs";
@@ -33,8 +34,13 @@ export async function MatchesView({ isDesktop }: MatchesProps) {
       </section>
       {isDesktop && (
         <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
+          <Tournaments game="Counter Strike" />
+          <Tournaments game="League of Legends" />
+          <Tournaments game="Rainbow 6 Siege" />
+          <Tournaments game="Dota 2" />
+          <Tournaments game="Valorant" />
           <div className="sticky top-16">
-            <Tournaments />
+            <SquareAd />
           </div>
         </section>
       )}

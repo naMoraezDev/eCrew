@@ -3,7 +3,7 @@ import { EcrewApiService } from "@/services/ecrew-api.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export function useLiveMatches() {
-  const { data, isLoading } = useQuery({
+  const { data } = useQuery({
     queryKey: ["live-matches"],
     queryFn: () =>
       new EcrewApiService(new FetchHttpClientAdapter()).getRunningMatches(
@@ -12,5 +12,5 @@ export function useLiveMatches() {
     refetchInterval: 60000, // 1 min
   });
 
-  return { data, isLoading };
+  return { data };
 }

@@ -6,6 +6,7 @@ import { Tournament } from "@/services/types/tournaments.types";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
+import { SquareAd } from "@/ui/square-ad";
 const DynamicMatchesSection = dynamic(() =>
   import("@/ui/matches-section").then((module) => module.MatchesSection)
 );
@@ -64,8 +65,9 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
       </section>
       {isDesktop && (
         <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
+          <DynamicMatchesSection />
           <div className="sticky top-16">
-            <DynamicMatchesSection />
+            <SquareAd />
           </div>
         </section>
       )}

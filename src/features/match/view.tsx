@@ -8,9 +8,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { MatchProps } from "./types";
+import { SquareAd } from "@/ui/square-ad";
 import { Tournaments } from "@/ui/tournaments";
 import { StreamsList } from "@/ui/streams-list";
+import { GameName } from "@/ui/tournaments/types";
+import { HorizontalAd } from "@/ui/horizontal-ad";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { UpcomingMatches } from "@/ui/upcoming-matches";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
@@ -44,6 +48,25 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
   );
 
   const isLive = match.status === "running";
+
+  function getGameName(): GameName {
+    switch (match.videogame.slug) {
+      case "cod-mw":
+        return "Call of Duty";
+      case "cs-go":
+        return "Counter Strike";
+      case "dota-2":
+        return "Dota 2";
+      case "league-of-legends":
+        return "League of Legends";
+      case "r6-siege":
+        return "Rainbow 6 Siege";
+      case "valorant":
+        return "Valorant";
+      default:
+        return "Counter Strike";
+    }
+  }
 
   return (
     <section className="w-full flex gap-4">
@@ -184,9 +207,16 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             </ul>
           </section>
         )}
+        {!Boolean(match.streams_list.length) && (
+          <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2 self-center">
+            <RiErrorWarningFill />
+            Nenhuma transmissão disponível no momento.
+          </span>
+        )}
         {Boolean(match.streams_list.length) && (
           <StreamsList match={match} streams={streams} />
         )}
+        <HorizontalAd />
         {teamA && teamB && (
           <section className="flex gap-4 text-center">
             <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
@@ -211,16 +241,12 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             </ul>
           </section>
         )}
-        {!Boolean(match.streams_list.length) && (
-          <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2 self-center">
-            <RiErrorWarningFill />
-            Nenhuma transmissão disponível no momento.
-          </span>
-        )}
       </section>
       {isDesktop && (
         <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
-          <Tournaments />
+          <Tournaments game={getGameName()} />
+          <UpcomingMatches />
+          <SquareAd />
         </section>
       )}
     </section>

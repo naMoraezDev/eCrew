@@ -3,15 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useLiveMatches } from "./_io";
-import { RiLiveFill } from "react-icons/ri";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
+import { RiErrorWarningFill, RiLiveFill } from "react-icons/ri";
 
 export function LiveMatchesView() {
-  const { data, isLoading } = useLiveMatches();
-
-  if (!data?.length && !isLoading) {
-    return null;
-  }
+  const { data } = useLiveMatches();
 
   return (
     <section className="flex flex-col rounded-lg bg-zinc-900 bg-opacity-50">
@@ -20,6 +16,12 @@ export function LiveMatchesView() {
         Partidas em andamento
       </h4>
       <ul className="flex flex-col">
+        {Boolean(!data?.length) && (
+          <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2">
+            <RiErrorWarningFill />
+            Nenhuma partida em andamento.
+          </span>
+        )}
         {data?.map((match, index) => {
           return (
             <li
