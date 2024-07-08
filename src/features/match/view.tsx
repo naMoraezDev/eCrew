@@ -13,6 +13,7 @@ import { StreamsList } from "@/ui/streams-list";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
+import { RiErrorWarningFill } from "react-icons/ri";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
   const [games, match] = await Promise.all([
@@ -21,12 +22,16 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
   ]);
 
   const [teamA, teamB] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getTeamBySlug(
-      match.opponents[0].opponent.slug
-    ),
-    new EcrewApiService(httpClientFactory()).getTeamBySlug(
-      match.opponents[1].opponent.slug
-    ),
+    match.opponents[0]?.opponent
+      ? new EcrewApiService(httpClientFactory()).getTeamBySlug(
+          match.opponents[0].opponent.slug
+        )
+      : null,
+    match.opponents[1]?.opponent
+      ? new EcrewApiService(httpClientFactory()).getTeamBySlug(
+          match.opponents[1].opponent.slug
+        )
+      : null,
   ]);
 
   const streams = await Promise.all(
@@ -94,27 +99,31 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
           `}
         >
           <div className="flex gap-6 items-center">
-            <div className="flex gap-4 items-center">
-              <Image
-                width={32}
-                height={32}
-                alt={match.opponents[0].opponent.name}
-                src={match.opponents[0].opponent.image_url || ecrewLogo}
-              />
-            </div>
-            <div className="flex gap-2">
-              <span>vs</span>
-            </div>
-            <div className="flex gap-4 items-center">
-              <Image
-                width={32}
-                height={32}
-                alt={match.opponents[1].opponent.name}
-                src={match.opponents[1].opponent.image_url || ecrewLogo}
-              />
-            </div>
+            {teamA && teamB && (
+              <>
+                <div className="flex gap-4 items-center">
+                  <Image
+                    width={32}
+                    height={32}
+                    alt={match.opponents[0].opponent.name}
+                    src={match.opponents[0].opponent.image_url || ecrewLogo}
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <span>vs</span>
+                </div>
+                <div className="flex gap-4 items-center">
+                  <Image
+                    width={32}
+                    height={32}
+                    alt={match.opponents[1].opponent.name}
+                    src={match.opponents[1].opponent.image_url || ecrewLogo}
+                  />
+                </div>
+                <div className="h-8 w-px bg-zinc-800" />
+              </>
+            )}
           </div>
-          <div className="h-8 w-px bg-zinc-800" />
           <span>{match.name}</span>
           <div className="h-8 w-px bg-zinc-800" />
           <span>{match.league.name}</span>
@@ -175,29 +184,39 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             </ul>
           </section>
         )}
-        <section className="flex gap-4 text-center">
-          <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
-            <li className="px-6 py-2 text-violet-500">
-              Line up {match.opponents[0].opponent.acronym}
-            </li>
-            {teamA.players.map((player, index) => (
-              <li key={index} className="px-6 py-2">
-                {match.opponents[0].opponent.acronym} {player.name}
+        {Boolean(match.streams_list.length) && (
+          <StreamsList match={match} streams={streams} />
+        )}
+        {teamA && teamB && (
+          <section className="flex gap-4 text-center">
+            <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
+              <li className="px-6 py-2 text-violet-500">
+                Line up {match.opponents[0].opponent.acronym}
               </li>
-            ))}
-          </ul>
-          <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
-            <li className="px-6 py-2 text-violet-500">
-              Line up {match.opponents[1].opponent.acronym}
-            </li>
-            {teamB.players.map((player, index) => (
-              <li key={index} className="px-6 py-2">
-                {match.opponents[1].opponent.acronym} {player.name}
+              {teamA.players.map((player, index) => (
+                <li key={index} className="px-6 py-2">
+                  {match.opponents[0].opponent.acronym} {player.name}
+                </li>
+              ))}
+            </ul>
+            <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
+              <li className="px-6 py-2 text-violet-500">
+                Line up {match.opponents[1].opponent.acronym}
               </li>
-            ))}
-          </ul>
-        </section>
-        <StreamsList match={match} streams={streams} />
+              {teamB.players.map((player, index) => (
+                <li key={index} className="px-6 py-2">
+                  {match.opponents[1].opponent.acronym} {player.name}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {!Boolean(match.streams_list.length) && (
+          <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2 self-center">
+            <RiErrorWarningFill />
+            Nenhuma transmissão disponível no momento.
+          </span>
+        )}
       </section>
       {isDesktop && (
         <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
