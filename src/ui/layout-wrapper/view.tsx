@@ -19,7 +19,7 @@ export async function LayoutWrapperView({
     <>
       <ProTopBanner isDesktop={isDesktop} />
       <Header isDesktop={isDesktop} games={games} />
-      <Navbar />
+      {isDesktop && <Navbar />}
       <main className="w-full max-w-[1280px] p-4 mx-auto">{children}</main>
       {/* <CookiesAccept /> */}
       <Footer isDesktop={isDesktop} />

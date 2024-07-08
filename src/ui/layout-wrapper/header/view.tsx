@@ -6,6 +6,7 @@ import { UserMenu } from "@/ui/user-menu";
 import { SiteLogo } from "@/ui/site-logo";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -34,6 +35,13 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
           </section>
           {isDesktop && <DynamicSearchInput />}
         </div>
+        {isDesktop && (
+          <section className="px-4 py-2 flex items-center gap-12 font-bold text-sm">
+            <Link href="/noticias">Notícias</Link>
+            <Link href="/torneios">Torneios</Link>
+            <Link href="/partidas">Partidas</Link>
+          </section>
+        )}
         <UserMenu isDesktop={isDesktop} />
       </div>
     </header>
