@@ -8,8 +8,8 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { MatchProps } from "./types";
-import { FaTwitch } from "react-icons/fa";
 import { Tournaments } from "@/ui/tournaments";
+import { StreamsList } from "@/ui/streams-list";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -165,14 +165,14 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             </ul>
           </section>
         )}
-        <section className="flex gap-4">
+        <section className="flex gap-4 text-center">
           <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
             <li className="px-6 py-2 text-violet-500">
               Line up {match.opponents[0].opponent.acronym}
             </li>
             {teamA.players.map((player, index) => (
               <li key={index} className="px-6 py-2">
-                {match.opponents[0].opponent.acronym} - {player.name}
+                {match.opponents[0].opponent.acronym} {player.name}
               </li>
             ))}
           </ul>
@@ -182,69 +182,13 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             </li>
             {teamB.players.map((player, index) => (
               <li key={index} className="px-6 py-2">
-                {match.opponents[1].opponent.acronym} - {player.name}
+                {match.opponents[1].opponent.acronym} {player.name}
               </li>
             ))}
           </ul>
         </section>
         {Boolean(match.streams_list.length) && isLive && (
-          <section className="w-full flex gap-4">
-            <ul className="w-1/4">
-              <span className="text-sm font-kanit font-medium flex items-center gap-2 mb-4">
-                <FaTwitch className="text-violet-500" />
-                Transmissões ao vivo
-              </span>
-              {streams.find((stream) => stream?.data[0]?.display_name)
-                ? streams.map((stream, index) => {
-                    if (!stream?.data[0]?.display_name) {
-                      return null;
-                    }
-                    return (
-                      <li
-                        key={index}
-                        className="flex items-center gap-3 px-4 py-2 overflow-hidden"
-                      >
-                        <Image
-                          width={64}
-                          height={64}
-                          className="size-10 rounded-full"
-                          alt={stream?.data[0]?.display_name || ""}
-                          src={stream?.data[0]?.profile_image_url || ""}
-                        />
-                        <div className="flex flex-col font-kanit">
-                          <span className="font-bold">
-                            {stream?.data[0]?.display_name}
-                          </span>
-                          <span className="text-zinc-400 text-sm line-clamp-2">
-                            {stream?.data[0]?.description}
-                          </span>
-                        </div>
-                      </li>
-                    );
-                  })
-                : match.streams_list.map((stream, index) => (
-                    <li
-                      key={index}
-                      className="flex items-center gap-3 px-4 py-2 overflow-hidden"
-                    >
-                      <div className="flex flex-col font-kanit">
-                        <span className="font-bold">
-                          {stream?.raw_url.split("/").pop()}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-            </ul>
-            <div className="w-3/4 relative pb-[56.25%] h-0 rounded-normal rounded-lg overflow-hidden">
-              <iframe
-                className="absolute top-0 left-0 w-full h-full"
-                src={
-                  match.streams_list[0].embed_url +
-                  `&parent=${process.env.NEXT_PUBLIC_SITE_HOST}`
-                }
-              />
-            </div>
-          </section>
+          <StreamsList match={match} streams={streams} />
         )}
       </section>
       {isDesktop && (
