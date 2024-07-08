@@ -10,10 +10,10 @@ export async function generateStaticParams() {
   const [runningMatches, upcomingMatches] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getRunningMatches(
       "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-    ),
+    ).catch(() => []),
     new EcrewApiService(httpClientFactory()).getUpcommingMatches(
       "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-    ),
+    ).catch(() => []),
   ]);
   const matches = [...runningMatches, ...upcomingMatches];
   return matches.map((match) => ({
