@@ -1,12 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
 import { UserMenu } from "@/ui/user-menu";
 import { SiteLogo } from "@/ui/site-logo";
+import { IoIosPodium } from "react-icons/io";
+import { PiNewspaperFill } from "react-icons/pi";
+import { BsFillLightningChargeFill } from "react-icons/bs";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -37,9 +40,18 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
         </div>
         {isDesktop && (
           <section className="px-4 py-2 flex items-center gap-12 font-bold text-sm">
-            <Link href="/noticias">Notícias</Link>
-            <Link href="/torneios">Torneios</Link>
-            <Link href="/partidas">Partidas</Link>
+            <Link href="/noticias" className="flex items-center gap-2">
+              <PiNewspaperFill />
+              Notícias
+            </Link>
+            <Link href="/torneios" className="flex items-center gap-2">
+              <IoIosPodium />
+              Torneios
+            </Link>
+            <Link href="/partidas" className="flex items-center gap-2">
+              <BsFillLightningChargeFill />
+              Partidas
+            </Link>
           </section>
         )}
         <UserMenu isDesktop={isDesktop} />
