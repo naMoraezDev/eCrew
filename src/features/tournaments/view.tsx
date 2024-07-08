@@ -48,7 +48,7 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
       <section
         className={`
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
-          flex flex-col gap-10 mb-10
+          flex flex-col gap-4 mb-10
         `}
       >
         <h4 className="font-kanit font-bold text-3xl flex items-center gap-2 px-6 py-3">
@@ -64,7 +64,9 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
       </section>
       {isDesktop && (
         <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
-          <DynamicMatchesSection />
+          <div className="sticky top-16">
+            <DynamicMatchesSection />
+          </div>
         </section>
       )}
     </section>

@@ -25,7 +25,7 @@ export async function UpcomingMatchesView() {
       <ul className="flex flex-col">
         {upcomingMatches?.map((match, index) => {
           return (
-            <li key={index} className="px-6 py-3 flex gap-4">
+            <li key={index} className="px-6 py-3 flex gap-4 relative">
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
                 {match.opponents[0]?.opponent.image_url ? (
                   <Image
@@ -72,6 +72,7 @@ export async function UpcomingMatchesView() {
                   })}
                 </span>
               </div>
+              <Link href={`/partidas/${match.id}`} className="size-full absolute top-0 left-0" />
             </li>
           );
         })}
