@@ -43,7 +43,7 @@ export function MatchSEO({ match }: MatchSeoProps) {
             inLanguage: "pt-BR",
             isPartOf: {
               type: "WebSite",
-              name: "Notícias - eCrew",
+              name: "Notícias | eCrew",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },

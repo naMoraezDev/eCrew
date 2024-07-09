@@ -1,17 +1,17 @@
 export function getCategoryTitle(categorySlug: string) {
   switch (categorySlug) {
     case "cod-mw":
-      return "Notícias - Call of Duty: Modern Warfare";
+      return "Notícias | Call of Duty: Modern Warfare";
     case "cs-go":
-      return "Notícias - Counter-Strike";
+      return "Notícias | Counter-Strike";
     case "dota-2":
-      return "Notícias - Dota 2";
+      return "Notícias | Dota 2";
     case "league-of-legends":
-      return "Notícias - League of Legends";
+      return "Notícias | League of Legends";
     case "r6-siege":
-      return "Notícias - Rainbow Six Siege";
+      return "Notícias | Rainbow Six Siege";
     case "valorant":
-      return "Notícias - Valorant";
+      return "Notícias | Valorant";
     default:
       return "Notícias";
   }
