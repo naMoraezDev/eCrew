@@ -5,7 +5,6 @@ import { AuthProvider } from "@/contexts/auth";
 import { Inter, Kanit } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { LoadingProvider } from "@/contexts/loading";
-import { CookiesAccept } from "@/ui/cookies-accept";
 
 const kanit = Kanit({
   preload: true,
@@ -49,7 +48,6 @@ export default function RootLayout({
           <LoadingProvider>
             <Toaster />
             {children}
-            <CookiesAccept />
           </LoadingProvider>
         </AuthProvider>
       </body>
