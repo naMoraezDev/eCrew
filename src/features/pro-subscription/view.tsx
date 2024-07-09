@@ -28,7 +28,7 @@ export function ProSubscriptionView({ isDesktop }: ProSubscriptionProps) {
             alt="eCrew logo"
             className="self-center"
           />
-          <h1 className="text-5xl font-kanit">
+          <h1 className="text-5xl font-kanit font-medium">
             eCrew <span className="font-bold text-violet-500">PRO</span>
           </h1>
           <p>
