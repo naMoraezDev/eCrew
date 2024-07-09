@@ -10,7 +10,7 @@ export function AboutUsView({ isDesktop }: AboutUsProps) {
           flex flex-col gap-4 bg-zinc-900 rounded-lg
         `}
       >
-        <h1 className="font-kanit font-medium text-3xl bg-violet-500 bg-opacity-10 border border-violet-500 rounded-lg px-4 py-2 w-fit flex items-center gap-2">
+        <h1 className="font-kanit font-medium text-3xl px-4 py-2 w-fit flex items-center gap-2">
           <RiTeamFill className="shrink-0" />
           Sobre Nós
         </h1>

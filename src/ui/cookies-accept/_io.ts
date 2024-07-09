@@ -1,8 +1,14 @@
 import nookies from "nookies";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useCookiesAccept() {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!nookies.get()["cookies-accepted"]) {
+      setOpen(true);
+    }
+  }, []);
 
   function handleClose() {
     setOpen(false);

@@ -10,7 +10,7 @@ export function PrivacyPolicyView({ isDesktop }: PrivacyPolicyProps) {
           flex flex-col gap-4 bg-zinc-900 rounded-lg
         `}
       >
-        <h1 className="font-kanit font-medium text-3xl bg-violet-500 bg-opacity-10 border border-violet-500 rounded-lg px-4 py-2 w-fit flex items-center gap-2">
+        <h1 className="font-kanit font-medium text-3xl px-4 py-2 w-fit flex items-center gap-2">
           <MdPrivacyTip className="shrink-0" size={!isDesktop ? 64 : 30} />
           Política de Privacidade
         </h1>
