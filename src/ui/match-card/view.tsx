@@ -72,7 +72,7 @@ export function MatchCardView({ match }: MatchCardProps) {
         </div>
         {match.status === "running" && (
           <>
-            <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-10 z-10" />
+            <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-5 z-10" />
             <div className="absolute top-0 left-0 h-full z-10 rotate-180">
               <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
                 LIVE
