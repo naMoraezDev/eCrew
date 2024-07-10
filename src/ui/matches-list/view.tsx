@@ -23,7 +23,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
             {index === 8 && <HorizontalAd rounded={false} />}
             <li
               title={match.name}
-              className="py-3 flex items-center h-16 relative text-sm gap-6"
+              className="py-3 flex items-center h-12 relative text-xs gap-6"
             >
               <div className="w-1/5 pl-12 h-full flex items-center gap-3 z-10 shrink-0">
                 <Image
