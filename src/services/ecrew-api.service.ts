@@ -32,7 +32,7 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
   }
 
   private readonly baseUrl: string =
-    process.env.NEXT_PUBLIC_EPOSTS_API_URL ?? "";
+    process.env.NEXT_PUBLIC_ECREW_API_URL ?? "";
 
   public async getGames() {
     const games = await this.httpClient.request<Games>({
