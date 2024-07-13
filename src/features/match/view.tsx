@@ -231,10 +231,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                   Line up {match.opponents[0].opponent.acronym}
                 </li>
                 {teamA.players.map((player, index) => (
-                  <li
-                    key={index}
-                    className="px-6 py-2 flex items-center gap-3"
-                  >
+                  <li key={index} className="px-6 py-2 flex items-center gap-3">
                     {player.nationality && (
                       <Image
                         width={48}
@@ -253,10 +250,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                   Line up {match.opponents[1].opponent.acronym}
                 </li>
                 {teamB.players.map((player, index) => (
-                  <li
-                    key={index}
-                    className="px-6 py-2 flex items-center gap-3"
-                  >
+                  <li key={index} className="px-6 py-2 flex items-center gap-3">
                     {player.nationality && (
                       <Image
                         width={48}
