@@ -43,7 +43,7 @@ export class PandascoreService implements PandascoreServiceProtocol {
     this.httpClient = httpClient;
   }
 
-  private readonly apiKey = process.env.PRIVATE_PANDASCORE_SECONDARY_API_KEY;
+  private readonly apiKey = process.env.PRIVATE_PANDASCORE_API_KEY;
   private readonly baseUrl = process.env.PRIVATE_PANDASCORE_API_URL;
 
   public async getLiveMatches() {
