@@ -26,7 +26,9 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
     new EcrewApiService(httpClientFactory()).getGames(),
   ]);
 
-  const liveMatch = brackets.find((match) => match.status === "running");
+  const liveMatch =
+    Boolean(brackets?.length) &&
+    brackets?.find((match) => match.status === "running");
 
   let streams: (TwitchUserResponse | null)[] = [];
 
@@ -44,7 +46,7 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
         )
     );
   }
-
+  console.log(streams);
   return (
     <>
       <TournamentSEO tournament={tournament} />
@@ -135,33 +137,35 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
                 </li>
               ))}
             </ul>
-            <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/3 text-sm font-medium font-kanit h-fit">
-              <li className="px-6 py-2">Ranking</li>
-              {standings.map((standing, index) => (
-                <li
-                  key={index}
-                  className="px-6 py-2 flex items-center gap-4 relative"
-                >
-                  <span>{standing.rank}</span>
-                  {standing.team.image_url && (
-                    <Image
-                      width={48}
-                      height={36}
-                      alt={standing.team.name}
-                      src={standing.team.image_url}
-                      className="size-10 rounded-full object-contain"
-                    />
-                  )}
-                  <span>{standing.team.name}</span>
-                  {index === 0 && (
-                    <div className="size-full absolute top-0 left-0 bg-gradient-to-l from-green-500 to-transparent opacity-20 -z-10" />
-                  )}
-                  {index === standings.length - 1 && (
-                    <div className="size-full absolute top-0 left-0 bg-gradient-to-l from-red-500 to-transparent opacity-10 -z-10" />
-                  )}
-                </li>
-              ))}
-            </ul>
+            {Boolean(standings.length) && (
+              <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/3 text-sm font-medium font-kanit h-fit">
+                <li className="px-6 py-2">Ranking</li>
+                {standings?.map((standing, index) => (
+                  <li
+                    key={index}
+                    className="px-6 py-2 flex items-center gap-4 relative"
+                  >
+                    <span>{standing.rank}</span>
+                    {standing.team.image_url && (
+                      <Image
+                        width={48}
+                        height={36}
+                        alt={standing.team.name}
+                        src={standing.team.image_url}
+                        className="size-10 rounded-full object-contain"
+                      />
+                    )}
+                    <span>{standing.team.name}</span>
+                    {index === 0 && (
+                      <div className="size-full absolute top-0 left-0 bg-gradient-to-l from-green-500 to-transparent opacity-20 -z-10" />
+                    )}
+                    {index === standings.length - 1 && (
+                      <div className="size-full absolute top-0 left-0 bg-gradient-to-l from-red-500 to-transparent opacity-10 -z-10" />
+                    )}
+                  </li>
+                ))}
+              </ul>
+            )}
             <section className="flex flex-col gap-4 w-1/3">
               {liveMatch && (
                 <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg text-sm font-medium font-kanit h-fit">
@@ -274,13 +278,13 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
                   } pr-6 pl-8 h-16 py-2 flex items-center justify-between gap-4 relative`}
                 >
                   <div className="flex items-center gap-4 shrink-0">
-                    {bracket.opponents[0] ? (
+                    {bracket?.opponents[0]?.opponent?.image_url ? (
                       <Image
-                        alt={bracket.opponents[0]?.opponent.name}
-                        src={bracket.opponents[0]?.opponent.image_url}
                         width={18}
                         height={18}
                         className="shrink-0"
+                        alt={bracket.opponents[0]?.opponent.name}
+                        src={bracket.opponents[0]?.opponent.image_url}
                       />
                     ) : (
                       "?"
@@ -294,13 +298,13 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
                         <span>{bracket.results[0]?.score}</span>
                       )}
                     </div>
-                    {bracket.opponents[1] ? (
+                    {bracket?.opponents[1]?.opponent?.image_url ? (
                       <Image
-                        alt={bracket.opponents[1]?.opponent.name}
-                        src={bracket.opponents[1]?.opponent.image_url}
                         width={18}
                         height={18}
                         className="shrink-0"
+                        alt={bracket.opponents[1]?.opponent.name}
+                        src={bracket.opponents[1]?.opponent.image_url}
                       />
                     ) : (
                       "?"

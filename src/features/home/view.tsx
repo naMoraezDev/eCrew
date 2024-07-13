@@ -12,11 +12,6 @@ import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
-const DynamicLiveMatchesCarousel = dynamic(() =>
-  import("@/ui/live-matches-carousel").then(
-    (module) => module.LiveMatchesCarousel
-  )
-);
 const DynamicMatchesSection = dynamic(() =>
   import("@/ui/matches-section").then((module) => module.MatchesSection)
 );
@@ -88,7 +83,6 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             flex flex-col gap-10 mb-10
           `}
         >
-          {!isDesktop && <DynamicLiveMatchesCarousel games={games} />}
           <FeaturedCarousel
             games={games}
             posts={featuredPosts}

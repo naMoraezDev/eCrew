@@ -1,13 +1,16 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { useLiveMatches } from "./_io";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { RiErrorWarningFill, RiLiveFill } from "react-icons/ri";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
+import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
-export function LiveMatchesView() {
-  const { data } = useLiveMatches();
+export async function LiveMatchesView() {
+  const data = await new PandascoreService(httpClientFactory()).getMatchesList({
+    page: 1,
+    size: 5,
+    type: "running",
+  });
 
   return (
     <section className="flex flex-col rounded-lg bg-zinc-900 bg-opacity-50">
