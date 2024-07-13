@@ -73,7 +73,9 @@ export function StreamsListView({ match, streams }: StreamsListProps) {
           allowFullScreen
           className="absolute top-0 left-0 w-full h-full"
           src={
-            match.streams_list[selectedStreamIndex].embed_url +
+            match.streams_list.filter((stream) =>
+              stream.raw_url.includes("twitch")
+            )[selectedStreamIndex].embed_url +
             `&parent=${process.env.NEXT_PUBLIC_SITE_HOST}&autoplay=false`
           }
         />

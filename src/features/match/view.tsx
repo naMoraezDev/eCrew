@@ -26,7 +26,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
     new EcrewApiService(httpClientFactory()).getGames(),
     new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
-
+  console.dir(match, { depth: null });
   const [teamA, teamB] = await Promise.all([
     match.opponents[0]?.opponent
       ? new EcrewApiService(httpClientFactory()).getTeamBySlug(
@@ -41,12 +41,14 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
   ]);
 
   const streams = await Promise.all(
-    match.streams_list.map(
-      async (stream) =>
-        await new EcrewApiService(httpClientFactory())
-          .getTwitchUser(stream.raw_url.split("/").pop() || "")
-          .catch(() => null)
-    )
+    match.streams_list
+      .filter((stream) => stream.raw_url.includes("twitch") && stream.embed_url)
+      .map(
+        async (stream) =>
+          await new EcrewApiService(httpClientFactory())
+            .getTwitchUser(stream.raw_url.split("/").pop() || "")
+            .catch(() => null)
+      )
   );
 
   const isLive = match.status === "running";
@@ -214,13 +216,13 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               </ul>
             </section>
           )}
-          {!Boolean(match.streams_list.length) && (
+          {!Boolean(streams.length) && (
             <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2 self-center">
               <RiErrorWarningFill />
               Nenhuma transmissão disponível no momento.
             </span>
           )}
-          {Boolean(match.streams_list.length) && (
+          {Boolean(streams.length) && (
             <StreamsList match={match} streams={streams} />
           )}
           <HorizontalAd />
