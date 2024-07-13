@@ -27,18 +27,12 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
     new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
 
-  const [teamA, teamB] = await Promise.all([
-    match.opponents[0]?.opponent
-      ? new EcrewApiService(httpClientFactory()).getTeamBySlug(
-          match.opponents[0].opponent.slug
-        )
-      : null,
-    match.opponents[1]?.opponent
-      ? new EcrewApiService(httpClientFactory()).getTeamBySlug(
-          match.opponents[1].opponent.slug
-        )
-      : null,
-  ]);
+  const opponents = await new PandascoreService(
+    httpClientFactory()
+  ).getMatchOpponents(id);
+
+  const teamA = opponents.opponents[0];
+  const teamB = opponents.opponents[1];
 
   const streams = await Promise.all(
     match.streams_list
@@ -137,8 +131,8 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     <Image
                       width={32}
                       height={32}
-                      alt={match.opponents[0].opponent.name}
-                      src={match.opponents[0].opponent.image_url || ecrewLogo}
+                      alt={teamA.name}
+                      src={teamA.image_url || ecrewLogo}
                     />
                   </div>
                   <div className="flex gap-2">
@@ -148,8 +142,8 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     <Image
                       width={32}
                       height={32}
-                      alt={match.opponents[1].opponent.name}
-                      src={match.opponents[1].opponent.image_url || ecrewLogo}
+                      alt={teamB.name}
+                      src={teamB.image_url || ecrewLogo}
                     />
                   </div>
                   <div className="h-8 w-px bg-zinc-800" />
@@ -215,14 +209,14 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     <Image
                       width={32}
                       height={32}
+                      alt={teamA.name}
                       className="size-4"
-                      alt={match.opponents[0].opponent.name}
-                      src={match.opponents[0].opponent.image_url || ecrewLogo}
+                      src={teamA.image_url || ecrewLogo}
                     />
-                    {match.opponents[0].opponent.name}
+                    {teamA.name}
                   </span>
                   <span className="w-1/4">{match.results[0].score}</span>
-                  {match.opponents[0].opponent.id === match.winner_id && (
+                  {teamA.id === match.winner_id && (
                     <>
                       <span className="text-xs bg-green-500 bg-opacity-10 px-2 rounded-full text-green-500 flex items-center">
                         vitoria
@@ -236,14 +230,14 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     <Image
                       width={32}
                       height={32}
+                      alt={teamB.name}
                       className="size-4"
-                      alt={match.opponents[1].opponent.name}
-                      src={match.opponents[1].opponent.image_url || ecrewLogo}
+                      src={teamB.image_url || ecrewLogo}
                     />
-                    {match.opponents[1].opponent.name}
+                    {teamB.name}
                   </span>
                   <span className="w-1/4">{match.results[1].score}</span>
-                  {match.opponents[1].opponent.id === match.winner_id && (
+                  {teamB.id === match.winner_id && (
                     <>
                       <span className="text-xs bg-green-500 bg-opacity-10 px-2 rounded-full text-green-500 flex items-center">
                         vitoria
@@ -269,10 +263,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
             <section className="flex gap-4 text-center">
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
                 <li className="px-6 py-2">
-                  Line up{" "}
-                  <span className="text-violet-500">
-                    {match.opponents[0].opponent.name}
-                  </span>
+                  Line up <span className="text-violet-500">{teamA.name}</span>
                 </li>
                 {teamA.players.map((player, index) => (
                   <li key={index} className="px-6 py-2 flex items-center gap-3">
@@ -291,10 +282,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               </ul>
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
                 <li className="px-6 py-2">
-                  Line up{" "}
-                  <span className="text-violet-500">
-                    {match.opponents[1].opponent.name}
-                  </span>
+                  Line up <span className="text-violet-500">{teamB.name}</span>
                 </li>
                 {teamB.players.map((player, index) => (
                   <li key={index} className="px-6 py-2 flex items-center gap-3">
@@ -302,8 +290,8 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                       <Image
                         width={48}
                         height={36}
-                        className="w-5 rounded-sm"
                         alt={player.nationality}
+                        className="w-5 rounded-sm"
                         src={`https://flagcdn.com/48x36/${player.nationality?.toLowerCase()}.png`}
                       />
                     )}
