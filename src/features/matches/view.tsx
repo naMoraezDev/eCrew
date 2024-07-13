@@ -19,7 +19,7 @@ export async function MatchesView({ isDesktop }: MatchesProps) {
     new PandascoreService(httpClientFactory()).getMatchesList({
       page: 1,
       size: 50,
-      type: "past",
+      type: "upcoming",
     }),
   ]);
   const matches = [...runningMatches, ...upcomingMatches];

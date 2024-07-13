@@ -26,7 +26,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
     new EcrewApiService(httpClientFactory()).getGames(),
     new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
-  console.dir(match, { depth: null });
+
   const [teamA, teamB] = await Promise.all([
     match.opponents[0]?.opponent
       ? new EcrewApiService(httpClientFactory()).getTeamBySlug(
@@ -113,10 +113,10 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 ""
               }
             />
-            {match.videogame.name}
+            {match.league.name}
             <div>
-              <span className="font-medium text-violet-500 text-sm px-3 bg-violet-500 bg-opacity-20 rounded-full ml-2">
-                {match.status === "ended"
+              <span className="font-medium text-violet-500 text-sm px-3 bg-violet-500 bg-opacity-10 rounded-full ml-2">
+                {match.status === "finished"
                   ? "Finalizada"
                   : match.status === "not_started"
                   ? "Não iniciada"
@@ -157,8 +157,6 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               )}
             </div>
             <span>{match.name}</span>
-            <div className="h-8 w-px bg-zinc-800" />
-            <span>{match.league.name}</span>
             {!isLive && (
               <>
                 <div className="h-8 w-px bg-zinc-800" />
@@ -183,11 +181,36 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               </>
             )}
           </section>
-          {isLive && (
+          <section className="flex items-center gap-6 bg-zinc-900 bg-opacity-50 rounded-lg px-6 py-4 font-kanit flex-wrap">
+            {match.number_of_games > 1 && (
+              <>
+                <span className="flex items-center gap-2 text-base">
+                  melhor de{" "}
+                  <span className="font-bold text-violet-500">
+                    {match.number_of_games}
+                  </span>
+                </span>
+                <div className="h-6 w-px bg-zinc-800" />
+              </>
+            )}
+            {match.games.map((game) => (
+              <div key={game.id} className="text-sm flex items-center gap-2">
+                <span>jogo {game.position}</span>
+                <span className="bg-zinc-800 bg-opacity-50 rounded-full px-3 py-1">
+                  {game.status === "finished"
+                    ? "finalizado"
+                    : game.status === "not_started"
+                    ? "nao iniciado"
+                    : "em andamento"}
+                </span>
+              </div>
+            ))}
+          </section>
+          {match.status !== "not_started" && (
             <section>
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg text-sm font-kanit font-medium">
                 <li className="flex px-6 py-2 text-violet-500">Placar</li>
-                <li className="flex px-6 py-2">
+                <li className="flex px-6 py-2 relative">
                   <span className="w-1/4 flex items-center gap-2">
                     <Image
                       width={32}
@@ -199,8 +222,16 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     {match.opponents[0].opponent.name}
                   </span>
                   <span className="w-1/4">{match.results[0].score}</span>
+                  {match.opponents[0].opponent.id === match.winner_id && (
+                    <>
+                      <span className="text-xs bg-green-500 bg-opacity-10 px-2 rounded-full text-green-500 flex items-center">
+                        vitoria
+                      </span>
+                      <div className="size-full absolute top-0 left-0 bg-gradient-to-r from-green-500 via-transparent to-transparent opacity-5" />
+                    </>
+                  )}
                 </li>
-                <li className="flex px-6 py-2">
+                <li className="flex px-6 py-2 relative">
                   <span className="w-1/4 flex items-center gap-2">
                     <Image
                       width={32}
@@ -212,6 +243,14 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                     {match.opponents[1].opponent.name}
                   </span>
                   <span className="w-1/4">{match.results[1].score}</span>
+                  {match.opponents[1].opponent.id === match.winner_id && (
+                    <>
+                      <span className="text-xs bg-green-500 bg-opacity-10 px-2 rounded-full text-green-500 flex items-center">
+                        vitoria
+                      </span>
+                      <div className="size-full absolute top-0 left-0 bg-gradient-to-r from-green-500 via-transparent to-transparent opacity-5" />
+                    </>
+                  )}
                 </li>
               </ul>
             </section>
@@ -229,8 +268,11 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
           {teamA && teamB && (
             <section className="flex gap-4 text-center">
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
-                <li className="px-6 py-2 text-violet-500">
-                  Line up {match.opponents[0].opponent.acronym}
+                <li className="px-6 py-2">
+                  Line up{" "}
+                  <span className="text-violet-500">
+                    {match.opponents[0].opponent.name}
+                  </span>
                 </li>
                 {teamA.players.map((player, index) => (
                   <li key={index} className="px-6 py-2 flex items-center gap-3">
@@ -248,8 +290,11 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 ))}
               </ul>
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
-                <li className="px-6 py-2 text-violet-500">
-                  Line up {match.opponents[1].opponent.acronym}
+                <li className="px-6 py-2">
+                  Line up{" "}
+                  <span className="text-violet-500">
+                    {match.opponents[1].opponent.name}
+                  </span>
                 </li>
                 {teamB.players.map((player, index) => (
                   <li key={index} className="px-6 py-2 flex items-center gap-3">
