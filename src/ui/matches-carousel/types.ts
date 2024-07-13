@@ -1,5 +1,5 @@
-import { Matches } from "@/services/types/matches.types";
+import { MatchesList } from "@/services/pandascore/types/matches.types";
 
 export interface MatchesCarouselProps {
-  matches: Matches;
+  matches: MatchesList;
 }

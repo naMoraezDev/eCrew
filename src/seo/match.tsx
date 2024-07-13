@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { defaultMetadata } from "./default";
-import { Match } from "@/services/types/match.types";
 import { WebPageJsonLd, BreadcrumbJsonLd } from "next-seo";
+import { Match } from "@/services/pandascore/types/matches.types";
 
 type MatchSeoProps = {
   match: Match;

@@ -2,14 +2,10 @@ import { Tags } from "./types/tags.types";
 import { Post } from "./types/post.types";
 import { Games } from "./types/games.types";
 import { Posts } from "./types/posts.types";
-import { Matches } from "./types/matches.types";
 import { Checkout } from "./types/checkout.types";
+import { TwitchUserResponse } from "./types/twitch.types";
 import { UserPreferences } from "./types/user-preferences.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
-import { Tournaments } from "./types/tournaments.types";
-import { Match } from "./types/match.types";
-import { TwitchUserResponse } from "./types/twitch.types";
-import { Team } from "./types/team.types";
 
 interface EcrewApiServiceProtocol {
   getPostsByCategory: (params: {
@@ -22,17 +18,11 @@ interface EcrewApiServiceProtocol {
   getUserPreferences: (
     authorization: string
   ) => Promise<UserPreferences | null>;
-  getMatchById: (id: string) => Promise<Match>;
-  getTeamBySlug: (slug: string) => Promise<Team>;
   getPostBySlug: (slug: string) => Promise<Post>;
   getPostsByTag: (tag: string) => Promise<Posts>;
-  getMatches: (query: string) => Promise<Matches>;
   getPostsBySearch: (search: string) => Promise<Posts>;
   checkout: (authorization: string) => Promise<Checkout>;
-  getRunningMatches: (query: string) => Promise<Matches>;
-  getUpcommingMatches: (query: string) => Promise<Matches>;
   getTwitchUser: (login: string) => Promise<TwitchUserResponse>;
-  getRunningTournaments: (gameSlug: string) => Promise<Tournaments>;
   subscribeOnNewsletter: (email: string) => Promise<{ email: string }>;
 }
 
@@ -43,46 +33,6 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
 
   private readonly baseUrl: string =
     process.env.NEXT_PUBLIC_EPOSTS_API_URL ?? "";
-
-  public async getMatchById(id: string) {
-    const match = await this.httpClient.request<Match>({
-      input: `${this.baseUrl}/matches/match/${id}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return match;
-  }
-
-  public async getMatches(query: string = "") {
-    const matches = await this.httpClient.request<Matches>({
-      input: `${this.baseUrl}/matches${query}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return matches;
-  }
-
-  public async getUpcommingMatches(query: string = "") {
-    const matches = await this.httpClient.request<Matches>({
-      input: `${this.baseUrl}/matches/upcoming${query}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return matches;
-  }
-
-  public async getRunningMatches(query: string = "") {
-    const matches = await this.httpClient.request<Matches>({
-      input: `${this.baseUrl}/matches/running${query}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return matches;
-  }
 
   public async getGames() {
     const games = await this.httpClient.request<Games>({
@@ -190,16 +140,6 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
     return userPreferences;
   }
 
-  public async getRunningTournaments(gameSlug: string) {
-    const tournaments = await this.httpClient.request<Tournaments>({
-      input: `${this.baseUrl}/${gameSlug}/tournaments/running`,
-      init: {
-        method: "GET",
-      },
-    });
-    return tournaments;
-  }
-
   public async getTwitchUser(login: string) {
     const user = await this.httpClient.request<TwitchUserResponse>({
       input: `${this.baseUrl}/twitch/users/${login}`,
@@ -208,15 +148,5 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
       },
     });
     return user;
-  }
-
-  public async getTeamBySlug(slug: string) {
-    const team = await this.httpClient.request<Team>({
-      input: `${this.baseUrl}/teams/${slug}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return team;
   }
 }

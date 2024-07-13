@@ -1,4 +1,4 @@
-import { Match } from "@/services/types/match.types";
+import { Match } from "@/services/pandascore/types/matches.types";
 import { TwitchUserResponse } from "@/services/types/twitch.types";
 
 export interface StreamsListProps {

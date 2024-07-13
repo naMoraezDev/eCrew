@@ -1,7 +1,7 @@
 import { Games } from "@/services/types/games.types";
-import { Matches } from "@/services/types/matches.types";
+import { MatchesList } from "@/services/pandascore/types/matches.types";
 
 export interface MatchesListProps {
   games: Games;
-  matches: Matches;
+  matches: MatchesList;
 }
