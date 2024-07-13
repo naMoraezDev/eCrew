@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { TournamentProps } from "./types";
 import { StreamsList } from "@/ui/streams-list";
+import { TournamentSEO } from "@/seo/tournament";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { TwitchUserResponse } from "@/services/types/twitch.types";
@@ -46,6 +47,7 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
 
   return (
     <>
+      <TournamentSEO tournament={tournament} />
       <section className="w-full flex gap-4">
         <section
           className={`
