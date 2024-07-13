@@ -4,48 +4,95 @@ import { TournamentsProps } from "./types";
 import { IoIosPodium } from "react-icons/io";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { EcrewApiService } from "@/services/ecrew-api.service";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function TournamentsView({ game }: TournamentsProps) {
-  const [
-    csTournaments,
-    lolTournaments,
-    valTournaments,
-    codTournaments,
-    r6Tournaments,
-    dotaTournaments,
-    games,
-  ] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("csgo"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("lol"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("valorant"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("codmw"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("r6siege"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("dota2"),
-    new EcrewApiService(httpClientFactory()).getGames(),
-  ]);
-  const getTournaments = () => {
+  const getTournaments = async () => {
     switch (game) {
       case "Call of Duty":
-        return codTournaments.slice(0, 6);
+        return await new PandascoreService(
+          httpClientFactory()
+        ).getTournamentsByVideogame({
+          page: 1,
+          size: 6,
+          type: "running",
+          videogame: "codmw",
+        });
       case "Counter Strike":
-        return csTournaments.slice(0, 6);
+        return await new PandascoreService(
+          httpClientFactory()
+        ).getTournamentsByVideogame({
+          page: 1,
+          size: 6,
+          type: "running",
+          videogame: "csgo",
+        });
       case "Dota 2":
-        return dotaTournaments.slice(0, 6);
+        return await new PandascoreService(
+          httpClientFactory()
+        ).getTournamentsByVideogame({
+          page: 1,
+          size: 6,
+          type: "running",
+          videogame: "dota2",
+        });
       case "League of Legends":
-        return lolTournaments.slice(0, 6);
+        return await new PandascoreService(
+          httpClientFactory()
+        ).getTournamentsByVideogame({
+          page: 1,
+          size: 6,
+          type: "running",
+          videogame: "lol",
+        });
       case "Rainbow 6 Siege":
-        return r6Tournaments.slice(0, 6);
+        return await new PandascoreService(
+          httpClientFactory()
+        ).getTournamentsByVideogame({
+          page: 1,
+          size: 6,
+          type: "running",
+          videogame: "r6siege",
+        });
       case "Valorant":
-        return valTournaments.slice(0, 6);
+        return await new PandascoreService(
+          httpClientFactory()
+        ).getTournamentsByVideogame({
+          page: 1,
+          size: 6,
+          type: "running",
+          videogame: "valorant",
+        });
       default:
-        return [
-          ...csTournaments.slice(0, 2),
-          ...lolTournaments.slice(0, 2),
-          ...valTournaments.slice(0, 2),
-        ];
+        const [csGo, leagueOfLegends, valorant] = await Promise.all([
+          new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+            page: 1,
+            size: 2,
+            type: "running",
+            videogame: "csgo",
+          }),
+          new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+            page: 1,
+            size: 2,
+            type: "running",
+            videogame: "lol",
+          }),
+          new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+            page: 1,
+            size: 2,
+            type: "running",
+            videogame: "valorant",
+          }),
+        ]);
+        return [...csGo, ...leagueOfLegends, ...valorant];
     }
   };
+
+  const [games, tournaments] = await Promise.all([
+    new EcrewApiService(httpClientFactory()).getGames(),
+    getTournaments(),
+  ]);
 
   return (
     <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg">
@@ -60,13 +107,13 @@ export async function TournamentsView({ game }: TournamentsProps) {
           )}
         </span>
       </h4>
-      {!Boolean(getTournaments().length) && (
+      {!Boolean(tournaments.length) && (
         <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2 self-center">
           <RiErrorWarningFill />
           Nenhum torneio sendo realizado.
         </span>
       )}
-      {getTournaments().map((tournament, index) => (
+      {tournaments.map((tournament, index) => (
         <li key={index} className="text-sm flex gap-3 px-6 py-3">
           <Image
             width={40}

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Match } from "@/features/match";
 import { matchMetadata } from "@/seo/match";
 import { REVALIDATE_TIME } from "@/shared/constants";
-import { EcrewApiService } from "@/services/ecrew-api.service";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export const dynamic = "force-static";
@@ -13,7 +13,7 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  const match = await new EcrewApiService(httpClientFactory()).getMatchById(
+  const match = await new PandascoreService(httpClientFactory()).getMatchById(
     params.id
   );
   return matchMetadata({ match });
@@ -21,15 +21,19 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const [runningMatches, upcomingMatches] = await Promise.all([
-    new EcrewApiService(httpClientFactory())
-      .getRunningMatches(
-        "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-      )
+    new PandascoreService(httpClientFactory())
+      .getMatchesList({
+        page: 1,
+        size: 50,
+        type: "running",
+      })
       .catch(() => []),
-    new EcrewApiService(httpClientFactory())
-      .getUpcommingMatches(
-        "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-      )
+    new PandascoreService(httpClientFactory())
+      .getMatchesList({
+        page: 1,
+        size: 50,
+        type: "upcoming",
+      })
       .catch(() => []),
   ]);
   const matches = [...runningMatches, ...upcomingMatches];

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { TournamentListProps } from "./types";
-import { Tournaments } from "@/services/types/tournaments.types";
+import { TournamentsList } from "@/services/pandascore/types/tournaments.types";
 
 export function useTournamentList({ games, tournaments }: TournamentListProps) {
   const [value, setvalue] = useState<string | null>(null);
   const [filteredTournaments, setFilteredTournaments] =
-    useState<Tournaments>(tournaments);
+    useState<TournamentsList>(tournaments);
 
   function hendleChange(value: string) {
     setvalue(value);

@@ -5,17 +5,22 @@ import { Tournaments } from "@/ui/tournaments";
 import { MatchesList } from "@/ui/matches-list";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 import { EcrewApiService } from "@/services/ecrew-api.service";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function MatchesView({ isDesktop }: MatchesProps) {
   const [games, runningMatches, upcomingMatches] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
-    new EcrewApiService(httpClientFactory()).getRunningMatches(
-      "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-    ),
-    new EcrewApiService(httpClientFactory()).getUpcommingMatches(
-      "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant"
-    ),
+    new PandascoreService(httpClientFactory()).getMatchesList({
+      page: 1,
+      size: 50,
+      type: "running",
+    }),
+    new PandascoreService(httpClientFactory()).getMatchesList({
+      page: 1,
+      size: 50,
+      type: "past",
+    }),
   ]);
   const matches = [...runningMatches, ...upcomingMatches];
 

@@ -11,7 +11,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
   return (
     <section className="w-full flex flex-col gap-3">
       <ul className="flex flex-col w-full bg-zinc-900 bg-opacity-50 rounded-lg text-zinc-300 overflow-hidden">
-        <li className="pl-4 py-3 flex items-center font-kanit font-bold text-sm gap-6">
+        <li className="pl-6 py-3 flex items-center font-kanit font-bold text-sm gap-6">
           <span className="w-1/5"></span>
           <span className="w-1/5">Partida</span>
           <span className="w-1/5">Torneio</span>

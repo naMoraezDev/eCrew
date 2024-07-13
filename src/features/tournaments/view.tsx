@@ -4,7 +4,8 @@ import { IoIosPodium } from "react-icons/io";
 import { TournamentsSEO } from "@/seo/tournaments";
 import { TournamentList } from "@/ui/tournament-list";
 import { EcrewApiService } from "@/services/ecrew-api.service";
-import { Tournament } from "@/services/types/tournaments.types";
+import { Tournament } from "@/services/pandascore/types/tournaments.types";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
@@ -27,12 +28,42 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
     dotaTournaments,
   ] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("csgo"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("r6siege"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("lol"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("codmw"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("valorant"),
-    new EcrewApiService(httpClientFactory()).getRunningTournaments("dota2"),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 50,
+      type: "running",
+      videogame: "csgo",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 50,
+      type: "running",
+      videogame: "r6siege",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 50,
+      type: "running",
+      videogame: "lol",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 50,
+      type: "running",
+      videogame: "codmw",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 50,
+      type: "running",
+      videogame: "valorant",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 50,
+      type: "running",
+      videogame: "dota2",
+    }),
   ]);
   const tournaments = [
     ...csTournaments,

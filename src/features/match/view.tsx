@@ -18,12 +18,13 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import { UpcomingMatches } from "@/ui/upcoming-matches";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
   const [games, match] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
-    new EcrewApiService(httpClientFactory()).getMatchById(id),
+    new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
 
   const [teamA, teamB] = await Promise.all([
@@ -230,8 +231,20 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                   Line up {match.opponents[0].opponent.acronym}
                 </li>
                 {teamA.players.map((player, index) => (
-                  <li key={index} className="px-6 py-2">
-                    {match.opponents[0].opponent.acronym} {player.name}
+                  <li
+                    key={index}
+                    className="px-6 py-2 flex items-center gap-3"
+                  >
+                    {player.nationality && (
+                      <Image
+                        width={48}
+                        height={36}
+                        className="w-5 rounded-sm"
+                        alt={player.nationality}
+                        src={`https://flagcdn.com/48x36/${player.nationality?.toLowerCase()}.png`}
+                      />
+                    )}
+                    {player.name}
                   </li>
                 ))}
               </ul>
@@ -240,8 +253,20 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                   Line up {match.opponents[1].opponent.acronym}
                 </li>
                 {teamB.players.map((player, index) => (
-                  <li key={index} className="px-6 py-2">
-                    {match.opponents[1].opponent.acronym} {player.name}
+                  <li
+                    key={index}
+                    className="px-6 py-2 flex items-center gap-3"
+                  >
+                    {player.nationality && (
+                      <Image
+                        width={48}
+                        height={36}
+                        className="w-5 rounded-sm"
+                        alt={player.nationality}
+                        src={`https://flagcdn.com/48x36/${player.nationality?.toLowerCase()}.png`}
+                      />
+                    )}
+                    {player.name}
                   </li>
                 ))}
               </ul>

@@ -41,6 +41,11 @@ const nextConfig = {
         protocol: "https",
         hostname: "eposts7.files.wordpress.com",
       },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "flagcdn.com",
+      },
     ],
   },
 };

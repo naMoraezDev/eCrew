@@ -1,7 +1,7 @@
 import { Games } from "@/services/types/games.types";
-import { Tournaments } from "@/services/types/tournaments.types";
+import { TournamentsList } from "@/services/pandascore/types/tournaments.types";
 
 export interface TournamentListProps {
   games: Games;
-  tournaments: Tournaments;
+  tournaments: TournamentsList;
 }

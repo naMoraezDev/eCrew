@@ -2,15 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { MdUpcoming } from "react-icons/md";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
-import { EcrewApiService } from "@/services/ecrew-api.service";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function UpcomingMatchesView() {
-  const upcomingMatches = await new EcrewApiService(
+  const upcomingMatches = await new PandascoreService(
     httpClientFactory()
-  ).getUpcommingMatches(
-    "?filter_type=videogame&filter=cod-mw,cs-go,dota-2,league-of-legends,r6-siege,valorant&page=1&per_page=5"
-  );
+  ).getMatchesList({ type: "upcoming", page: 1, size: 5 });
 
   if (!upcomingMatches?.length) {
     return null;
@@ -57,10 +55,10 @@ export async function UpcomingMatchesView() {
                 </span>
                 <span className="text-xs font-kanit">
                   {new Date(match.begin_at).toLocaleDateString("pt-BR", {
-                    hour: "numeric",
-                    minute: "numeric",
                     month: "long",
                     day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
                   })}
                 </span>
               </div>

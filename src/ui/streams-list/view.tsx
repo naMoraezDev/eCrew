@@ -70,10 +70,11 @@ export function StreamsListView({ match, streams }: StreamsListProps) {
       </section>
       <div className="w-3/4 relative pb-[56.25%] h-0 rounded-normal">
         <iframe
+          allowFullScreen
           className="absolute top-0 left-0 w-full h-full"
           src={
             match.streams_list[selectedStreamIndex].embed_url +
-            `&parent=${process.env.NEXT_PUBLIC_SITE_HOST}`
+            `&parent=${process.env.NEXT_PUBLIC_SITE_HOST}&autoplay=false`
           }
         />
       </div>
