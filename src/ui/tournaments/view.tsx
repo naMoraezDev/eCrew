@@ -114,7 +114,7 @@ export async function TournamentsView({ game }: TournamentsProps) {
         </span>
       )}
       {tournaments.map((tournament, index) => (
-        <li key={index} className="text-sm flex gap-3 px-6 py-3">
+        <li key={index} className="text-sm flex gap-3 px-6 py-3 relative">
           <Image
             width={40}
             height={40}
@@ -136,6 +136,10 @@ export async function TournamentsView({ game }: TournamentsProps) {
               {tournament.name}
             </span>
           </div>
+          <Link
+            href={`/torneios/${tournament.id}`}
+            className="size-full absolute top-0 left-0"
+          />
         </li>
       ))}
       <Link className="self-center text-sm font-kanit p-3" href="/torneios">

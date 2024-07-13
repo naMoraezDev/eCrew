@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import {
   Select,
@@ -97,6 +98,10 @@ export function TournamentListView({
                   {new Date(tournament.begin_at).toLocaleDateString("pt-BR")} -{" "}
                   {new Date(tournament.end_at).toLocaleDateString("pt-BR")}
                 </span>
+                <Link
+                  href={`/torneios/${tournament.id}`}
+                  className="size-full absolute top-0 left-0 z-20"
+                />
                 {tournament.matches.find(
                   (match) => match.status === "running"
                 ) && (

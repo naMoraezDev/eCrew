@@ -20,6 +20,8 @@ import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
+import Link from "next/link";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
   const [games, match] = await Promise.all([
@@ -117,10 +119,16 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                   : "Em andamento"}
               </span>
             </div>
+            <Link
+              href={`/torneios/${match.tournament.id}`}
+              className="text-sm font-medium flex items-center gap-2 ml-auto"
+            >
+              Ir para página do torneio <MdOutlineKeyboardDoubleArrowRight />
+            </Link>
           </section>
           <section
             className={`
-              ${isLive ? "pl-12 " : "pl-6"}
+              ${isLive ? "pl-12" : "pl-6"}
               py-4 pr-6 flex gap-10 items-center bg-zinc-900 bg-opacity-50 rounded-lg text-sm font-kanit font-bold relative overflow-hidden
             `}
           >
