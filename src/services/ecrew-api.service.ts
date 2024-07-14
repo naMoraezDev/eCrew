@@ -15,6 +15,14 @@ interface EcrewApiServiceProtocol {
   }) => Promise<Posts>;
   getTags: () => Promise<Tags>;
   getGames: () => Promise<Games>;
+  updateUserPreferences: (params: {
+    authorization: string;
+    userPreferences: Omit<UserPreferences, "uid">;
+  }) => Promise<void>;
+  createUserPreferences: (params: {
+    authorization: string;
+    userPreferences: Omit<UserPreferences, "uid">;
+  }) => Promise<void>;
   getUserPreferences: (
     authorization: string
   ) => Promise<UserPreferences | null>;
@@ -123,6 +131,40 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
       },
     });
     return subscribedEmail;
+  }
+
+  public async updateUserPreferences(params: {
+    authorization: string;
+    userPreferences: Omit<UserPreferences, "uid">;
+  }) {
+    await this.httpClient.request({
+      input: `${this.baseUrl}/user/preferences`,
+      init: {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: params.authorization,
+        },
+        body: JSON.stringify(params.userPreferences),
+      },
+    });
+  }
+
+  public async createUserPreferences(params: {
+    authorization: string;
+    userPreferences: Omit<UserPreferences, "uid">;
+  }) {
+    await this.httpClient.request({
+      input: `${this.baseUrl}/user/preferences`,
+      init: {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: params.authorization,
+        },
+        body: JSON.stringify(params.userPreferences),
+      },
+    });
   }
 
   public async getUserPreferences(authorization: string) {

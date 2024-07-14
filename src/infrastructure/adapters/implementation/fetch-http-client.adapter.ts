@@ -7,6 +7,11 @@ export class FetchHttpClientAdapter implements HttpClient {
       method: init?.method,
       headers: init?.headers,
     });
-    return await response.json();
+    if (response.status === 204) {
+      return;
+    }
+    if (response) {
+      return await response.json();
+    }
   }
 }

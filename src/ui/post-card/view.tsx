@@ -1,22 +1,21 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PostCardProps } from "./types";
+import { SaveButton } from "../save-button";
 
 export function PostCardView({
   post,
-  isDesktop,
   gameIconUrl,
   size = "medium",
   variant = "filled",
   orientation = "vertical",
 }: PostCardProps) {
   return (
-    <Link
-      href={`/noticias/${post.categories[0].slug}/${post.slug}`}
+    <section
       className={`
         ${variant === "filled" && "bg-zinc-900 bg-opacity-50"}
         ${orientation === "vertical" && "flex-col w-full"}
-        group flex gap-3 rounded-lg overflow-hidden h-full
+        group flex gap-3 rounded-lg overflow-hidden h-full relative
       `}
     >
       <figure
@@ -66,7 +65,8 @@ export function PostCardView({
           `}
           dangerouslySetInnerHTML={{ __html: post.excerpt }}
         />
-        <div className="flex justify-end mt-auto">
+        <div className="flex justify-end mt-auto gap-4 items-center">
+          <SaveButton postSlug={post.slug} />
           <span className="text-xs text-zinc-400 font-medium">
             {new Date(post.modified).toLocaleDateString("pt-BR", {
               month: "long",
@@ -76,6 +76,10 @@ export function PostCardView({
           </span>
         </div>
       </div>
-    </Link>
+      <Link
+        className="absolute size-full top-0 left-0 z-10"
+        href={`/noticias/${post.categories[0].slug}/${post.slug}`}
+      />
+    </section>
   );
 }
