@@ -8,6 +8,14 @@ import { UserPreferences } from "./types/user-preferences.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 
 interface EcrewApiServiceProtocol {
+  removeSavedPost: (params: {
+    postSlug: string;
+    authorization: string;
+  }) => Promise<void>;
+  pushToSavedPosts: (params: {
+    postSlug: string;
+    authorization: string;
+  }) => Promise<void>;
   getPostsByCategory: (params: {
     page: string;
     number: string;
@@ -180,6 +188,44 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
         },
       });
     return userPreferences;
+  }
+
+  public async pushToSavedPosts(params: {
+    postSlug: string;
+    authorization: string;
+  }) {
+    await this.httpClient.request({
+      input: `${this.baseUrl}/user/preferences/saved-posts/push`,
+      init: {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: params.authorization,
+        },
+        body: JSON.stringify({
+          postSlug: params.postSlug,
+        }),
+      },
+    });
+  }
+
+  public async removeSavedPost(params: {
+    postSlug: string;
+    authorization: string;
+  }) {
+    await this.httpClient.request({
+      input: `${this.baseUrl}/user/preferences/saved-posts/pull`,
+      init: {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: params.authorization,
+        },
+        body: JSON.stringify({
+          postSlug: params.postSlug,
+        }),
+      },
+    });
   }
 
   public async getTwitchUser(login: string) {

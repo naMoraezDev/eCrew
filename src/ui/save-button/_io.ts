@@ -18,22 +18,15 @@ export function useSaveButton({ postSlug }: SaveButtonProps) {
   async function handleSave() {
     if (!isSaved) {
       setIsSaved(true);
-      await new EcrewApiService(httpClientFactory()).updateUserPreferences({
+      await new EcrewApiService(httpClientFactory()).pushToSavedPosts({
+        postSlug,
         authorization: (await user?.getIdToken()) || "",
-        userPreferences: {
-          saved_posts: [...(preferences?.saved_posts || []), postSlug],
-        },
       });
     } else {
       setIsSaved(false);
-      await new EcrewApiService(httpClientFactory()).updateUserPreferences({
+      await new EcrewApiService(httpClientFactory()).removeSavedPost({
+        postSlug,
         authorization: (await user?.getIdToken()) || "",
-        userPreferences: {
-          saved_posts: [
-            ...(preferences?.saved_posts?.filter((slug) => slug !== postSlug) ||
-              []),
-          ],
-        },
       });
     }
   }
