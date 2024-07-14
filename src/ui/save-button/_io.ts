@@ -14,7 +14,10 @@ export function useSaveButton({ postSlug }: SaveButtonProps) {
   );
 
   useEffect(() => {
-    if (!preferences) return;
+    if (!preferences) {
+      setIsSaved(false);
+      return;
+    }
     setIsSaved(Boolean(preferences.saved_posts?.includes(postSlug)));
   }, [preferences, postSlug]);
 

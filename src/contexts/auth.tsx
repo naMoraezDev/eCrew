@@ -5,7 +5,7 @@ import { EcrewApiService } from "@/services/ecrew-api.service";
 import { firebaseClient } from "@/services/firebase/firebase-client";
 import { createContext, useContext, useEffect, useState } from "react";
 import { UserPreferences } from "@/services/types/user-preferences.types";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export const AuthContext = createContext<{
   user: firebaseClient.User | null;
@@ -20,6 +20,21 @@ export function AuthProvider({ children }: any) {
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 
   useEffect(() => {
+    async function getUserPreferences() {
+      const cookies = nookies.get(undefined);
+      const idToken = cookies["id-token"];
+      if (idToken) {
+        const userPreferences = await new EcrewApiService(httpClientFactory())
+          .getUserPreferences(idToken)
+          .catch(() => null);
+        if (userPreferences) {
+          setPreferences(userPreferences);
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
       if (!user) {
         setUser(null);
@@ -29,7 +44,7 @@ export function AuthProvider({ children }: any) {
         const token = await user.getIdToken();
         setUser(user);
         setPreferences(
-          await new EcrewApiService(new FetchHttpClientAdapter())
+          await new EcrewApiService(httpClientFactory())
             .getUserPreferences(token)
             .catch(() => null)
         );
