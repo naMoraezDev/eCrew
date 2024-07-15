@@ -32,6 +32,7 @@ export function AuthProvider({ children }: any) {
         }
       }
     }
+    getUserPreferences();
   }, []);
 
   useEffect(() => {
@@ -43,11 +44,10 @@ export function AuthProvider({ children }: any) {
       } else {
         const token = await user.getIdToken();
         setUser(user);
-        setPreferences(
-          await new EcrewApiService(httpClientFactory())
-            .getUserPreferences(token)
-            .catch(() => null)
-        );
+        const userPreferences = await new EcrewApiService(httpClientFactory())
+          .getUserPreferences(token)
+          .catch(() => null);
+        setPreferences(userPreferences);
         nookies.set(undefined, "id-token", token, { path: "/" });
       }
     });
