@@ -19,29 +19,6 @@ export async function generateMetadata({
   return matchMetadata({ match });
 }
 
-export async function generateStaticParams() {
-  const [runningMatches, upcomingMatches] = await Promise.all([
-    new PandascoreService(httpClientFactory())
-      .getMatchesList({
-        page: 1,
-        size: 50,
-        type: "running",
-      })
-      .catch(() => []),
-    new PandascoreService(httpClientFactory())
-      .getMatchesList({
-        page: 1,
-        size: 50,
-        type: "upcoming",
-      })
-      .catch(() => []),
-  ]);
-  const matches = [...runningMatches, ...upcomingMatches];
-  return matches.map((match) => ({
-    id: match.id.toString(),
-  }));
-}
-
 export default function MatchPage({ params }: { params: { id: string } }) {
   const id = params.id;
 

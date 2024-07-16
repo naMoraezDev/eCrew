@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 import {
   Breadcrumb,
@@ -18,17 +19,16 @@ import { RiErrorWarningFill } from "react-icons/ri";
 import { UpcomingMatches } from "@/ui/upcoming-matches";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
+import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
-import Link from "next/link";
-import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
   const [games, match] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
     new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
-
+  console.log(match);
   const opponents = await new PandascoreService(
     httpClientFactory()
   ).getMatchOpponents(id);
