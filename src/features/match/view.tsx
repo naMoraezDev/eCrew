@@ -28,7 +28,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
     new EcrewApiService(httpClientFactory()).getGames(),
     new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
-  console.log(match);
+
   const opponents = await new PandascoreService(
     httpClientFactory()
   ).getMatchOpponents(id);

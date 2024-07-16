@@ -8,54 +8,6 @@ import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation
 export const dynamic = "force-static";
 export const revalidate = REVALIDATE_TIME;
 
-export async function generateStaticParams() {
-  const [lolPosts, r6Posts, codPosts, csPosts, valorantPosts, dotaPosts] =
-    await Promise.all([
-      new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-        page: "1",
-        number: "12",
-        category: "league-of-legends",
-      }),
-      new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-        page: "1",
-        number: "12",
-        category: "r6-siege",
-      }),
-      new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-        page: "1",
-        number: "12",
-        category: "cod-mw",
-      }),
-      new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-        page: "1",
-        number: "12",
-        category: "cs-go",
-      }),
-      new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-        page: "1",
-        number: "12",
-        category: "valorant",
-      }),
-      new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-        page: "1",
-        number: "12",
-        category: "dota-2",
-      }),
-    ]);
-  const posts = [
-    ...r6Posts.posts,
-    ...csPosts.posts,
-    ...lolPosts.posts,
-    ...codPosts.posts,
-    ...dotaPosts.posts,
-    ...valorantPosts.posts,
-  ];
-  return posts.map((post) => ({
-    slug: post.slug,
-    category: post.categories[0].slug,
-  }));
-}
-
 export async function generateMetadata({
   params,
 }: {
