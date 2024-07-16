@@ -8,11 +8,13 @@ import { UserPreferences } from "@/services/types/user-preferences.types";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export const AuthContext = createContext<{
+  cleanPreferences: () => void;
   user: firebaseClient.User | null;
   preferences: UserPreferences | null;
 }>({
   user: null,
   preferences: null,
+  cleanPreferences: () => {},
 });
 
 export function AuthProvider({ children }: any) {
@@ -20,35 +22,18 @@ export function AuthProvider({ children }: any) {
   const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 
   useEffect(() => {
-    async function getUserPreferences() {
-      const cookies = nookies.get(undefined);
-      const idToken = cookies["id-token"];
-      if (idToken) {
-        const userPreferences = await new EcrewApiService(httpClientFactory())
-          .getUserPreferences(idToken)
-          .catch(() => null);
-        if (userPreferences) {
-          setPreferences(userPreferences);
-        }
-      }
-    }
-    getUserPreferences();
-  }, []);
-
-  useEffect(() => {
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
       if (!user) {
         setUser(null);
-        setPreferences(null);
         nookies.set(undefined, "id-token", "", { path: "/" });
       } else {
-        const token = await user.getIdToken();
         setUser(user);
+        const token = await user.getIdToken();
+        nookies.set(undefined, "id-token", token, { path: "/" });
         const userPreferences = await new EcrewApiService(httpClientFactory())
           .getUserPreferences(token)
           .catch(() => null);
         setPreferences(userPreferences);
-        nookies.set(undefined, "id-token", token, { path: "/" });
       }
     });
   }, []);
@@ -62,8 +47,12 @@ export function AuthProvider({ children }: any) {
     return () => clearInterval(handle);
   }, []);
 
+  function cleanPreferences() {
+    setPreferences(null);
+  }
+
   return (
-    <AuthContext.Provider value={{ user, preferences }}>
+    <AuthContext.Provider value={{ user, preferences, cleanPreferences }}>
       {children}
     </AuthContext.Provider>
   );

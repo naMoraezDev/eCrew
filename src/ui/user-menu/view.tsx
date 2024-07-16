@@ -9,8 +9,8 @@ import { LoggedOutUser } from "./logged-out-user";
 import { SignOutButton } from "./sign-out-button";
 
 export function UserMenuView({ isDesktop }: UserMenuProps) {
-  const { user } = useAuth();
   const { signOut } = useUserMenu();
+  const { user, cleanPreferences } = useAuth();
 
   return (
     <div className="flex gap-2">
@@ -31,7 +31,14 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
           />
         )}
       </Link>
-      {user && <SignOutButton signOut={signOut} />}
+      {user && (
+        <SignOutButton
+          signOut={() => {
+            signOut();
+            cleanPreferences();
+          }}
+        />
+      )}
     </div>
   );
 }
