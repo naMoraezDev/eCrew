@@ -67,7 +67,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
         return "Counter Strike";
     }
   }
-
+  console.log(match.status);
   return (
     <>
       <MatchSEO match={match} />
@@ -116,6 +116,8 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                   ? "Finalizada"
                   : match.status === "not_started"
                   ? "Não iniciada"
+                  : match.status === "canceled"
+                  ? "Cancelada"
                   : "Em andamento"}
               </span>
             </div>
