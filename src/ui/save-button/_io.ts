@@ -9,6 +9,7 @@ import { httpClientFactory } from "@/infrastructure/adapters/factories/http-clie
 export function useSaveButton({ postSlug }: SaveButtonProps) {
   const router = useRouter();
   const { user, preferences } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
   const [isSaved, setIsSaved] = useState(
     Boolean(preferences?.saved_posts?.includes(postSlug))
   );
@@ -27,19 +28,25 @@ export function useSaveButton({ postSlug }: SaveButtonProps) {
       router.push("/login");
     }
     if (!isSaved) {
-      setIsSaved(true);
+      setIsLoading(true);
       await new EcrewApiService(httpClientFactory()).pushToSavedPosts({
         postSlug,
         authorization: (await user?.getIdToken()) || "",
       });
+      setIsSaved(true);
+      setIsLoading(false);
+      toast.success("Post salvo com sucesso!");
     } else {
-      setIsSaved(false);
+      setIsLoading(true);
       await new EcrewApiService(httpClientFactory()).removeSavedPost({
         postSlug,
         authorization: (await user?.getIdToken()) || "",
       });
+      setIsSaved(false);
+      setIsLoading(false);
+      toast.success("Post excluído com sucesso!");
     }
   }
 
-  return { handleSave, isSaved };
+  return { handleSave, isSaved, isLoading };
 }
