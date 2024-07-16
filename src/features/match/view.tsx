@@ -126,38 +126,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               Ir para página do torneio <MdOutlineKeyboardDoubleArrowRight />
             </Link>
           </section>
-          <section
-            className={`
-              ${isLive ? "pl-12" : "pl-6"}
-              py-4 pr-6 flex gap-10 items-center bg-zinc-900 bg-opacity-50 rounded-lg text-sm font-kanit font-bold relative overflow-hidden
-            `}
-          >
-            <div className="flex gap-6 items-center">
-              {teamA && teamB && (
-                <>
-                  <div className="flex gap-4 items-center">
-                    <Image
-                      width={32}
-                      height={32}
-                      alt={teamA.name}
-                      src={teamA.image_url || ecrewLogo}
-                    />
-                  </div>
-                  <div className="flex gap-2">
-                    <span>vs</span>
-                  </div>
-                  <div className="flex gap-4 items-center">
-                    <Image
-                      width={32}
-                      height={32}
-                      alt={teamB.name}
-                      src={teamB.image_url || ecrewLogo}
-                    />
-                  </div>
-                  <div className="h-8 w-px bg-zinc-800" />
-                </>
-              )}
-            </div>
+          <section className="py-4 px-6 flex gap-10 items-center bg-zinc-900 bg-opacity-50 rounded-lg text-sm font-kanit font-bold relative overflow-hidden">
             <span>{match.name}</span>
             {!isLive && (
               <>
@@ -172,11 +141,44 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 </span>
               </>
             )}
+          </section>
+          <section className="h-24 py-4 px-6 flex gap-10 items-center justify-center bg-zinc-900 bg-opacity-50 rounded-lg text-3xl font-kanit font-bold relative overflow-hidden">
+            {teamA && teamB && (
+              <>
+                <div className="flex gap-6 items-center">
+                  <span>{teamA.acronym}</span>
+                  <Image
+                    width={48}
+                    height={48}
+                    alt={teamA.name}
+                    src={teamA.image_url || ecrewLogo}
+                  />
+                </div>
+                <div className="flex gap-6">
+                  {match.status !== "not_started" && (
+                    <span>{match.results[0].score}</span>
+                  )}
+                  <span>vs</span>
+                  {match.status !== "not_started" && (
+                    <span>{match.results[1].score}</span>
+                  )}
+                </div>
+                <div className="flex gap-6 items-center">
+                  <Image
+                    width={48}
+                    height={48}
+                    alt={teamB.name}
+                    src={teamB.image_url || ecrewLogo}
+                  />
+                  <span>{teamB.acronym}</span>
+                </div>
+              </>
+            )}
             {isLive && (
               <>
                 <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-5 -z-10" />
                 <div className="absolute top-0 left-0 h-full z-10 rotate-180">
-                  <span className="flex h-full justify-center items-center text-sm text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
+                  <span className="flex h-full justify-center items-center text-xl text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
                     LIVE
                   </span>
                 </div>

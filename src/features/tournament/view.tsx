@@ -46,7 +46,7 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
         )
     );
   }
-  console.log(streams);
+
   return (
     <>
       <TournamentSEO tournament={tournament} />
@@ -78,13 +78,15 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
           <section className="bg-opacity-50 bg-zinc-900 p-3 rounded-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-6">
-                <Image
-                  width={100}
-                  height={100}
-                  alt={tournament.name}
-                  src={tournament.league.image_url}
-                  className="bg-zinc-50 p-2 rounded-lg size-24 object-contain"
-                />
+                {tournament.league.image_url && (
+                  <Image
+                    width={100}
+                    height={100}
+                    alt={tournament.name}
+                    src={tournament.league.image_url || ""}
+                    className="bg-zinc-50 p-2 rounded-lg size-24 object-contain"
+                  />
+                )}
                 <span className="font-kanit text-2xl font-bold">
                   {tournament.league.name} {tournament.name}
                 </span>
