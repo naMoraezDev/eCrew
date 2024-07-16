@@ -11,11 +11,11 @@ import {
 import { useCategory } from "./_io";
 import { CategoryProps } from "./types";
 import { PostCard } from "@/ui/post-card";
+import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
 import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
-import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
@@ -186,17 +186,7 @@ export async function CategoryView({
             <MostReadPosts />
             <PopularTags />
             <section className="p-2 relative">
-              <Image
-                src={exitLagBanner}
-                alt="exit_lag_banner"
-                className="rounded-lg"
-              />
-              <a
-                target="_blank"
-                rel="noreferrer"
-                href="https://www.exitlag.com/"
-                className="absolute top-0 left-0 w-full h-full"
-              />
+              <SquareAd />
             </section>
           </div>
         </section>

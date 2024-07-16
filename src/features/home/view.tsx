@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
@@ -7,7 +7,6 @@ import { LatestPosts } from "@/ui/latest-posts";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
-import exitLagBanner from "@/assets/images/exitlag-banner.png";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -141,17 +140,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
               <DynamicMostReadPosts />
               <DynamicPopularTags />
               <section className="p-2 relative">
-                <Image
-                  src={exitLagBanner}
-                  alt="exit_lag_banner"
-                  className="rounded-lg"
-                />
-                <a
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://www.exitlag.com/"
-                  className="absolute top-0 left-0 w-full h-full"
-                />
+                <SquareAd />
               </section>
             </div>
           </section>
