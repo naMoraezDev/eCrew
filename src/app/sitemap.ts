@@ -1,5 +1,5 @@
 import { MetadataRoute } from "next";
-import { EcrewApiService } from "@/services/ecrew-api.service";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -21,35 +21,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     runningMatches,
     upcomingMatches,
   ] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "50",
-      category: "cs-go",
+      categorySlug: "cs-go",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "50",
-      category: "league-of-legends",
+      categorySlug: "league-of-legends",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "50",
-      category: "dota-2",
+      categorySlug: "dota-2",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "50",
-      category: "valorant",
+      categorySlug: "valorant",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "50",
-      category: "r6-siege",
+      categorySlug: "r6-siege",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "50",
-      category: "cod-mw",
+      categorySlug: "cod-mw",
     }),
     new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
       page: 1,
@@ -105,12 +99,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const posts = [
-    ...csPosts.posts,
-    ...lolPosts.posts,
-    ...r6sPosts.posts,
-    ...codmwPosts.posts,
-    ...dota2Posts.posts,
-    ...valorantPosts.posts,
+    ...csPosts.data.posts.edges,
+    ...lolPosts.data.posts.edges,
+    ...r6sPosts.data.posts.edges,
+    ...codmwPosts.data.posts.edges,
+    ...dota2Posts.data.posts.edges,
+    ...valorantPosts.data.posts.edges,
   ];
 
   const tournaments = [
@@ -168,8 +162,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     ...posts.map((post) => ({
-      url: `${process.env.PRIVATE_SITE_URL}/noticias/${post.categories[0].slug}/${post.slug}`,
-      lastModified: new Date(post.modified),
+      url: `${process.env.PRIVATE_SITE_URL}/noticias/${post.node.categories.edges[0].node.slug}/${post.node.slug}`,
+      lastModified: new Date(post.node.modified),
       changeFrequency: "monthly" as any,
       priority: 0.5,
     })),
