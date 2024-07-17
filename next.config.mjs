@@ -51,6 +51,21 @@ const nextConfig = {
         protocol: "http",
         hostname: "15.228.88.214",
       },
+      {
+        pathname: "/**",
+        protocol: "http",
+        hostname: "0.gravatar.com",
+      },
+      {
+        pathname: "/**",
+        protocol: "http",
+        hostname: "1.gravatar.com",
+      },
+      {
+        pathname: "/**",
+        protocol: "http",
+        hostname: "2.gravatar.com",
+      },
     ],
   },
 };

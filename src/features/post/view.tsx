@@ -40,16 +40,16 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink
-                href={`/noticias/${post.categories[0].slug}`}
                 className="hover:text-zinc-300 duration-300"
+                href={`/noticias/${post.data.post.categories.edges[0].node.slug}`}
               >
-                {post?.categories[0]?.name.toLocaleLowerCase()}
+                {post.data.post.categories.edges[0].node.name.toLocaleLowerCase()}
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-zinc-50">
-                {post.title}
+                {post.data.post.title}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -58,11 +58,11 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
           <figure className="w-full h-[250px]">
             <Image
               priority
-              alt={post.title}
-              src={post.post_thumbnail?.URL}
+              width={1280}
+              height={720}
+              alt={post.data.post.title}
               className="h-full object-cover"
-              width={post.post_thumbnail.width}
-              height={post.post_thumbnail.height}
+              src={post.data.post.featuredImage.node.sourceUrl}
             />
           </figure>
           <div
@@ -71,10 +71,12 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
               w-full flex flex-col gap-4
             `}
           >
-            <h1 className="text-3xl font-kanit font-bold">{post.title}</h1>
+            <h1 className="text-3xl font-kanit font-bold">
+              {post.data.post.title}
+            </h1>
             <div
               className="text-sm text-slate-300"
-              dangerouslySetInnerHTML={{ __html: post.excerpt }}
+              dangerouslySetInnerHTML={{ __html: post.data.post.excerpt }}
             />
           </div>
           <div className="w-full">
@@ -85,7 +87,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
               `}
             >
               <time>
-                {new Date(post.modified).toLocaleDateString("pt-BR", {
+                {new Date(post.data.post.modified).toLocaleDateString("pt-BR", {
                   month: "long",
                   day: "numeric",
                   year: "numeric",
@@ -105,43 +107,43 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             <Image
               width={64}
               height={64}
-              alt={post.author.name}
               className="rounded-full"
-              src={post.author.avatar_URL}
+              alt={post.data.post.author.node.name}
+              src={post.data.post.author.node.avatar.url}
             />
             <div className="text-2xl font-kanit font-bold">
-              <span>{post.author.name}</span>
+              <span>{post.data.post.author.node.name}</span>
               <p className="text-slate-300 text-base font-normal line-clamp-1">
                 autor
               </p>
             </div>
           </section>
           <ArticleReader
-            title={post.title}
             isDesktop={isDesktop}
-            content={post.content}
-            excerpt={post.excerpt}
+            title={post.data.post.title}
+            content={post.data.post.content}
+            excerpt={post.data.post.excerpt}
           />
         </section>
         <HorizontalAd />
-        <PostContent content={post.content} isDesktop={isDesktop} />
+        <PostContent content={post.data.post.content} isDesktop={isDesktop} />
         <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 bg-opacity-50 rounded-lg">
           <Image
             width={64}
             height={64}
-            alt={post.author.name}
             className="rounded-full"
-            src={post.author.avatar_URL}
+            alt={post.data.post.author.node.name}
+            src={post.data.post.author.node.avatar.url}
           />
           <div className="text-2xl font-kanit font-bold">
-            <span>{post.author.name}</span>
+            <span>{post.data.post.author.node.name}</span>
             <p className="text-slate-300 text-base font-normal">autor</p>
           </div>
         </section>
         {!isDesktop && (
           <MorePostsAbout
-            posts={morePostsAbout.posts}
-            category={post.categories[0].name}
+            posts={morePostsAbout.data.posts}
+            category={post.data.post.categories.edges[0].node.name}
           />
         )}
         <HorizontalAd />
@@ -151,8 +153,8 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
         <section className="w-1/4 mt-4 relative">
           <div className="flex flex-col gap-4 sticky top-16">
             <MorePostsAbout
-              posts={morePostsAbout.posts}
-              category={post.categories[0].name}
+              posts={morePostsAbout.data.posts}
+              category={post.data.post.categories.edges[0].node.name}
             />
             <MostReadPosts />
             <PopularTags />
