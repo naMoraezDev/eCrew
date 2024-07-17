@@ -11,6 +11,7 @@ import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 const DynamicMatchesSection = dynamic(() =>
   import("@/ui/matches-section").then((module) => module.MatchesSection)
 );
@@ -30,47 +31,42 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     csPosts,
     valorantPosts,
     dotaPosts,
-    featuredPosts,
+    homeCategory,
     latestPosts,
   ] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "2",
-      category: "league-of-legends",
+      categorySlug: "league-of-legends",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "2",
-      category: "r6-siege",
+      categorySlug: "r6-siege",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "2",
-      category: "cod-mw",
+      categorySlug: "cod-mw",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "2",
-      category: "cs-go",
+      categorySlug: "cs-go",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "2",
-      category: "valorant",
+      categorySlug: "valorant",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "2",
-      category: "dota-2",
+      categorySlug: "dota-2",
     }),
-    new EcrewApiService(httpClientFactory()).getPostsByTag("destaques"),
-    new EcrewApiService(httpClientFactory()).getPostsByCategory({
-      page: "1",
+    new WordpressService(httpClientFactory()).getCategoryBySlug("home"),
+    new WordpressService(httpClientFactory()).getPostsByCategory({
       number: "4",
-      category: "all",
+      categorySlug: "all",
     }),
   ]);
+
+  const featuredPosts = homeCategory.data.category.extraFields.featuredPosts;
 
   return (
     <>
@@ -90,43 +86,43 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <LatestPosts
             games={games}
             isDesktop={isDesktop}
-            postList={latestPosts}
+            postsList={latestPosts}
           />
           <HorizontalAd />
           <PostsCarousel
             games={games}
-            postList={csPosts}
+            postsList={csPosts}
             isDesktop={isDesktop}
             category="Counter-Strike: Global Offensive"
           />
           <PostsCarousel
             games={games}
-            postList={lolPosts}
+            postsList={lolPosts}
             isDesktop={isDesktop}
             category="League of Legends"
           />
           <PostsCarousel
             games={games}
-            postList={r6Posts}
+            postsList={r6Posts}
             isDesktop={isDesktop}
             category="Rainbow Six Siege"
           />
           <PostsCarousel
             games={games}
             category="Dota 2"
-            postList={dotaPosts}
+            postsList={dotaPosts}
             isDesktop={isDesktop}
           />
           <PostsCarousel
             games={games}
             category="Call of Duty: Modern Warfare"
-            postList={codPosts}
+            postsList={codPosts}
             isDesktop={isDesktop}
           />
           <PostsCarousel
             games={games}
             category="Valorant"
-            postList={valorantPosts}
+            postsList={valorantPosts}
             isDesktop={isDesktop}
           />
           <HorizontalAd />

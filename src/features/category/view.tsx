@@ -19,27 +19,39 @@ import { MostReadPosts } from "@/ui/most-read-posts";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function CategoryView({
   term,
-  page = 1,
+  after,
+  before,
   category,
   isDesktop,
 }: CategoryProps) {
+  console.log(after, before);
   const { getBackgroundData } = useCategory({ category });
-  const [games, postList] = await Promise.all([
+  const [games, postsList] = await Promise.all([
     new EcrewApiService(new FetchHttpClientAdapter()).getGames(),
     term
-      ? new EcrewApiService(new FetchHttpClientAdapter()).getPostsBySearch(term)
-      : new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
+      ? new WordpressService(new FetchHttpClientAdapter()).getPostsByTerm({
+          term,
           number: "12",
-          page: page.toString(),
-          category: category || "all",
+        })
+      : new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
+          after,
+          before,
+          number: "12",
+          categorySlug: category || "all",
         }),
   ]);
-  const firstGroup = term ? postList.posts : postList.posts.slice(0, 6);
-  const secondGroup = term ? [] : postList.posts.slice(6, 12);
+  const firstGroup = term
+    ? postsList.data.posts.edges
+    : postsList.data.posts.edges.slice(0, 6);
+  const secondGroup = term ? [] : postsList.data.posts.edges.slice(6, 12);
+
+  const hasNextPage = postsList.data.posts.pageInfo.hasNextPage;
+  const hasPreviousPage = postsList.data.posts.pageInfo.hasPreviousPage;
 
   return (
     <section className="w-full flex gap-4">
@@ -65,14 +77,14 @@ export async function CategoryView({
                   ? "mais notícias"
                   : term
                   ? "busca"
-                  : postList.posts[0]?.categories[0]?.name.toLocaleLowerCase()}
+                  : postsList.data.posts.edges[0]?.node.categories.edges[0]?.node.slug.toLocaleLowerCase()}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         {term && (
           <section>
-            {Boolean(postList.posts.length) ? (
+            {Boolean(postsList.data.posts.edges.length) ? (
               <span className="text-2xl font-kanit font-bold text-zinc-50">
                 Resultados para{" "}
                 <span className="text-violet-500">{`"${term}"`}</span>:
@@ -113,13 +125,15 @@ export async function CategoryView({
           {firstGroup.map((post, index) => (
             <PostCard
               key={index}
-              post={post}
+              post={post.node}
               size={isDesktop ? "medium" : "small"}
               variant={isDesktop ? "outlined" : "filled"}
               orientation={isDesktop ? "vertical" : "horizontal"}
               gameIconUrl={
-                games.find((game) => game.slug === post.categories[0].slug)
-                  ?.icon_url
+                games.find(
+                  (game) =>
+                    game.slug === post.node.categories.edges[0].node.slug
+                )?.icon_url
               }
             />
           ))}
@@ -134,50 +148,45 @@ export async function CategoryView({
           {secondGroup.map((post, index) => (
             <PostCard
               key={index}
-              post={post}
+              post={post.node}
               size={isDesktop ? "medium" : "small"}
               variant={isDesktop ? "outlined" : "filled"}
               orientation={isDesktop ? "vertical" : "horizontal"}
               gameIconUrl={
-                games.find((game) => game.slug === post.categories[0].slug)
-                  ?.icon_url
+                games.find(
+                  (game) =>
+                    game.slug === post.node.categories.edges[0].node.slug
+                )?.icon_url
               }
             />
           ))}
         </div>
-        {!term && postList.found > 12 && (
-          <section className="w-full flex items-center justify-center text-base gap-2">
-            {page > 1 && (
-              <Link
-                href={
-                  category === "all"
-                    ? `/noticias/mais-noticias${
-                        page > 1 ? `?page=${page - 1}` : ""
-                      }`
-                    : `/noticias/${category}?page=${page - 1}`
-                }
-                className="bg-zinc-900 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
-              >
-                <MdOutlineKeyboardDoubleArrowLeft size={18} />
-              </Link>
-            )}
-            <div className="p-1 bg-zinc-900 bg-opacity-50 rounded-lg min-w-8 h-8 flex items-center justify-center">
-              {page}
-            </div>
-            {postList.posts.length >= 12 && (
-              <Link
-                href={
-                  category === "all"
-                    ? `/noticias/mais-noticias?page=${page + 1}`
-                    : `/noticias/${category}?page=${page + 1}`
-                }
-                className="bg-zinc-900 bg-opacity-50 rounded-lg size-8 flex items-center justify-center hover:bg-opacity-10 duration-300"
-              >
-                <MdOutlineKeyboardDoubleArrowRight size={18} />
-              </Link>
-            )}
-          </section>
-        )}
+        <section className="w-full flex items-center justify-center text-base gap-2">
+          {hasPreviousPage && (
+            <Link
+              href={
+                category === "all"
+                  ? `/noticias/mais-noticias?before=${postsList.data.posts.pageInfo.endCursor}`
+                  : `/noticias/${category}?before=${postsList.data.posts.pageInfo.endCursor}`
+              }
+              className="py-1 px-3 bg-zinc-900 bg-opacity-50 rounded-lg flex items-center gap-2 hover:bg-opacity-10 duration-300 text-sm font-kanit"
+            >
+              <MdOutlineKeyboardDoubleArrowLeft /> página anterior
+            </Link>
+          )}
+          {hasNextPage && (
+            <Link
+              href={
+                category === "all"
+                  ? `/noticias/mais-noticias?after=${postsList.data.posts.pageInfo.endCursor}`
+                  : `/noticias/${category}?after=${postsList.data.posts.pageInfo.endCursor}`
+              }
+              className="py-1 px-3 bg-zinc-900 bg-opacity-50 rounded-lg flex items-center gap-2 hover:bg-opacity-10 duration-300 text-sm font-kanit"
+            >
+              próxima página <MdOutlineKeyboardDoubleArrowRight />
+            </Link>
+          )}
+        </section>
         <Newsletter isDesktop={isDesktop} />
       </section>
       {isDesktop && (

@@ -6,7 +6,7 @@ import { PiNewspaperClippingFill } from "react-icons/pi";
 
 export function LatestPostsView({
   games,
-  postList,
+  postsList,
   isDesktop,
 }: LatestPostsProps) {
   return (
@@ -27,11 +27,11 @@ export function LatestPostsView({
         size="small"
         variant="filled"
         isDesktop={isDesktop}
-        post={postList.posts[0]}
         orientation="horizontal"
+        post={postsList.data.posts.edges[0].node}
         gameIconUrl={
           games.find(
-            (game) => game.slug === postList.posts[0].categories[0].slug
+            (game) => game.slug === postsList.data.posts.edges[0].node.slug
           )?.icon_url
         }
       />
@@ -40,10 +40,10 @@ export function LatestPostsView({
         variant="filled"
         isDesktop={isDesktop}
         orientation="horizontal"
-        post={postList.posts[1]}
+        post={postsList.data.posts.edges[1].node}
         gameIconUrl={
           games.find(
-            (game) => game.slug === postList.posts[1].categories[0].slug
+            (game) => game.slug === postsList.data.posts.edges[1].node.slug
           )?.icon_url
         }
       />
@@ -52,10 +52,10 @@ export function LatestPostsView({
         variant="filled"
         isDesktop={isDesktop}
         orientation="horizontal"
-        post={postList.posts[2]}
+        post={postsList.data.posts.edges[2].node}
         gameIconUrl={
           games.find(
-            (game) => game.slug === postList.posts[2].categories[0].slug
+            (game) => game.slug === postsList.data.posts.edges[2].node.slug
           )?.icon_url
         }
       />
@@ -64,10 +64,10 @@ export function LatestPostsView({
         variant="filled"
         isDesktop={isDesktop}
         orientation="horizontal"
-        post={postList.posts[3]}
+        post={postsList.data.posts.edges[3].node}
         gameIconUrl={
           games.find(
-            (game) => game.slug === postList.posts[3].categories[0].slug
+            (game) => game.slug === postsList.data.posts.edges[3].node.slug
           )?.icon_url
         }
       />

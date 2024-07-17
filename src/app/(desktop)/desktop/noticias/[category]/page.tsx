@@ -30,14 +30,20 @@ export default async function CategoryPage({
   searchParams,
 }: {
   params: { category: string };
-  searchParams: { page: string };
+  searchParams: { after?: string; before?: string };
 }) {
-  const page = Number(searchParams.page || "1") ?? 1;
+  const after = searchParams.after;
+  const before = searchParams.before;
 
   return (
     <>
       <CategorySEO categorySlug={params.category} />
-      <Category category={params.category} page={page} isDesktop />
+      <Category
+        isDesktop
+        after={after}
+        before={before}
+        category={params.category}
+      />
     </>
   );
 }

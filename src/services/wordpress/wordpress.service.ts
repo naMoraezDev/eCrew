@@ -55,7 +55,7 @@ export class WordpressService implements WordpressServiceProtocol {
 
   public async getCategoryBySlug(categorySlug: string) {
     return await this.httpClient.request<Category>({
-      input: `${this.baseUrl}/wp-graphql/category/${categorySlug}`,
+      input: `${this.baseUrl}/wp-graphql/categories/category/${categorySlug}`,
       init: {
         method: "GET",
       },

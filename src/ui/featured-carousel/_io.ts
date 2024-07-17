@@ -10,7 +10,7 @@ export function useFeaturedCarousel({ posts }: FeaturedCarouselProps) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((currentIndex + 1) % posts.posts.length);
+      setCurrentIndex((currentIndex + 1) % posts.length);
     }, 5000);
     return () => clearInterval(interval);
   }, [currentIndex]);

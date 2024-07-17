@@ -13,9 +13,10 @@ export async function generateMetadata({
 export default async function MoreNewsPage({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: { after?: string; before?: string };
 }) {
-  const page = Number(searchParams.page || "1") ?? 1;
+  const after = searchParams.after;
+  const before = searchParams.before;
 
-  return <Category category="all" page={page} isDesktop />;
+  return <Category category="all" after={after} before={before} isDesktop />;
 }

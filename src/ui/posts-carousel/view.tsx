@@ -14,13 +14,13 @@ import { FaArrowRight } from "react-icons/fa";
 export function PostsCarouselView({
   games,
   category,
-  postList,
+  postsList,
   isDesktop,
 }: PostsCarouselProps) {
   const { gameIconUrl, getGameCover, getGameTypeIcon } = usePostsCarousel({
     games,
     category,
-    postList,
+    postsList,
     isDesktop,
   });
 
@@ -40,13 +40,13 @@ export function PostsCarouselView({
       </div>
       <Carousel opts={{ align: "start" }} className="relative z-10">
         <CarouselContent>
-          {postList.posts.map((post, index) => (
+          {postsList.data.posts.edges.map((edge, index) => (
             <CarouselItem
               key={index}
               className={isDesktop ? "basis-1/3" : "basis-[60%]"}
             >
               <PostCard
-                post={post}
+                post={edge.node}
                 variant="outlined"
                 isDesktop={isDesktop}
                 gameIconUrl={gameIconUrl}
@@ -55,7 +55,7 @@ export function PostsCarouselView({
           ))}
           <CarouselItem className={isDesktop ? "basis-1/3" : "basis-[60%]"}>
             <Link
-              href={`/noticias/${postList.posts[0].categories[0].slug}`}
+              href={`/noticias/${postsList.data.posts.edges[0].node.categories.edges[0].node.slug}`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
             >
               <Image
