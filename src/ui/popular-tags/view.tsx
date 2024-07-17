@@ -1,9 +1,9 @@
 import { FaStar } from "react-icons/fa";
-import { EcrewApiService } from "@/services/ecrew-api.service";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function PopularTagsView() {
-  const tagsList = await new EcrewApiService(
+  const tagsList = await new WordpressService(
     new FetchHttpClientAdapter()
   ).getTags();
 
@@ -14,12 +14,12 @@ export async function PopularTagsView() {
         Tags populares
       </h4>
       <div className="flex flex-wrap gap-2">
-        {tagsList.tags.map((tag) => (
+        {tagsList.data.tags.edges.map((tag) => (
           <span
-            key={tag.ID}
+            key={tag.node.id}
             className="px-2 py-1 rounded-lg bg-zinc-500 bg-opacity-10"
           >
-            {tag.name}
+            {tag.node.name}
           </span>
         ))}
       </div>

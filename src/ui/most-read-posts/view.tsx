@@ -1,27 +1,29 @@
 import Link from "next/link";
 import { FaBookOpenReader } from "react-icons/fa6";
-import { EcrewApiService } from "@/services/ecrew-api.service";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export async function MostReadPostsView() {
-  const postList = await new EcrewApiService(
+  const homeCategory = await new WordpressService(
     new FetchHttpClientAdapter()
-  ).getPostsByTag("mais-lidas");
+  ).getCategoryBySlug("home");
+
+  const mostRead = homeCategory.data.category.extraFields.featuredPosts;
 
   return (
     <section className="flex flex-col gap-4 p-2 rounded-lg overflow-hidden relative">
       <h4 className="font-kanit font-medium text-sm flex items-center gap-2">
         <FaBookOpenReader />
-        Mais lidas
+        Destaques
       </h4>
       <div className="flex flex-col gap-4">
-        {postList.posts.map((post, index) => (
+        {mostRead.map((post, index) => (
           <Link
             key={index}
-            href={`/noticias/${post.categories[0].slug}/${post.slug}`}
+            href={`/noticias/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`}
             className="text-sm font-kanit hover:animate-text-slide whitespace-nowrap"
           >
-            {post.title}
+            {post.data.post.title}
           </Link>
         ))}
       </div>

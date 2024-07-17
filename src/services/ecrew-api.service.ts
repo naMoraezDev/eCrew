@@ -1,7 +1,4 @@
-import { Tags } from "./types/tags.types";
-import { Post } from "./types/post.types";
 import { Games } from "./types/games.types";
-import { Posts } from "./types/posts.types";
 import { Checkout } from "./types/checkout.types";
 import { TwitchUserResponse } from "./types/twitch.types";
 import { UserPreferences } from "./types/user-preferences.types";
@@ -16,12 +13,6 @@ interface EcrewApiServiceProtocol {
     postSlug: string;
     authorization: string;
   }) => Promise<void>;
-  getPostsByCategory: (params: {
-    page: string;
-    number: string;
-    category: string;
-  }) => Promise<Posts>;
-  getTags: () => Promise<Tags>;
   getGames: () => Promise<Games>;
   updateUserPreferences: (params: {
     authorization: string;
@@ -34,9 +25,6 @@ interface EcrewApiServiceProtocol {
   getUserPreferences: (
     authorization: string
   ) => Promise<UserPreferences | null>;
-  getPostBySlug: (slug: string) => Promise<Post>;
-  getPostsByTag: (tag: string) => Promise<Posts>;
-  getPostsBySearch: (search: string) => Promise<Posts>;
   checkout: (authorization: string) => Promise<Checkout>;
   getTwitchUser: (login: string) => Promise<TwitchUserResponse>;
   subscribeOnNewsletter: (email: string) => Promise<{ email: string }>;
@@ -58,60 +46,6 @@ export class EcrewApiService implements EcrewApiServiceProtocol {
       },
     });
     return games;
-  }
-
-  public async getPostsByCategory(params: {
-    page: string;
-    number: string;
-    category: string;
-  }) {
-    const posts = await this.httpClient.request<Posts>({
-      input: `${this.baseUrl}/posts/${params.category}?page=${params.page}&number=${params.number}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return posts;
-  }
-
-  public async getPostsByTag(tag: string) {
-    const posts = await this.httpClient.request<Posts>({
-      input: `${this.baseUrl}/posts/tag/${tag}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return posts;
-  }
-
-  public async getPostsBySearch(search: string) {
-    const posts = await this.httpClient.request<Posts>({
-      input: `${this.baseUrl}/posts/search/${search}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return posts;
-  }
-
-  public async getPostBySlug(slug: string) {
-    const post = await this.httpClient.request<Post>({
-      input: `${this.baseUrl}/posts/post/${slug}`,
-      init: {
-        method: "GET",
-      },
-    });
-    return post;
-  }
-
-  public async getTags() {
-    const tags = await this.httpClient.request<Tags>({
-      input: `${this.baseUrl}/tags`,
-      init: {
-        method: "GET",
-      },
-    });
-    return tags;
   }
 
   public async checkout(authorization: string) {

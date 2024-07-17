@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { Post } from "@/features/post";
 import { postMetadata } from "@/seo/post";
 import { REVALIDATE_TIME } from "@/shared/constants";
-import { EcrewApiService } from "@/services/ecrew-api.service";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export const dynamic = "force-static";
@@ -13,7 +13,7 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata> {
-  const post = await new EcrewApiService(
+  const post = await new WordpressService(
     new FetchHttpClientAdapter()
   ).getPostBySlug(params.slug);
   return postMetadata({ post });
@@ -25,12 +25,11 @@ export default async function PostPage({
   params: { slug: string; category: string };
 }) {
   const [morePostsAbout, post] = await Promise.all([
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostsByCategory({
-      page: "1",
+    new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
       number: "3",
-      category: params.category,
+      categorySlug: params.category,
     }),
-    new EcrewApiService(new FetchHttpClientAdapter()).getPostBySlug(
+    new WordpressService(new FetchHttpClientAdapter()).getPostBySlug(
       params.slug
     ),
   ]);
