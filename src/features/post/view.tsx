@@ -9,7 +9,10 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { PostProps } from "./types";
+import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
+import { SaveButton } from "@/ui/save-button";
+import { Tournaments } from "@/ui/tournaments";
 import { PopularTags } from "@/ui/popular-tags";
 import { PostContent } from "@/ui/post-content";
 import { ShareButtons } from "@/ui/share-buttons";
@@ -17,6 +20,7 @@ import { HorizontalAd } from "@/ui/horizontal-ad";
 import { ArticleReader } from "@/ui/article-reader";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { MorePostsAbout } from "@/ui/more-posts-about";
+import { getGameName } from "@/shared/utils/functions";
 
 export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
   return (
@@ -86,13 +90,19 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
                 w-full text-xs font-bold text-slate-300 bg-zinc-900 rounded-b-lg flex items-center justify-between
               `}
             >
-              <time>
-                {new Date(post.data.post.modified).toLocaleDateString("pt-BR", {
-                  month: "long",
-                  day: "numeric",
-                  year: "numeric",
-                })}
-              </time>
+              <div className="flex items-center gap-4">
+                <SaveButton postSlug={post.data.post.slug} />
+                <time>
+                  {new Date(post.data.post.modified).toLocaleDateString(
+                    "pt-BR",
+                    {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                    }
+                  )}
+                </time>
+              </div>
               <ShareButtons />
             </div>
           </div>
@@ -150,14 +160,18 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
         <Newsletter isDesktop={isDesktop} />
       </article>
       {isDesktop && (
-        <section className="w-1/4 mt-4 relative">
+        <section className="w-1/4 mt-4 relative flex flex-col gap-4">
+          <MorePostsAbout
+            posts={morePostsAbout.data.posts}
+            category={post.data.post.categories.edges[0].node.name}
+          />
+          <Tournaments
+            game={getGameName(post.data.post.categories.edges[0].node.slug)}
+          />
           <div className="flex flex-col gap-4 sticky top-16">
-            <MorePostsAbout
-              posts={morePostsAbout.data.posts}
-              category={post.data.post.categories.edges[0].node.name}
-            />
             <MostReadPosts />
             <PopularTags />
+            <SquareAd />
           </div>
         </section>
       )}

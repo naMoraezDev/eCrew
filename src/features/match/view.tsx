@@ -13,9 +13,9 @@ import { MatchSEO } from "@/seo/match";
 import { SquareAd } from "@/ui/square-ad";
 import { Tournaments } from "@/ui/tournaments";
 import { StreamsList } from "@/ui/streams-list";
-import { GameName } from "@/ui/tournaments/types";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { getGameName } from "@/shared/utils/functions";
 import { UpcomingMatches } from "@/ui/upcoming-matches";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { EcrewApiService } from "@/services/ecrew-api.service";
@@ -49,25 +49,6 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
 
   const isLive = match.status === "running";
 
-  function getGameName(): GameName {
-    switch (match.videogame.slug) {
-      case "cod-mw":
-        return "Call of Duty";
-      case "cs-go":
-        return "Counter Strike";
-      case "dota-2":
-        return "Dota 2";
-      case "league-of-legends":
-        return "League of Legends";
-      case "r6-siege":
-        return "Rainbow 6 Siege";
-      case "valorant":
-        return "Valorant";
-      default:
-        return "Counter Strike";
-    }
-  }
-  console.log(match.status);
   return (
     <>
       <MatchSEO match={match} />
@@ -316,7 +297,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
         </section>
         {isDesktop && (
           <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">
-            <Tournaments game={getGameName()} />
+            <Tournaments game={getGameName(match.videogame.slug)} />
             <UpcomingMatches />
             <SquareAd />
           </section>

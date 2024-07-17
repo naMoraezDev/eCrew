@@ -11,7 +11,7 @@ export function ShareButtonsVIew() {
     useShareButtons();
 
   return (
-    <section className="flex items-center gap-3">
+    <section className="flex items-center gap-4">
       <a href={ttShareUrl} target="_blank" rel="noreferrer">
         <FaXTwitter size={20} />
       </a>

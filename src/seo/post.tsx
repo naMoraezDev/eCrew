@@ -11,8 +11,8 @@ type PostSeoProps = {
 export function postMetadata({ post }: PostSeoProps): Metadata {
   return {
     ...defaultMetadata,
-    title: post.title,
-    description: post.excerpt,
+    title: post.data.post.title,
+    description: post.data.post.excerpt,
     twitter: {
       creator: "@ecrew",
       card: "summary_large_image",
@@ -53,8 +53,8 @@ export function PostSEO({ post }: PostSeoProps) {
       <WebPageJsonLd
         useAppDir
         type="WebPage"
-        description={post.excerpt}
-        lastReviewed={post.modified}
+        description={post.data.post.excerpt}
+        lastReviewed={post.data.post.modified}
         reviewedBy={{ name: "eCrew", type: "Organization" }}
         id={`${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/#${post.data.post.slug}`}
         dataArray={[
@@ -73,11 +73,11 @@ export function PostSEO({ post }: PostSeoProps) {
       />
       <ArticleJsonLd
         useAppDir
-        title={post.title}
-        datePublished={post.date}
-        description={post.excerpt}
         isAccessibleForFree={true}
-        dateModified={post.modified}
+        title={post.data.post.title}
+        datePublished={post.data.post.date}
+        description={post.data.post.excerpt}
+        dateModified={post.data.post.modified}
         images={[post.data.post.featuredImage.node.sourceUrl]}
         authorName={{ type: "Organization", name: "eCrew" }}
         url={`${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`}

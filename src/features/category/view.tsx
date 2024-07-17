@@ -13,9 +13,11 @@ import { CategoryProps } from "./types";
 import { PostCard } from "@/ui/post-card";
 import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
+import { Tournaments } from "@/ui/tournaments";
 import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
+import { getGameName } from "@/shared/utils/functions";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
@@ -29,7 +31,6 @@ export async function CategoryView({
   category,
   isDesktop,
 }: CategoryProps) {
-  console.log(after, before);
   const { getBackgroundData } = useCategory({ category });
   const [games, postsList] = await Promise.all([
     new EcrewApiService(new FetchHttpClientAdapter()).getGames(),
@@ -77,7 +78,7 @@ export async function CategoryView({
                   ? "mais notícias"
                   : term
                   ? "busca"
-                  : postsList.data.posts.edges[0]?.node.categories.edges[0]?.node.slug.toLocaleLowerCase()}
+                  : postsList.data.posts.edges[0]?.node.categories.edges[0]?.node.name.toLocaleLowerCase()}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -190,13 +191,16 @@ export async function CategoryView({
         <Newsletter isDesktop={isDesktop} />
       </section>
       {isDesktop && (
-        <section className="w-1/4 mt-4 relative">
+        <section className="w-1/4 mt-4 flex flex-col gap-4">
+          <Tournaments
+            game={getGameName(
+              postsList.data.posts.edges[0]?.node.categories.edges[0]?.node.slug
+            )}
+          />
           <div className="flex flex-col gap-4 sticky top-16">
             <MostReadPosts />
             <PopularTags />
-            <section className="p-2 relative">
-              <SquareAd />
-            </section>
+            <SquareAd />
           </div>
         </section>
       )}

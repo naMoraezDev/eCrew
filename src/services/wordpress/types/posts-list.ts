@@ -49,6 +49,7 @@ export interface Edge2 {
 export interface Node3 {
   id: string;
   slug: string;
+  name: string;
 }
 
 export interface Tags {
@@ -62,6 +63,7 @@ export interface Edge3 {
 export interface Node4 {
   id: string;
   slug: string;
+  name: string;
 }
 
 export interface PageInfo {

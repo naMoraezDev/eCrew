@@ -7,7 +7,6 @@ import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation
 
 export const dynamic = "force-static";
 export const revalidate = REVALIDATE_TIME;
-export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const games = await new EcrewApiService(
