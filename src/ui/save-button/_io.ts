@@ -1,26 +1,17 @@
 import { toast } from "sonner";
+import { useState } from "react";
 import { useAuth } from "@/contexts/auth";
 import { SaveButtonProps } from "./types";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export function useSaveButton({ postSlug }: SaveButtonProps) {
   const router = useRouter();
-  const { user, preferences } = useAuth();
   const [isLoading, setIsLoading] = useState(false);
-  const [isSaved, setIsSaved] = useState(
-    Boolean(preferences?.saved_posts?.includes(postSlug))
-  );
+  const { user, preferences, refreshPreferences } = useAuth();
 
-  useEffect(() => {
-    if (!preferences) {
-      setIsSaved(false);
-      return;
-    }
-    setIsSaved(Boolean(preferences.saved_posts?.includes(postSlug)));
-  }, [preferences, postSlug]);
+  const isSaved = preferences?.saved_posts?.includes(postSlug);
 
   async function handleSave() {
     if (!user) {
@@ -33,7 +24,7 @@ export function useSaveButton({ postSlug }: SaveButtonProps) {
         postSlug,
         authorization: (await user?.getIdToken()) || "",
       });
-      setIsSaved(true);
+      await refreshPreferences();
       setIsLoading(false);
       toast.success("Post salvo com sucesso!");
     } else {
@@ -42,7 +33,7 @@ export function useSaveButton({ postSlug }: SaveButtonProps) {
         postSlug,
         authorization: (await user?.getIdToken()) || "",
       });
-      setIsSaved(false);
+      await refreshPreferences();
       setIsLoading(false);
       toast.success("Post excluído com sucesso!");
     }

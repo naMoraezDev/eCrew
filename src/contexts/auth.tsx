@@ -11,10 +11,12 @@ export const AuthContext = createContext<{
   cleanPreferences: () => void;
   user: firebaseClient.User | null;
   preferences: UserPreferences | null;
+  refreshPreferences: () => Promise<void>;
 }>({
   user: null,
   preferences: null,
   cleanPreferences: () => {},
+  refreshPreferences: async () => {},
 });
 
 export function AuthProvider({ children }: any) {
@@ -51,8 +53,19 @@ export function AuthProvider({ children }: any) {
     setPreferences(null);
   }
 
+  async function refreshPreferences() {
+    if (!user) return;
+    const token = await user.getIdToken();
+    const userPreferences = await new EcrewApiService(httpClientFactory())
+      .getUserPreferences(token)
+      .catch(() => null);
+    setPreferences(userPreferences);
+  }
+
   return (
-    <AuthContext.Provider value={{ user, preferences, cleanPreferences }}>
+    <AuthContext.Provider
+      value={{ user, preferences, cleanPreferences, refreshPreferences }}
+    >
       {children}
     </AuthContext.Provider>
   );
