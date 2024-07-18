@@ -7,11 +7,13 @@ export function LogoSliderView({ games }: LogoSliderProps) {
     <section className="relative flex w-full overflow-hidden select-none -mt-4">
       <div className="flex gap-6 shrink-0 animate-slider bg-zinc-900 bg-opacity-50 overflow-hidden hover:paused">
         {games.map((game) => (
-          <div className="flex items-center relative hover:scale-110 duration-300">
+          <div
+            key={game.id}
+            className="flex items-center relative hover:scale-110 duration-300"
+          >
             <Image
               width={100}
               height={72}
-              key={game.id}
               alt={game.name}
               src={game.logo_url}
               className="shrink-0 invert opacity-50"
@@ -23,11 +25,13 @@ export function LogoSliderView({ games }: LogoSliderProps) {
           </div>
         ))}
         {games.map((game) => (
-          <div className="flex items-center relative hover:scale-110 duration-300">
+          <div
+            key={game.id}
+            className="flex items-center relative hover:scale-110 duration-300"
+          >
             <Image
               width={100}
               height={72}
-              key={game.id}
               alt={game.name}
               src={game.logo_url}
               className="shrink-0 invert opacity-50"
@@ -39,11 +43,13 @@ export function LogoSliderView({ games }: LogoSliderProps) {
           </div>
         ))}
         {games.map((game) => (
-          <div className="flex items-center relative hover:scale-110 duration-300">
+          <div
+            key={game.id}
+            className="flex items-center relative hover:scale-110 duration-300"
+          >
             <Image
               width={100}
               height={72}
-              key={game.id}
               alt={game.name}
               src={game.logo_url}
               className="shrink-0 invert opacity-50"
@@ -55,11 +61,13 @@ export function LogoSliderView({ games }: LogoSliderProps) {
           </div>
         ))}
         {games.map((game) => (
-          <div className="flex items-center relative hover:scale-110 duration-300">
+          <div
+            key={game.id}
+            className="flex items-center relative hover:scale-110 duration-300"
+          >
             <Image
               width={100}
               height={72}
-              key={game.id}
               alt={game.name}
               src={game.logo_url}
               className="shrink-0 invert opacity-50"

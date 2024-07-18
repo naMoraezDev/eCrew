@@ -13,7 +13,7 @@ export function useFeaturedCarousel({ posts }: FeaturedCarouselProps) {
       setCurrentIndex((currentIndex + 1) % posts.length);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex]);
+  }, [currentIndex, posts.length]);
 
   return { currentIndex, scrollToSlide };
 }
