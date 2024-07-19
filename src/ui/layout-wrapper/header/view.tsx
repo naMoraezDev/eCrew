@@ -6,10 +6,10 @@ import { HeaderProps } from "./types";
 import { UserMenu } from "@/ui/user-menu";
 import { SiteLogo } from "@/ui/site-logo";
 import { IoIosPodium } from "react-icons/io";
-import { PiNewspaperFill } from "react-icons/pi";
 import { BsFillLightningChargeFill } from "react-icons/bs";
 
 import dynamic from "next/dynamic";
+import { NewsMenuIten } from "@/ui/news-menu-iten";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -20,7 +20,16 @@ const DynamicSearchInput = dynamic(() =>
   import("@/ui/search-input").then((module) => module.SearchInput)
 );
 
-export function HeaderView({ games, isDesktop }: HeaderProps) {
+export function HeaderView({
+  games,
+  csPosts,
+  r6Posts,
+  codPosts,
+  lolPosts,
+  isDesktop,
+  dotaPosts,
+  valorantPosts,
+}: HeaderProps) {
   const { visible } = useHeader();
 
   return (
@@ -40,10 +49,16 @@ export function HeaderView({ games, isDesktop }: HeaderProps) {
         </div>
         {isDesktop && (
           <section className="px-4 py-2 flex items-center gap-12 font-bold text-sm">
-            <Link href="/noticias" className="flex items-center gap-2">
-              <PiNewspaperFill />
-              Notícias
-            </Link>
+            <NewsMenuIten
+              games={games}
+              r6Posts={r6Posts}
+              csPosts={csPosts}
+              codPosts={codPosts}
+              lolPosts={lolPosts}
+              dotaPosts={dotaPosts}
+              valorantPosts={valorantPosts}
+            />
+
             <Link href="/torneios" className="flex items-center gap-2">
               <IoIosPodium />
               Torneios
