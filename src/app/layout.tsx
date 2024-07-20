@@ -5,6 +5,7 @@ import { AuthProvider } from "@/contexts/auth";
 import { Inter, Kanit } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import { LoadingProvider } from "@/contexts/loading";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const kanit = Kanit({
   preload: true,
@@ -48,6 +49,7 @@ export default function RootLayout({
           <LoadingProvider>
             <Toaster />
             {children}
+            <GoogleAnalytics gaId="G-0C0TGZ1QQE" />
           </LoadingProvider>
         </AuthProvider>
       </body>
