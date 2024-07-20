@@ -5,11 +5,11 @@ import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
 import { UserMenu } from "@/ui/user-menu";
 import { SiteLogo } from "@/ui/site-logo";
-import { IoIosPodium } from "react-icons/io";
+import { NewsMenuIten } from "@/ui/news-menu-iten";
 import { BsFillLightningChargeFill } from "react-icons/bs";
+import { TournamentsMenuIten } from "@/ui/tournaments-menu-iten";
 
 import dynamic from "next/dynamic";
-import { NewsMenuIten } from "@/ui/news-menu-iten";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -29,6 +29,12 @@ export function HeaderView({
   isDesktop,
   dotaPosts,
   valorantPosts,
+  csTournaments,
+  r6Tournaments,
+  lolTournaments,
+  codTournaments,
+  dotaTournaments,
+  valorantTournaments,
 }: HeaderProps) {
   const { visible } = useHeader();
 
@@ -58,11 +64,15 @@ export function HeaderView({
               dotaPosts={dotaPosts}
               valorantPosts={valorantPosts}
             />
-
-            <Link href="/torneios" className="flex items-center gap-2">
-              <IoIosPodium />
-              Torneios
-            </Link>
+            <TournamentsMenuIten
+              games={games}
+              csTournaments={csTournaments}
+              r6Tournaments={r6Tournaments}
+              lolTournaments={lolTournaments}
+              codTournaments={codTournaments}
+              dotaTournaments={dotaTournaments}
+              valorantTournaments={valorantTournaments}
+            />
             <Link href="/partidas" className="flex items-center gap-2">
               <BsFillLightningChargeFill />
               Partidas

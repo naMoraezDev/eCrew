@@ -34,11 +34,9 @@ export function NewsMenuItenView({
   return (
     <HoverCard openDelay={0}>
       <HoverCardTrigger asChild>
-        <Link href="/noticias">
-          <span className="flex items-center gap-2">
-            <PiNewspaperFill />
-            Notícias
-          </span>
+        <Link href="/noticias" className="flex items-center gap-2">
+          <PiNewspaperFill />
+          Notícias
         </Link>
       </HoverCardTrigger>
       <HoverCardContent className="bg-zinc-900 bg-opacity-90 border-transparent mt-4 text-zinc-50 w-full overflow-hidden rounded-lg !p-0">

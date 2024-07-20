@@ -1,16 +1,8 @@
-import { DefaultProps } from "@/types/common";
 import { Games } from "@/services/types/games.types";
-import { PostsList } from "@/services/wordpress/types/posts-list";
 import { TournamentsList } from "@/services/pandascore/types/tournaments.types";
 
-export interface HeaderProps extends DefaultProps {
+export interface TournamentsMenuItenProps {
   games: Games;
-  csPosts: PostsList;
-  r6Posts: PostsList;
-  codPosts: PostsList;
-  lolPosts: PostsList;
-  dotaPosts: PostsList;
-  valorantPosts: PostsList;
   csTournaments: TournamentsList;
   r6Tournaments: TournamentsList;
   lolTournaments: TournamentsList;

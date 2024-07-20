@@ -7,6 +7,7 @@ import { CookiesAccept } from "../cookies-accept";
 import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
+import { PandascoreService } from "@/services/pandascore/pandascore.service";
 
 export async function LayoutWrapperView({
   children,
@@ -20,6 +21,13 @@ export async function LayoutWrapperView({
     codPosts,
     dotaPosts,
     valorantPosts,
+
+    csTournaments,
+    r6Tournaments,
+    lolTournaments,
+    codTournaments,
+    dotaTournaments,
+    valorantTournaments,
   ] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
     new WordpressService(httpClientFactory()).getPostsByCategory({
@@ -46,6 +54,43 @@ export async function LayoutWrapperView({
       number: "3",
       categorySlug: "valorant",
     }),
+
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 3,
+      type: "running",
+      videogame: "csgo",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 3,
+      type: "running",
+      videogame: "r6siege",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 3,
+      type: "running",
+      videogame: "lol",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 3,
+      type: "running",
+      videogame: "codmw",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 3,
+      type: "running",
+      videogame: "dota2",
+    }),
+    new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
+      page: 1,
+      size: 3,
+      type: "running",
+      videogame: "valorant",
+    }),
   ]);
 
   return (
@@ -59,7 +104,13 @@ export async function LayoutWrapperView({
         lolPosts={lolPosts}
         isDesktop={isDesktop}
         dotaPosts={dotaPosts}
+        csTournaments={csTournaments}
         valorantPosts={valorantPosts}
+        r6Tournaments={r6Tournaments}
+        codTournaments={codTournaments}
+        lolTournaments={lolTournaments}
+        dotaTournaments={dotaTournaments}
+        valorantTournaments={valorantTournaments}
       />
       {isDesktop && <Navbar />}
       <main className="w-full max-w-[1280px] p-4 mx-auto">{children}</main>
