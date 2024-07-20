@@ -39,7 +39,7 @@ export function NewsMenuItenView({
           Notícias
         </Link>
       </HoverCardTrigger>
-      <HoverCardContent className="bg-zinc-900 bg-opacity-90 border-transparent mt-4 text-zinc-50 overflow-hidden rounded-lg !p-0 w-full">
+      <HoverCardContent className="bg-zinc-900 bg-opacity-70 border-transparent mt-4 text-zinc-50 overflow-hidden rounded-lg !p-0 w-full  backdrop-blur-lg">
         <div className="flex gap-10 w-[1024px] h-[450px]">
           <div className="flex flex-col gap-6 bg-zinc-950 bg-opacity-90 p-4 w-1/3">
             {games.map((game) => (
@@ -76,7 +76,7 @@ export function NewsMenuItenView({
               href={`/noticias/${selectedCategory}`}
               className="self-center text-sm px-3 py-1 bg-violet-500 bg-opacity-10 rounded-full text-violet-500 mt-auto"
             >
-              Ver mais
+              ver mais
             </Link>
           </div>
         </div>

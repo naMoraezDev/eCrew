@@ -49,7 +49,7 @@ export function TournamentsMenuItenView({
             Torneios
           </Link>
         </HoverCardTrigger>
-        <HoverCardContent className="bg-zinc-900 bg-opacity-90 border-transparent mt-4 text-zinc-50 overflow-hidden rounded-lg !p-0 w-full">
+        <HoverCardContent className="bg-zinc-900 bg-opacity-70 border-transparent mt-4 text-zinc-50 overflow-hidden rounded-lg !p-0 w-full">
           <div className="flex w-[1024px] h-[450px]">
             <div className="flex flex-col gap-6 bg-zinc-950 bg-opacity-90 p-4 w-1/3">
               {games
@@ -69,10 +69,6 @@ export function TournamentsMenuItenView({
                 ))}
             </div>
             <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-2/3">
-              <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
-                <IoIosPodium />
-                <span>Torneios em andamento</span>
-              </h4>
               {getTournamentsByGame().map((tournament) => (
                 <li
                   key={tournament.id}
@@ -111,7 +107,7 @@ export function TournamentsMenuItenView({
                 href="/torneios"
                 className="self-center text-sm px-3 py-1 bg-violet-500 bg-opacity-10 rounded-full text-violet-500 my-4 mt-auto"
               >
-                Ver todos
+                ver todos
               </Link>
             </ul>
           </div>

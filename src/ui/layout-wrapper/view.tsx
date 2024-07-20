@@ -28,6 +28,9 @@ export async function LayoutWrapperView({
     codTournaments,
     dotaTournaments,
     valorantTournaments,
+
+    pastMatches,
+    upcomingMatches,
   ] = await Promise.all([
     new EcrewApiService(httpClientFactory()).getGames(),
     new WordpressService(httpClientFactory()).getPostsByCategory({
@@ -91,6 +94,16 @@ export async function LayoutWrapperView({
       type: "running",
       videogame: "valorant",
     }),
+    new PandascoreService(httpClientFactory()).getMatchesList({
+      page: 1,
+      size: 5,
+      type: "past",
+    }),
+    new PandascoreService(httpClientFactory()).getMatchesList({
+      page: 1,
+      size: 5,
+      type: "upcoming",
+    }),
   ]);
 
   return (
@@ -104,12 +117,14 @@ export async function LayoutWrapperView({
         lolPosts={lolPosts}
         isDesktop={isDesktop}
         dotaPosts={dotaPosts}
+        pastMatches={pastMatches}
         csTournaments={csTournaments}
         valorantPosts={valorantPosts}
         r6Tournaments={r6Tournaments}
         codTournaments={codTournaments}
         lolTournaments={lolTournaments}
         dotaTournaments={dotaTournaments}
+        upcomingMatches={upcomingMatches}
         valorantTournaments={valorantTournaments}
       />
       {isDesktop && <Navbar />}

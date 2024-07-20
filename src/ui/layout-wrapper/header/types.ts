@@ -1,6 +1,7 @@
 import { DefaultProps } from "@/types/common";
 import { Games } from "@/services/types/games.types";
 import { PostsList } from "@/services/wordpress/types/posts-list";
+import { MatchesList } from "@/services/pandascore/types/matches.types";
 import { TournamentsList } from "@/services/pandascore/types/tournaments.types";
 
 export interface HeaderProps extends DefaultProps {
@@ -11,6 +12,8 @@ export interface HeaderProps extends DefaultProps {
   lolPosts: PostsList;
   dotaPosts: PostsList;
   valorantPosts: PostsList;
+  pastMatches: MatchesList;
+  upcomingMatches: MatchesList;
   csTournaments: TournamentsList;
   r6Tournaments: TournamentsList;
   lolTournaments: TournamentsList;

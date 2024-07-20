@@ -1,15 +1,14 @@
 "use client";
 
-import Link from "next/link";
 import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
 import { UserMenu } from "@/ui/user-menu";
 import { SiteLogo } from "@/ui/site-logo";
 import { NewsMenuIten } from "@/ui/news-menu-iten";
-import { BsFillLightningChargeFill } from "react-icons/bs";
 import { TournamentsMenuIten } from "@/ui/tournaments-menu-iten";
 
 import dynamic from "next/dynamic";
+import { MatchesMenuIten } from "@/ui/matches-menu-iten";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -28,12 +27,14 @@ export function HeaderView({
   lolPosts,
   isDesktop,
   dotaPosts,
+  pastMatches,
   valorantPosts,
   csTournaments,
   r6Tournaments,
   lolTournaments,
   codTournaments,
   dotaTournaments,
+  upcomingMatches,
   valorantTournaments,
 }: HeaderProps) {
   const { visible } = useHeader();
@@ -73,10 +74,10 @@ export function HeaderView({
               dotaTournaments={dotaTournaments}
               valorantTournaments={valorantTournaments}
             />
-            <Link href="/partidas" className="flex items-center gap-2">
-              <BsFillLightningChargeFill />
-              Partidas
-            </Link>
+            <MatchesMenuIten
+              pastMatches={pastMatches}
+              upcomingMatches={upcomingMatches}
+            />
           </section>
         )}
         <UserMenu isDesktop={isDesktop} />
