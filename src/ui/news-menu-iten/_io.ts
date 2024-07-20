@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Category, NewsMenuItenProps } from "./types";
 
-export function useMenuIten({
+export function useNewsMenuIten({
   csPosts,
   r6Posts,
   lolPosts,

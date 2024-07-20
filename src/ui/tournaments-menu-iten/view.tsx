@@ -30,16 +30,15 @@ export function TournamentsMenuItenView({
     ...valorantTournaments,
   ];
 
-  const { getTournamentsByGame, selectedGame, setSelectedGame } =
-    useTournamentsMenuIten({
-      games,
-      csTournaments,
-      r6Tournaments,
-      lolTournaments,
-      codTournaments,
-      dotaTournaments,
-      valorantTournaments,
-    });
+  const { getTournamentsByGame, setSelectedGame } = useTournamentsMenuIten({
+    games,
+    csTournaments,
+    r6Tournaments,
+    lolTournaments,
+    codTournaments,
+    dotaTournaments,
+    valorantTournaments,
+  });
 
   return (
     <>
@@ -50,9 +49,9 @@ export function TournamentsMenuItenView({
             Torneios
           </Link>
         </HoverCardTrigger>
-        <HoverCardContent className="bg-zinc-900 bg-opacity-90 border-transparent mt-4 text-zinc-50 w-full overflow-hidden rounded-lg !p-0">
-          <div className="flex">
-            <div className="flex flex-col gap-6 bg-zinc-950 bg-opacity-90 p-4">
+        <HoverCardContent className="bg-zinc-900 bg-opacity-90 border-transparent mt-4 text-zinc-50 overflow-hidden rounded-lg !p-0 w-full">
+          <div className="flex w-[1024px] h-[450px]">
+            <div className="flex flex-col gap-6 bg-zinc-950 bg-opacity-90 p-4 w-1/3">
               {games
                 .filter((game) =>
                   tournaments.find((t) => t.videogame.slug === game.slug)
@@ -69,15 +68,15 @@ export function TournamentsMenuItenView({
                   </div>
                 ))}
             </div>
-            <ul className="w-[600px] flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg">
+            <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-2/3">
               <h4 className="font-kanit font-medium text-sm flex items-center gap-2 px-6 py-3">
                 <IoIosPodium />
                 <span>Torneios em andamento</span>
               </h4>
-              {getTournamentsByGame().map((tournament, index) => (
+              {getTournamentsByGame().map((tournament) => (
                 <li
-                  key={index}
-                  className="text-sm flex gap-3 px-6 py-3 relative"
+                  key={tournament.id}
+                  className="text-sm flex gap-3 px-6 py-3 relative animate-fade-in"
                 >
                   <Image
                     width={40}
@@ -109,8 +108,8 @@ export function TournamentsMenuItenView({
                 </li>
               ))}
               <Link
-                href="/noticias/torneios"
-                className="self-center text-sm px-3 py-1 bg-violet-500 bg-opacity-10 rounded-full text-violet-500 my-4"
+                href="/torneios"
+                className="self-center text-sm px-3 py-1 bg-violet-500 bg-opacity-10 rounded-full text-violet-500 my-4 mt-auto"
               >
                 Ver todos
               </Link>
