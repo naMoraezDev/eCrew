@@ -10,7 +10,7 @@ export function LatestPostsView({
   isDesktop,
 }: LatestPostsProps) {
   return (
-    <section className="flex flex-col gap-3">
+    <section className={`${!isDesktop && "mx-4"} flex flex-col gap-3`}>
       <div className="w-full flex justify-between items-center">
         <h2 className="text-md font-kanit font-bold flex items-center gap-2">
           <PiNewspaperClippingFill /> Últimas notícias

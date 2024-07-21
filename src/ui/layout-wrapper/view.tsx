@@ -128,7 +128,7 @@ export async function LayoutWrapperView({
         valorantTournaments={valorantTournaments}
       />
       {isDesktop && <Navbar />}
-      <main className="w-full max-w-[1280px] p-4 mx-auto">{children}</main>
+      <main className="w-full max-w-[1280px] py-4 mx-auto">{children}</main>
       <CookiesAccept />
       <Footer isDesktop={isDesktop} />
     </>

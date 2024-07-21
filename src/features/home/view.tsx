@@ -8,10 +8,10 @@ import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
 import { EcrewApiService } from "@/services/ecrew-api.service";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
-import { WordpressService } from "@/services/wordpress/wordpress.service";
 const DynamicMatchesSection = dynamic(() =>
   import("@/ui/matches-section").then((module) => module.MatchesSection)
 );
@@ -88,7 +88,8 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             isDesktop={isDesktop}
             postsList={latestPosts}
           />
-          <HorizontalAd />
+          <HorizontalAd rounded={isDesktop} />
+          {!isDesktop && <DynamicMatchesSection />}
           <PostsCarousel
             games={games}
             postsList={csPosts}
@@ -122,11 +123,18 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           <PostsCarousel
             games={games}
             category="Valorant"
-            postsList={valorantPosts}
             isDesktop={isDesktop}
+            postsList={valorantPosts}
           />
-          <HorizontalAd />
+          <HorizontalAd rounded={isDesktop} />
+          {!isDesktop && <Tournaments />}
           <Newsletter isDesktop={isDesktop} />
+          {!isDesktop && (
+            <section className="mx-4 flex flex-col gap-4">
+              <DynamicMostReadPosts />
+              <DynamicPopularTags />
+            </section>
+          )}
         </section>
         {isDesktop && (
           <section className="w-1/4 flex flex-col gap-4 mt-4">

@@ -11,8 +11,8 @@ export function NewsletterView({ isDesktop }: NewsletterProps) {
   return (
     <section
       className={`
-        ${isDesktop ? "px-10 py-4 " : "p-4"}
-        w-full flex mx-auto rounded-lg bg-zinc-900 bg-opacity-50
+        ${isDesktop ? "px-10 py-4 rounded-lg" : "p-4"}
+        w-full flex mx-auto bg-zinc-900 bg-opacity-50
       `}
     >
       <div className="flex flex-col gap-3 mx-auto">
