@@ -9,6 +9,7 @@ import { TournamentsMenuIten } from "@/ui/tournaments-menu-iten";
 
 import dynamic from "next/dynamic";
 import { MatchesMenuIten } from "@/ui/matches-menu-iten";
+import { Menu } from "@/ui/menu";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -47,6 +48,7 @@ export function HeaderView({
       <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
         <div className="flex items-center gap-10">
           <section className="flex items-center gap-4">
+            <Menu />
             <SiteLogo />
             <div className="w-px h-6 bg-gray-50" />
             {isDesktop && <DynamicGameSelectHover games={games} />}

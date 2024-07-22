@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FooterProps } from "./types";
+import { SiteLogo } from "@/ui/site-logo";
 import brazilFlag from "@/assets/images/brazil-flag.png";
 
 import dynamic from "next/dynamic";
-import { SiteLogo } from "@/ui/site-logo";
 const DynamicScrollToTopButton = dynamic(() =>
   import("@/ui/scroll-to-top-button").then((module) => module.ScrollToTopButton)
 );

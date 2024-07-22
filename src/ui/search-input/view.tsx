@@ -7,14 +7,14 @@ export function SearchInputView() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex items-center rounded-xl bg-zinc-900 bg-opacity-50 px-10 py-2"
+      className="flex items-center rounded-xl bg-zinc-900 bg-opacity-50 py-2 px-10"
     >
       <input
         type="text"
         value={value}
         onChange={handleChange}
         placeholder="Pesquisar"
-        className="bg-transparent outline-none"
+        className="bg-transparent outline-none w-full"
       />
       <button type="submit">
         <BsSearch size={20} />

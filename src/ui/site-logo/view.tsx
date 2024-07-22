@@ -8,7 +8,7 @@ export function SiteLogoView({ size = "small" }: SiteLogoProps) {
     <div
       className={`
         ${size === "small" ? "gap-2" : "gap-3"}
-        flex items-center  relative
+        flex items-center relative text-zinc-50
       `}
     >
       <Image
