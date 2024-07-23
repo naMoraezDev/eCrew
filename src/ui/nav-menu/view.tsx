@@ -199,7 +199,7 @@ export function NavMenuView({
                   onMouseOver={() => setListType("past")}
                   className="w-full flex items-center gap-4 cursor-pointer"
                 >
-                  <span className="text-sm font-kanit py-1 px-3 bg-zinc-900 rounded-full">
+                  <span className="text-sm font-kanit">
                     partidas encerradas
                   </span>
                 </div>
@@ -207,7 +207,7 @@ export function NavMenuView({
                   onMouseOver={() => setListType("upcoming")}
                   className="w-full flex items-center gap-4 cursor-pointer"
                 >
-                  <span className="text-sm font-kanit py-1 px-3 bg-zinc-900 rounded-full">
+                  <span className="text-sm font-kanit">
                     próximas partidas
                   </span>
                 </div>
@@ -268,7 +268,7 @@ export function NavMenuView({
                 ))}
                 <Link
                   href="/torneios"
-                  className="self-center text-sm px-3 py-1 bg-violet-500 bg-opacity-10 rounded-full text-violet-500 my-4 mt-auto"
+                  className="self-center text-sm px-3 py-1 bg-violet-500 bg-opacity-10 rounded-full text-violet-500 my-4 mt-auto font-kanit"
                 >
                   ver todas
                 </Link>
