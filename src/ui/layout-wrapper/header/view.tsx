@@ -1,15 +1,13 @@
 "use client";
 
+import { Menu } from "@/ui/menu";
 import { useHeader } from "./_io";
 import { HeaderProps } from "./types";
+import { NavMenu } from "@/ui/nav-menu";
 import { UserMenu } from "@/ui/user-menu";
 import { SiteLogo } from "@/ui/site-logo";
-import { NewsMenuIten } from "@/ui/news-menu-iten";
-import { TournamentsMenuIten } from "@/ui/tournaments-menu-iten";
 
 import dynamic from "next/dynamic";
-import { MatchesMenuIten } from "@/ui/matches-menu-iten";
-import { Menu } from "@/ui/menu";
 const DynamicGameSelectHover = dynamic(() =>
   import("@/ui/game-select-hover").then((module) => module.GameSelectHover)
 );
@@ -54,34 +52,27 @@ export function HeaderView({
             {isDesktop && <DynamicGameSelectHover games={games} />}
             {!isDesktop && <DynamicGameSelectPopover games={games} />}
           </section>
-          {isDesktop && <DynamicSearchInput />}
         </div>
         {isDesktop && (
-          <section className="px-4 py-2 flex items-center gap-12 font-bold text-sm">
-            <NewsMenuIten
-              games={games}
-              r6Posts={r6Posts}
-              csPosts={csPosts}
-              codPosts={codPosts}
-              lolPosts={lolPosts}
-              dotaPosts={dotaPosts}
-              valorantPosts={valorantPosts}
-            />
-            <TournamentsMenuIten
-              games={games}
-              csTournaments={csTournaments}
-              r6Tournaments={r6Tournaments}
-              lolTournaments={lolTournaments}
-              codTournaments={codTournaments}
-              dotaTournaments={dotaTournaments}
-              valorantTournaments={valorantTournaments}
-            />
-            <MatchesMenuIten
-              pastMatches={pastMatches}
-              upcomingMatches={upcomingMatches}
-            />
-          </section>
+          <NavMenu
+            games={games}
+            r6Posts={r6Posts}
+            csPosts={csPosts}
+            codPosts={codPosts}
+            lolPosts={lolPosts}
+            dotaPosts={dotaPosts}
+            pastMatches={pastMatches}
+            valorantPosts={valorantPosts}
+            csTournaments={csTournaments}
+            r6Tournaments={r6Tournaments}
+            lolTournaments={lolTournaments}
+            codTournaments={codTournaments}
+            dotaTournaments={dotaTournaments}
+            upcomingMatches={upcomingMatches}
+            valorantTournaments={valorantTournaments}
+          />
         )}
+        {isDesktop && <DynamicSearchInput />}
         <UserMenu isDesktop={isDesktop} />
       </div>
     </header>
