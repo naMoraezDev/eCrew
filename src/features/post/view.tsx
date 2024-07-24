@@ -31,7 +31,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
           flex flex-col gap-4 mb-10
         `}
       >
-        <Breadcrumb className="text-zinc-50">
+        <Breadcrumb className={`${!isDesktop && "mx-4"} text-zinc-50`}>
           <BreadcrumbList className="text-zinc-50">
             <BreadcrumbItem>
               <BreadcrumbLink
@@ -51,15 +51,14 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
               </BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
-            <BreadcrumbItem>
-              <BreadcrumbPage className="text-zinc-50">
-                {post.data.post.title}
-              </BreadcrumbPage>
-            </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
-        <section className="w-full bg-zinc-900 bg-opacity-50 rounded-lg overflow-hidden">
-          <figure className="w-full h-[250px]">
+        <section
+          className={`${
+            isDesktop ? "rounded-lg" : "rounded-t-xl"
+          } w-full bg-zinc-900 bg-opacity-50 overflow-hidden`}
+        >
+          <figure className={`${isDesktop ? "h-[250px]" : "h-[180px]"} w-full`}>
             <Image
               priority
               width={1280}
@@ -86,8 +85,8 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
           <div className="w-full">
             <div
               className={`
-                ${isDesktop ? "py-4 px-10" : "py-4 px-6"}
-                w-full text-xs font-bold text-slate-300 bg-zinc-900 rounded-b-lg flex items-center justify-between
+                ${isDesktop ? "py-4 px-10 rounded-b-lg" : "py-4 px-6"}
+                w-full text-xs font-bold text-slate-300 bg-zinc-900 flex items-center justify-between
               `}
             >
               <div className="flex items-center gap-4">
@@ -113,7 +112,11 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             w-full gap-4
           `}
         >
-          <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 bg-opacity-50 rounded-lg">
+          <section
+            className={`${
+              isDesktop && "rounded-lg"
+            } w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 bg-opacity-50`}
+          >
             <Image
               width={64}
               height={64}
@@ -135,29 +138,34 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             excerpt={post.data.post.excerpt}
           />
         </section>
-        <HorizontalAd />
+        <HorizontalAd isDesktop={isDesktop} />
         <PostContent content={post.data.post.content} isDesktop={isDesktop} />
-        <section className="w-full px-10 py-6 flex items-center gap-4 bg-zinc-900 bg-opacity-50 rounded-lg">
-          <Image
-            width={64}
-            height={64}
-            className="rounded-full"
-            alt={post.data.post.author.node.name}
-            src={post.data.post.author.node.avatar.url}
-          />
-          <div className="text-2xl font-kanit font-bold">
-            <span>{post.data.post.author.node.name}</span>
-            <p className="text-slate-300 text-base font-normal">autor</p>
-          </div>
-        </section>
         {!isDesktop && (
-          <MorePostsAbout
-            posts={morePostsAbout.data.posts}
-            category={post.data.post.categories.edges[0].node.name}
-          />
+          <div className="mx-4">
+            <MorePostsAbout
+              posts={morePostsAbout.data.posts}
+              category={post.data.post.categories.edges[0].node.name}
+            />
+          </div>
         )}
-        <HorizontalAd />
+        <HorizontalAd isDesktop={isDesktop} />
         <Newsletter isDesktop={isDesktop} />
+        {!isDesktop && (
+          <section className="mt-4 relative flex flex-col gap-4">
+            <MorePostsAbout
+              posts={morePostsAbout.data.posts}
+              category={post.data.post.categories.edges[0].node.name}
+            />
+            <Tournaments
+              game={getGameName(post.data.post.categories.edges[0].node.slug)}
+            />
+            <div className="flex flex-col gap-4 mx-4">
+              <MostReadPosts />
+              <PopularTags />
+              <SquareAd />
+            </div>
+          </section>
+        )}
       </article>
       {isDesktop && (
         <section className="w-1/4 mt-4 relative flex flex-col gap-4">

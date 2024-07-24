@@ -61,7 +61,7 @@ export async function CategoryView({
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-6 mb-10
         `}
       >
-        <Breadcrumb className="text-zinc-50">
+        <Breadcrumb className={`${!isDesktop && "mx-4"} text-zinc-50`}>
           <BreadcrumbList className="text-zinc-50">
             <BreadcrumbItem>
               <BreadcrumbLink
@@ -84,7 +84,7 @@ export async function CategoryView({
           </BreadcrumbList>
         </Breadcrumb>
         {term && (
-          <section>
+          <section className={!isDesktop ? "mx-4" : ""}>
             {Boolean(postsList.data.posts.edges.length) ? (
               <span className="text-2xl font-kanit font-bold text-zinc-50">
                 Resultados para{" "}
@@ -99,14 +99,19 @@ export async function CategoryView({
           </section>
         )}
         {getBackgroundData()?.background && (
-          <div className="group rounded-lg overflow-hidden relative">
+          <div
+            className={`${
+              isDesktop && "rounded-lg"
+            } group overflow-hidden relative`}
+          >
             <Image
               priority
               alt="background"
               src={getBackgroundData()?.background || ""}
               className={`
                 ${getBackgroundData()?.styles}
-                w-full h-[200px] object-cover group-hover:scale-105 duration-300
+                ${isDesktop ? "h-[200px]" : "h-[100px]"}
+                w-full  object-cover group-hover:scale-105 duration-300
               `}
             />
             <a
@@ -119,7 +124,7 @@ export async function CategoryView({
         )}
         <div
           className={`
-            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3"}
+            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3 mx-4"}
             grid gap-x-4
           `}
         >
@@ -139,29 +144,31 @@ export async function CategoryView({
             />
           ))}
         </div>
-        <HorizontalAd />
-        <div
-          className={`
-            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3"}
+        <HorizontalAd isDesktop={isDesktop} />
+        {secondGroup.length > 0 && (
+          <div
+            className={`
+            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3 mx-4"}
             grid gap-x-4
           `}
-        >
-          {secondGroup.map((post, index) => (
-            <PostCard
-              key={index}
-              post={post.node}
-              size={isDesktop ? "medium" : "small"}
-              variant={isDesktop ? "outlined" : "filled"}
-              orientation={isDesktop ? "vertical" : "horizontal"}
-              gameIconUrl={
-                games.find(
-                  (game) =>
-                    game.slug === post.node.categories.edges[0].node.slug
-                )?.icon_url
-              }
-            />
-          ))}
-        </div>
+          >
+            {secondGroup.map((post, index) => (
+              <PostCard
+                key={index}
+                post={post.node}
+                size={isDesktop ? "medium" : "small"}
+                variant={isDesktop ? "outlined" : "filled"}
+                orientation={isDesktop ? "vertical" : "horizontal"}
+                gameIconUrl={
+                  games.find(
+                    (game) =>
+                      game.slug === post.node.categories.edges[0].node.slug
+                  )?.icon_url
+                }
+              />
+            ))}
+          </div>
+        )}
         <section className="w-full flex items-center justify-center text-base gap-2">
           {hasPreviousPage && (
             <Link
@@ -189,13 +196,37 @@ export async function CategoryView({
           )}
         </section>
         <Newsletter isDesktop={isDesktop} />
+        {!isDesktop && (
+          <section className="mt-4 flex flex-col gap-4">
+            <Tournaments
+              game={
+                category === "all"
+                  ? undefined
+                  : getGameName(
+                      postsList.data.posts.edges[0]?.node.categories.edges[0]
+                        ?.node.slug
+                    )
+              }
+            />
+            <div className="flex flex-col gap-4 mx-4">
+              <MostReadPosts />
+              <PopularTags />
+              <SquareAd />
+            </div>
+          </section>
+        )}
       </section>
       {isDesktop && (
         <section className="w-1/4 mt-4 flex flex-col gap-4">
           <Tournaments
-            game={getGameName(
-              postsList.data.posts.edges[0]?.node.categories.edges[0]?.node.slug
-            )}
+            game={
+              category === "all"
+                ? undefined
+                : getGameName(
+                    postsList.data.posts.edges[0]?.node.categories.edges[0]
+                      ?.node.slug
+                  )
+            }
           />
           <div className="flex flex-col gap-4 sticky top-16">
             <MostReadPosts />
