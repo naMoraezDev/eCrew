@@ -88,7 +88,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             isDesktop={isDesktop}
             postsList={latestPosts}
           />
-          <HorizontalAd rounded={isDesktop} />
+          <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           {!isDesktop && <DynamicMatchesSection />}
           <PostsCarousel
             games={games}
@@ -126,7 +126,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             isDesktop={isDesktop}
             postsList={valorantPosts}
           />
-          <HorizontalAd rounded={isDesktop} />
+          <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           {!isDesktop && <Tournaments />}
           <Newsletter isDesktop={isDesktop} />
           {!isDesktop && (

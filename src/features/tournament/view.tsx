@@ -115,7 +115,7 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
           {Boolean(streams.length) && liveMatch && (
             <StreamsList match={liveMatch as any} streams={streams} />
           )}
-          <HorizontalAd />
+          <HorizontalAd isDesktop={isDesktop} />
           <section className="flex gap-4">
             <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/3 text-sm font-medium font-kanit h-fit">
               <li className="px-6 py-2">Participantes</li>

@@ -251,7 +251,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
           {Boolean(streams.length) && (
             <StreamsList match={match} streams={streams} />
           )}
-          <HorizontalAd />
+          <HorizontalAd isDesktop={isDesktop} />
           {teamA && teamB && (
             <section className="flex gap-4 text-center">
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-1/2 text-sm font-medium font-kanit">
