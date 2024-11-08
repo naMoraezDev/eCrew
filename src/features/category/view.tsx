@@ -42,7 +42,7 @@ export async function CategoryView({
 
   const hasNextPage = true;
   const hasPreviousPage = false;
-  console.log("--------------------", category);
+
   return (
     <section className="w-full flex gap-4">
       <section
