@@ -12,16 +12,16 @@ import { GoBookmark } from "react-icons/go";
 import { GoBookmarkFill } from "react-icons/go";
 
 export function SaveButtonView({ postSlug }: SaveButtonProps) {
-  const { handleSave, isSaved, isLoading } = useSaveButton({ postSlug });
+  const { isLoading } = useSaveButton({ postSlug });
 
   return (
     <TooltipProvider delayDuration={0} skipDelayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <button type="button" className="z-20" onClick={handleSave}>
+          <button type="button" className="z-20">
             {isLoading && (
               <>
-                {isSaved ? (
+                {false ? (
                   <GoBookmarkFill
                     size={20}
                     className="text-zinc-400 animate-spin"
@@ -36,7 +36,7 @@ export function SaveButtonView({ postSlug }: SaveButtonProps) {
             )}
             {!isLoading && (
               <>
-                {isSaved ? (
+                {false ? (
                   <GoBookmarkFill
                     size={20}
                     className="text-zinc-400 animate-fade"
@@ -52,7 +52,7 @@ export function SaveButtonView({ postSlug }: SaveButtonProps) {
           </button>
         </TooltipTrigger>
         <TooltipContent>
-          <p className="text-xs">{isSaved ? "remover" : "salvar"}</p>
+          <p className="text-xs">{false ? "remover" : "salvar"}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

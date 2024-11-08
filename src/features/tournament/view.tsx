@@ -13,7 +13,7 @@ import { GAMES } from "@/shared/utils/static";
 import { StreamsList } from "@/ui/streams-list";
 import { TournamentSEO } from "@/seo/tournament";
 import { HorizontalAd } from "@/ui/horizontal-ad";
-import { TwitchUserResponse } from "@/services/types/twitch.types";
+import { TwitchUserResponse } from "@/services/twitch/types/user.types";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 

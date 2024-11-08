@@ -1,9 +1,9 @@
-import { TwitchUser } from "./types/user.types";
+import { TwitchUserResponse } from "./types/user.types";
 import { TwitchToken } from "./types/token.types";
 import { HttpClient } from "@/infrastructure/adapters/factories/http-client.factory";
 
 interface TwitchServiceProtocol {
-  getTwitchUser: (login: string) => Promise<TwitchUser>;
+  getTwitchUser: (login: string) => Promise<TwitchUserResponse>;
 }
 
 export class TwitchService implements TwitchServiceProtocol {
@@ -32,7 +32,7 @@ export class TwitchService implements TwitchServiceProtocol {
       },
     });
     const { access_token } = authorization;
-    const user = await this.httpClient.request<TwitchUser>({
+    const user = await this.httpClient.request<TwitchUserResponse>({
       input: `${this.apiBaseUrl}?login=${login}`,
       init: {
         headers: {

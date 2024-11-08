@@ -34,32 +34,32 @@ export async function LayoutWrapperView({
     new WordpressService(httpClientFactory()).getPostsByCategory({
       page: 1,
       number: 3,
-      categorySlug: "cs-go",
+      slug: "cs-go",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
       page: 1,
       number: 3,
-      categorySlug: "r6-siege",
+      slug: "r6-siege",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
       page: 1,
       number: 3,
-      categorySlug: "league-of-legends",
+      slug: "league-of-legends",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
       page: 1,
       number: 3,
-      categorySlug: "cod-mw",
+      slug: "cod-mw",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
       page: 1,
       number: 3,
-      categorySlug: "dota-2",
+      slug: "dota-2",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
       page: 1,
       number: 3,
-      categorySlug: "valorant",
+      slug: "valorant",
     }),
 
     new PandascoreService(httpClientFactory()).getTournamentsByVideogame({

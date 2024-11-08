@@ -22,28 +22,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     upcomingMatches,
   ] = await Promise.all([
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "50",
-      categorySlug: "cs-go",
+      page: 1,
+      number: 50,
+      slug: "cs-go",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "50",
-      categorySlug: "league-of-legends",
+      page: 1,
+      number: 50,
+      slug: "league-of-legends",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "50",
-      categorySlug: "dota-2",
+      page: 1,
+      number: 50,
+      slug: "dota-2",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "50",
-      categorySlug: "valorant",
+      page: 1,
+      number: 50,
+      slug: "valorant",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "50",
-      categorySlug: "r6-siege",
+      page: 1,
+      number: 50,
+      slug: "r6-siege",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "50",
-      categorySlug: "cod-mw",
+      page: 1,
+      number: 50,
+      slug: "cod-mw",
     }),
     new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
       page: 1,
@@ -99,12 +105,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]);
 
   const posts = [
-    ...csPosts.data.posts.edges,
-    ...lolPosts.data.posts.edges,
-    ...r6sPosts.data.posts.edges,
-    ...codmwPosts.data.posts.edges,
-    ...dota2Posts.data.posts.edges,
-    ...valorantPosts.data.posts.edges,
+    ...csPosts.posts,
+    ...lolPosts.posts,
+    ...r6sPosts.posts,
+    ...codmwPosts.posts,
+    ...dota2Posts.posts,
+    ...valorantPosts.posts,
   ];
 
   const tournaments = [
@@ -162,8 +168,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     ...posts.map((post) => ({
-      url: `${process.env.PRIVATE_SITE_URL}/noticias/${post.node.categories.edges[0].node.slug}/${post.node.slug}`,
-      lastModified: new Date(post.node.modified),
+      url: `${process.env.PRIVATE_SITE_URL}/noticias/${
+        Object.values(post.categories)[0].slug
+      }/${post.slug}`,
+      lastModified: new Date(post.modified),
       changeFrequency: "monthly" as any,
       priority: 0.5,
     })),
