@@ -1,6 +1,6 @@
-import { Posts } from "@/services/wordpress/types/posts-list";
+import { PostsList } from "@/services/wordpress/types/posts-list";
 
 export interface MorePostsAboutProps {
-  posts: Posts;
+  posts: PostsList;
   category: string;
 }

@@ -26,8 +26,9 @@ export default async function PostPage({
 }) {
   const [morePostsAbout, post] = await Promise.all([
     new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
-      number: "3",
-      categorySlug: params.category,
+      page: 1,
+      number: 3,
+      slug: params.category,
     }),
     new WordpressService(new FetchHttpClientAdapter()).getPostBySlug(
       params.slug

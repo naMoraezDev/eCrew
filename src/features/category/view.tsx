@@ -13,6 +13,7 @@ import { CategoryProps } from "./types";
 import { PostCard } from "@/ui/post-card";
 import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
+import { GAMES } from "@/shared/utils/static";
 import { Tournaments } from "@/ui/tournaments";
 import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
@@ -22,12 +23,9 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-import { GAMES } from "@/shared/utils/static";
 
 export async function CategoryView({
   term,
-  after,
-  before,
   category,
   isDesktop,
 }: CategoryProps) {

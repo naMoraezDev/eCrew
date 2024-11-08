@@ -59,7 +59,9 @@ export function PostsCarouselView({
           ))}
           <CarouselItem className={isDesktop ? "basis-1/3" : "basis-[60%]"}>
             <Link
-              href={`/noticias`}
+              href={`/noticias/${
+                Object.values(postsList.posts[0].categories)[0].slug
+              }`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
             >
               <Image

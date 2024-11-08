@@ -65,7 +65,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
     }),
     new WordpressService(httpClientFactory()).getPostsByTag({
       page: 1,
-      number: 2,
+      number: 3,
       slug: "destaques",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({

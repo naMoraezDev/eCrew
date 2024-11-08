@@ -11,8 +11,8 @@ type PostSeoProps = {
 export function postMetadata({ post }: PostSeoProps): Metadata {
   return {
     ...defaultMetadata,
-    title: post.data.post.title,
-    description: post.data.post.excerpt,
+    title: post.title,
+    description: post.excerpt,
     twitter: {
       creator: "@ecrew",
       card: "summary_large_image",
@@ -21,28 +21,32 @@ export function postMetadata({ post }: PostSeoProps): Metadata {
           width: 1280,
           height: 720,
           type: "image/jpg",
-          alt: post.data.post.title,
-          url: post.data.post.featuredImage.node.sourceUrl,
+          alt: post.title,
+          url: post.post_thumbnail.URL,
         },
       ],
     },
     openGraph: {
       type: "article",
-      title: post.data.post.title,
-      description: post.data.post.excerpt,
+      title: post.title,
+      description: post.excerpt,
       images: [
         {
           width: 1280,
           height: 720,
           type: "image/jpg",
-          alt: post.data.post.title,
-          url: post.data.post.featuredImage.node.sourceUrl,
+          alt: post.title,
+          url: post.post_thumbnail.URL,
         },
       ],
-      url: `${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`,
+      url: `${process.env.PRIVATE_SITE_URL}/${
+        Object.values(post.categories)[0].slug
+      }/${post.slug}`,
     },
     alternates: {
-      canonical: `${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`,
+      canonical: `${process.env.PRIVATE_SITE_URL}/${
+        Object.values(post.categories)[0].slug
+      }/${post.slug}`,
     },
   };
 }
@@ -53,10 +57,12 @@ export function PostSEO({ post }: PostSeoProps) {
       <WebPageJsonLd
         useAppDir
         type="WebPage"
-        description={post.data.post.excerpt}
-        lastReviewed={post.data.post.modified}
+        description={post.excerpt}
+        lastReviewed={post.modified}
         reviewedBy={{ name: "eCrew", type: "Organization" }}
-        id={`${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/#${post.data.post.slug}`}
+        id={`${process.env.PRIVATE_SITE_URL}/${
+          Object.values(post.categories)[0].slug
+        }/#${post.slug}`}
         dataArray={[
           {
             name: post.title,
@@ -67,20 +73,24 @@ export function PostSEO({ post }: PostSeoProps) {
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
-            url: `${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`,
+            url: `${process.env.PRIVATE_SITE_URL}/${
+              Object.values(post.categories)[0].slug
+            }/${post.slug}`,
           },
         ]}
       />
       <ArticleJsonLd
         useAppDir
+        title={post.title}
+        datePublished={post.date}
+        description={post.excerpt}
         isAccessibleForFree={true}
-        title={post.data.post.title}
-        datePublished={post.data.post.date}
-        description={post.data.post.excerpt}
-        dateModified={post.data.post.modified}
-        images={[post.data.post.featuredImage.node.sourceUrl]}
+        dateModified={post.modified}
+        images={[post.post_thumbnail.URL]}
         authorName={{ type: "Organization", name: "eCrew" }}
-        url={`${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`}
+        url={`${process.env.PRIVATE_SITE_URL}/${
+          Object.values(post.categories)[0].slug
+        }/${post.slug}`}
       />
       <BreadcrumbJsonLd
         useAppDir
@@ -92,19 +102,21 @@ export function PostSEO({ post }: PostSeoProps) {
           },
           {
             position: 2,
-            name: getCategoryTitle(
-              post.data.post.categories.edges[0].node.slug
-            ),
-            item: `${process.env.PRIVATE_SITE_URL}/noticias/${post.data.post.categories.edges[0].node.slug}`,
+            name: getCategoryTitle(Object.values(post.categories)[0].slug),
+            item: `${process.env.PRIVATE_SITE_URL}/noticias/${
+              Object.values(post.categories)[0].slug
+            }`,
           },
           {
             position: 3,
             name: post.title,
-            item: `${process.env.PRIVATE_SITE_URL}/${post.data.post.categories.edges[0].node.slug}/${post.data.post.slug}`,
+            item: `${process.env.PRIVATE_SITE_URL}/${
+              Object.values(post.categories)[0].slug
+            }/${post.slug}`,
           },
         ]}
       />
-      <meta property="mrf:authors" content={post.data.post.author.node.name} />
+      <meta property="mrf:authors" content={post.author.name} />
     </>
   );
 }
