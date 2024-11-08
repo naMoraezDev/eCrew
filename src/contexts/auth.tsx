@@ -1,27 +1,17 @@
 "use client";
 
 import nookies from "nookies";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { firebaseClient } from "@/services/firebase/firebase-client";
 import { createContext, useContext, useEffect, useState } from "react";
-import { UserPreferences } from "@/services/types/user-preferences.types";
-import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export const AuthContext = createContext<{
-  cleanPreferences: () => void;
   user: firebaseClient.User | null;
-  preferences: UserPreferences | null;
-  refreshPreferences: () => Promise<void>;
 }>({
   user: null,
-  preferences: null,
-  cleanPreferences: () => {},
-  refreshPreferences: async () => {},
 });
 
 export function AuthProvider({ children }: any) {
   const [user, setUser] = useState<firebaseClient.User | null>(null);
-  const [preferences, setPreferences] = useState<UserPreferences | null>(null);
 
   useEffect(() => {
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
@@ -32,10 +22,6 @@ export function AuthProvider({ children }: any) {
         setUser(user);
         const token = await user.getIdToken();
         nookies.set(undefined, "id-token", token, { path: "/" });
-        const userPreferences = await new EcrewApiService(httpClientFactory())
-          .getUserPreferences(token)
-          .catch(() => null);
-        setPreferences(userPreferences);
       }
     });
   }, []);
@@ -49,25 +35,8 @@ export function AuthProvider({ children }: any) {
     return () => clearInterval(handle);
   }, []);
 
-  function cleanPreferences() {
-    setPreferences(null);
-  }
-
-  async function refreshPreferences() {
-    if (!user) return;
-    const token = await user.getIdToken();
-    const userPreferences = await new EcrewApiService(httpClientFactory())
-      .getUserPreferences(token)
-      .catch(() => null);
-    setPreferences(userPreferences);
-  }
-
   return (
-    <AuthContext.Provider
-      value={{ user, preferences, cleanPreferences, refreshPreferences }}
-    >
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
 }
 

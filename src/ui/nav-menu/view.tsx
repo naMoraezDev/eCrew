@@ -91,10 +91,10 @@ export function NavMenuView({
                   {games.find((game) => game.slug === selectedCategory)?.name}
                 </span>
                 <div className="flex gap-3">
-                  {getPostsByCategory().data.posts.edges.map((post) => (
-                    <div key={post.node.id} className="animate-fade w-[250px]">
+                  {getPostsByCategory().posts.map((post) => (
+                    <div key={post.ID} className="animate-fade w-[250px]">
                       <PostCard
-                        post={post.node}
+                        post={post}
                         variant="outlined"
                         gameIconUrl={
                           games.find((game) => game.slug === selectedCategory)
@@ -207,9 +207,7 @@ export function NavMenuView({
                   onMouseOver={() => setListType("upcoming")}
                   className="w-full flex items-center gap-4 cursor-pointer"
                 >
-                  <span className="text-sm font-kanit">
-                    próximas partidas
-                  </span>
+                  <span className="text-sm font-kanit">próximas partidas</span>
                 </div>
               </div>
               <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg w-2/3">

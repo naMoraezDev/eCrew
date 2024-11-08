@@ -9,21 +9,20 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { TournamentProps } from "./types";
+import { GAMES } from "@/shared/utils/static";
 import { StreamsList } from "@/ui/streams-list";
 import { TournamentSEO } from "@/seo/tournament";
 import { HorizontalAd } from "@/ui/horizontal-ad";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { TwitchUserResponse } from "@/services/types/twitch.types";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function TournamentView({ id, isDesktop }: TournamentProps) {
-  const [tournament, rosters, standings, brackets, games] = await Promise.all([
+  const [tournament, rosters, standings, brackets] = await Promise.all([
     new PandascoreService(httpClientFactory()).getTournamentById(id),
     new PandascoreService(httpClientFactory()).getTournamentRosters(id),
     new PandascoreService(httpClientFactory()).getTournamentStandings(id),
     new PandascoreService(httpClientFactory()).getTournamentBrackets(id),
-    new EcrewApiService(httpClientFactory()).getGames(),
   ]);
 
   const liveMatch =
@@ -31,21 +30,6 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
     brackets?.find((match) => match.status === "running");
 
   let streams: (TwitchUserResponse | null)[] = [];
-
-  if (liveMatch) {
-    streams = await Promise.all(
-      liveMatch?.streams_list
-        .filter(
-          (stream) => stream.raw_url.includes("twitch") && stream.embed_url
-        )
-        .map(
-          async (stream) =>
-            await new EcrewApiService(httpClientFactory())
-              .getTwitchUser(stream.raw_url.split("/").pop() || "")
-              .catch(() => null)
-        )
-    );
-  }
 
   return (
     <>
@@ -102,11 +86,11 @@ export async function TournamentView({ id, isDesktop }: TournamentProps) {
                 height={40}
                 className="size-10 rounded-lg mr-6"
                 alt={
-                  games.find((g) => g.slug === tournament.videogame.slug)
+                  GAMES.find((g) => g.slug === tournament.videogame.slug)
                     ?.name || ""
                 }
                 src={
-                  games.find((g) => g.slug === tournament.videogame.slug)
+                  GAMES.find((g) => g.slug === tournament.videogame.slug)
                     ?.icon_url || ""
                 }
               />

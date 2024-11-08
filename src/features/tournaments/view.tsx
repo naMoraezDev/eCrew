@@ -1,9 +1,9 @@
 import { SquareAd } from "@/ui/square-ad";
 import { TournamentProps } from "./types";
 import { IoIosPodium } from "react-icons/io";
+import { GAMES } from "@/shared/utils/static";
 import { TournamentsSEO } from "@/seo/tournaments";
 import { TournamentList } from "@/ui/tournament-list";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { Tournament } from "@/services/pandascore/types/tournaments.types";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
@@ -19,7 +19,6 @@ function compare(a: Tournament, b: Tournament) {
 
 export async function TournamentsView({ isDesktop }: TournamentProps) {
   const [
-    games,
     csTournaments,
     r6Tournaments,
     lolTournaments,
@@ -27,7 +26,6 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
     valTournaments,
     dotaTournaments,
   ] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getGames(),
     new PandascoreService(httpClientFactory()).getTournamentsByVideogame({
       page: 1,
       size: 50,
@@ -95,7 +93,7 @@ export async function TournamentsView({ isDesktop }: TournamentProps) {
               </span>
             </div>
           </h4>
-          <TournamentList games={games} tournaments={tournaments} />
+          <TournamentList games={GAMES} tournaments={tournaments} />
         </section>
         {isDesktop && (
           <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">

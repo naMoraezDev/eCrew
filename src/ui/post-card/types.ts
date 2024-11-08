@@ -1,8 +1,8 @@
 import { DefaultProps } from "@/types/common";
-import { Node } from "@/services/wordpress/types/posts-list";
+import { Post } from "@/services/wordpress/types/posts-list";
 
 export interface PostCardProps extends DefaultProps {
-  post: Node;
+  post: Post;
   gameIconUrl?: string;
   size?: "small" | "medium";
   variant?: "outlined" | "filled";

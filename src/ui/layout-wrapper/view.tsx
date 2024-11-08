@@ -2,9 +2,9 @@ import { Footer } from "./footer";
 import { Header } from "./header";
 import { Navbar } from "./navbar";
 import { DefaultProps } from "@/types/common";
+import { GAMES } from "@/shared/utils/static";
 // import { ProTopBanner } from "./pro-top-banner";
 import { CookiesAccept } from "../cookies-accept";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
@@ -14,7 +14,6 @@ export async function LayoutWrapperView({
   isDesktop,
 }: Readonly<{ children: React.ReactNode } & DefaultProps>) {
   const [
-    games,
     csPosts,
     r6Posts,
     lolPosts,
@@ -32,29 +31,34 @@ export async function LayoutWrapperView({
     pastMatches,
     upcomingMatches,
   ] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getGames(),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "3",
+      page: 1,
+      number: 3,
       categorySlug: "cs-go",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "3",
+      page: 1,
+      number: 3,
       categorySlug: "r6-siege",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "3",
+      page: 1,
+      number: 3,
       categorySlug: "league-of-legends",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "3",
+      page: 1,
+      number: 3,
       categorySlug: "cod-mw",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "3",
+      page: 1,
+      number: 3,
       categorySlug: "dota-2",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "3",
+      page: 1,
+      number: 3,
       categorySlug: "valorant",
     }),
 
@@ -110,7 +114,7 @@ export async function LayoutWrapperView({
     <>
       {/* <ProTopBanner isDesktop={isDesktop} /> */}
       <Header
-        games={games}
+        games={GAMES}
         csPosts={csPosts}
         r6Posts={r6Posts}
         codPosts={codPosts}

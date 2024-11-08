@@ -2,8 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { TournamentsProps } from "./types";
 import { IoIosPodium } from "react-icons/io";
+import { GAMES } from "@/shared/utils/static";
 import { RiErrorWarningFill } from "react-icons/ri";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -89,10 +89,7 @@ export async function TournamentsView({ game }: TournamentsProps) {
     }
   };
 
-  const [games, tournaments] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getGames(),
-    getTournaments(),
-  ]);
+  const [tournaments] = await Promise.all([getTournaments()]);
 
   return (
     <ul className="flex flex-col bg-zinc-900 bg-opacity-50 rounded-lg">
@@ -119,11 +116,11 @@ export async function TournamentsView({ game }: TournamentsProps) {
             width={40}
             height={40}
             src={
-              games.find((game) => game.slug === tournament.videogame.slug)
+              GAMES.find((game) => game.slug === tournament.videogame.slug)
                 ?.icon_url || ""
             }
             alt={
-              games.find((game) => game.slug === tournament.videogame.slug)
+              GAMES.find((game) => game.slug === tournament.videogame.slug)
                 ?.name || ""
             }
             className="rounded-sm object-cover size-4 shrink-0 relative top-1"

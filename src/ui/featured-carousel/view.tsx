@@ -19,7 +19,7 @@ export function FeaturedCarouselView({
         isDesktop && "rounded-lg"
       } w-full h-[400px] overflow-hidden flex relative`}
     >
-      {posts.map((post, index) => {
+      {posts.posts.map((post, index) => {
         if (index !== currentIndex) return null;
         return (
           <div key={index} className="animate-long-fade">
@@ -27,14 +27,14 @@ export function FeaturedCarouselView({
               priority
               width={1280}
               height={720}
-              alt={post.data.post.title}
-              src={post.data.post.featuredImage.node.sourceUrl}
+              alt={post.title}
+              src={post.post_thumbnail.URL}
               className="object-cover size-full absolute top-0 left-0 animate-zoom"
             />
           </div>
         );
       })}
-      {posts.map((post, index) => {
+      {posts.posts.map((post, index) => {
         if (index !== currentIndex) return null;
         return (
           <div key={index} className="animate-long-fade z-10">
@@ -48,30 +48,31 @@ export function FeaturedCarouselView({
                   width={20}
                   height={20}
                   className="rounded-md"
-                  alt={post.data.post.categories.edges[0].node.name}
+                  alt={post.title}
                   src={
                     games.find(
                       (game) =>
                         game.slug ===
-                        post.data.post.categories.edges[0].node.slug
-                    )?.icon_url || ""
+                        Object.values(posts.posts[currentIndex].categories)[0]
+                          .slug
+                    )?.icon_url ?? ""
                   }
                 />
-                {post.data.post.categories.edges[0].node.name}
+                {Object.values(posts.posts[currentIndex].categories)[0].name}
               </span>
               <h2
                 className={`${
                   isDesktop ? "w-1/2" : "w-full"
                 } text-3xl font-kanit font-bold line-clamp-2`}
               >
-                {post.data.post.title}
+                {post.title}
               </h2>
               <div
                 className={`${
                   isDesktop ? "w-1/2" : "w-full"
                 } w-1/2 text-base line-clamp-2 text-zinc-400`}
                 dangerouslySetInnerHTML={{
-                  __html: post.data.post.excerpt,
+                  __html: post.excerpt,
                 }}
               />
             </div>
@@ -80,11 +81,13 @@ export function FeaturedCarouselView({
       })}
       <Link
         className="size-full absolute top-0 left-0 z-10"
-        href={`noticias/${posts[currentIndex].data.post.categories.edges[0].node.slug}/${posts[currentIndex].data.post.slug}`}
+        href={`noticias/${
+          Object.values(posts.posts[currentIndex].categories)[0].slug
+        }/${posts.posts[currentIndex].slug}`}
       />
       <div className="size-full absolute top-0 left-0 bg-gradient-to-tr from-zinc-950 to-transparent" />
       <section className="absolute bottom-4 right-4 flex gap-2 px-4 py-2 bg-zinc-900 bg-opacity-50 backdrop-blur-sm rounded-2xl z-10">
-        {posts.map((_post, index) => (
+        {posts.posts.map((_post, index) => (
           <button
             type="button"
             key={index}

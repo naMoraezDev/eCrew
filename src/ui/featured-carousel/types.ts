@@ -1,8 +1,8 @@
 import { DefaultProps } from "@/types/common";
 import { Games } from "@/services/types/games.types";
-import { FeaturedPost } from "@/services/wordpress/types/category";
+import { PostsList } from "@/services/wordpress/types/posts-list";
 
 export interface FeaturedCarouselProps extends DefaultProps {
   games: Games;
-  posts: FeaturedPost[];
+  posts: PostsList;
 }

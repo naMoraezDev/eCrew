@@ -23,54 +23,20 @@ export function LatestPostsView({
           <FaLongArrowAltRight />
         </Link>
       </div>
-      <PostCard
-        size="small"
-        variant="filled"
-        isDesktop={isDesktop}
-        orientation="horizontal"
-        post={postsList.data.posts.edges[0].node}
-        gameIconUrl={
-          games.find(
-            (game) => game.slug === postsList.data.posts.edges[0].node.slug
-          )?.icon_url
-        }
-      />
-      <PostCard
-        size="small"
-        variant="filled"
-        isDesktop={isDesktop}
-        orientation="horizontal"
-        post={postsList.data.posts.edges[1].node}
-        gameIconUrl={
-          games.find(
-            (game) => game.slug === postsList.data.posts.edges[1].node.slug
-          )?.icon_url
-        }
-      />
-      <PostCard
-        size="small"
-        variant="filled"
-        isDesktop={isDesktop}
-        orientation="horizontal"
-        post={postsList.data.posts.edges[2].node}
-        gameIconUrl={
-          games.find(
-            (game) => game.slug === postsList.data.posts.edges[2].node.slug
-          )?.icon_url
-        }
-      />
-      <PostCard
-        size="small"
-        variant="filled"
-        isDesktop={isDesktop}
-        orientation="horizontal"
-        post={postsList.data.posts.edges[3].node}
-        gameIconUrl={
-          games.find(
-            (game) => game.slug === postsList.data.posts.edges[3].node.slug
-          )?.icon_url
-        }
-      />
+      {postsList.posts.map((post) => (
+        <PostCard
+          size="small"
+          key={post.ID}
+          variant="filled"
+          isDesktop={isDesktop}
+          orientation="horizontal"
+          post={post}
+          gameIconUrl={
+            games.find((game) => game.slug === postsList.posts[0]?.slug)
+              ?.icon_url
+          }
+        />
+      ))}
     </section>
   );
 }

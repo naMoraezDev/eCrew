@@ -1,18 +1,14 @@
 import { Metadata } from "next";
+import { GAMES } from "@/shared/utils/static";
 import { Category } from "@/features/category";
 import { REVALIDATE_TIME } from "@/shared/constants";
 import { CategorySEO, categoryMetadata } from "@/seo/category";
-import { EcrewApiService } from "@/services/ecrew-api.service";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export const dynamic = "force-static";
 export const revalidate = REVALIDATE_TIME;
 
 export async function generateStaticParams() {
-  const games = await new EcrewApiService(
-    new FetchHttpClientAdapter()
-  ).getGames();
-  return games.map((game) => ({
+  return GAMES.map((game) => ({
     category: game.slug,
   }));
 }

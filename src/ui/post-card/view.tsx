@@ -28,9 +28,8 @@ export function PostCardView({
         <Image
           width={300}
           height={200}
-          alt={post.title}
-          sizes={post.featuredImage.node.sizes}
-          src={post.featuredImage.node.sourceUrl}
+          alt={post?.title}
+          src={post?.post_thumbnail.URL}
           className="size-full object-cover object-center duration-300 aspect-video group-hover:scale-105"
         />
         {gameIconUrl && (
@@ -79,7 +78,9 @@ export function PostCardView({
       </div>
       <Link
         className="absolute size-full top-0 left-0 z-10"
-        href={`/noticias/${post.categories.edges[0].node.slug}/${post.slug}`}
+        href={`/noticias/${Object.values(post.categories)[0].slug}/${
+          post.slug
+        }`}
       />
     </section>
   );

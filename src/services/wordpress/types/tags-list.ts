@@ -1,32 +1,24 @@
 export interface TagsList {
-  data: Data;
-  extensions: Extensions;
+  found: number;
+  tags: Tag[];
 }
 
-export interface Data {
-  tags: Tags;
-}
-
-export interface Tags {
-  edges: Edge[];
-}
-
-export interface Edge {
-  node: Node;
-}
-
-export interface Node {
-  id: string;
-  slug: string;
+export interface Tag {
+  ID: number;
   name: string;
-  count: number;
+  slug: string;
+  description: string;
+  post_count: number;
+  feed_url: string;
+  meta: Meta;
 }
 
-export interface Extensions {
-  debug: Debug[];
+export interface Meta {
+  links: Links;
 }
 
-export interface Debug {
-  type: string;
-  message: string;
+export interface Links {
+  self: string;
+  help: string;
+  site: string;
 }

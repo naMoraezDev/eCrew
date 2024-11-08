@@ -11,21 +11,18 @@ import {
 import { MatchProps } from "./types";
 import { MatchSEO } from "@/seo/match";
 import { SquareAd } from "@/ui/square-ad";
+import { GAMES } from "@/shared/utils/static";
 import { Tournaments } from "@/ui/tournaments";
-import { StreamsList } from "@/ui/streams-list";
 import { HorizontalAd } from "@/ui/horizontal-ad";
-import { RiErrorWarningFill } from "react-icons/ri";
 import { getGameName } from "@/shared/utils/functions";
 import { UpcomingMatches } from "@/ui/upcoming-matches";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
-  const [games, match] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getGames(),
+  const [match] = await Promise.all([
     new PandascoreService(httpClientFactory()).getMatchById(id),
   ]);
 
@@ -35,17 +32,6 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
 
   const teamA = opponents.opponents[0];
   const teamB = opponents.opponents[1];
-
-  const streams = await Promise.all(
-    match.streams_list
-      .filter((stream) => stream.raw_url.includes("twitch") && stream.embed_url)
-      .map(
-        async (stream) =>
-          await new EcrewApiService(httpClientFactory())
-            .getTwitchUser(stream.raw_url.split("/").pop() || "")
-            .catch(() => null)
-      )
-  );
 
   const isLive = match.status === "running";
 
@@ -83,10 +69,10 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               height={40}
               className="size-10 rounded-lg"
               alt={
-                games.find((g) => g.slug === match.videogame.slug)?.name || ""
+                GAMES.find((g) => g.slug === match.videogame.slug)?.name || ""
               }
               src={
-                games.find((g) => g.slug === match.videogame.slug)?.icon_url ||
+                GAMES.find((g) => g.slug === match.videogame.slug)?.icon_url ||
                 ""
               }
             />
@@ -242,7 +228,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
               </ul>
             </section>
           )}
-          {!Boolean(streams.length) && (
+          {/* {!Boolean(streams.length) && (
             <span className="px-6 py-3 font-kanit text-sm flex items-center gap-2 self-center">
               <RiErrorWarningFill />
               Nenhuma transmissão disponível no momento.
@@ -250,7 +236,7 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
           )}
           {Boolean(streams.length) && (
             <StreamsList match={match} streams={streams} />
-          )}
+          )} */}
           <HorizontalAd isDesktop={isDesktop} />
           {teamA && teamB && (
             <section className="flex gap-4 text-center">

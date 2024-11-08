@@ -14,12 +14,12 @@ export async function PopularTagsView() {
         Tags populares
       </h4>
       <div className="flex flex-wrap gap-2">
-        {tagsList.data.tags.edges.map((tag) => (
+        {tagsList.tags.map((tag) => (
           <span
-            key={tag.node.id}
+            key={tag.ID}
             className="px-2 py-1 rounded-lg bg-zinc-500 bg-opacity-10"
           >
-            {tag.node.name}
+            {tag.name}
           </span>
         ))}
       </div>

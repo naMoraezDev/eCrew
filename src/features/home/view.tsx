@@ -7,11 +7,11 @@ import { LatestPosts } from "@/ui/latest-posts";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
+import { GAMES } from "@/shared/utils/static";
 const DynamicMatchesSection = dynamic(() =>
   import("@/ui/matches-section").then((module) => module.MatchesSection)
 );
@@ -24,53 +24,60 @@ const DynamicPopularTags = dynamic(() =>
 
 export async function HomeView({ isDesktop }: DefaultProps) {
   const [
-    games,
     lolPosts,
     r6Posts,
     codPosts,
     csPosts,
     valorantPosts,
     dotaPosts,
-    homeCategory,
+    featuredPosts,
     latestPosts,
   ] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getGames(),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "2",
-      categorySlug: "league-of-legends",
+      page: 1,
+      number: 2,
+      slug: "league-of-legends",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "2",
-      categorySlug: "r6-siege",
+      page: 1,
+      number: 2,
+      slug: "r6-siege",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "2",
-      categorySlug: "cod-mw",
+      page: 1,
+      number: 2,
+      slug: "cod-mw",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "2",
-      categorySlug: "cs-go",
+      page: 1,
+      number: 2,
+      slug: "cs-go",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "2",
-      categorySlug: "valorant",
+      page: 1,
+      number: 2,
+      slug: "valorant",
     }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "2",
-      categorySlug: "dota-2",
+      page: 1,
+      number: 2,
+      slug: "dota-2",
     }),
-    new WordpressService(httpClientFactory()).getCategoryBySlug("home"),
+    new WordpressService(httpClientFactory()).getPostsByTag({
+      page: 1,
+      number: 2,
+      slug: "destaques",
+    }),
     new WordpressService(httpClientFactory()).getPostsByCategory({
-      number: "4",
-      categorySlug: "all",
+      page: 1,
+      slug: "",
+      number: 4,
     }),
   ]);
 
-  const featuredPosts = homeCategory.data.category.extraFields.featuredPosts;
-
   return (
     <>
-      <LogoSlider games={games} />
+      <LogoSlider games={GAMES} />
       <section className="w-full flex gap-4">
         <section
           className={`
@@ -79,49 +86,49 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           `}
         >
           <FeaturedCarousel
-            games={games}
-            posts={featuredPosts}
+            games={GAMES}
             isDesktop={isDesktop}
+            posts={featuredPosts}
           />
           <LatestPosts
-            games={games}
+            games={GAMES}
             isDesktop={isDesktop}
             postsList={latestPosts}
           />
           <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           {!isDesktop && <DynamicMatchesSection />}
           <PostsCarousel
-            games={games}
+            games={GAMES}
             postsList={csPosts}
             isDesktop={isDesktop}
             category="Counter-Strike: Global Offensive"
           />
           <PostsCarousel
-            games={games}
+            games={GAMES}
             postsList={lolPosts}
             isDesktop={isDesktop}
             category="League of Legends"
           />
           <PostsCarousel
-            games={games}
+            games={GAMES}
             postsList={r6Posts}
             isDesktop={isDesktop}
             category="Rainbow Six Siege"
           />
           <PostsCarousel
-            games={games}
+            games={GAMES}
             category="Dota 2"
             postsList={dotaPosts}
             isDesktop={isDesktop}
           />
           <PostsCarousel
-            games={games}
+            games={GAMES}
             category="Call of Duty: Modern Warfare"
             postsList={codPosts}
             isDesktop={isDesktop}
           />
           <PostsCarousel
-            games={games}
+            games={GAMES}
             category="Valorant"
             isDesktop={isDesktop}
             postsList={valorantPosts}

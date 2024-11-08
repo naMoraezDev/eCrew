@@ -1,16 +1,15 @@
 import { MatchesProps } from "./types";
 import { SquareAd } from "@/ui/square-ad";
 import { MatchesSEO } from "@/seo/matches";
+import { GAMES } from "@/shared/utils/static";
 import { Tournaments } from "@/ui/tournaments";
 import { MatchesList } from "@/ui/matches-list";
 import { BsFillLightningChargeFill } from "react-icons/bs";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function MatchesView({ isDesktop }: MatchesProps) {
-  const [games, runningMatches, upcomingMatches] = await Promise.all([
-    new EcrewApiService(httpClientFactory()).getGames(),
+  const [runningMatches, upcomingMatches] = await Promise.all([
     new PandascoreService(httpClientFactory()).getMatchesList({
       page: 1,
       size: 50,
@@ -38,7 +37,7 @@ export async function MatchesView({ isDesktop }: MatchesProps) {
             <BsFillLightningChargeFill />
             Partidas
           </h4>
-          <MatchesList games={games} matches={matches} />
+          <MatchesList games={GAMES} matches={matches} />
         </section>
         {isDesktop && (
           <section className="w-1/4 flex flex-col gap-4 mt-4 shrink-0">

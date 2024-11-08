@@ -1,8 +1,6 @@
 import { toast } from "sonner";
 import { useState } from "react";
 import { useLoading } from "@/contexts/loading";
-import { EcrewApiService } from "@/services/ecrew-api.service";
-import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
 
 export function useNewsletter() {
   const { setIsLoading } = useLoading();
@@ -20,9 +18,7 @@ export function useNewsletter() {
         toast.error("Por favor, insira um e-mail válido.");
         return;
       }
-      await new EcrewApiService(
-        new FetchHttpClientAdapter()
-      ).subscribeOnNewsletter(email);
+
       setIsLoading(false);
       toast.success("Inscrição concluída. Confira sua caixa de entrada.");
     } catch {

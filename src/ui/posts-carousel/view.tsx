@@ -44,13 +44,13 @@ export function PostsCarouselView({
       </div>
       <Carousel opts={{ align: "start" }} className="relative z-10">
         <CarouselContent>
-          {postsList.data.posts.edges.map((edge, index) => (
+          {postsList.posts.map((post, index) => (
             <CarouselItem
               key={index}
               className={isDesktop ? "basis-1/3" : "basis-[60%]"}
             >
               <PostCard
-                post={edge.node}
+                post={post}
                 variant="outlined"
                 isDesktop={isDesktop}
                 gameIconUrl={gameIconUrl}
@@ -59,7 +59,7 @@ export function PostsCarouselView({
           ))}
           <CarouselItem className={isDesktop ? "basis-1/3" : "basis-[60%]"}>
             <Link
-              href={`/noticias/${postsList.data.posts.edges[0].node.categories.edges[0].node.slug}`}
+              href={`/noticias`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
             >
               <Image

@@ -6,17 +6,9 @@ import { HttpClient } from "@/infrastructure/adapters/factories/http-client.fact
 
 namespace WordpressServiceProtocol {
   export type Params = {
-    number: string;
-    after?: string;
-    before?: string;
-    categorySlug: string;
-  };
-
-  export type TermParams = {
-    term: string;
-    number: string;
-    after?: string;
-    before?: string;
+    page: number;
+    slug: string;
+    number: number;
   };
 }
 
@@ -24,11 +16,11 @@ interface WordpressServiceProtocol {
   getPostsByCategory: (
     params: WordpressServiceProtocol.Params
   ) => Promise<PostsList>;
+  getPostsByTag: (
+    params: WordpressServiceProtocol.Params
+  ) => Promise<PostsList>;
   getCategoryBySlug: (categorySlug: string) => Promise<Category>;
   getPostBySlug: (postSlug: string) => Promise<Post>;
-  getPostsByTerm: (
-    params: WordpressServiceProtocol.TermParams
-  ) => Promise<PostsList>;
   getTags: () => Promise<TagsList>;
 }
 
@@ -38,14 +30,27 @@ export class WordpressService implements WordpressServiceProtocol {
   }
 
   private readonly baseUrl: string =
-    process.env.NEXT_PUBLIC_ECREW_API_URL || "";
+    process.env.PRIVATE_WORDPRESS_API_URL ?? "";
 
   public async getPostsByCategory(params: WordpressServiceProtocol.Params) {
     return await this.httpClient.request<PostsList>({
-      input: `${this.baseUrl}/wp-graphql/posts/category/${
-        params.categorySlug
-      }?number=${params.number}${params.after ? `&after=${params.after}` : ""}${
-        params.before ? `&before=${params.before}` : ""
+      input: `${this.baseUrl}/posts?category=${
+        params.slug ? params.slug : ""
+      }&page=${params.page ? params.page : 1}&number=${
+        params.number ? params.number : 50
+      }`,
+      init: {
+        method: "GET",
+      },
+    });
+  }
+
+  public async getPostsByTag(params: WordpressServiceProtocol.Params) {
+    return await this.httpClient.request<PostsList>({
+      input: `${this.baseUrl}/posts?tag=${
+        params.slug ? params.slug : ""
+      }&page=${params.page ? params.page : 1}&number=${
+        params.number ? params.number : 50
       }`,
       init: {
         method: "GET",
@@ -55,7 +60,7 @@ export class WordpressService implements WordpressServiceProtocol {
 
   public async getCategoryBySlug(categorySlug: string) {
     return await this.httpClient.request<Category>({
-      input: `${this.baseUrl}/wp-graphql/categories/category/${categorySlug}`,
+      input: `${this.baseUrl}/categories/slug:${categorySlug}`,
       init: {
         method: "GET",
       },
@@ -64,20 +69,7 @@ export class WordpressService implements WordpressServiceProtocol {
 
   public async getPostBySlug(postSlug: string) {
     return await this.httpClient.request<Post>({
-      input: `${this.baseUrl}/wp-graphql/posts/post/${postSlug}`,
-      init: {
-        method: "GET",
-      },
-    });
-  }
-
-  public async getPostsByTerm(params: WordpressServiceProtocol.TermParams) {
-    return await this.httpClient.request<PostsList>({
-      input: `${this.baseUrl}/wp-graphql/posts?term=${params.term}&number=${
-        params.number
-      }${params.after ? `&after=${params.after}` : ""}${
-        params.before ? `&before=${params.before}` : ""
-      }`,
+      input: `${this.baseUrl}/posts/slug:${postSlug}`,
       init: {
         method: "GET",
       },
@@ -86,7 +78,7 @@ export class WordpressService implements WordpressServiceProtocol {
 
   public async getTags() {
     return await this.httpClient.request<TagsList>({
-      input: `${this.baseUrl}/wp-graphql/tags`,
+      input: `${this.baseUrl}/tags`,
       init: {
         method: "GET",
       },

@@ -18,11 +18,11 @@ import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { getGameName } from "@/shared/utils/functions";
-import { EcrewApiService } from "@/services/ecrew-api.service";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { GAMES } from "@/shared/utils/static";
 
 export async function CategoryView({
   term,
@@ -32,27 +32,18 @@ export async function CategoryView({
   isDesktop,
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
-  const [games, postsList] = await Promise.all([
-    new EcrewApiService(new FetchHttpClientAdapter()).getGames(),
-    term
-      ? new WordpressService(new FetchHttpClientAdapter()).getPostsByTerm({
-          term,
-          number: "12",
-        })
-      : new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
-          after,
-          before,
-          number: "12",
-          categorySlug: category || "all",
-        }),
+  const [postsList] = await Promise.all([
+    new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
+      page: 1,
+      number: 12,
+      slug: category ?? "",
+    }),
   ]);
-  const firstGroup = term
-    ? postsList.data.posts.edges
-    : postsList.data.posts.edges.slice(0, 6);
-  const secondGroup = term ? [] : postsList.data.posts.edges.slice(6, 12);
+  const firstGroup = term ? postsList.posts : postsList.posts.slice(0, 6);
+  const secondGroup = term ? [] : postsList.posts.slice(6, 12);
 
-  const hasNextPage = postsList.data.posts.pageInfo.hasNextPage;
-  const hasPreviousPage = postsList.data.posts.pageInfo.hasPreviousPage;
+  const hasNextPage = true;
+  const hasPreviousPage = false;
 
   return (
     <section className="w-full flex gap-4">
@@ -74,18 +65,18 @@ export async function CategoryView({
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-zinc-300">
-                {category === "all"
+                {category === ""
                   ? "mais notícias"
                   : term
                   ? "busca"
-                  : postsList.data.posts.edges[0]?.node.categories.edges[0]?.node.name.toLocaleLowerCase()}
+                  : Object.values(postsList.posts[0].categories)[0].name}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
         {term && (
           <section className={!isDesktop ? "mx-4" : ""}>
-            {Boolean(postsList.data.posts.edges.length) ? (
+            {Boolean(postsList.posts.length) ? (
               <span className="text-2xl font-kanit font-bold text-zinc-50">
                 Resultados para{" "}
                 <span className="text-violet-500">{`"${term}"`}</span>:
@@ -131,14 +122,13 @@ export async function CategoryView({
           {firstGroup.map((post, index) => (
             <PostCard
               key={index}
-              post={post.node}
+              post={post}
               size={isDesktop ? "medium" : "small"}
               variant={isDesktop ? "outlined" : "filled"}
               orientation={isDesktop ? "vertical" : "horizontal"}
               gameIconUrl={
-                games.find(
-                  (game) =>
-                    game.slug === post.node.categories.edges[0].node.slug
+                GAMES.find(
+                  (game) => game.slug === Object.values(post.categories)[0].slug
                 )?.icon_url
               }
             />
@@ -155,14 +145,14 @@ export async function CategoryView({
             {secondGroup.map((post, index) => (
               <PostCard
                 key={index}
-                post={post.node}
+                post={post}
                 size={isDesktop ? "medium" : "small"}
                 variant={isDesktop ? "outlined" : "filled"}
                 orientation={isDesktop ? "vertical" : "horizontal"}
                 gameIconUrl={
-                  games.find(
+                  GAMES.find(
                     (game) =>
-                      game.slug === post.node.categories.edges[0].node.slug
+                      game.slug === Object.values(post.categories)[0].slug
                   )?.icon_url
                 }
               />
@@ -174,8 +164,8 @@ export async function CategoryView({
             <Link
               href={
                 category === "all"
-                  ? `/noticias/mais-noticias?before=${postsList.data.posts.pageInfo.endCursor}`
-                  : `/noticias/${category}?before=${postsList.data.posts.pageInfo.endCursor}`
+                  ? `/noticias/mais-noticias`
+                  : `/noticias/${category}`
               }
               className="py-1 px-3 bg-zinc-900 bg-opacity-50 rounded-lg flex items-center gap-2 hover:bg-opacity-10 duration-300 text-sm font-kanit"
             >
@@ -186,8 +176,8 @@ export async function CategoryView({
             <Link
               href={
                 category === "all"
-                  ? `/noticias/mais-noticias?after=${postsList.data.posts.pageInfo.endCursor}`
-                  : `/noticias/${category}?after=${postsList.data.posts.pageInfo.endCursor}`
+                  ? `/noticias/mais-noticias`
+                  : `/noticias/${category}`
               }
               className="py-1 px-3 bg-zinc-900 bg-opacity-50 rounded-lg flex items-center gap-2 hover:bg-opacity-10 duration-300 text-sm font-kanit"
             >
@@ -203,8 +193,7 @@ export async function CategoryView({
                 category === "all"
                   ? undefined
                   : getGameName(
-                      postsList.data.posts.edges[0]?.node.categories.edges[0]
-                        ?.node.slug
+                      Object.values(postsList.posts[0].categories)[0].slug
                     )
               }
             />
@@ -223,8 +212,7 @@ export async function CategoryView({
               category === "all"
                 ? undefined
                 : getGameName(
-                    postsList.data.posts.edges[0]?.node.categories.edges[0]
-                      ?.node.slug
+                    Object.values(postsList.posts[0].categories)[0].slug
                   )
             }
           />

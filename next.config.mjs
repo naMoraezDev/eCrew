@@ -29,7 +29,7 @@ const nextConfig = {
       {
         pathname: "/**",
         protocol: "https",
-        hostname: "eposts7.wordpress.com",
+        hostname: "ecrew7.wordpress.com",
       },
       {
         pathname: "/**",
@@ -39,7 +39,7 @@ const nextConfig = {
       {
         pathname: "/**",
         protocol: "https",
-        hostname: "eposts7.files.wordpress.com",
+        hostname: "ecrew7.files.wordpress.com",
       },
       {
         pathname: "/**",
