@@ -42,7 +42,7 @@ export async function CategoryView({
 
   const hasNextPage = true;
   const hasPreviousPage = false;
-
+  console.log("--------------------", category);
   return (
     <section className="w-full flex gap-4">
       <section
@@ -63,11 +63,7 @@ export async function CategoryView({
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage className="text-zinc-300">
-                {category === ""
-                  ? "mais notícias"
-                  : term
-                  ? "busca"
-                  : Object.values(postsList.posts[0].categories)[0].name}
+                {category === "" ? "mais notícias" : term ? "busca" : category}
               </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -100,7 +96,7 @@ export async function CategoryView({
               className={`
                 ${getBackgroundData()?.styles}
                 ${isDesktop ? "h-[200px]" : "h-[100px]"}
-                w-full  object-cover group-hover:scale-105 duration-300
+                w-full object-cover group-hover:scale-105 duration-300
               `}
             />
             <a
@@ -161,7 +157,7 @@ export async function CategoryView({
           {hasPreviousPage && (
             <Link
               href={
-                category === "all"
+                category === ""
                   ? `/noticias/mais-noticias`
                   : `/noticias/${category}`
               }
@@ -173,7 +169,7 @@ export async function CategoryView({
           {hasNextPage && (
             <Link
               href={
-                category === "all"
+                category === ""
                   ? `/noticias/mais-noticias`
                   : `/noticias/${category}`
               }
@@ -188,7 +184,7 @@ export async function CategoryView({
           <section className="mt-4 flex flex-col gap-4">
             <Tournaments
               game={
-                category === "all"
+                category === ""
                   ? undefined
                   : getGameName(
                       Object.values(postsList.posts[0].categories)[0].slug
@@ -207,7 +203,7 @@ export async function CategoryView({
         <section className="w-1/4 mt-4 flex flex-col gap-4">
           <Tournaments
             game={
-              category === "all"
+              category === ""
                 ? undefined
                 : getGameName(
                     Object.values(postsList.posts[0].categories)[0].slug

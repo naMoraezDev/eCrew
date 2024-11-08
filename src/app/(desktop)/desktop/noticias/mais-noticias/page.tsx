@@ -11,5 +11,5 @@ export async function generateMetadata({
 }
 
 export default async function MoreNewsPage() {
-  return <Category category="all" isDesktop />;
+  return <Category category="" isDesktop />;
 }
