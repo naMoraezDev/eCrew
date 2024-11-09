@@ -26,22 +26,23 @@ import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation
 
 export async function CategoryView({
   term,
+  page,
   category,
   isDesktop,
 }: CategoryProps) {
   const { getBackgroundData } = useCategory({ category });
   const [postsList] = await Promise.all([
     new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
-      page: 1,
       number: 12,
+      page: page ?? 1,
       slug: category ?? "",
     }),
   ]);
   const firstGroup = term ? postsList.posts : postsList.posts.slice(0, 6);
   const secondGroup = term ? [] : postsList.posts.slice(6, 12);
 
-  const hasNextPage = true;
-  const hasPreviousPage = false;
+  const hasNextPage = postsList.found > postsList.posts.length;
+  const hasPreviousPage = (page ?? 0) > 1;
 
   return (
     <section className="w-full flex gap-4">
@@ -158,8 +159,12 @@ export async function CategoryView({
             <Link
               href={
                 category === ""
-                  ? `/noticias/mais-noticias`
-                  : `/noticias/${category}`
+                  ? `/noticias/mais-noticias${
+                      hasPreviousPage ? `?page=${(page ?? 1) - 1}` : ""
+                    }`
+                  : `/noticias/${category}${
+                      hasPreviousPage ? `?page=${(page ?? 1) - 1}` : ""
+                    }`
               }
               className="py-1 px-3 bg-zinc-900 bg-opacity-50 rounded-lg flex items-center gap-2 hover:bg-opacity-10 duration-300 text-sm font-kanit"
             >
@@ -170,8 +175,12 @@ export async function CategoryView({
             <Link
               href={
                 category === ""
-                  ? `/noticias/mais-noticias`
-                  : `/noticias/${category}`
+                  ? `/noticias/mais-noticias${
+                      hasNextPage ? `?page=${(page ?? 1) + 1}` : ""
+                    }`
+                  : `/noticias/${category}${
+                      hasNextPage ? `?page=${(page ?? 1) + 1}` : ""
+                    }`
               }
               className="py-1 px-3 bg-zinc-900 bg-opacity-50 rounded-lg flex items-center gap-2 hover:bg-opacity-10 duration-300 text-sm font-kanit"
             >

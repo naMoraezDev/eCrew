@@ -10,6 +10,10 @@ export async function generateMetadata({
   return moreNewsMetadata({ page: searchParams.page });
 }
 
-export default async function MoreNewsPage() {
-  return <Category category="" />;
+export default async function MoreNewsPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  return <Category category="" page={Number(searchParams.page ?? 1)} />;
 }
