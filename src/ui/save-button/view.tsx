@@ -12,42 +12,27 @@ import { GoBookmark } from "react-icons/go";
 import { GoBookmarkFill } from "react-icons/go";
 
 export function SaveButtonView({ postSlug }: SaveButtonProps) {
-  const { isLoading } = useSaveButton({ postSlug });
+  const { isSaved, savePost, unsevePost } = useSaveButton({
+    postSlug,
+  });
 
   return (
     <TooltipProvider delayDuration={0} skipDelayDuration={0}>
       <Tooltip>
         <TooltipTrigger asChild>
           <button type="button" className="z-20">
-            {isLoading && (
-              <>
-                {false ? (
-                  <GoBookmarkFill
-                    size={20}
-                    className="text-zinc-400 animate-spin"
-                  />
-                ) : (
-                  <GoBookmark
-                    size={20}
-                    className="text-zinc-400 animate-spin"
-                  />
-                )}
-              </>
-            )}
-            {!isLoading && (
-              <>
-                {false ? (
-                  <GoBookmarkFill
-                    size={20}
-                    className="text-zinc-400 animate-fade"
-                  />
-                ) : (
-                  <GoBookmark
-                    size={20}
-                    className="text-zinc-400 animate-fade"
-                  />
-                )}
-              </>
+            {isSaved ? (
+              <GoBookmarkFill
+                size={20}
+                onClick={unsevePost}
+                className="text-zinc-400 animate-fade"
+              />
+            ) : (
+              <GoBookmark
+                size={20}
+                onClick={savePost}
+                className="text-zinc-400 animate-fade"
+              />
             )}
           </button>
         </TooltipTrigger>
