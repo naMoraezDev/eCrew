@@ -23,7 +23,7 @@ import { getGameName } from "@/shared/utils/functions";
 
 export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
   return (
-    <section className="w-full mx-auto flex gap-4">
+    <section className="w-full max-w-[85%] mx-auto flex gap-4">
       <article
         className={`
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
