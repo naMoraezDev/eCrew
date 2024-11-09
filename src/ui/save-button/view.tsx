@@ -37,7 +37,7 @@ export function SaveButtonView({ postSlug }: SaveButtonProps) {
           </button>
         </TooltipTrigger>
         <TooltipContent>
-          <p className="text-xs">{false ? "remover" : "salvar"}</p>
+          <p className="text-xs">{isSaved ? "remover" : "salvar"}</p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>
