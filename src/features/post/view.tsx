@@ -23,7 +23,7 @@ import { getGameName } from "@/shared/utils/functions";
 
 export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
   return (
-    <section className="w-full max-w-[1000px] mx-auto flex gap-4">
+    <section className="w-full mx-auto flex gap-4">
       <article
         className={`
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
@@ -57,7 +57,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
             isDesktop ? "rounded-lg" : "rounded-t-xl"
           } w-full bg-zinc-900 bg-opacity-50 overflow-hidden`}
         >
-          <figure className={`${isDesktop ? "h-[250px]" : "h-[180px]"} w-full`}>
+          <figure className={`${isDesktop ? "h-[300px]" : "h-[180px]"} w-full`}>
             <Image
               priority
               width={1280}

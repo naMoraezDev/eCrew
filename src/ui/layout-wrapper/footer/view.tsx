@@ -24,7 +24,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
               ? "flex-col gap-6 text-center items-center"
               : "gap-16 justify-between"
           }
-          w-full max-w-[1000px] mx-auto flex justify-center
+          w-full sm:max-w-[80%] 2xl:max-w-[70%] mx-auto flex justify-center
         `}
       >
         {!isDesktop && (

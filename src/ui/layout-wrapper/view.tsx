@@ -5,9 +5,9 @@ import { DefaultProps } from "@/types/common";
 import { GAMES } from "@/shared/utils/static";
 // import { ProTopBanner } from "./pro-top-banner";
 import { CookiesAccept } from "../cookies-accept";
-import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
+import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function LayoutWrapperView({
   children,
@@ -132,7 +132,7 @@ export async function LayoutWrapperView({
         valorantTournaments={valorantTournaments}
       />
       {isDesktop && <Navbar />}
-      <main className="w-full max-w-[1280px] py-4 mx-auto">{children}</main>
+      <main className="w-full sm:max-w-[80%] 2xl:max-w-[70%] py-4 mx-auto">{children}</main>
       <CookiesAccept />
       <Footer isDesktop={isDesktop} />
     </>

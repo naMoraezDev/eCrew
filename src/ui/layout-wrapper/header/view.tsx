@@ -43,7 +43,7 @@ export function HeaderView({
       className={`${visible ? "translate-y-0" : "translate-y-[-100%]"} 
       sticky top-0 z-20 bg-zinc-950 bg-opacity-20 backdrop-blur-sm duration-500`}
     >
-      <div className="w-full h-16 flex items-center justify-between max-w-[1270px] mx-auto px-4">
+      <div className="w-full h-16 flex items-center justify-between sm:max-w-[90%] 2xl:max-w-[70%] mx-auto px-4">
         <div className="flex items-center gap-10">
           <section className="flex items-center gap-4">
             <Menu />
