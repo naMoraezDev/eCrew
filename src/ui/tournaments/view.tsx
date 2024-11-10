@@ -111,7 +111,7 @@ export async function TournamentsView({ game }: TournamentsProps) {
         </span>
       )}
       {tournaments.map((tournament, index) => (
-        <li key={index} className="text-sm flex gap-3 px-6 py-3 relative">
+        <li key={index} className="text-sm flex gap-3 px-6 py-3 relative group">
           <Image
             width={40}
             height={40}
@@ -126,7 +126,7 @@ export async function TournamentsView({ game }: TournamentsProps) {
             className="rounded-sm object-cover size-4 shrink-0 relative top-1"
           />
           <div className="flex flex-col gap-1 font-kanit ">
-            <span className="font-bold">{tournament.league.name}</span>
+            <span className="font-bold group-hover:text-violet-500 duration-300">{tournament.league.name}</span>
             <span className="text-xs">
               {tournament.serie.name}
               {tournament.serie.name && " - "}

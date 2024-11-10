@@ -71,7 +71,7 @@ export function TournamentListView({
           .map((tournament, index) => (
             <Fragment key={tournament.id}>
               {index === 8 && <HorizontalAd rounded={false} />}
-              <li className="h-12 pl-10 pr-6 py-3 flex justify-between items-center font-kanit text-xs gap-10 relative">
+              <li className="h-12 pl-10 pr-6 py-3 flex justify-between items-center font-kanit text-xs gap-10 relative group">
                 <div className="flex gap-4 w-1/4 items-center">
                   <Image
                     width={40}
@@ -88,7 +88,7 @@ export function TournamentListView({
                     }
                     className="rounded-sm object-cover size-4 shrink-0 relative"
                   />
-                  <span className="line-clamp-2">
+                  <span className="line-clamp-2 group-hover:text-violet-500 duration-300">
                     {tournament.league.name} {tournament.name}
                   </span>
                 </div>
@@ -108,7 +108,7 @@ export function TournamentListView({
                   <>
                     <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-5 z-10" />
                     <div className="absolute top-0 left-0 h-full z-10 rotate-180">
-                      <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
+                      <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90">
                         LIVE
                       </span>
                     </div>

@@ -30,7 +30,7 @@ export async function LiveMatchesView() {
             <li
               key={index}
               title={match.name}
-              className="pl-10 pr-6 py-3 flex items-center gap-4 h-14 relative"
+              className="pl-10 pr-6 py-3 flex items-center gap-4 h-14 relative group"
             >
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
                 <Image
@@ -58,13 +58,13 @@ export async function LiveMatchesView() {
                 />
               </div>
               <div className="flex flex-col gap-1 overflow-hidden">
-                <span className="font-kanit text-xs font-bold text-nowrap hover:animate-text-slide">
+                <span className="font-kanit text-xs font-bold text-nowrap hover:animate-text-slide group-hover:text-violet-500 duration-300">
                   {match.name}
                 </span>
               </div>
               <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-5 z-10" />
               <div className="absolute top-0 left-0 h-full z-10 rotate-180">
-                <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
+                <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90">
                   LIVE
                 </span>
               </div>

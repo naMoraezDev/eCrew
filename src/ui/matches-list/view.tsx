@@ -23,7 +23,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
             {index === 8 && <HorizontalAd rounded={false} />}
             <li
               title={match.name}
-              className="py-3 flex items-center h-12 relative text-xs gap-6"
+              className="py-3 flex items-center h-12 relative text-xs gap-6 group"
             >
               <div className="w-1/5 pl-12 h-full flex items-center gap-3 z-10 shrink-0">
                 <Image
@@ -53,7 +53,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
                 />
               </div>
               <div className="w-1/5 overflow-hidden">
-                <span className="font-kanit font-bold text-nowrap hover:animate-text-slide">
+                <span className="font-kanit font-bold text-nowrap hover:animate-text-slide group-hover:text-violet-500 duration-300">
                   {match.name}
                 </span>
               </div>
@@ -74,7 +74,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
                   className="size-4 shrink-0 object-cover rounded-sm"
                 />
               </div>
-              <div className="w-1/5 overflow-hidden">
+              <div className="w-1/5 overflow-hidden pr-6">
                 <span className="font-medium font-kanit text-xs bg-opacity-10">
                   {new Date(match.begin_at).toLocaleDateString("pt-BR", {
                     month: "long",
@@ -88,7 +88,7 @@ export function MatchesListView({ games, matches }: MatchesListProps) {
                 <>
                   <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-red-500 via-transparent to-transparent opacity-5 z-10" />
                   <div className="absolute top-0 left-0 h-full z-10 rotate-180">
-                    <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90 group-hover:animate-fade-out">
+                    <span className="flex h-full justify-center items-center text-xs text-red-500 font-kanit font-bold rotate-90">
                       LIVE
                     </span>
                   </div>

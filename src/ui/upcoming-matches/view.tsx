@@ -23,7 +23,7 @@ export async function UpcomingMatchesView() {
       <ul className="flex flex-col">
         {upcomingMatches?.map((match, index) => {
           return (
-            <li key={index} className="px-6 py-3 flex gap-4 relative">
+            <li key={index} className="px-6 py-3 flex gap-4 relative group">
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
                 <Image
                   width={16}
@@ -50,7 +50,7 @@ export async function UpcomingMatchesView() {
                 />
               </div>
               <div className="flex flex-col gap-1 overflow-hidden">
-                <span className="font-kanit text-sm font-bold text-nowrap hover:animate-text-slide">
+                <span className="font-kanit text-sm font-bold text-nowrap hover:animate-text-slide group-hover:text-violet-500 duration-300">
                   {match.name}
                 </span>
                 <span className="text-xs font-kanit">
