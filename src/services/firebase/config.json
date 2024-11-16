@@ -1,9 +1,8 @@
 {
-  "apiKey": "AIzaSyAE2qZVnvPfSOSZahOLweQO7SbZVlXJcMA",
-  "authDomain": "eposts-f49d2.firebaseapp.com",
-  "projectId": "eposts-f49d2",
-  "storageBucket": "eposts-f49d2.appspot.com",
-  "messagingSenderId": "420914984155",
-  "appId": "1:420914984155:web:a917dfa87311134f4008fe",
-  "measurementId": "G-9VL2RGXC7Y"
+  "apiKey": "AIzaSyBLQBbd6FpSUieXd2etDpTiJnoSLmBuXx0",
+  "authDomain": "loguim-oauth2.firebaseapp.com",
+  "projectId": "loguim-oauth2",
+  "storageBucket": "loguim-oauth2.firebasestorage.app",
+  "messagingSenderId": "1006718240462",
+  "appId": "1:1006718240462:web:9b4cd896a3e4e0691a329f"
 }
