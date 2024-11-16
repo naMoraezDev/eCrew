@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { LoadingProvider } from "@/contexts/loading";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { Suspense } from "react";
 
 const kanit = Kanit({
   preload: true,
@@ -46,15 +47,17 @@ export default function RootLayout({
         className={`${kanit.variable} ${inter.variable} antialiased font-inter text-gray-50 bg-zinc-950`}
       >
         <NextTopLoader height={2} showSpinner={false} color="rgb(124 58 237)" />
-        <AuthProvider>
-          <LoadingProvider>
-            <Toaster />
-            <GoogleTagManager gtmId="GTM-53J6FRHH" />
-            {children}
-            <SpeedInsights />
-            <GoogleAnalytics gaId="G-0C0TGZ1QQE" />
-          </LoadingProvider>
-        </AuthProvider>
+        <Suspense fallback={null}>
+          <AuthProvider>
+            <LoadingProvider>
+              <Toaster />
+              <GoogleTagManager gtmId="GTM-53J6FRHH" />
+              {children}
+              <SpeedInsights />
+              <GoogleAnalytics gaId="G-0C0TGZ1QQE" />
+            </LoadingProvider>
+          </AuthProvider>
+        </Suspense>
       </body>
     </html>
   );
