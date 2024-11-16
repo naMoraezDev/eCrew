@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useUserMenu } from "./_io";
 import { UserMenuProps } from "./types";
 import { useAuth } from "@/contexts/auth";
@@ -10,15 +9,15 @@ import { SignOutButton } from "./sign-out-button";
 
 export function UserMenuView({ isDesktop }: UserMenuProps) {
   const { user } = useAuth();
-  const { signOut } = useUserMenu();
+  const { signIn, signOut } = useUserMenu();
 
   return (
-    <div className="flex gap-2">
-      <Link
-        href={user ? "#" : "/login"}
+    <section className="flex gap-2">
+      <div
+        onClick={signIn}
         className={`
           ${!user ? "p-3" : "p-2"}
-          flex items-center gap-3 bg-zinc-900 bg-opacity-50 rounded-lg
+          flex items-center gap-3 bg-zinc-900 bg-opacity-50 rounded-lg cursor-pointer
         `}
       >
         {!user && <LoggedOutUser isDesktop={isDesktop} />}
@@ -30,8 +29,8 @@ export function UserMenuView({ isDesktop }: UserMenuProps) {
             displayName={user.displayName || ""}
           />
         )}
-      </Link>
+      </div>
       {user && <SignOutButton signOut={signOut} />}
-    </div>
+    </section>
   );
 }
