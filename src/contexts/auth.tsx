@@ -19,6 +19,7 @@ export function AuthProvider({ children }: any) {
 
   useEffect(() => {
     const authorization_token = searchParams.get("authorization_token") ?? "";
+
     async function signIn() {
       const response = await new AuthService(httpClientFactory())
         .getAccessToken({
@@ -29,6 +30,22 @@ export function AuthProvider({ children }: any) {
       if (access_token) {
         await firebaseClient.auth().signInWithCustomToken(access_token);
       }
+      const url = window.location.href;
+      const regex = /\?(.*)/; // match query string
+      const match = url.match(regex);
+      if (!match) return;
+      const unwantedParams = match[1]
+        .split("&")
+        .filter((p) => /authorization_token|state/.test(p));
+      if (!unwantedParams.length) return;
+      const params = match[1]
+        .split("&")
+        .filter((p) => !/authorization_token|state/.test(p));
+      const updatedUrl =
+        `${window.location.origin}${window.location.pathname}` +
+        (params.length ? "?" : "") +
+        params.join("&");
+      window.location.href = updatedUrl;
     }
     signIn();
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
