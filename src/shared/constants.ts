@@ -1,4 +1,4 @@
-export const REVALIDATE_TIME = 60 * 60; // 1 hour
+export const REVALIDATE_TIME = 60 * 30; // 30 minutes
 
 export const FIREBASE_ERROR_MESSAGES = {
   "auth/app-deleted": "O banco de dados não foi localizado.",

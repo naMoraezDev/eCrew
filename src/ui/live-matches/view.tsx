@@ -30,7 +30,7 @@ export async function LiveMatchesView() {
             <li
               key={index}
               title={match.name}
-              className="pl-10 pr-6 py-3 flex items-center gap-4 h-14 relative group"
+              className="pl-10 pr-6 py-3 flex items-center gap-4 h-14 relative group overflow-hidden"
             >
               <div className="h-full flex justify-center items-center gap-2 z-10 shrink-0">
                 <Image
@@ -39,6 +39,7 @@ export async function LiveMatchesView() {
                   alt="opponent 1"
                   src={match.opponents[0].opponent.image_url || ecrewLogo}
                 />
+
                 {match.status === "running" && (
                   <span className="text-xs font-kanit font-bold">
                     {match.results[0].score}
@@ -53,7 +54,7 @@ export async function LiveMatchesView() {
                 <Image
                   width={16}
                   height={16}
-                  alt="opponent 1"
+                  alt="opponent 2"
                   src={match.opponents[1].opponent.image_url || ecrewLogo}
                 />
               </div>
@@ -72,6 +73,34 @@ export async function LiveMatchesView() {
                 href={`/partidas/${match.id}`}
                 className="size-full absolute top-0 left-0 z-10"
               />
+              {match?.opponents[0]?.opponent?.location && (
+                <div className="absolute -left-[50px] -z-10 overflow-hidden group-hover:-left-[80px] duration-300">
+                  <div className="relative">
+                    <Image
+                      width={320}
+                      height={320}
+                      className="object-cover size-40"
+                      alt={match?.opponents[0]?.opponent?.location ?? ""}
+                      src={`https://flagcdn.com/w320/${match?.opponents[0]?.opponent?.location?.toLowerCase()}.jpg`}
+                    />
+                    <div className="absolute top-0 left-0 size-full bg-gradient-to-l from-zinc-950 to-transparent" />
+                  </div>
+                </div>
+              )}
+              {match?.opponents[1]?.opponent?.location && (
+                <div className="absolute -right-[50px] -z-10 overflow-hidden group-hover:-right-[80px] duration-300">
+                  <div className="relative">
+                    <Image
+                      width={320}
+                      height={320}
+                      className="object-cover size-40"
+                      alt={match?.opponents[1]?.opponent?.location ?? ""}
+                      src={`https://flagcdn.com/w320/${match?.opponents[1]?.opponent?.location?.toLowerCase()}.jpg`}
+                    />
+                    <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-zinc-950 to-transparent" />
+                  </div>
+                </div>
+              )}
             </li>
           );
         })}

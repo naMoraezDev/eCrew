@@ -167,6 +167,32 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 </div>
               </>
             )}
+            {match?.opponents[0]?.opponent?.location && (
+              <div className="absolute -left-[50px] -z-20 overflow-hidden">
+                <div className="relative">
+                  <Image
+                    width={320}
+                    height={320}
+                    alt={match?.opponents[0]?.opponent?.location ?? ""}
+                    src={`https://flagcdn.com/w320/${match?.opponents[0]?.opponent?.location?.toLowerCase()}.jpg`}
+                  />
+                  <div className="absolute top-0 left-0 size-full bg-gradient-to-l from-zinc-950 to-transparent" />
+                </div>
+              </div>
+            )}
+            {match?.opponents[1]?.opponent?.location && (
+              <div className="absolute -right-[50px] -z-20 overflow-hidden">
+                <div className="relative">
+                  <Image
+                    width={320}
+                    height={320}
+                    alt={match?.opponents[1]?.opponent?.location ?? ""}
+                    src={`https://flagcdn.com/w320/${match?.opponents[1]?.opponent?.location?.toLowerCase()}.jpg`}
+                  />
+                  <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-zinc-950 to-transparent" />
+                </div>
+              </div>
+            )}
           </section>
           <section className="flex items-center gap-6 bg-zinc-900 bg-opacity-50 rounded-lg px-6 py-4 font-kanit flex-wrap">
             {match.number_of_games > 1 && (
