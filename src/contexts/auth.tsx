@@ -19,7 +19,7 @@ export function AuthProvider({ children }: any) {
 
   useEffect(() => {
     async function signIn() {
-      const authorization_token = searchParams.get("authorization_token");
+      const authorization_token = nookies.get()["authorization_token"];
       if (authorization_token) {
         const response = await new AuthService(httpClientFactory())
           .getAccessToken({
