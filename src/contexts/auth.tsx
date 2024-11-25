@@ -18,19 +18,20 @@ export function AuthProvider({ children }: any) {
   const [user, setUser] = useState<firebaseClient.User | null>(null);
 
   useEffect(() => {
-    const authorization_token = searchParams.get("authorization_token") ?? "";
-
     async function signIn() {
-      const response = await new AuthService(httpClientFactory())
-        .getAccessToken({
-          body: { authorization_token },
-        })
-        .catch(() => null);
-      const access_token = response?.access_token;
-      if (access_token) {
-        await firebaseClient.auth().signInWithCustomToken(access_token);
+      const authorization_token = searchParams.get("authorization_token");
+      if (authorization_token) {
+        const response = await new AuthService(httpClientFactory())
+          .getAccessToken({
+            body: { authorization_token },
+          })
+          .catch(() => null);
+        const access_token = response?.access_token;
+        if (access_token) {
+          await firebaseClient.auth().signInWithCustomToken(access_token);
+        }
       }
-      const url = window.location.href;
+      /* const url = window.location.href;
       const regex = /\?(.*)/; // match query string
       const match = url.match(regex);
       if (!match) return;
@@ -45,17 +46,17 @@ export function AuthProvider({ children }: any) {
         `${window.location.origin}${window.location.pathname}` +
         (params.length ? "?" : "") +
         params.join("&");
-      window.location.href = updatedUrl;
+      window.location.href = updatedUrl; */
     }
-    signIn();
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
       if (!user) {
+        signIn();
         setUser(null);
-        nookies.set(undefined, "id-token", "", { path: "/" });
+        nookies.set(undefined, "authorization_token", "", { path: "/" });
       } else {
         setUser(user);
         const token = await user.getIdToken();
-        nookies.set(undefined, "id-token", token, { path: "/" });
+        nookies.set(undefined, "authorization_token", token, { path: "/" });
       }
     });
   }, [searchParams]);

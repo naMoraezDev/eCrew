@@ -95,5 +95,5 @@ li {
 }
 
 li:nth-child(odd) {
-  background: transparent;
+  background: rgb(39 39 42 / 30%);
 }
