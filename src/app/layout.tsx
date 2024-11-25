@@ -1,5 +1,6 @@
 import "./globals.css";
 import Script from "next/script";
+import { Suspense } from "react";
 import NextTopLoader from "nextjs-toploader";
 import { AuthProvider } from "@/contexts/auth";
 import { Inter, Kanit } from "next/font/google";
@@ -7,7 +8,6 @@ import { Toaster } from "@/components/ui/sonner";
 import { LoadingProvider } from "@/contexts/loading";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
-import { Suspense } from "react";
 
 const kanit = Kanit({
   preload: true,

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Category, NavMenuProps } from "./types";
 
 export function useNavMenu({
-  games,
   csPosts,
   r6Posts,
   lolPosts,
