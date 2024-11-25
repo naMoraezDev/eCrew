@@ -48,9 +48,9 @@ export function AuthProvider({ children }: any) {
         params.join("&");
       window.location.href = updatedUrl; */
     }
+    signIn();
     return firebaseClient.auth().onIdTokenChanged(async (user) => {
       if (!user) {
-        signIn();
         setUser(null);
         nookies.set(undefined, "authorization_token", "", { path: "/" });
       } else {
