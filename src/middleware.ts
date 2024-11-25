@@ -5,6 +5,7 @@ export const middleware = (request: NextRequest) => {
   const authorization_token = searchParams.get("authorization_token");
   if (authorization_token) {
     const url = request.nextUrl.clone();
+    url.searchParams.delete("state");
     url.searchParams.delete("authorization_token");
     return NextResponse.redirect(url, {
       headers: {
