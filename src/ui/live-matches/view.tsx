@@ -73,34 +73,6 @@ export async function LiveMatchesView() {
                 href={`/partidas/${match.id}`}
                 className="size-full absolute top-0 left-0 z-10"
               />
-              {match?.opponents[0]?.opponent?.location && (
-                <div className="absolute -left-[50px] -z-10 overflow-hidden group-hover:-left-[80px] duration-300">
-                  <div className="relative">
-                    <Image
-                      width={320}
-                      height={320}
-                      className="object-cover size-40"
-                      alt={match?.opponents[0]?.opponent?.location ?? ""}
-                      src={`https://flagcdn.com/w320/${match?.opponents[0]?.opponent?.location?.toLowerCase()}.jpg`}
-                    />
-                    <div className="absolute top-0 left-0 size-full bg-gradient-to-l from-zinc-950 to-transparent" />
-                  </div>
-                </div>
-              )}
-              {match?.opponents[1]?.opponent?.location && (
-                <div className="absolute -right-[50px] -z-10 overflow-hidden group-hover:-right-[80px] duration-300">
-                  <div className="relative">
-                    <Image
-                      width={320}
-                      height={320}
-                      className="object-cover size-40"
-                      alt={match?.opponents[1]?.opponent?.location ?? ""}
-                      src={`https://flagcdn.com/w320/${match?.opponents[1]?.opponent?.location?.toLowerCase()}.jpg`}
-                    />
-                    <div className="absolute top-0 left-0 size-full bg-gradient-to-r from-zinc-950 to-transparent" />
-                  </div>
-                </div>
-              )}
             </li>
           );
         })}
