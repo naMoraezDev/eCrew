@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+import nextPWA from "@ducanh2912/next-pwa";
+
+const withPWA = nextPWA({
+  dest: "public",
+  disable: false,
+  swcMinify: true,
+  reloadOnOnline: true,
+  workboxOptions: {
+    disableDevLogs: true,
+  },
+  cacheOnFrontEndNav: true,
+  aggressiveFrontEndNavCaching: true,
+});
+
+const nextConfig = withPWA({
   redirects: async () => {
     return [
       {
@@ -68,6 +82,6 @@ const nextConfig = {
       },
     ],
   },
-};
+});
 
 export default nextConfig;

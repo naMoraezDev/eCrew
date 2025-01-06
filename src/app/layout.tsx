@@ -1,6 +1,7 @@
 import "./globals.css";
 import Script from "next/script";
 import { Suspense } from "react";
+import { Metadata, Viewport } from "next";
 import NextTopLoader from "nextjs-toploader";
 import { AuthProvider } from "@/contexts/auth";
 import { Inter, Kanit } from "next/font/google";
@@ -17,6 +18,7 @@ const kanit = Kanit({
   variable: "--font-kanit",
   weight: ["400", "500", "700"],
 });
+
 const inter = Inter({
   preload: true,
   style: "normal",
@@ -25,6 +27,16 @@ const inter = Inter({
   variable: "--font-inter",
   weight: ["400", "500", "700"],
 });
+
+export const metadata: Metadata = {
+  manifest: "/manifest.json",
+};
+
+export const viewport: Viewport = {
+  initialScale: 1,
+  width: "device-width",
+  themeColor: "#09090b",
+};
 
 export default function RootLayout({
   children,

@@ -1,0 +1,16 @@
+{
+  "name": "eCrew App",
+  "short_name": "eCrew App",
+  "icons": [
+    {
+      "sizes": "512x512",
+      "type": "image/png",
+      "src": "/icon.png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#09090b",
+  "orientation": "portrait",
+  "background_color": "#09090b"
+}
