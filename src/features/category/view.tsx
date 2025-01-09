@@ -9,6 +9,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { useCategory } from "./_io";
+import { Channel } from "@/ui/channel";
 import { CategoryProps } from "./types";
 import { PostCard } from "@/ui/post-card";
 import { SquareAd } from "@/ui/square-ad";
@@ -19,7 +20,6 @@ import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { getGameName } from "@/shared/utils/functions";
-/* import { ChannelCarousel } from "@/ui/channel-carousel"; */
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
@@ -109,12 +109,9 @@ export async function CategoryView({
             />
           </div>
         )}
-        {/* {category && (
-          <ChannelCarousel
-            isDesktop={isDesktop}
-            channelId={getChannelId() ?? ""}
-          />
-        )} */}
+        {category && (
+          <Channel isDesktop={isDesktop} channelId={getChannelId() ?? ""} />
+        )}
         <div
           className={`
             ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3 mx-4"}

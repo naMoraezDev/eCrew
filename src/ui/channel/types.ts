@@ -1,5 +1,5 @@
 import { DefaultProps } from "@/types/common";
 
-export interface ChannelCarouselProps extends DefaultProps {
+export interface ChannelProps extends DefaultProps {
   channelId: string;
 }
