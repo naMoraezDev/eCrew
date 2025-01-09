@@ -2,12 +2,12 @@ import Image from "next/image";
 import {
   Carousel,
   CarouselItem,
+  CarouselNext,
   CarouselContent,
   CarouselPrevious,
-  CarouselNext,
 } from "@/components/ui/carousel";
-import { FaPlay } from "react-icons/fa";
 import { ChannelCarouselProps } from "./types";
+import { YoutubeVideo } from "../youtube-video";
 import { YoutubeService } from "@/services/youtube/youtube.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -32,7 +32,7 @@ export async function ChannelCarouselView({
       >
         <CarouselContent>
           <CarouselItem className={isDesktop ? "basis-[15%]" : "basis-[20%]"}>
-            <section className="size-full flex flex-col gap-2 items-center justify-center">
+            <section className="size-full flex flex-col gap-2 items-center justify-center relative">
               <Image
                 width={300}
                 height={300}
@@ -45,6 +45,11 @@ export async function ChannelCarouselView({
               <span className="font-kanit text-sm text-center">
                 {channelData.items[0].snippet.title}
               </span>
+              <a
+                target="_blank"
+                className="absolute size-full top-0 left-0"
+                href={`https://www.youtube.com/${channelData.items[0].snippet.customUrl}`}
+              />
             </section>
           </CarouselItem>
           {leatestVideos.items.map((video, index) => (
@@ -52,21 +57,7 @@ export async function ChannelCarouselView({
               key={index}
               className={isDesktop ? "basis-[20%]" : "basis-[30%] -mr-2"}
             >
-              <section className="flex flex-col gap-3">
-                <div className={`${!isDesktop && "h-[200px]"} relative`}>
-                  <Image
-                    width={300}
-                    height={200}
-                    alt={video.snippet.title}
-                    src={video.snippet.thumbnails.high.url}
-                    className="size-full object-cover shrink-0 rounded-lg aspect-video"
-                  />
-                  <div className="size-full flex items-center justify-center absolute left-0 top-0">
-                    <FaPlay className="text-2xl text-white" />
-                  </div>
-                </div>
-                <p className="text-xs line-clamp-2">{video.snippet.title}</p>
-              </section>
+              <YoutubeVideo isDesktop={isDesktop} video={video} />
             </CarouselItem>
           ))}
         </CarouselContent>
