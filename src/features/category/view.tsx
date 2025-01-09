@@ -19,11 +19,11 @@ import { PopularTags } from "@/ui/popular-tags";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { MostReadPosts } from "@/ui/most-read-posts";
 import { getGameName } from "@/shared/utils/functions";
+/* import { ChannelCarousel } from "@/ui/channel-carousel"; */
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
-import { ChannelCarousel } from "@/ui/channel-carousel";
 
 export async function CategoryView({
   term,
@@ -109,12 +109,12 @@ export async function CategoryView({
             />
           </div>
         )}
-        {category && (
+        {/* {category && (
           <ChannelCarousel
             isDesktop={isDesktop}
             channelId={getChannelId() ?? ""}
           />
-        )}
+        )} */}
         <div
           className={`
             ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3 mx-4"}
