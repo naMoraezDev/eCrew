@@ -50,7 +50,27 @@ export function useCategory({ category }: CategoryProps) {
     }
   }
 
+  function getChannelId() {
+    switch (category) {
+      case "cod-mw":
+        return "UC9YydG57epLqxA9cTzZXSeQ";
+      case "dota-2":
+        return "UCMm9pF8QkLS3UN2fRbYgWoA";
+      case "league-of-legends":
+        return "UC48rkTlXjRd6pnqqBkdV0Mw";
+      case "r6-siege":
+        return "UCFYYhd9-VxkHnaA5cOiSybA";
+      case "valorant":
+        return "UCgWiuB2PQIUhJgEN9No281g";
+      case "cs-go":
+        return "UCPq2ETz4aAGo2Z-8JisDPIA";
+      default:
+        return null;
+    }
+  }
+
   return {
+    getChannelId,
     getBackgroundData,
   };
 }

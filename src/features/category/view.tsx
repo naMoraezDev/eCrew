@@ -23,6 +23,7 @@ import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { FetchHttpClientAdapter } from "@/infrastructure/adapters/implementation/fetch-http-client.adapter";
+import { ChannelCarousel } from "@/ui/channel-carousel";
 
 export async function CategoryView({
   term,
@@ -30,7 +31,7 @@ export async function CategoryView({
   category,
   isDesktop,
 }: CategoryProps) {
-  const { getBackgroundData } = useCategory({ category });
+  const { getBackgroundData, getChannelId } = useCategory({ category });
   const [postsList] = await Promise.all([
     new WordpressService(new FetchHttpClientAdapter()).getPostsByCategory({
       number: 12,
@@ -107,6 +108,12 @@ export async function CategoryView({
               className="absolute w-full h-full top-0 left-0"
             />
           </div>
+        )}
+        {category && (
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId={getChannelId() ?? ""}
+          />
         )}
         <div
           className={`

@@ -35,7 +35,7 @@ export function YoutubeVideoView({ video, isDesktop }: YoutubeVideoProps) {
           <p className="text-xs line-clamp-2">{video.snippet.title}</p>
         </section>
       </DialogTrigger>
-      <DialogContent className="bg-zinc-950 border-none max-w-[1024px]">
+      <DialogContent className="bg-zinc-950 border-none lg:max-w-[1024px]">
         <DialogHeader className="font-kanit">
           <DialogTitle>{video.snippet.title}</DialogTitle>
           <DialogDescription className="text-sm text-zinc-500">
@@ -43,10 +43,10 @@ export function YoutubeVideoView({ video, isDesktop }: YoutubeVideoProps) {
           </DialogDescription>
         </DialogHeader>
         <iframe
-          width="975"
-          height="548"
           allowFullScreen
-          className="rounded-lg"
+          width={isDesktop ? "975" : "330"}
+          height={isDesktop ? "548" : "186"}
+          className="rounded-lg self-center mx-auto"
           src={`https://www.youtube.com/embed/${video.id.videoId}?autoplay=1&mute=1`}
         />
       </DialogContent>
