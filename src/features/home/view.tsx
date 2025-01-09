@@ -1,17 +1,18 @@
 import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
+import { GAMES } from "@/shared/utils/static";
 import { DefaultProps } from "@/types/common";
 import { LogoSlider } from "@/ui/logo-slider";
 import { Tournaments } from "@/ui/tournaments";
 import { LatestPosts } from "@/ui/latest-posts";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
+import { ChannelCarousel } from "@/ui/channel-carousel";
 import { FeaturedCarousel } from "@/ui/featured-carousel";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 import dynamic from "next/dynamic";
-import { GAMES } from "@/shared/utils/static";
 const DynamicMatchesSection = dynamic(() =>
   import("@/ui/matches-section").then((module) => module.MatchesSection)
 );
@@ -103,11 +104,19 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             isDesktop={isDesktop}
             category="Counter-Strike: Global Offensive"
           />
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId="UCPq2ETz4aAGo2Z-8JisDPIA"
+          />
           <PostsCarousel
             games={GAMES}
             postsList={lolPosts}
             isDesktop={isDesktop}
             category="League of Legends"
+          />
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId="UC48rkTlXjRd6pnqqBkdV0Mw"
           />
           <PostsCarousel
             games={GAMES}
@@ -115,11 +124,19 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             isDesktop={isDesktop}
             category="Rainbow Six Siege"
           />
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId="UCFYYhd9-VxkHnaA5cOiSybA"
+          />
           <PostsCarousel
             games={GAMES}
             category="Dota 2"
             postsList={dotaPosts}
             isDesktop={isDesktop}
+          />
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId="UCMm9pF8QkLS3UN2fRbYgWoA"
           />
           <PostsCarousel
             games={GAMES}
@@ -127,11 +144,19 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             postsList={codPosts}
             isDesktop={isDesktop}
           />
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId="UC9YydG57epLqxA9cTzZXSeQ"
+          />
           <PostsCarousel
             games={GAMES}
             category="Valorant"
             isDesktop={isDesktop}
             postsList={valorantPosts}
+          />
+          <ChannelCarousel
+            isDesktop={isDesktop}
+            channelId="UCgWiuB2PQIUhJgEN9No281g"
           />
           <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           {!isDesktop && <Tournaments />}

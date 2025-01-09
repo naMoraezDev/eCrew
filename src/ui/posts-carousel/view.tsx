@@ -42,7 +42,10 @@ export function PostsCarouselView({
           {category}
         </h2>
       </div>
-      <Carousel opts={{ align: "start" }} className="relative z-10">
+      <Carousel
+        className="relative z-10"
+        opts={{ align: "start", dragFree: true }}
+      >
         <CarouselContent>
           {postsList.posts.map((post, index) => (
             <CarouselItem

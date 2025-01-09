@@ -80,6 +80,16 @@ const nextConfig = withPWA({
         protocol: "http",
         hostname: "2.gravatar.com",
       },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "i.ytimg.com",
+      },
+      {
+        pathname: "/**",
+        protocol: "https",
+        hostname: "yt3.ggpht.com",
+      },
     ],
   },
 });
