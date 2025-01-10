@@ -5,6 +5,7 @@ import { SaveButton } from "../save-button";
 
 export function PostCardView({
   post,
+  gradient,
   gameIconUrl,
   size = "medium",
   variant = "filled",
@@ -42,6 +43,9 @@ export function PostCardView({
               className="rounded-md"
             />
           </div>
+        )}
+        {gradient && (
+          <div className="size-full absolute top-0 left-0 bg-gradient-to-tr from-zinc-950 to-transparent group-hover:opacity-80 duration-300" />
         )}
       </figure>
       <div

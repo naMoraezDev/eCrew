@@ -1,4 +1,5 @@
 import { Channel } from "@/ui/channel";
+import { Featured } from "@/ui/featured";
 import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
 import { GAMES } from "@/shared/utils/static";
@@ -8,7 +9,6 @@ import { Tournaments } from "@/ui/tournaments";
 import { LatestPosts } from "@/ui/latest-posts";
 import { HorizontalAd } from "@/ui/horizontal-ad";
 import { PostsCarousel } from "@/ui/posts-carousel";
-import { FeaturedCarousel } from "@/ui/featured-carousel";
 import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
@@ -86,17 +86,13 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             flex flex-col gap-10 mb-10
           `}
         >
-          <FeaturedCarousel
-            games={GAMES}
-            isDesktop={isDesktop}
-            posts={featuredPosts}
-          />
+          <Featured games={GAMES} isDesktop={isDesktop} posts={featuredPosts} />
+          <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           <LatestPosts
             games={GAMES}
             isDesktop={isDesktop}
             postsList={latestPosts}
           />
-          <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           {!isDesktop && <DynamicMatchesSection />}
           <PostsCarousel
             games={GAMES}
@@ -119,6 +115,7 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             category="Rainbow Six Siege"
           />
           <Channel isDesktop={isDesktop} channelId="UCFYYhd9-VxkHnaA5cOiSybA" />
+          <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           <PostsCarousel
             games={GAMES}
             category="Dota 2"
@@ -140,7 +137,6 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             postsList={valorantPosts}
           />
           <Channel isDesktop={isDesktop} channelId="UCgWiuB2PQIUhJgEN9No281g" />
-          <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           {!isDesktop && <Tournaments />}
           <Newsletter isDesktop={isDesktop} />
           {!isDesktop && (
