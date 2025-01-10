@@ -3,8 +3,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FaStar } from "react-icons/fa";
-import { FeaturedProps } from "./types";
 import { PostCard } from "../post-card";
+import { FeaturedProps } from "./types";
 
 export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
   return (
@@ -72,12 +72,13 @@ export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
           <FaStar />
         </div>
       </div>
-      <div className="grid grid-cols-2 w-full gap-3">
+      <div className="grid grid-cols-2 w-full gap-3 px-4 lg:px-0">
         <PostCard
           gradient
           variant="outlined"
           post={posts.posts[1]}
-          orientation="horizontal"
+          isDesktop={isDesktop}
+          orientation={isDesktop ? "horizontal" : "vertical"}
           gameIconUrl={
             games.find(
               (game) =>
@@ -89,7 +90,8 @@ export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
           gradient
           variant="outlined"
           post={posts.posts[2]}
-          orientation="horizontal"
+          isDesktop={isDesktop}
+          orientation={isDesktop ? "horizontal" : "vertical"}
           gameIconUrl={
             games.find(
               (game) =>
