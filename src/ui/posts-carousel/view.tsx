@@ -16,6 +16,7 @@ export function PostsCarouselView({
   category,
   postsList,
   isDesktop,
+  customTitle,
 }: PostsCarouselProps) {
   const { gameIconUrl, getGameCover, getGameTypeIcon } = usePostsCarousel({
     games,
@@ -39,7 +40,7 @@ export function PostsCarouselView({
             className="invert"
             src={getGameTypeIcon()}
           />
-          {category}
+          {customTitle ?? category}
         </h2>
       </div>
       <Carousel

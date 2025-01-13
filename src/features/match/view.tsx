@@ -15,19 +15,29 @@ import { GAMES } from "@/shared/utils/static";
 import { Tournaments } from "@/ui/tournaments";
 import { StreamsList } from "@/ui/streams-list";
 import { HorizontalAd } from "@/ui/horizontal-ad";
+import { PostsCarousel } from "@/ui/posts-carousel";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { getGameName } from "@/shared/utils/functions";
 import { UpcomingMatches } from "@/ui/upcoming-matches";
 import ecrewLogo from "@/assets/images/e_posts_logo.svg";
 import { TwitchService } from "@/services/twitch/twitch.service";
 import { MdOutlineKeyboardDoubleArrowRight } from "react-icons/md";
+import { WordpressService } from "@/services/wordpress/wordpress.service";
 import { PandascoreService } from "@/services/pandascore/pandascore.service";
 import { httpClientFactory } from "@/infrastructure/adapters/factories/http-client.factory";
 
 export async function MatchView({ id, isDesktop }: MatchProps) {
-  const [match] = await Promise.all([
-    new PandascoreService(httpClientFactory()).getMatchById(id),
-  ]);
+  const match = await new PandascoreService(httpClientFactory()).getMatchById(
+    id
+  );
+
+  const posts = await new WordpressService(
+    httpClientFactory()
+  ).getPostsByCategory({
+    page: 1,
+    number: 2,
+    slug: match.videogame.slug,
+  });
 
   const opponents = await new PandascoreService(
     httpClientFactory()
@@ -319,6 +329,15 @@ export async function MatchView({ id, isDesktop }: MatchProps) {
                 ))}
               </ul>
             </section>
+          )}
+          {posts && Boolean(posts.posts.length) && (
+            <PostsCarousel
+              games={GAMES}
+              postsList={posts}
+              isDesktop={isDesktop}
+              category={match.videogame.slug}
+              customTitle={`Últimas notícias de ${match.videogame.name}`}
+            />
           )}
         </section>
         {isDesktop && (

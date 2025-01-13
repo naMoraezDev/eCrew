@@ -9,20 +9,20 @@ import dota from "@/assets/images/dota-background.jpg";
 import valorant from "@/assets/images/valorant-background.jpg";
 
 export function usePostsCarousel({ category, games }: PostsCarouselProps) {
-  const gameIconUrl = games.find((game) => game.name === category)?.icon_url;
+  const gameIconUrl = games.find((game) => game.slug === category)?.icon_url;
   function getGameCover() {
     switch (category) {
-      case "Counter-Strike: Global Offensive":
+      case "cs-go":
         return cs;
-      case "Rainbow Six Siege":
+      case "r6-siege":
         return r6;
-      case "League of Legends":
+      case "league-of-legends":
         return lol;
-      case "Dota 2":
+      case "dota-2":
         return dota;
-      case "Call of Duty: Modern Warfare":
+      case "cod-mw":
         return cod;
-      case "Valorant":
+      case "valorant":
         return valorant;
       default:
         return cs;
@@ -31,17 +31,17 @@ export function usePostsCarousel({ category, games }: PostsCarouselProps) {
 
   function getGameTypeIcon() {
     switch (category) {
-      case "Counter-Strike: Global Offensive":
+      case "cs-go":
         return fpsIcon;
-      case "Rainbow Six Siege":
+      case "r6-siege":
         return fpsIcon;
-      case "League of Legends":
+      case "league-of-legends":
         return mobaIcon;
-      case "Dota 2":
+      case "dota-2":
         return mobaIcon;
-      case "Call of Duty: Modern Warfare":
+      case "cod-mw":
         return fpsIcon;
-      case "Valorant":
+      case "valorant":
         return fpsIcon;
       default:
         return fpsIcon;

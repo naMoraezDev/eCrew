@@ -96,43 +96,43 @@ export async function HomeView({ isDesktop }: DefaultProps) {
           {!isDesktop && <DynamicMatchesSection />}
           <PostsCarousel
             games={GAMES}
+            category="cs-go"
             postsList={csPosts}
             isDesktop={isDesktop}
-            category="Counter-Strike: Global Offensive"
           />
           <Channel isDesktop={isDesktop} channelId="UCPq2ETz4aAGo2Z-8JisDPIA" />
           <PostsCarousel
             games={GAMES}
             postsList={lolPosts}
             isDesktop={isDesktop}
-            category="League of Legends"
+            category="league-of-legends"
           />
           <Channel isDesktop={isDesktop} channelId="UC48rkTlXjRd6pnqqBkdV0Mw" />
           <PostsCarousel
             games={GAMES}
+            category="r6-siege"
             postsList={r6Posts}
             isDesktop={isDesktop}
-            category="Rainbow Six Siege"
           />
           <Channel isDesktop={isDesktop} channelId="UCFYYhd9-VxkHnaA5cOiSybA" />
           <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           <PostsCarousel
             games={GAMES}
-            category="Dota 2"
+            category="dota-2"
             postsList={dotaPosts}
             isDesktop={isDesktop}
           />
           <Channel isDesktop={isDesktop} channelId="UCMm9pF8QkLS3UN2fRbYgWoA" />
           <PostsCarousel
             games={GAMES}
-            category="Call of Duty: Modern Warfare"
+            category="cod-mw"
             postsList={codPosts}
             isDesktop={isDesktop}
           />
           <Channel isDesktop={isDesktop} channelId="UC9YydG57epLqxA9cTzZXSeQ" />
           <PostsCarousel
             games={GAMES}
-            category="Valorant"
+            category="valorant"
             isDesktop={isDesktop}
             postsList={valorantPosts}
           />

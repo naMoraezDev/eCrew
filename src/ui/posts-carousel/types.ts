@@ -6,4 +6,5 @@ export interface PostsCarouselProps extends DefaultProps {
   games: Games;
   category: string;
   postsList: PostsList;
+  customTitle?: string;
 }
