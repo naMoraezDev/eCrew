@@ -18,7 +18,7 @@ export function PostContentView({ content, isDesktop }: PostContentProps) {
         dangerouslySetInnerHTML={{ __html: content }}
         className={`
           ${styles.content} 
-          ${isDesktop ? "p-10" : "p-6"} 
+          ${isDesktop ? "px-20 py-10" : "p-6"} 
           flex flex-col gap-6 text-sm leading-loose text-slate-300 
         `}
       />
