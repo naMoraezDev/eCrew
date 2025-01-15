@@ -32,8 +32,9 @@ export function LatestPostsView({
           orientation="horizontal"
           post={post}
           gameIconUrl={
-            games.find((game) => game.slug === postsList.posts[0]?.slug)
-              ?.icon_url
+            games.find(
+              (game) => game.slug === Object.values(post.categories)[0].slug
+            )?.icon_url
           }
         />
       ))}
