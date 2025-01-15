@@ -1,3 +1,9 @@
+$table-padding: 10px;
+$table-border-color: #18181b;
+$table-header-bg: #18181b;
+$table-header-color: #fafafa;
+$table-row-hover-bg: #18181b;
+
 .content {
   h2 {
     font-size: 20px;
@@ -29,5 +35,38 @@
   iframe {
     width: 100%;
     border-radius: 8px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    color: $table-header-color;
+  }
+
+  thead {
+    text-align: center;
+    color: $table-header-color;
+    background-color: $table-header-bg;
+  }
+
+  th {
+    padding: $table-padding;
+    border-bottom: 2px solid $table-border-color;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid $table-border-color;
+    color: #71717a;
+  }
+
+  tbody tr:hover {
+    background-color: $table-row-hover-bg;
+    color: $table-header-color;
+  }
+
+  td {
+    text-align: center;
+    padding: $table-padding;
   }
 }
