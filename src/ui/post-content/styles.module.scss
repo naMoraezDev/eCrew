@@ -1,20 +1,20 @@
 $table-padding: 10px;
-$table-border-color: #18181b;
 $table-header-bg: #18181b;
+$table-border-color: #18181b;
 $table-header-color: #fafafa;
 $table-row-hover-bg: #18181b;
 
 .content {
   h2 {
     font-size: 20px;
-    padding: 8px 16px;
+    color: #fafafa;
     font-weight: 700;
+    padding: 8px 16px;
     border-radius: 8px;
     width: fit-content;
     line-height: normal;
-    border: 1px solid rgb(139 92 246);
+    background-color: #18181b;
     font-family: var(--font-kanit), sans-serif;
-    background-color: rgba(138, 92, 246, 0.1);
   }
 
   strong,
@@ -40,8 +40,8 @@ $table-row-hover-bg: #18181b;
   table {
     width: 100%;
     border-collapse: collapse;
-    font-family: Arial, sans-serif;
     color: $table-header-color;
+    font-family: Arial, sans-serif;
   }
 
   thead {
@@ -56,13 +56,13 @@ $table-row-hover-bg: #18181b;
   }
 
   tbody tr {
-    border-bottom: 1px solid $table-border-color;
     color: #71717a;
+    border-bottom: 1px solid $table-border-color;
   }
 
   tbody tr:hover {
-    background-color: $table-row-hover-bg;
     color: $table-header-color;
+    background-color: $table-row-hover-bg;
   }
 
   td {
