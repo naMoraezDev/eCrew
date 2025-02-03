@@ -15,12 +15,11 @@ export function YoutubeVideoView({ video, isDesktop }: YoutubeVideoProps) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <section className="flex flex-col gap-3 cursor-pointer group">
-          <div
-            className={`${
-              !isDesktop && "h-[200px]"
-            } relative rounded-lg overflow-hidden`}
-          >
+        <section
+          title={video.snippet.title}
+          className="flex flex-col gap-3 cursor-pointer group"
+        >
+          <div className="relative rounded-lg overflow-hidden aspect-[9/16]">
             <Image
               width={300}
               height={200}

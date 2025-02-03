@@ -22,14 +22,17 @@ export function VideoCarousel({
       opts={{ align: "start", dragFree: true, slidesToScroll: 3 }}
     >
       <CarouselContent>
-        <CarouselItem className={isDesktop ? "basis-[15%]" : "basis-[20%]"}>
-          <section className="size-full flex flex-col gap-2 items-center justify-center relative">
+        <CarouselItem className={isDesktop ? "basis-[20%]" : "basis-[40%]"}>
+          <section
+            title={channelData.items[0].snippet.title}
+            className="size-full flex flex-col gap-2 items-center justify-center relative aspect-[9/16] bg-zinc-900 bg-opacity-50 rounded-lg"
+          >
             <Image
               width={300}
               height={300}
               alt={channelData.items[0].snippet.title}
               className={`${
-                isDesktop && "max-w-[48px]"
+                isDesktop ? "max-w-[64px]" : "max-w-[48px]"
               } object-cover shrink-0 rounded-full aspect-square`}
               src={channelData.items[0].snippet.thumbnails.high.url}
             />
@@ -46,7 +49,7 @@ export function VideoCarousel({
         {leatestVideos.items.map((video, index) => (
           <CarouselItem
             key={index}
-            className={isDesktop ? "basis-[20%]" : "basis-[30%] -mr-2"}
+            className={isDesktop ? "basis-[20%]" : "basis-[40%] -mr-2"}
           >
             <YoutubeVideo isDesktop={isDesktop} video={video} />
           </CarouselItem>

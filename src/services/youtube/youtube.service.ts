@@ -25,7 +25,7 @@ export class YoutubeService implements YoutubeServiceProtocol {
 
   public async getLeatestVideos(params: YoutubeServiceProtocol.Params) {
     return await this.httpClient.request<LeatestVideos>({
-      input: `${this.baseUrl}/youtube/v3/search?key=${this.apiKey}&channelId=${params.channelId}&part=snippet,id&order=date&maxResults=20`,
+      input: `${this.baseUrl}/youtube/v3/search?key=${this.apiKey}&type=short&channelId=${params.channelId}&part=snippet,id&order=date&maxResults=20`,
       init: {
         method: "GET",
       },
