@@ -10,6 +10,7 @@ import { PostCard } from "../post-card";
 import { usePostsCarousel } from "./_io";
 import { PostsCarouselProps } from "./types";
 import { FaArrowRight } from "react-icons/fa";
+import { ProgressiveImage } from "../progressive-image";
 
 export function PostsCarouselView({
   games,
@@ -68,10 +69,10 @@ export function PostsCarouselView({
               }`}
               className="relative w-full h-full flex justify-center items-center rounded-lg overflow-hidden group"
             >
-              <Image
+              <ProgressiveImage
                 alt="game-cover"
                 src={getGameCover()}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                className="w-full h-full object-cover group-hover:scale-105"
               />
               <div className="absolute w-full bottom-0 left-0 flex justify-center items-center bg-zinc-900 bg-opacity-30 py-4 backdrop-blur-sm">
                 <span className="text-2xl font-kanit font-bold flex items-center gap-2 group-hover:translate-x-4 duration-300">
