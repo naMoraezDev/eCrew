@@ -130,7 +130,7 @@ const config = {
             transform: "scale(1)",
           },
           "50%": {
-            transform: "scale(1.05)",
+            transform: "scale(1.1) translateX(2.5%)",
           },
           "100%": {
             transform: "scale(1)",
@@ -148,7 +148,7 @@ const config = {
         fade: "fade 300ms both",
         "long-fade": "fade 1500ms linear both",
         "top-to-center": "top-to-center 300ms both",
-        zoom: "zoom 15000ms infinite both",
+        zoom: "zoom 20000ms infinite both",
       },
       fontFamily: {
         inter: ["var(--font-inter)"],

@@ -20,6 +20,7 @@ export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
           width={1280}
           height={720}
           alt={posts.posts[0].title}
+          wrapperClassName="animate-zoom"
           src={posts.posts[0].post_thumbnail.URL}
           className="object-cover size-full aspect-video"
         />
