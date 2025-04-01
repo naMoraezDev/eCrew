@@ -16,6 +16,7 @@ export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
         } overflow-hidden flex relative group`}
       >
         <ProgressiveImage
+          priority
           width={1280}
           height={720}
           alt={posts.posts[0].title}

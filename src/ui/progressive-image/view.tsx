@@ -42,20 +42,14 @@ const ProgressiveImageView = forwardRef<
     ref
   ) => {
     const [currentQuality, setCurrentQuality] = useState<number | undefined>(
-      priority
-        ? quality !== undefined
-          ? Number(quality)
-          : highQuality
-        : quality !== undefined
-        ? Number(quality)
-        : lowQuality
+      quality !== undefined ? Number(quality) : lowQuality
     );
 
     const [isHighQualityLoaded, setIsHighQualityLoaded] =
-      useState<boolean>(priority);
+      useState<boolean>(false);
 
     useEffect(() => {
-      if (priority || isHighQualityLoaded) {
+      if (isHighQualityLoaded) {
         return;
       }
 
@@ -77,7 +71,7 @@ const ProgressiveImageView = forwardRef<
       return () => {
         window.removeEventListener("scroll", handleScroll);
       };
-    }, [priority, quality, highQuality, isHighQualityLoaded]);
+    }, [quality, highQuality, isHighQualityLoaded]);
 
     const handleImageLoad = (e: any): void => {
       const highQualityValue =
