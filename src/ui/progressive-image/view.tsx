@@ -103,7 +103,9 @@ const ProgressiveImageView = forwardRef<
 
     return (
       <div
-        className={`relative overflow-hidden size-full ${wrapperClassName}`}
+        className={`relative overflow-hidden size-full ${
+          showBlurEffect && wrapperClassName
+        }`}
         style={wrapperStyle}
       >
         <Image
