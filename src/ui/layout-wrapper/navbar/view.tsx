@@ -3,7 +3,7 @@ import Link from "next/link";
 export function NavbarView() {
   return (
     <nav className="w-full bg-gradient-to-r from-zinc-950 to-zinc-900 overflow-hidden">
-      <div className="w-full max-w-[1270px] mx-auto px-4 py-2 flex items-center justify-between gap-16 font-bold text-xs">
+      <div className="w-full sm:max-w-[70%] 2xl:max-w-[60%] mx-auto py-2 flex items-center justify-between gap-16 font-bold text-xs">
         <span />
         <div className="flex items-center gap-16">
           <Link

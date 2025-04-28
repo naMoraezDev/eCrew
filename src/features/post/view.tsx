@@ -23,11 +23,11 @@ import { getGameName } from "@/shared/utils/functions";
 
 export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
   return (
-    <section className="w-full lg:max-w-[85%] mx-auto flex gap-4">
+    <section className="w-full flex gap-4">
       <article
         className={`
           ${isDesktop ? "w-3/4 mt-4" : "w-full"} 
-          flex flex-col gap-4 mb-10
+          flex flex-col gap-10 mb-10
         `}
       >
         <Breadcrumb className={`${!isDesktop && "mx-4"} text-zinc-50`}>
@@ -162,7 +162,7 @@ export async function PostView({ post, isDesktop, morePostsAbout }: PostProps) {
         )}
       </article>
       {isDesktop && (
-        <section className="w-1/4 mt-4 relative flex flex-col gap-4">
+        <section className="relative w-1/4 flex flex-col gap-4 mt-4">
           <MorePostsAbout
             posts={morePostsAbout}
             category={Object.values(post.categories)[0].name}

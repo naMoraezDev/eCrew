@@ -1,4 +1,3 @@
-import { Channel } from "@/ui/channel";
 import { Featured } from "@/ui/featured";
 import { SquareAd } from "@/ui/square-ad";
 import { Newsletter } from "@/ui/newsletter";
@@ -100,21 +99,18 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             postsList={csPosts}
             isDesktop={isDesktop}
           />
-          <Channel isDesktop={isDesktop} channelId="UCPq2ETz4aAGo2Z-8JisDPIA" />
           <PostsCarousel
             games={GAMES}
             postsList={lolPosts}
             isDesktop={isDesktop}
             category="league-of-legends"
           />
-          <Channel isDesktop={isDesktop} channelId="UC48rkTlXjRd6pnqqBkdV0Mw" />
           <PostsCarousel
             games={GAMES}
             category="r6-siege"
             postsList={r6Posts}
             isDesktop={isDesktop}
           />
-          <Channel isDesktop={isDesktop} channelId="UCFYYhd9-VxkHnaA5cOiSybA" />
           <HorizontalAd rounded={isDesktop} isDesktop={isDesktop} />
           <PostsCarousel
             games={GAMES}
@@ -122,21 +118,18 @@ export async function HomeView({ isDesktop }: DefaultProps) {
             postsList={dotaPosts}
             isDesktop={isDesktop}
           />
-          <Channel isDesktop={isDesktop} channelId="UCMm9pF8QkLS3UN2fRbYgWoA" />
           <PostsCarousel
             games={GAMES}
             category="cod-mw"
             postsList={codPosts}
             isDesktop={isDesktop}
           />
-          <Channel isDesktop={isDesktop} channelId="UC9YydG57epLqxA9cTzZXSeQ" />
           <PostsCarousel
             games={GAMES}
             category="valorant"
             isDesktop={isDesktop}
             postsList={valorantPosts}
           />
-          <Channel isDesktop={isDesktop} channelId="UCgWiuB2PQIUhJgEN9No281g" />
           {!isDesktop && <Tournaments />}
           <Newsletter isDesktop={isDesktop} />
           {!isDesktop && (

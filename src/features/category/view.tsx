@@ -47,11 +47,7 @@ export async function CategoryView({
 
   return (
     <section className="w-full flex gap-4">
-      <section
-        className={`
-          ${isDesktop ? "w-3/4 mt-4" : "w-full"} flex flex-col gap-6 mb-10
-        `}
-      >
+      <section className="w-full flex flex-col gap-6 mb-10">
         <Breadcrumb className={`${!isDesktop && "mx-4"} text-zinc-50`}>
           <BreadcrumbList className="text-zinc-50">
             <BreadcrumbItem>
@@ -114,7 +110,7 @@ export async function CategoryView({
         )}
         <div
           className={`
-            ${isDesktop ? "grid-cols-3 gap-y-10" : "grid-cols-1 gap-y-3 mx-4"}
+            ${isDesktop ? "grid-cols-4 gap-y-10" : "grid-cols-1 gap-y-3 mx-4"}
             grid gap-x-4
           `}
         >
@@ -212,24 +208,6 @@ export async function CategoryView({
           </section>
         )}
       </section>
-      {isDesktop && (
-        <section className="w-1/4 mt-4 flex flex-col gap-4">
-          <Tournaments
-            game={
-              category === ""
-                ? undefined
-                : getGameName(
-                    Object.values(postsList.posts[0].categories)[0].slug
-                  )
-            }
-          />
-          <div className="flex flex-col gap-4 sticky top-16">
-            <MostReadPosts />
-            <PopularTags />
-            <SquareAd />
-          </div>
-        </section>
-      )}
     </section>
   );
 }

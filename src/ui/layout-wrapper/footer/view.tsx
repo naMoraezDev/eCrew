@@ -24,7 +24,7 @@ export async function FooterView({ isDesktop }: FooterProps) {
               ? "flex-col gap-6 text-center items-center"
               : "gap-16 justify-between"
           }
-          w-full sm:max-w-[80%] 2xl:max-w-[70%] mx-auto flex justify-center
+          w-full sm:max-w-[70%] 2xl:max-w-[60%] mx-auto flex justify-center
         `}
       >
         {!isDesktop && (
@@ -70,11 +70,11 @@ export async function FooterView({ isDesktop }: FooterProps) {
       <section
         className={`
           ${!isDesktop && "flex-col items-center gap-4"}
-          w-full flex gap-10 max-w-[1000px] mx-auto px-4 text-sm font-kanit
+          w-full flex gap-10 sm:max-w-[70%] 2xl:max-w-[60%] mx-auto px-4 text-sm font-kanit
         `}
       >
         <span className="text-sm font-kanit">
-          © 2024 eCrew. Todos os direitos reservados.
+          © 2024 GGATARI. Todos os direitos reservados.
         </span>
         <span className="flex items-center gap-2 text-center">
           <Image
