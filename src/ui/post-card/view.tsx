@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { PostCardProps } from "./types";
 import { SaveButton } from "../save-button";
-import { ProgressiveImage } from "../progressive-image";
 
 export function PostCardView({
   post,
@@ -27,12 +26,12 @@ export function PostCardView({
           overflow-hidden shrink-0 relative 
         `}
       >
-        <ProgressiveImage
+        <Image
           width={300}
           height={200}
           alt={post?.title}
           src={post?.post_thumbnail.URL}
-          className="size-full object-cover object-center aspect-video group-hover:scale-105"
+          className="size-full object-cover object-center aspect-video group-hover:scale-105 duration-300"
         />
         {gameIconUrl && (
           <div className="absolute top-3 right-3 flex justify-center items-center p-1 rounded-lg backdrop-blur-sm bg-zinc-900 bg-opacity-50 size-8">

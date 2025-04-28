@@ -5,7 +5,6 @@ import Image from "next/image";
 import { FaStar } from "react-icons/fa";
 import { PostCard } from "../post-card";
 import { FeaturedProps } from "./types";
-import { ProgressiveImage } from "../progressive-image";
 
 export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
   return (
@@ -15,14 +14,13 @@ export function FeaturedView({ posts, games, isDesktop }: FeaturedProps) {
           isDesktop ? "rounded-lg" : "aspect-square"
         } overflow-hidden flex relative group`}
       >
-        <ProgressiveImage
+        <Image
           priority
           width={1280}
           height={720}
           alt={posts.posts[0].title}
-          wrapperClassName="animate-zoom"
           src={posts.posts[0].post_thumbnail.URL}
-          className="object-cover size-full aspect-video"
+          className="object-cover size-full aspect-video animate-zoom"
         />
         <div className="z-10">
           <div
