@@ -40,7 +40,7 @@ export function CategorySEO({ categorySlug }: CategorySEOProps) {
             name: getCategoryTitle(categorySlug),
             isPartOf: {
               type: "WebSite",
-              name: "Notícias | eCrew",
+              name: "Notícias | GG",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -53,7 +53,7 @@ export function CategorySEO({ categorySlug }: CategorySEOProps) {
         itemListElements={[
           {
             position: 1,
-            name: "Notícias | eCrew",
+            name: "Notícias | GG",
             item: `${process.env.PRIVATE_SITE_URL}/noticias`,
           },
           {

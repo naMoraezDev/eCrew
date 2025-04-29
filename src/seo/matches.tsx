@@ -4,7 +4,7 @@ import { BreadcrumbJsonLd, WebPageJsonLd } from "next-seo";
 
 export const matchesMetadata: Metadata = {
   ...defaultMetadata,
-  title: "Partidas | eCrew",
+  title: "Partidas | GG",
   alternates: {
     canonical: `${process.env.PRIVATE_SITE_URL}/partidas`,
   },
@@ -23,10 +23,10 @@ export function MatchesSEO() {
         dataArray={[
           {
             inLanguage: "pt-BR",
-            name: "Partidas | eCrew",
+            name: "Partidas | GG",
             isPartOf: {
               type: "WebSite",
-              name: "Notícias | eCrew",
+              name: "Notícias | GG",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -40,7 +40,7 @@ export function MatchesSEO() {
         itemListElements={[
           {
             position: 1,
-            name: "Partidas | eCrew",
+            name: "Partidas | GG",
             item: `${process.env.PRIVATE_SITE_URL}/partidas`,
           },
         ]}

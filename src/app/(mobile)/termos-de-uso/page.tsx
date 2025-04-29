@@ -4,7 +4,7 @@ import { TermsOfUse } from "@/features/terms-of-use";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Termos de Uso | eCrew",
+  title: "Termos de Uso | GG",
   description:
     "Confira nossos termos de uso. Saiba como os dados pessoais que coletamos e como protegemos esses dados.",
 };

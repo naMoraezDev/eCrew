@@ -4,7 +4,7 @@ import { WebPageJsonLd, BreadcrumbJsonLd } from "next-seo";
 
 export const homeMetadata: Metadata = {
   ...defaultMetadata,
-  title: "Notícias | eCrew",
+  title: "Notícias | GG",
   alternates: {
     canonical: `${process.env.PRIVATE_SITE_URL}/noticias`,
   },
@@ -29,11 +29,11 @@ export function HomeSEO() {
         dataArray={[
           {
             inLanguage: "pt-BR",
-            name: "Notícias | eCrew",
+            name: "Notícias | GG",
             url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             isPartOf: {
               type: "WebSite",
-              name: "Notícias | eCrew",
+              name: "Notícias | GG",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -46,7 +46,7 @@ export function HomeSEO() {
         itemListElements={[
           {
             position: 1,
-            name: "Notícias | eCrew",
+            name: "Notícias | GG",
             item: `${process.env.PRIVATE_SITE_URL}/noticias`,
           },
         ]}

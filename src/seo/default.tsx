@@ -17,7 +17,7 @@ export const defaultMetadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    title: "Notícias | eCrew",
+    title: "Notícias | GG",
     url: process.env.PRIVATE_SITE_URL,
     images: [
       {

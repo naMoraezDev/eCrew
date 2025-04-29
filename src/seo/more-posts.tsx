@@ -33,10 +33,10 @@ export function MoreNewsSEO({ page }: MoreNewsSeoProps) {
         dataArray={[
           {
             inLanguage: "pt-BR",
-            name: "Mais notícias | eCrew",
+            name: "Mais notícias | GG",
             isPartOf: {
               type: "WebSite",
-              name: "Notícias | eCrew",
+              name: "Notícias | GG",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -52,12 +52,12 @@ export function MoreNewsSEO({ page }: MoreNewsSeoProps) {
         itemListElements={[
           {
             position: 1,
-            name: "Notícias | eCrew",
+            name: "Notícias | GG",
             item: `${process.env.PRIVATE_SITE_URL}/noticias`,
           },
           {
             position: 3,
-            name: "Mais notícias | eCrew ",
+            name: "Mais notícias | GG ",
             item: `${process.env.PRIVATE_SITE_URL}/noticias/mais-noticias${
               page ? `?page=${page}` : ""
             }`,

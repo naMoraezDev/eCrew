@@ -69,7 +69,7 @@ export function PostSEO({ post }: PostSeoProps) {
             inLanguage: "pt-BR",
             isPartOf: {
               type: "WebSite",
-              name: "Notícias | eCrew",
+              name: "Notícias | GG",
               id: `${process.env.PRIVATE_SITE_URL}/#noticias`,
               url: `${process.env.PRIVATE_SITE_URL}/noticias`,
             },
@@ -97,7 +97,7 @@ export function PostSEO({ post }: PostSeoProps) {
         itemListElements={[
           {
             position: 1,
-            name: "Notícias | eCrew",
+            name: "Notícias | GG",
             item: `${process.env.PRIVATE_SITE_URL}/noticias`,
           },
           {

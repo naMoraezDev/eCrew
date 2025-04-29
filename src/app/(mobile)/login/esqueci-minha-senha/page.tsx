@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { ForgotPassword } from "@/features/forgot-password";
 
 export const metadata: Metadata = {
-  title: "Esqueci minha senha | eCrew",
+  title: "Esqueci minha senha | GG",
   description:
     "Recupere o acesso à sua conta. Insira seu e-mail ou nome de usuário e siga as instruções para redefinir sua senha.",
 };
